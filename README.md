@@ -25,4 +25,16 @@ That's it, now it should work
 
 ---
 
-## |Summary|
+| Summary                      |
+| ---------------------------- | ------------------ |
+| Color schema                 | gruvbox            |
+|                              | vim-airline        |
+|                              | vim-devicons       |
+| ---------------------------- | ------------------ |
+| Motion                       | vim-tmux-navigator |
+|                              | vim-easymotion     |
+|                              | incsearch.vim      |
+|                              | nerdtree           |
+|                              | fzf.vim            |
+| ---------------------------- | ------------------ |
+| Code helpers and syntax      |                    |
