@@ -1,7 +1,7 @@
 # My NVIM configuration
 
 > Tip
->I really like web dev so this configuration is focus on that stuff anyway everything have been well documented so you can take it just a model if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support; .js and .py are using [Kite](https://www.kite.com/)
+> I really like web dev so this configuration is focus on that stuff anyway everything have been well documented so you can take it just a model if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support; .js and .py are using [Kite](https://www.kite.com/)
 
 ## Quick Start
 
@@ -13,9 +13,16 @@ $ mv /My-NVIM-configuration nvim
 $ mv /nvim ~/.config
 $ nvim
 ```
-| Space + p + i
 
----------
-|Summary|
----------
+Being on neovim just make the following commands to install the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
 
+- space + p + i
+- esc
+- :source%
+- :CocInstall
+
+That's it, now it should work
+
+---
+
+## |Summary|
