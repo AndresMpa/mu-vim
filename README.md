@@ -27,15 +27,12 @@ That's it, now it should work
 
 ## Summary
 
-| ---------------------------- | ------------------ |
-| Color schema | gruvbox |
-| | vim-airline |
-| | vim-devicons |
-| ---------------------------- | ------------------ |
-| Motion | vim-tmux-navigator |
-| | vim-easymotion |
-| | incsearch.vim |
-| | nerdtree |
-| | fzf.vim |
-| ---------------------------- | ------------------ |
+| Color schema | Motion             |
+| ------------ | ------------------ |
+| gruvbox      | vim-tmux-navigator |
+| vim-airline  | vim-easymotion     |
+| vim-devicons | incsearch.vim      |
+|              | nerdtree           |
+|              | fzf.vim            |
+
 | Code helpers and syntax | |
