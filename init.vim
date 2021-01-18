@@ -24,16 +24,16 @@ set updatetime=300  " Changing update time make coc works better
 
 """""""""""""""""""""""""""""""""""""MOUSE"""""""""""""""""""""""""""""""""""""
 
-set title		          " It shows the file title
-set mouse=a	  	      " It lets you use mous-e on the terminal
-set clipboard=unnamed	" Keep what you copy on the clip-board
+set title		              " It shows the file title
+set mouse=a	  	          " It lets you use mous-e on the terminal
+set clipboard=unnamedplus	" Keep what you copy on the clip-board
 
 """""""""""""""""""""""""""""""""""""STATUS"""""""""""""""""""""""""""""""""""""
 
 set noshowmode  	                                                    " This space is needed
 set laststatus=2	                                                    " Allways show your status
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P  " Status line for kite
 set belloff+=ctrlg                                                    " if vim beeps during completion
+set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P  " Status line for kite
 
 """""""""""""""""""""""""""""""""""""COMPLEOPT"""""""""""""""""""""""""""""""""""""
 
@@ -68,10 +68,9 @@ Plug 'junegunn/fzf.vim'                                             " Better way
 """"""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'                     " Git diffs
 Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
 Plug 'jiangmiao/auto-pairs'                       " Autocomplete parentesis
-Plug 'marlonfan/coc-phpls'
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions)
 Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesis, comillas and tags
 Plug 'Shougo/echodoc.vim'                         " Shows functions definition
@@ -149,8 +148,8 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:kite_supported_languages = ['javascript', 'python']
 
 " coc
-"" Prettier, Emmet, HTML, CSS, Json, Sh, Rust, Ruby, R
-let g:coc_global_extensions = ['coc-prettier', 'coc-emmet', 'coc-html', 'coc-css', 'coc-json', 'coc-sh', 'coc-rls', 'coc-solargraph', 'coc-r-lsp']
+"" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Sh, Rust, Ruby, R
+let g:coc_global_extensions = ['coc-prettier', 'coc-emmet', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vetur', 'coc-sh', 'coc-rls', 'coc-solargraph', 'coc-r-lsp']
 
 " indentline
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
@@ -176,6 +175,7 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 autocmd FileType python let b:coc_suggest_disable = 1
 autocmd FileType javascript let b:coc_suggest_disable = 1
 autocmd FileType scss setl iskeyword+=@-@
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""MAPPING""""""""""""""""""""""""""""""""""""""""
@@ -214,13 +214,14 @@ nmap <Leader>gpl :Git pull origin dev<CR>
 nmap <Leader>gps :Git push origin dev<CR>
 
 " Kite
-nmap <silent> <buffer> gK <Plug>(kite-docs)
+nmap <silent><buffer>gK <Plug>(kite-docs)
 
 " coc
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>gt <Plug>(coc-type-definition)
+nmap <silent>gi <Plug>(coc-implementation)
+nmap <silent>gr <Plug>(coc-references)
+nmap <leader>f :Prettier<CR>
 
 " Use <c-space> to trigger completion.
 if &filetype == "javascript" || &filetype == "python"
@@ -240,8 +241,8 @@ nmap <Leader>h :ls<CR>
 nmap <Leader>j :bnext<CR>
 nmap <Leader>l :bdelete<CR>
 nmap <Leader>k :bprevious<CR>
-nmap <Leader>> 10<C-w>>
-nmap <Leader>< 10<C-w><
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 2/3)<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""TERMINAL"""""""""""""""""""""""""""""""""""""""
