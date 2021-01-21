@@ -68,16 +68,22 @@ Plug 'junegunn/fzf.vim'                                             " Better way
 """"""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
-Plug 'airblade/vim-gitgutter'                     " Git diffs
+Plug 'terryma/vim-multiple-cursors'               " Multicursor
+Plug 'preservim/nerdcommenter'                    " Easy way to make commets
 Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
-Plug 'jiangmiao/auto-pairs'                       " Autocomplete parentesis
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions)
-Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesis, comillas and tags
-Plug 'Shougo/echodoc.vim'                         " Shows functions definition
 Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'honza/vim-snippets'                         " Track the engine
 Plug 'tpope/vim-rhubarb'                          " Browser support for fugitive.vim
+Plug 'mhinz/vim-signify'                          " Git diffs
 Plug 'sirver/ultisnips'                           " Snippers for vim-snippers
+Plug 'tpope/vim-repeat'                           " Repat all the commands using .
+
+""""""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
+
+Plug 'jiangmiao/auto-pairs'                       " Autocomplete parentesis
+Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesis, comillas and tags
+Plug 'alvan/vim-closetag'                         " Autocomplete tags
 
 call plug#end()
 
@@ -155,17 +161,24 @@ let g:coc_global_extensions = ['coc-prettier', 'coc-emmet', 'coc-html', 'coc-css
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 
-" Echodoc
-let g:echodoc_enable_at_startup = 1
-
 " UltiSnips
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""AUTOCMD""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
+
+" vim-closetag
+let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
+
+" Swicth between kite and coc
+if &filetype == "javascript" || &filetype == "python"
+  inoremap <c-space> <C-x><C-u>
+else
+  inoremap <silent><expr> <c-space> coc#refresh()
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Auto-close pop up helpers
@@ -203,11 +216,10 @@ nmap <Leader>ft :Filetypes<CR>
 " vim-fugitive (git support)
 nmap <Leader>gii :Git init<CR>
 nmap <Leader>gsh :Git show<CR>
-nmap <Leader>gst :Git status<CR>
-nmap <Leader>grv :Git remote -v<CR>
-nmap <Leader>gaa :Git add --all<CR>
 nmap <Leader>gc :Git commit<CR>
-nmap <Leader>gcam :Git commit -am<CR>
+nmap <Leader>gst :Git status<CR>
+nmap <Leader>gaa :Git add --all<CR>
+nmap <Leader>grv :Git remote -v<CR>
 nmap <Leader>gra :Git remote --add<CR>
 " Replace <oringin> <dev> to other branch if neccessary
 nmap <Leader>gpl :Git pull origin dev<CR>

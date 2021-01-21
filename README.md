@@ -34,3 +34,7 @@ That's it, now it should work
 | vim-devicons | incsearch.vim      |
 |              | nerdtree           |
 |              | fzf.vim            |
+
+## Apps
+
+- [Ulauncher](https://ulauncher.io/)
