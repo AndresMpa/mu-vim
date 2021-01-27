@@ -33,16 +33,18 @@ set clipboard=unnamedplus	" Keep what you copy on the clip-board
 
 set noshowmode            " This space is needed
 set laststatus=2          " Allways show your status
+set nocompatible          " Needed for polyglot
 set belloff+=ctrlg        " if vim beeps during completion
 
-"""""""""""""""""""""""""""""""""""""COMPLEOPT"""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""PREFIXES"""""""""""""""""""""""""""""""""""""
 
 set completeopt+=noselect
 set completeopt+=noinsert
 set completeopt+=menuone
 
-syntax enable		" Change the natural rgb
+let g:polyglot_disabled = ['markdown']
 
+syntax enable		" Change the natural rgb
 
 call plug#begin(expand('~/.config/nvim/plugged'))
 
@@ -70,7 +72,7 @@ Plug 'junegunn/fzf.vim'                                             " Better way
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
-Plug 'cheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
+Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
@@ -166,7 +168,36 @@ let g:fzf_action = {
 
 " coc
 "" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Sh, Rust, Ruby, R
-let g:coc_global_extensions = ['coc-prettier', 'coc-emmet', 'coc-html', 'coc-css', 'coc-json', 'coc-tsserver', 'coc-vetur', 'coc-sh', 'coc-rls', 'coc-solargraph', 'coc-r-lsp']
+let g:coc_global_extensions = [
+  \'coc-prettier',
+  \'coc-emmet',
+  \'coc-html',
+  \'coc-css',
+  \'coc-json',
+  \'coc-tsserver',
+  \'coc-vetur',
+  \'coc-sh',
+  \'coc-rls',
+  \'coc-solargraph',
+  \'coc-r-lsp']
+
+" Multicursor
+let g:multi_cursor_start_word_key = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key = 'g<C-n>'
+let g:multi_cursor_select_all_key = 'g<A-n>'
+let g:multi_cursor_next_key = '<C-n>'
+let g:multi_cursor_prev_key = '<C-p>'
+let g:multi_cursor_skip_key = '<C-x>'
+let g:multi_cursor_quit_key = '<Esc>'
+
+" Plygot
+" if identation fails
+"let g:polyglot_disabled = ['autoindent']
+" if languages identification fails 
+"let g:polyglot_disabled = ['sensible']
+" Disable autocommands
+"let g:polyglot_disabled = ['ftdetect']
 
 " indentline
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
@@ -177,18 +208,6 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-
-" Multicursor
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 
