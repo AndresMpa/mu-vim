@@ -26,14 +26,14 @@ set updatetime=300  " Changing update time make coc works better
 
 set title		              " It shows the file title
 set mouse=a	  	          " It lets you use mous-e on the terminal
+set visualbell            " Disable the fuc** bell
 set clipboard=unnamedplus	" Keep what you copy on the clip-board
 
 """""""""""""""""""""""""""""""""""""STATUS"""""""""""""""""""""""""""""""""""""
 
-set noshowmode  	                                                    " This space is needed
-set laststatus=2	                                                    " Allways show your status
-set belloff+=ctrlg                                                    " if vim beeps during completion
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P  " Status line for kite
+set noshowmode            " This space is needed
+set laststatus=2          " Allways show your status
+set belloff+=ctrlg        " if vim beeps during completion
 
 """""""""""""""""""""""""""""""""""""COMPLEOPT"""""""""""""""""""""""""""""""""""""
 
@@ -143,15 +143,16 @@ let NERDTreeQuitOnOpen=1            " quit nerdtree when you open a file
 let NERDTreeShowHidden=1            " show files or dir hidden by '.'
 
 " fzf
-" Ejecutar comandos con alt-enter :Commands
-let g:fzf_commands_expect = 'alt-enter'
-" Guardar historial de búsquedas
+" FZF will keep the history here
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+" Options while opening files with FZF
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
 
 """"""""""""""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""""""""""""
-
-" kite
-let g:kite_supported_languages = ['javascript', 'python']
 
 " coc
 "" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Sh, Rust, Ruby, R
@@ -172,21 +173,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " vim-closetag
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
 
-" Swicth between kite and coc
-if &filetype == "javascript" || &filetype == "python"
-  inoremap <c-space> <C-x><C-u>
-else
-  inoremap <silent><expr> <c-space> coc#refresh()
-endif
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Auto-close pop up helpers
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 " coc
-autocmd FileType python let b:coc_suggest_disable = 1
-autocmd FileType javascript let b:coc_suggest_disable = 1
 autocmd FileType scss setl iskeyword+=@-@
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -225,9 +217,6 @@ nmap <Leader>gra :Git remote --add<CR>
 nmap <Leader>gpl :Git pull origin dev<CR>
 nmap <Leader>gps :Git push origin dev<CR>
 
-" Kite
-nmap <silent><buffer>gK <Plug>(kite-docs)
-
 " coc
 nmap <silent>gd <Plug>(coc-definition)
 nmap <silent>gt <Plug>(coc-type-definition)
@@ -253,6 +242,8 @@ nmap <Leader>h :ls<CR>
 nmap <Leader>j :bnext<CR>
 nmap <Leader>l :bdelete<CR>
 nmap <Leader>k :bprevious<CR>
+nmap <Leader>vj :split<CR>
+nmap <Leader>vk :vsplit<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 2/3)<CR>
 
@@ -290,4 +281,4 @@ function! OpenTerminal()
     startinsert!
   endif
 endfunction
-nmap <C-t> :call OpenTerminal()<CR>
+
