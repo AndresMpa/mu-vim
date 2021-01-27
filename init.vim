@@ -70,13 +70,23 @@ Plug 'junegunn/fzf.vim'                                             " Better way
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
-Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
-Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions)
+Plug 'cheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
 Plug 'tpope/vim-fugitive'                         " Support to git commands
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'honza/vim-snippets'                         " Track the engine
 Plug 'tpope/vim-rhubarb'                          " Browser support for fugitive.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 Plug 'mhinz/vim-signify'                          " Git diffs
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'sirver/ultisnips'                           " Snippers for vim-snippers
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 Plug 'tpope/vim-repeat'                           " Repat all the commands using .
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
@@ -168,6 +178,18 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+
+" Multicursor
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 
 " vim-closetag
@@ -200,9 +222,10 @@ map ? <Plug>(incsearch-backward)
 " NERDTree
 nmap <leader>n :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeToggle<CR>
+nmap <leader>nc :NERDTreeToggleVCS<CR>
 
 " fzf
-nmap <Leader>ff :Files<CR>
+nmap <Leader>ff :FZF<CR>
 nmap <Leader>ft :Filetypes<CR>
 
 " vim-fugitive (git support)
