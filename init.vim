@@ -73,22 +73,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
 Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
 Plug 'tpope/vim-fugitive'                         " Support to git commands
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'honza/vim-snippets'                         " Track the engine
-Plug 'tpope/vim-rhubarb'                          " Browser support for fugitive.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 Plug 'mhinz/vim-signify'                          " Git diffs
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'sirver/ultisnips'                           " Snippers for vim-snippers
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 Plug 'tpope/vim-repeat'                           " Repat all the commands using .
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
@@ -96,6 +83,8 @@ Plug 'tpope/vim-repeat'                           " Repat all the commands using
 Plug 'jiangmiao/auto-pairs'                       " Autocomplete parentesis
 Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesis, comillas and tags
 Plug 'alvan/vim-closetag'                         " Autocomplete tags
+Plug 'honza/vim-snippets'                         " Snippers support 
+Plug 'sirver/ultisnips'                           " Snippers engine
 
 call plug#end()
 
@@ -159,9 +148,9 @@ let NERDTreeShowHidden=1            " show files or dir hidden by '.'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 " Options while opening files with FZF
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
+  \ 'ctrl-o': 'tab split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-s': 'split'
   \}
 
 """"""""""""""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""""""""""""
@@ -204,10 +193,11 @@ let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 
 " UltiSnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<d-tab>"
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 
@@ -229,7 +219,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let mapleader=" "			" Setting the leader key to space
 
-" Settings commands in normal mode
+" Settings commands
 
 " easymotion
 nmap <Leader>s <Plug>(easymotion-s2)
@@ -265,12 +255,12 @@ nmap <silent>gt <Plug>(coc-type-definition)
 nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
 nmap <leader>f :Prettier<CR>
-
 " Use <c-space> to trigger completion.
-if &filetype == "javascript" || &filetype == "python"
-  inoremap <c-space> <C-x><C-u>
-else
-  inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" repeat
+if empty(mapcheck("<Plug>(RepeatUndo)"))
+  nnoremap <Plug>(RepeatUndo) U
 endif
 
 " Plug
