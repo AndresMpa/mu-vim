@@ -250,13 +250,13 @@ nmap <Leader>gpl :Git pull origin dev<CR>
 nmap <Leader>gps :Git push origin dev<CR>
 
 " coc
-nmap <silent>gd <Plug>(coc-definition)
-nmap <silent>gt <Plug>(coc-type-definition)
-nmap <silent>gi <Plug>(coc-implementation)
-nmap <silent>gr <Plug>(coc-references)
+nmap <silent>cd <Plug>(coc-definition)
+nmap <silent>ct <Plug>(coc-type-definition)
+nmap <silent>ci <Plug>(coc-implementation)
+nmap <silent>cr <Plug>(coc-references)
 nmap <leader>f :Prettier<CR>
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
 
 " repeat
 if empty(mapcheck("<Plug>(RepeatUndo)"))
@@ -266,6 +266,8 @@ endif
 " Plug
 nmap <Leader>pc :PlugClean<CR>
 nmap <Leader>pi :PlugInstall<CR>
+nmap <Leader>pu :PlugUpdate<CR>
+nmap <Leader>pd :PlugUpgrade<CR>
 
 " Extras
 nmap <Leader>w :w<CR>
