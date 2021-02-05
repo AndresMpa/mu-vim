@@ -69,6 +69,8 @@ That's it, now it should work
 | Previous file                        | space + k |
 | Delete the current file from buffers | space + l |
 
+---
+
 ### Plugins (Can be edited)
 
 > Note
@@ -82,6 +84,8 @@ That's it, now it should work
 | Clean   | Each time you remove a plugin                | space + p + c |
 | Update  | At least once a year                         | space + p + u |
 | Upgrade | When you remember to do it (I forget it too) | space + p + d |
+
+#### Plugins
 
 | Action                    | Command           |
 | ------------------------- | ----------------- |

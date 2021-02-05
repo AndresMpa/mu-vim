@@ -256,12 +256,10 @@ nmap <silent>ci <Plug>(coc-implementation)
 nmap <silent>cr <Plug>(coc-references)
 nmap <leader>f :Prettier<CR>
 " Use <c-space> to trigger completion.
-"inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " repeat
-if empty(mapcheck("<Plug>(RepeatUndo)"))
-  nnoremap <Plug>(RepeatUndo) U
-endif
+nnoremap <Plug>(RepeatUndo) U
 
 " Plug
 nmap <Leader>pc :PlugClean<CR>
@@ -285,9 +283,14 @@ nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 2/3)<CR>
 """""""""""""""""""""""""""""""""""TERMINAL"""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Note: I took this function from https://github.com/nschurmann/configs/blob/master/.vim/maps.vim
+
 " Function
 function! OpenTerminal()
   " move to right most buffer
+  execute "normal \<C-l>"
+  execute "normal \<C-l>"
+  execute "normal \<C-l>"
   execute "normal \<C-l>"
 
   let bufNum = bufnr("%")
@@ -311,8 +314,9 @@ function! OpenTerminal()
     " set maps inside terminal buffer
     execute "tnoremap <buffer> <C-h> <C-\\><C-n><C-w><C-h>"
     execute "tnoremap <buffer> <C-t> <C-\\><C-n>:q<CR>"
+    execute "tnoremap <buffer> <C-\\><C-\\> <C-\\><C-n>"
 
     startinsert!
   endif
 endfunction
-
+nnoremap <C-t> :call OpenTerminal()<CR>
