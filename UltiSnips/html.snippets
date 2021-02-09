@@ -1,0 +1,18 @@
+snippet exm "Example" b
+<${1:div}>
+	Hello world
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet lst "List" b
+<${1:ul}>
+	<li>$2
+	<li>$3
+	<li>$4
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet todo "To do reminder" b
+<!--TODO: `echo $user` ${1:desc} `!v strftime("%c")`-->
+endsnippet
+

@@ -1,0 +1,33 @@
+# Print and end line
+snippet prc "print()" i
+print(${1: $2 })
+endsnippet
+
+# Print in line
+snippet prl "print(, end='')" b
+print(${1: $2 }, end=' ')
+endsnippet
+
+# Import
+snippet imp "import " b
+import ${1: $2 }
+endsnippet
+
+# Functions
+snippet fun "(){}" i
+def $1(${2:$3}):
+  ${4:$5}
+endsnippet
+
+snippet obj "Python object declaration" b
+class $1:
+  def __init__(self, $2):
+    self.$2 = $2
+endsnippet
+
+snippet try "Try except block" b
+try:
+  $1
+except:
+  $2
+endsnippet

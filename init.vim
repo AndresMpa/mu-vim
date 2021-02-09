@@ -83,7 +83,6 @@ Plug 'tpope/vim-repeat'                           " Repat all the commands using
 Plug 'jiangmiao/auto-pairs'                       " Autocomplete parentesis
 Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesis, comillas and tags
 Plug 'alvan/vim-closetag'                         " Autocomplete tags
-Plug 'honza/vim-snippets'                         " Snippers support 
 Plug 'sirver/ultisnips'                           " Snippers engine
 
 call plug#end()
@@ -171,10 +170,10 @@ let g:coc_global_extensions = [
   \'coc-r-lsp']
 
 " Multicursor
-let g:multi_cursor_start_word_key = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key = 'g<C-n>'
 let g:multi_cursor_select_all_key = 'g<A-n>'
+let g:multi_cursor_start_word_key = '<C-n>'
+let g:multi_cursor_start_key = 'g<C-n>'
 let g:multi_cursor_next_key = '<C-n>'
 let g:multi_cursor_prev_key = '<C-p>'
 let g:multi_cursor_skip_key = '<C-x>'
@@ -252,14 +251,14 @@ nmap <Leader>gps :Git push origin dev<CR>
 " coc
 nmap <silent>cd <Plug>(coc-definition)
 nmap <silent>ct <Plug>(coc-type-definition)
-nmap <silent>ci <Plug>(coc-implementation)
+nmap <silent>cg <Plug>(coc-implementation)
 nmap <silent>cr <Plug>(coc-references)
 nmap <leader>f :Prettier<CR>
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " repeat
-nnoremap <Plug>(RepeatUndo) U
+" nnoremap <Plug>(RepeatUndo) U
 
 " Plug
 nmap <Leader>pc :PlugClean<CR>
