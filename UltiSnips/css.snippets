@@ -1,19 +1,17 @@
 snippet * "Default" b
-$text: $1;
-$background: $2;
-
 * {
-	color: $text;
-	padding: 0%;
 	margin: 0%;
+	padding: 0%;
+	$1
 }
 
 body {
-	background-color: $background;
+	background-color: $2;
 }
 
 a {
 	text-decoration: $3;
+	$4
 }
 endsnippet
 
