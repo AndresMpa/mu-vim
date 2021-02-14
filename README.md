@@ -6,6 +6,7 @@
 > Tip #2
 > You can use my init.vim file in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
 
+![nvim](./.examples/nvim_0.png)
 ![nvim](./.examples/nvim_1.png)
 ![nvim](./.examples/nvim_2.png)
 ![nvim](./.examples/nvim_3.png)
