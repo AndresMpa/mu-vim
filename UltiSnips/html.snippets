@@ -1,18 +1,25 @@
-snippet exm "Example" b
+snippet do "To do reminder" b
+<!--TODO: `echo $user` ${1:desc} `!v strftime("%c")`-->
+endsnippet
+
+snippet ex "Example" b
 <${1:div}>
 	Hello world
 </${1/(\w+).*/$1/}>
 endsnippet
 
-snippet lst "List" b
-<${1:ul}>
-	<li>$2
-	<li>$3
-	<li>$4
+snippet ls "List" b
+<${1:ul} ${2:class="$3"}>
+	<li${4: class="$3__$5"}>$6</li>
+	<li$4>$7</li>
+	<li$4>$8</li>
 </${1/(\w+).*/$1/}>
 endsnippet
 
-snippet todo "To do reminder" b
-<!--TODO: `echo $user` ${1:desc} `!v strftime("%c")`-->
+snippet ma "Main default schema" b
+<main ${1:id="$2" class="$3"}>
+	<article class="$3--$4">
+		$5
+	</article>
+</main>
 endsnippet
-
