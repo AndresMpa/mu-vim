@@ -1,0 +1,54 @@
+snippet t1 "h1" b
+# $1
+endsnippet
+
+snippet t2 "h2" b
+## $1
+endsnippet
+
+snippet t3 "h3" b
+### $1
+endsnippet
+
+
+snippet t4 "h4" b
+#### $1
+endsnippet
+
+snippet r1 "Table of 1 row" b
+| ${1:Title}  |
+| ----------- |
+| ${2:Text}  	|
+endsnippet
+
+snippet r2 "Table of 2 row" b
+| ${1:Title}  | ${2:Section} |
+| ----------- | ------------ |
+| ${3:Text}  	| ${4:Text}    |
+endsnippet
+
+snippet r3 "Table of 3 row" b
+| ${1:Title}  | ${2:Section} | ${3:Section} |
+| ----------- | ------------ | ------------ |
+| ${4:Text}  	| ${5:Text}    | ${6:Text}    |
+endsnippet
+
+snippet r4 "Table of 4 row" b
+| ${1:Title}  | ${2:Section} | ${4:Section} |${5:Section} |
+| ----------- | ------------ | ------------ |------------ |
+| ${6:Text}  	| ${7:Text}    | ${8:Text}    |${9:Text}    |
+endsnippet
+
+snippet l "Link" b
+[$1]($2)
+endsnippet
+
+snippet hr "Line breaker" b
+---
+endsnippet
+
+snippet code "Insert code" b
+${1:```}
+$${2:Code}
+${1:```}
+endsnippet
