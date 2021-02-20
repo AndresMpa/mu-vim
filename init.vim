@@ -56,7 +56,8 @@ Plug 'vim-airline/vim-airline'                          " Bar theme
 Plug 'vim-airline/vim-airline-themes'				            " Airline themes
 
 " Nvim
-Plug 'morhetz/gruvbox', { 'as': 'gruvbox' }	            " Nvim theme
+"Plug 'morhetz/gruvbox', { 'as': 'gruvbox' }	            " Nvim theme
+Plug 'kamykn/dark-theme.vim'
 
 """""""""""""""""""""""""""""""""""""MOTION"""""""""""""""""""""""""""""""""""""
 
@@ -127,10 +128,12 @@ if !exists('g:airline_powerline_fonts')
 endif
 
 " Nvim THEME
-colorscheme gruvbox
+"colorscheme gruvbox
 
-let g:gruvbox_color_column='bg0'
-let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_color_column='bg0'
+"let g:gruvbox_contrast_dark='hard'
+
+colorscheme darktheme
 
 """"""""""""""""""""""""""""""""""""""NAVIGATION""""""""""""""""""""""""""""""""""""""""
 
