@@ -78,6 +78,7 @@ Plug 'Yggdroot/indentLine'                        " Identation helper (It shows 
 Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'mhinz/vim-signify'                          " Git diffs
 Plug 'tpope/vim-repeat'                           " Repat all the commands using .
+Plug 'ap/vim-css-color'                           " Show #fffffffff with colors
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 

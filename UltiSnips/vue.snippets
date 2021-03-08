@@ -1,0 +1,19 @@
+snippet imp "vue import" b
+import ${1} from "@/components/${2}";
+endsnippet
+
+snippet vue "vue basic" b
+<template>
+${1}
+</template>
+
+<script>
+export default {
+	${2}
+}
+</script>
+
+<style lang="${3:css}" scoped>
+${3}
+</style>
+endsnippet
