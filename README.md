@@ -11,6 +11,10 @@
 ![nvim](./.examples/nvim_2.png)
 ![nvim](./.examples/nvim_3.png)
 
+## Prerequisites
+
+You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/))
+
 ## Quick Start
 
 If you don't know to much about vim or nvim just follow the next steps:
