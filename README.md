@@ -17,8 +17,8 @@ If you don't know to much about vim or nvim just follow the next steps:
 
 ```
 $ git clone https://github.com/AndresMpa/My-NVIM-configuration.git
-$ mv /nvim-configuration nvim
-$ mv /nvim ~/.config
+$ mv nvim-configuration/ nvim/
+$ mv nvim/ ~/.config/
 $ nvim
 ```
 
