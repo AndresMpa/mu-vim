@@ -39,33 +39,114 @@ That's it, now it should work
 
 ## Summary
 
-| Color schema | Motion             | Code helpers and syntax | Autocomplete |
-| ------------ | ------------------ | ----------------------- | ------------ |
-| gruvbox      | vim-tmux-navigator | vim-multi-cursor-next   | vim-surround |
-| vim-airline  | vim-easymotion     | nerdcommenter           | vim-closetag |
-| vim-devicons | incsearch.vim      | vim-polyglot            | vim-snippets |
-|              | nerdtree           | vim-fugitive            | vim-ultisnip |
-|              | fzf.vim            | vim-signify             | auto-pairs   |
-|              |                    | indentLine              |              |
-|              |                    | vim-repeat              |              |
-|              |                    | coc.vim                 |              |
+| Color schema                          | Motion             | Code helpers and syntax | Autocomplete |
+| ------------------------------------- | ------------------ | ----------------------- | ------------ |
+| gruvbox (Currently I'm using default) | vim-tmux-navigator | vim-multi-cursor-next   | vim-surround |
+| vim-airline                           | vim-easymotion     | nerdcommenter           | vim-closetag |
+| vim-devicons                          | incsearch.vim      | vim-polyglot            | vim-snippets |
+|                                       | nerdtree           | vim-fugitive            | vim-ultisnip |
+|                                       | fzf.vim            | vim-signify             | auto-pairs   |
+|                                       |                    | indentLine              |              |
+|                                       |                    | vim-repeat              |              |
+|                                       |                    | coc.vim                 |              |
 
 ## Cheat sheet
 
 ### Native
 
+> Note
+> If you already know about vim or nvim skip this until next "files" item
+
+#### Motion
+
+| Action                                               | Command           |
+| ---------------------------------------------------- | ----------------- |
+| Move up (Add a number to jump # lines, default 1)    | #k or arrow up    |
+| Move down (Add a number to jump # lines, default 1)  | #j or arrow down  |
+| Move left (Add a number to jump # lines, default 1)  | #l or arrow left  |
+| Move right (Add a number to jump # lines, default 1) | #h or arrow right |
+
+#### Writting
+
+| Action  | Command               |
+| ------- | --------------------- |
+| Insert  | i or a or o or s      |
+| Replace | r or R                |
+| Visual  | v                     |
+| Copy    | y                     |
+| Paste   | p or P                |
+| Undo    | u                     |
+| Delete  | x or #d + space or dd |
+| Search  | # + n or /query + n   |
+
+> Tip
+> That's enough for beginners, skip until "Files" if you're lazy
+
+#### Lines
+
+| Action                                             | Command           |
+| -------------------------------------------------- | ----------------- |
+| Move to the end of a word # tines (Default 1)      | #e                |
+| Move forward a number # of words (Default 1)       | #w                |
+| Move backward a number # of words (Default 1)      | #b                |
+| Move forward a WORD (any non-whitespace characters | W                 |
+| Move the end of current line                       | $                 |
+| Move to the beginning of the line                  | 0 or vertical bar |
+| Move to the first non-blank character of the line  | ^                 |
+| Move to # column                                   | # + Vertical bar  |
+
+#### Jumping
+
+| Action                                                | Command                       |
+| ----------------------------------------------------- | ----------------------------- |
+| Jump to beginning of file                             | gg or 1G                      |
+| Jump to end of file                                   | G                             |
+| Jump to any # line                                    | #G                            |
+| Jump # screen lines in direction (up,down,left,right) | #g + direction {j, k, h, l}   |
+| Move # pages up                                       | # + page up or # + ctrl + b   |
+| Move # pages dowm                                     | # + page dowm or # + ctrl + f |
+| Jump to the top of the screen                         | H                             |
+| Jump to the middle of the screen                      | M                             |
+| Jump to the bottom of the screen                      | B                             |
+| Jump between sentences                                | ( or )                        |
+| Jump between paragraph                                | { or }                        |
+| Jump between closing brace                            | %                             |
+
+#### Scrolling
+
+| Action             | Command  |
+| ------------------ | -------- |
+| Scroll 50% up      | ctrl + d |
+| Scroll 50% down    | ctrl + u |
+| Scroll 100% up     | ctrl + f |
+| Scroll 100% down   | ctrl + b |
+| Scroll 1 line up   | ctrl + e |
+| Scroll 1 line down | ctrl + y |
+
+#### Marks
+
+| Action                                                               | Command |
+| -------------------------------------------------------------------- | ------- |
+| Set mark x at the current cursor position                            | mx      |
+| Jump to the beginning of the line of mark                            | 'x      |
+| Jump to the cursor position of mark x                                | `x      |
+| Return to the line where the cursor was before the latest jump       | "       |
+| Return to the cursor position before the latest jump (undo the jump) | ``      |
+| Jump to the last-changed line                                        | '.      |
+| Jump to last edited                                                  | g;      |
+
+---
+
+#### Files
+
 | Action                                     | Command            |
 | ------------------------------------------ | ------------------ |
-| Move down                                  | j or arrow down    |
-| Move up                                    | k or arrow up      |
-| Move left                                  | l or arrow left    |
-| Move right                                 | h or arrow right   |
 | Keep the file (Auto save can be activated) | space + w          |
 | Quit nvim (or vim)                         | space + q          |
 | History                                    | space + h          |
 | Split                                      | space + v + j      |
 | Vertical split                             | space + v + k      |
-| rezice                                     | space + { + or - } |
+| Rezice                                     | space + { + or - } |
 
 #### Buffers
 
