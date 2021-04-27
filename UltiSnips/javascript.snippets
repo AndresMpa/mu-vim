@@ -4,6 +4,8 @@ snippet do "To do reminder" b
 //////////////////////////////////////////////////
 endsnippet
 
+#basic snippets
+
 snippet log "console.log()" b
 console.log(${1:'$2', $3});
 endsnippet
@@ -62,6 +64,8 @@ snippet des "const {} =" b
 const { $1 } = $2
 endsnippet
 
+#React Snippets
+
 snippet rfc "React function component" b
 import React from 'react'
 import { ${4} } from 'react-native'
@@ -72,4 +76,61 @@ const $1 = ${2:( $3 )} => (
   </$4>
 )
 export default $1
+endsnippet
+
+#Sequelize snippets
+
+snippet sequelize "Sequelize init snippet" b
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class $1 extends Model {
+    static associate(${2:models}) {
+    }
+  };
+  $1.init({
+    $2
+  }, {
+    sequelize,
+    modelName: '$1',
+  });
+  return $1;
+};
+endsnippet
+
+snippet data "General structure for SQL DB files" b
+$1: {
+  type: DataTypes.$2,
+  defaultValue: $3,
+  allowNull: $4,
+  unique: $5,
+}
+endsnippet
+
+snippet int "Basic structure for integer data type" b
+$1: DataTypes.INTEGER,
+endsnippet
+
+snippet str "Basic structure for string data type" b
+$1: DataTypes.STRING${2:($3)},
+endsnippet
+
+snippet tbo "Basic structure for boolena data type" b
+$1: DataTypes.BOOLEAN,
+endsnippet
+
+snippet date "Basic structure for data data type" b
+$1: DataTypes.DATE,
+endsnippet
+
+snippet tb "Basic structure for SQL tables" b
+$1.init({
+  $2
+}, {
+  sequelize,
+  modelName: '$1',
+});
+return $1;
 endsnippet

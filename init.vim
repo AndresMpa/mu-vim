@@ -74,6 +74,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
 Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
+Plug 'kovetskiy/sxhkd-vim'                        " Vim stuff for indent, highlight syntax and detect sxhkd
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
 Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'mhinz/vim-signify'                          " Git diffs
