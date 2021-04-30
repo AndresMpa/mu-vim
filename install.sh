@@ -3,11 +3,17 @@
 cd ..
 mv nvim-configuration nvim
 
-if [ -e ~/.config ];
+if [ -e ~/.config/nvim ];
 then
-	mv nvim ~/.config
+	mv ~/.config/nvim old-nvim
+	mv $(pwd) ~/.config/nvim
 else
-	mkdir ~/.config
+	if [ -e ~/.config ];
+	then
+		mv nvim ~/.config/nvim
+	fi
+		mkdir ~/.config
+		mv nvim ~/.config/nvim
 fi
 
 echo "
@@ -34,4 +40,5 @@ echo "
 	themes, etc...
 	___
 "
+
 
