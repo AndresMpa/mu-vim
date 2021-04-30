@@ -1,3 +1,37 @@
+snippet i "Init for bash files" b
+#!/bin/bash
+
+$1
+endsnippet
+
+snippet if "if condition" b
+if [[ $1 ]];
+then
+	$2
+fi
+endsnippet
+
+snippet for "for bucle" b
+for [ $1 in $2 ];
+do
+	$3
+done
+endsnippet
+
+snippet while "while bucle" b
+while [ $1 $2 $3 ];
+do
+	$4
+done
+endsnippet
+
+snippet until "until bucle" b
+until 
+endsnippet
+
+# This is used by BSPWM (You can remove it)
 snippet b "Create rules" b
 bspc rule -a $1 desktop=^$2 follow=on focus=on state=fullscreen layer=below
 endsnippet
+
+
