@@ -1,7 +1,7 @@
 # My nvim configuration
 
 > Tip #1
-> I really like web dev so this configuration is focus on that stuff anyway everything have been well documented so you can take it just a model if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
+> I really like web dev so this configuration is focus on that stuff anyway, everything have been well documented, so you can take it just a model, if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
 
 > Tip #2
 > You can use my init.vim file in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
@@ -13,16 +13,17 @@
 
 ## Prerequisites
 
-You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/))
+You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself
 
 ## Quick Start
 
 If you don't know to much about vim or nvim just follow the next steps:
 
+### If you are using Linux or mac
+
 ```
 $ git clone https://github.com/AndresMpa/My-NVIM-configuration.git
-$ mv nvim-configuration/ nvim/
-$ mv nvim/ ~/.config/
+$ cd nvim-configuration/ && ./install.sh && exit
 $ nvim
 ```
 
@@ -55,7 +56,7 @@ That's it, now it should work
 ### Native
 
 > Note
-> If you already know about vim or nvim skip this until next "files" item
+> If you already know about vim or nvim, skip this until next "files" item; this is like a tutorial
 
 #### Motion
 
