@@ -8,30 +8,45 @@ snippet prl "print(, end='')" b
 print(${1: $2 }, end='\n')
 endsnippet
 
+# Tipe of
+snippet type "Type of for debuggig" b
+print(type($1))
+endsnippet
+
 # Import
 snippet imp "import " b
 import ${1: $2 }
 endsnippet
 
-snippet fro "form X import Y" b
+# Dinamic import
+snippet imf "form X import Y" b
 from $1 import $2 as $3
 endsnippet
 
+# Try block
+snippet try "Try except block" b
+try:
+    $1
+except:
+    ${2:continue}
+endsnippet
+
 # Functions
-snippet fun "(){}" i
+snippet fun "Function declaration" i
 def $1(${2:$3}):
     ${4:$5}
 endsnippet
 
+# Basic object declaration
 snippet obj "Python object declaration" b
 class $1:
     def __init__(self, $2):
         self.$2 = $2
 endsnippet
 
-snippet try "Try except block" b
-try:
-    $1
-except:
-    $2
+# Main function
+snippet ini "Basic python main function" b
+def __name__ == "__main__"($1):
+    ${2:pass}
 endsnippet
+

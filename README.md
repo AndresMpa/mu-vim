@@ -40,16 +40,19 @@ That's it, now it should work
 
 ## Summary
 
-| Color schema                          | Motion             | Code helpers and syntax | Autocomplete |
-| ------------------------------------- | ------------------ | ----------------------- | ------------ |
-| gruvbox (Currently I'm using default) | vim-tmux-navigator | vim-multi-cursor-next   | vim-surround |
-| vim-airline                           | vim-easymotion     | nerdcommenter           | vim-closetag |
-| vim-devicons                          | incsearch.vim      | vim-polyglot            | vim-snippets |
-|                                       | nerdtree           | vim-fugitive            | vim-ultisnip |
-|                                       | fzf.vim            | vim-signify             | auto-pairs   |
-|                                       |                    | indentLine              |              |
-|                                       |                    | vim-repeat              |              |
-|                                       |                    | coc.vim                 |              |
+| Color schema                          | Motion             | Code helpers and syntax | Autocomplete     |
+| ------------------------------------- | ------------------ | ----------------------- | ---------------- |
+| gruvbox (Currently I'm using default) | vim-tmux-navigator | vim-multi-cursor-next   | editorconfig-vim |
+| vim-airline-theme                     | vim-easymotion     | nerdcommenter           | vim-surround     |
+| vim-devicons                          | incsearch.vim      | vim-css-color           | vim-closetag     |
+| vim-airline                           | nerdtree           | vim-polyglot            | vim-snippets     |
+|                                       | fzf.vim            | vim-fugitive            | vim-ultisnip     |
+|                                       | ack.vim            | vim-signify             | auto-pairs       |
+|                                       |                    | indentLine              |                  |
+|                                       |                    | vim-repeat              |                  |
+|                                       |                    | sxhkd-vim               |                  |
+|                                       |                    | coc.vim                 |                  |
+|                                       |                    | kite IA                 |                  |
 
 ## Cheat sheet
 
@@ -158,7 +161,7 @@ That's it, now it should work
 | ------------------------------------ | --------- |
 | Next file                            | space + j |
 | Previous file                        | space + k |
-| Delete the current file from buffers | space + l |
+| Delete the current file from buffers | space + h |
 
 ---
 
@@ -178,24 +181,32 @@ That's it, now it should work
 
 #### Plugins
 
-| Action                    | Command           |
-| ------------------------- | ----------------- |
-| Search words in the file  | / or ?            |
-| Move to a concrete letter | space + s         |
-| Open file folder          | space + n         |
-| Toggle file folder        | space + n + t     |
-| Open current file folder  | space + n + c     |
-| Search files anywhere     | space + f + f     |
-| Search files by extention | space + f + t     |
-| Git init                  | space + g + i + i |
-| Git show                  | space + g + s + h |
-| Git commit                | space + g + c     |
-| Git status                | space + g + s + t |
-| Git add --all             | space + g + a + a |
-| Git remote -v             | space + g + r + v |
-| Git remote --add          | space + g + r + a |
-| Git pull origin dev       | space + g + p + l |
-| Git push origin dev       | space + g + p + s |
+| Action                    | Command                   |
+| ------------------------- | ------------------------- |
+| Search words in the file  | / or ?                    |
+| Move to a concrete letter | space + s + s             |
+| Move to croncrete file    | space + s + f             |
+| Open file folder          | space + n                 |
+| Toggle file folder        | space + n + t             |
+| Open current file folder  | space + n + c             |
+| Search files anywhere     | space + f + f             |
+| Search files by extention | space + f + t             |
+| Moving with ACK           | space + a                 |
+| Git init                  | space + g + i + i         |
+| Git show                  | space + g + s + h         |
+| Git blame                 | space + g + b + l         |
+| Git commit                | space + g + c + m         |
+| Git status                | space + g + s + t         |
+| Git add --all             | space + g + a + a         |
+| Git remote -v             | space + g + r + v         |
+| Git remote --add          | space + g + r + a         |
+| Git pull origin dev       | space + g + p + l         |
+| Git push origin dev       | space + g + p + s         |
+| Git check + <branch>      | space + g + c + k         |
+| Git check -b + <branch>   | space + g + n + b         |
+| Git add some files        | space + g + c + c + a + a |
+| Git pull a branch         | space + g + c + c + p + l |
+| Git push a branc          | space + g + c + c + p + s |
 
 ## Apps
 
@@ -203,6 +214,7 @@ There's a couple of apps I recommend you to improve a little bit more your veloc
 
 - [rofi](https://github.com/davatorium/rofi)
 - [Ulauncher](https://ulauncher.io/)
+- [Zeal](https://zealdocs.org/)
 - [Vimium](https://addons.mozilla.org/es/firefox/addon/vimium-ff/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [Arch Linux](https://github.com/AndresMpa/dotfiles)
 

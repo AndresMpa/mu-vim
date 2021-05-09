@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""NVIM SETTINGS"""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- 
+
 """""""""""""""""""""""""""""""""""""LINES"""""""""""""""""""""""""""""""""""""
 
 set sw=2		        " Replace tabs with X number of spaces
@@ -14,7 +14,7 @@ set relativenumber	" It shows the current cursor line
 set ruler		        " It shows the bar down
 set hidden          " It hides what is down on nvim commands
 set showcmd		      " Show the commands you are using
-set nobackup        " It can make coc work badly 
+set nobackup        " It can make coc work badly
 set showmatch		    " It shows the closing parentesis
 set splitright      " Open new panes to the right
 set cmdheight=1     " Better display for coc
@@ -67,6 +67,7 @@ Plug 'easymotion/vim-easymotion'						                        " Navigation in fi
 Plug 'haya14busa/incsearch.vim'							                        " Better way to look for words
 Plug 'scrooloose/nerdtree'							                            " Navigation between files
 Plug 'junegunn/fzf.vim'                                             " Better way to search files
+Plug 'mileszs/ack.vim'                                              " Navigation in projects
 
 """"""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""
 
@@ -78,11 +79,12 @@ Plug 'kovetskiy/sxhkd-vim'                        " Vim stuff for indent, highli
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
 Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'mhinz/vim-signify'                          " Git diffs
-Plug 'tpope/vim-repeat'                           " Repat all the commands using .
+Plug 'tpope/vim-repeat'                           " Repat all the commands using
 Plug 'ap/vim-css-color'                           " Show #fffffffff with colors
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 
+Plug 'editorconfig/editorconfig-vim'              " It gives nvim a general editing config for identation
 Plug 'jiangmiao/auto-pairs'                       " Autocomplete parentesis
 Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesis, comillas and tags
 Plug 'alvan/vim-closetag'                         " Autocomplete tags
@@ -139,7 +141,7 @@ endif
 
 """"""""""""""""""""""""""""""""""""""NAVIGATION""""""""""""""""""""""""""""""""""""""""
 
-" incsearch 
+" incsearch
 let g:incsearch#auto_nohlsearch = 1 " Remove the highligth after search
 
 " NERDTree
@@ -187,7 +189,7 @@ let g:multi_cursor_quit_key = '<Esc>'
 " Plygot
 " if identation fails
 "let g:polyglot_disabled = ['autoindent']
-" if languages identification fails 
+" if languages identification fails
 "let g:polyglot_disabled = ['sensible']
 " Disable autocommands
 "let g:polyglot_disabled = ['ftdetect']
@@ -217,7 +219,13 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 " coc
 autocmd FileType scss setl iskeyword+=@-@
+autocmd FileType go let b:coc_suggest_disable = 1
+autocmd FileType python let b:coc_suggest_disable = 1
+autocmd FileType javascript let b:coc_suggest_disable = 1
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Kite
+let g:kite_supported_languages = ['javascript', 'python', 'go']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""MAPPING""""""""""""""""""""""""""""""""""""""""
@@ -228,7 +236,10 @@ let mapleader=" "			" Setting the leader key to space
 " Settings commands
 
 " easymotion
-nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>ss <Plug>(easymotion-s2)
+
+" Files
+nmap <Leader>sf :BLines<CR>
 
 " incsearch
 map / <Plug>(incsearch-forward)
@@ -243,17 +254,27 @@ nmap <leader>nc :NERDTreeToggleVCS<CR>
 nmap <Leader>ff :FZF<CR>
 nmap <Leader>ft :Filetypes<CR>
 
+" AcK
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
 " vim-fugitive (git support)
 nmap <Leader>gii :Git init<CR>
 nmap <Leader>gsh :Git show<CR>
-nmap <Leader>gc :Git commit<CR>
+nmap <Leader>gbl :Git blame<CR>
+nmap <Leader>gcm :Git commit<CR>
 nmap <Leader>gst :Git status<CR>
 nmap <Leader>gaa :Git add --all<CR>
 nmap <Leader>grv :Git remote -v<CR>
-nmap <Leader>gra :Git remote --add<CR>
 " Replace <oringin> <dev> to other branch if neccessary
 nmap <Leader>gpl :Git pull origin dev<CR>
 nmap <Leader>gps :Git push origin dev<CR>
+" Commands that need especification
+nmap <Leader>gck :Git check<Space>
+nmap <Leader>gccaa :Git add<Space>
+nmap <Leader>gnb :Git check -b<Space>
+nmap <Leader>gccpl :Git pull origin<Space>
+nmap <Leader>gccps :Git push origin<Space>
 
 " coc
 nmap <silent>cd <Plug>(coc-definition)
@@ -265,7 +286,7 @@ nmap <leader>f :Prettier<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " repeat
-" nnoremap <Plug>(RepeatUndo) U
+"nmap <Plug>(RepeatUndo) U
 
 " Plug
 nmap <Leader>pc :PlugClean<CR>
@@ -276,10 +297,10 @@ nmap <Leader>pd :PlugUpgrade<CR>
 " Extras
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q!<CR>
-nmap <Leader>h :ls<CR>
-nmap <Leader>j :bnext<CR>
-nmap <Leader>l :bdelete<CR>
-nmap <Leader>k :bprevious<CR>
+nmap <Leader>h :bdelete<CR>
+nmap <Leader>j :bprevious<CR>
+nmap <Leader>k :bnext<CR>
+nmap <Leader>l :ls<CR>
 nmap <Leader>vj :split<CR>
 nmap <Leader>vk :vsplit<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
