@@ -159,6 +159,11 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split'
   \}
 
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 """"""""""""""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""""""""""""
 
 " coc
