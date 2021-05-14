@@ -108,9 +108,9 @@ is a free neovim tutorial at
 | -------------------------------------------------------------------- | ------- |
 | Set mark x at the current cursor position                            | mx      |
 | Jump to the beginning of the line of mark                            | 'x      |
-| Jump to the cursor position of mark x                                | `x      |
+| Jump to the cursor position of mark x                                | ´x      |
 | Return to the line where the cursor was before the latest jump       | "       |
-| Return to the cursor position before the latest jump (undo the jump) | ``      |
+| Return to the cursor position before the latest jump (undo the jump) | ´´      |
 | Jump to the last-changed line                                        | '.      |
 | Jump to last edited                                                  | g;      |
 
@@ -127,20 +127,20 @@ nvim as example)
 > Note:
 > If you are using vim just type: ´cd && vim .vimrc´
 
-´´´
+```
 $ cd
 $ mkdir .config
 $ cd .config
 $ mkdir nvim
 $ touche init.vim
 $ nvim init.vim
-´´´
+```
 
 Now you should see an empty file .vim extention, that file is going to be your neovim
 configuration file, now; let's make a couple of changes to default neovim and vim
 look, type the following then close the editor and open again that file that you created
 
-´´´
+```
 " Some static options
 set sw=2 " Replace tabs with X number of spaces
 set title " It shows the file title
@@ -153,7 +153,7 @@ set relativenumber " It shows the current cursor line
 " Mouse
 set mouse=a " It lets you use mous-e on the terminal
 set clipboard=unnamedplus " Keep what you copy on the clip-board
-´´´
+```
 
 This is a really basic configuration that only uses "set" statement... As you can see
 the single " is used for comments, taking in consideration what you copy paste, I suggest
@@ -188,27 +188,25 @@ use "Plug", but there are some other options that I'm leaving in the next list:
 Those are the plugin managers that I know in this case, just choose one and continue typing
 the following (This case I took vim-plug as example):
 
-´´´
+```
 " The sets you wrote before
 
 " Plugin manager donwloads dir
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 " Some plugins
-
-´´´
+```
 
 Using vim I suggest to user make a dir inside .config like this
 
-´´´
+```
 " The sets you wrote before
 
 " Plugin manager donwloads dir
 call plug#begin(expand('~/.config/plugged'))
 
 " Some plugins
-
-´´´
+```
 
 It surely change if you use another plugin manager
 
@@ -231,7 +229,7 @@ for general prupose, let's use some of them
 There are a lot of things that we need to set now, don't you think so? Well, with our
 plugin manager we can make this relatively easy, in this example we will use:
 
-´´´
+```
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Text editing support
 Plug 'tpope/vim-fugitive' " Support to git commands
 Plug 'christoomey/vim-tmux-navigator' " Navigation between windows
@@ -239,7 +237,7 @@ Plug 'scrooloose/nerdtree' " Navigation between files
 Plug 'haya14busa/incsearch.vim' " Better way to look for words
 Plug 'morhetz/gruvbox', { 'as': 'gruvbox' } " Nvim theme
 Plug 'vim-airline/vim-airline' " Bar theme
-´´´
+```
 
 Then, esc + esc + : + PlugInstall this will install all the repositories that you have
 written
@@ -248,7 +246,7 @@ Well know you have a basic IDE in you terminal but there are some extra configur
 that we can set, so let's start by our languages support, add the following lines after
 the plugins
 
-´´´
+```
 " coc
 "" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Sh, Rust, Ruby, R
 let g:coc_global_extensions = [
@@ -263,7 +261,7 @@ let g:coc_global_extensions = [
 \'coc-rls',
 \'coc-solargraph',
 \'coc-r-lsp']
-´´´
+```
 
 Then, esc + esc + : + CocInstall this will install CoC dependencies
 
@@ -272,7 +270,7 @@ CoC the first plugin that you installed
 
 Now, let's add some other configurations for our plugins:
 
-´´´
+```
 " NERDTree
 let NERDTreeMouseMode=1 " let you use the mouse
 let NERDTreeQuitOnOpen=1 " quit nerdtree when you open a file
@@ -304,24 +302,24 @@ let g:airline_symbols = {}
 endif
 
 if !exists('g:airline_powerline_fonts')
-" Using powerline symbols, it changes some icons
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_symbols.paste = "\uE0CE"
-let g:airline_symbols.linenr = "\uE0CC"
-let g:airline#extensions#branch#prefix = '⤴' "➔, ➥, ⎇
-let g:airline#extensions#readonly#symbol = '⊘'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#linecolumn#prefix = '¶'
-let g:airline#extensions#paste#symbol = "\uE0CF"
-let g:airline#extensions#tabline#left_alt_sep = ''
+    " Using powerline symbols, it changes some icons
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.whitespace = 'Ξ'
+    let g:airline_symbols.paste = "\uE0CE"
+    let g:airline_symbols.linenr = "\uE0CC"
+    let g:airline#extensions#branch#prefix = '⤴' "➔, ➥, ⎇
+    let g:airline#extensions#readonly#symbol = '⊘'
+    let g:airline#extensions#tabline#left_sep = ''
+    let g:airline#extensions#linecolumn#prefix = '¶'
+    let g:airline#extensions#paste#symbol = "\uE0CF"
+    let g:airline#extensions#tabline#left_alt_sep = ''
 endif
-´´´
+```
 
 Take a minute to read those configurations if you want, but I can say that
 that's the most common way to set those plugins, it might be a little bit
@@ -335,8 +333,7 @@ Well, we will finish with this particular tool in nvim and vim; "mapping"
 is basically use a combination of key that automates something let's map
 our plugins
 
-´´´
-
+```
 " coc
 nmap <silent>cd <Plug>(coc-definition)
 nmap <silent>ct <Plug>(coc-type-definition)
@@ -385,14 +382,15 @@ nmap <Leader>vk :vsplit<CR>
 nmap <Leader>sf :BLines<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) _ 3/2)<CR>
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) _ 2/3)<CR>
-´´´
+```
 
 You have mapped your plugins, quite simple, right? Well, those are examles
 you can add more plugins if you want or some way you can remove some maps
 
 ### Can I use a terminal inside the terminal?
 
-´´´
+
+```
 " Note: I took this function from https://github.com/nschurmann/configs/blob/master/.vim/maps.vim
 
 " Function
@@ -431,4 +429,4 @@ execute "vsp term://zsh"
 endif
 endfunction
 nnoremap <C-t> :call OpenTerminal()<CR>
-´´´
+```
