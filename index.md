@@ -32,7 +32,7 @@ tutorial vim tutorial
 
 This is for beginners, so you can skip this item if you already know how
 to work why vim or neovim, otherwise if you prefer a video tutorial, this
-is a free neovim tutorial at (Udemy)[https://www.udemy.com/course/vim-aumenta-tu-velocidad-de-desarrollo/]
+is a free neovim tutorial at [Udemy](https://www.udemy.com/course/vim-aumenta-tu-velocidad-de-desarrollo/)
 
 > Tip:
 > vim and neovim take words as objects, when you understand this you will
