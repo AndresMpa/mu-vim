@@ -216,7 +216,7 @@ It surely change if you use another plugin manager
 
 ### Plugins
 
-Now that you have a plugin manager let's start with basics, there are a lot of plugins
+Now that you have a plugin manager let's start with basics, there are a lot of [plugins](https://github.com/neovim/neovim/wiki/Related-projects#plugins)
 there on internet and we have to hunt some of them... But, I have some of them that
 will help you a lot, I have already talked to you abot those plugins that were made
 for general prupose, let's use some of them
