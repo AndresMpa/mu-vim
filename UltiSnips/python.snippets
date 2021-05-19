@@ -37,6 +37,17 @@ def $1(${2:$3}):
     ${4:$5}
 endsnippet
 
+# Lambda function
+snippet lam "Lambda function declaration" b
+lambda $1: $2
+endsnippet
+
+# Anonymous lambda function
+snippet afu "Anonymous lambda function declaration" i
+def $1($2):
+    return lambda $1: $2
+endsnippet
+
 # Basic object declaration
 snippet obj "Python object declaration" b
 class $1:
@@ -46,7 +57,7 @@ endsnippet
 
 # Main function
 snippet ini "Basic python main function" b
-def __name__ == "__main__"($1):
+if __name__ == "__main__"($1):
     ${2:pass}
 endsnippet
 
