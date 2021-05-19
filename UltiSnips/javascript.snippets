@@ -79,6 +79,13 @@ try {
 }
 endsnippet
 
+snippet iife "Inmediatly Invoke Function Expression" b
+(function(){
+  "use strict";
+  $1
+})();
+endsnippet
+
 ############################################################################
 ############################################################################
 ############################################################################
@@ -128,11 +135,11 @@ for( let i = 0; i < $2.length; i++ ) {
 endsnippet
 
 snippet qs "querySelector" b
-${1:let} $2 = querySelector('$3')
+${1:let} $2 = document.querySelector('$3')
 endsnippet
 
 snippet qsa "querySelectorAll" b
-${1:let} $2 = querySelectorAll('$3')
+${1:let} $2 = document.querySelectorAll('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
   ${5:console.log($2[i])}
