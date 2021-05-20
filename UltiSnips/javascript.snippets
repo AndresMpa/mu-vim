@@ -21,6 +21,14 @@ snippet imp "General import from" b
 import ${2:{ $3 }} from '$1';
 endsnippet
 
+snippet l "let =" b
+let $1 = $2;
+endsnippet
+
+snippet c "const = " b
+const $1 = $2;
+endsnippet
+
 snippet clf "Classic function" i
 function $1($3){
   $2
@@ -51,9 +59,6 @@ describe('$1', () => {
 })
 endsnippet
 
-snippet cns "const = " b
-const $1 = $2;
-endsnippet
 
 snippet obj "= {}" b
 const $1 = {
@@ -168,13 +173,13 @@ $1.className = ``;
 endsnippet
 
 snippet cNode "create a new node" b
-let $1tag = document.createElement('$1');
+let $1Tag = document.createElement('$1');
 ${2:
 let tagText = document.createTextNode('$3');
-$1tag.appendChild(tagText);
+$1Tag.appendChild(tagText);
 }
 let $4Container = document.querySelector('$5');
-$4Container.appendChild($1tag);
+$4Container.appendChild($1Tag);
 endsnippet
 
 snippet rmNode "remove an element" b
