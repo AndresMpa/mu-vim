@@ -186,6 +186,7 @@ That's it, now it should work
 | Action                    | Command                   |
 | ------------------------- | ------------------------- |
 | Search words in the file  | / or ?                    |
+| Replace content           | space + R                 |
 | Move to a concrete letter | space + s + s             |
 | Move to croncrete file    | space + s + f             |
 | Open file folder          | space + n                 |

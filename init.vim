@@ -263,6 +263,9 @@ nmap <Leader>ft :Filetypes<CR>
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
+" Replace
+nnoremap <leader>R :%s/_/_/gc
+
 " vim-fugitive (git support)
 nmap <Leader>gii :Git init<CR>
 nmap <Leader>gsh :Git show<CR>
