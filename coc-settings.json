@@ -1,34 +1,15 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
   "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
     },
-    "racket": {
-      "command": "racket",
-      "args": ["--lib", "racket-langserver"],
-      "filetypes": ["scheme"]
-    },
-    "intelephense": {
-      "command": "intelephense",
-      "args": ["--stdio"],
-      "filetypes": ["php"],
-      "initializationOptions": {
-        "storagePath": "/tmp/intelephense"
-      }
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     }
   }
 }

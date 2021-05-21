@@ -81,6 +81,7 @@ Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'mhinz/vim-signify'                          " Git diffs
 Plug 'tpope/vim-repeat'                           " Repat all the commands using
 Plug 'ap/vim-css-color'                           " Show #fffffffff with colors
+Plug 'jalvesaq/Nvim-R'                            " R support
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 
@@ -167,7 +168,8 @@ endif
 """"""""""""""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""""""""""""
 
 " coc
-"" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Sh, Rust, Ruby, R
+autocmd FileType json syntax match Comment +\/\/.\+$+
+"" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Bash, Rust, Ruby, R, C/C++, PHP, Cmake, Go
 let g:coc_global_extensions = [
   \'coc-prettier',
   \'coc-emmet',
@@ -179,7 +181,11 @@ let g:coc_global_extensions = [
   \'coc-sh',
   \'coc-rls',
   \'coc-solargraph',
-  \'coc-r-lsp']
+  \'coc-r-lsp',
+  \'coc-clangd',
+  \'coc-phpls',
+  \'coc-cmake',
+  \'coc-go']
 
 " Multicursor
 let g:multi_cursor_select_all_word_key = '<A-n>'
@@ -355,3 +361,13 @@ function! OpenTerminal()
   endif
 endfunction
 nnoremap <C-t> :call OpenTerminal()<CR>
+
+
+"function! TriggerIdentation()
+  "let filetype_md = "md"
+  "if filetype_md == *'.md':
+    "<Plug>(coc-codeaction)
+  "else:
+    "execute :Prettier<CR>
+  "endif
+"endfunction
