@@ -55,6 +55,7 @@ That's it, now it should work
 |                                       |                    | sxhkd-vim               |                  |
 |                                       |                    | coc.vim                 |                  |
 |                                       |                    | kite IA                 |                  |
+|                                       |                    | vCoolor                 |                  |
 
 ## Cheat sheet
 
