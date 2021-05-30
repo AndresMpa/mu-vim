@@ -28,7 +28,8 @@ then
 	then
 		sudo pacman -S neovim
 	fi
-elif [ `which apt` == "/usr/bin/apt" ]
+elif [ `which apt` == "/usr/bin/apt" ];
+then
 	echo "apt"
 	sudo apt-get install nodejs
 	sudo apt-get install npm
