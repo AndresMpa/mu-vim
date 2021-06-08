@@ -4,6 +4,10 @@ snippet i "Init for bash files" b
 $1
 endsnippet
 
+snippet als "Alias for commands" b
+alias $1="$2"
+endsnippet
+
 snippet if "if condition" b
 if [[ $1 ]];
 then
@@ -11,22 +15,22 @@ then
 fi
 endsnippet
 
-snippet for "for bucle" b
+snippet f "for bucle" b
 for [ $1 in $2 ];
 do
 	$3
 done
 endsnippet
 
-snippet while "while bucle" b
+snippet w "while bucle" b
 while [ $1 $2 $3 ];
 do
 	$4
 done
 endsnippet
 
-snippet until "until bucle" b
-until 
+snippet u "until bucle" b
+until
 endsnippet
 
 # This is used by BSPWM (You can remove it)
