@@ -231,13 +231,13 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 " coc
 autocmd FileType scss setl iskeyword+=@-@
-autocmd FileType go let b:coc_suggest_disable = 1
-autocmd FileType python let b:coc_suggest_disable = 1
-autocmd FileType javascript let b:coc_suggest_disable = 1
+"autocmd FileType go let b:coc_suggest_disable = 1
+"autocmd FileType python let b:coc_suggest_disable = 1
+"autocmd FileType javascript let b:coc_suggest_disable = 1
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Kite
-let g:kite_supported_languages = ['javascript', 'python', 'go']
+"let g:kite_supported_languages = ['javascript', 'python', 'go']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""MAPPING""""""""""""""""""""""""""""""""""""""""
