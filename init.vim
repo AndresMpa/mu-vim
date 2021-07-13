@@ -42,6 +42,13 @@ set completeopt+=noselect
 set completeopt+=noinsert
 set completeopt+=menuone
 
+" Autosave
+" Autosave based on buffer
+autocmd CursorHold * update
+" Autosave while writting
+autocmd CursorHold,CursorHoldI * update
+
+
 let g:polyglot_disabled = ['markdown']
 
 syntax enable		" Change the natural rgb
