@@ -44,7 +44,7 @@ set completeopt+=menuone
 
 " Autosave
 " Autosave based on buffer
-autocmd CursorHold * update
+"autocmd CursorHold * update
 " Autosave while writting
 autocmd CursorHold,CursorHoldI * update
 
