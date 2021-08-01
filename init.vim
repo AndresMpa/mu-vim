@@ -79,6 +79,7 @@ Plug 'mileszs/ack.vim'                                              " Navigation
 """"""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
+Plug 'iamcco/markdown-preview.nvim'               " Markdown preview
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
 Plug 'KabbAmine/vCoolor.vim'                      " Color picker for css
@@ -259,6 +260,9 @@ nmap <Leader>ss <Plug>(easymotion-s2)
 
 " Files
 nmap <Leader>sf :BLines<CR>
+
+" Markdown Preview
+nmap <Leader>pw <Plug>MarkdownPreviewToggle
 
 " incsearch
 map / <Plug>(incsearch-forward)
