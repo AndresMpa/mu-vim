@@ -1,22 +1,36 @@
 snippet do "To do reminder" b
-/////////////////////////////////////////////////////
-//TODO: `echo $user` ${1:desc} `!v strftime("%c")`
-/////////////////////////////////////////////////////
+/***************************************************
+* TODO:
+* ${1:desc}
+*
+* Written: `!v strftime("%c")`
+* By: `echo $USER`
+***************************************************/
 endsnippet
 
 snippet * "Default" b
+:root {
+	--main: #fff;
+}
+
 * {
-	margin: 0%;
 	padding: 0%;
+	margin: 0%;
 	$1
 }
 
 body {
-	background-color: $2;
+	background-color: ${2:#fff};
+}
+
+ul,
+li {
+  text-decoration: ${3:none};
+  list-style: ${4:none};
 }
 
 a {
-	text-decoration: $3;
+	text-decoration: ${5:none};
 	$4
 }
 endsnippet
