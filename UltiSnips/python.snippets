@@ -61,3 +61,17 @@ if __name__ == "__main__"($1):
     ${2:pass}
 endsnippet
 
+snippet dj_test "D" b
+class $1(TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def passTest(self):
+        self.assertFalse(False)
+
+    def failTest(self):
+        self.assertTrue(False)
+endsnippet
