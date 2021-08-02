@@ -42,6 +42,13 @@ set completeopt+=noselect
 set completeopt+=noinsert
 set completeopt+=menuone
 
+" Autosave
+" Autosave based on buffer
+"autocmd CursorHold * update
+" Autosave while writting
+autocmd CursorHold,CursorHoldI * update
+
+
 let g:polyglot_disabled = ['markdown']
 
 syntax enable		" Change the natural rgb
@@ -72,6 +79,7 @@ Plug 'mileszs/ack.vim'                                              " Navigation
 """"""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
+Plug 'iamcco/markdown-preview.nvim'               " Markdown preview
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
 Plug 'KabbAmine/vCoolor.vim'                      " Color picker for css
@@ -231,13 +239,13 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 " coc
 autocmd FileType scss setl iskeyword+=@-@
-autocmd FileType go let b:coc_suggest_disable = 1
-autocmd FileType python let b:coc_suggest_disable = 1
-autocmd FileType javascript let b:coc_suggest_disable = 1
+"autocmd FileType go let b:coc_suggest_disable = 1
+"autocmd FileType python let b:coc_suggest_disable = 1
+"autocmd FileType javascript let b:coc_suggest_disable = 1
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Kite
-let g:kite_supported_languages = ['javascript', 'python', 'go']
+"let g:kite_supported_languages = ['javascript', 'python', 'go']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""MAPPING""""""""""""""""""""""""""""""""""""""""
@@ -252,6 +260,9 @@ nmap <Leader>ss <Plug>(easymotion-s2)
 
 " Files
 nmap <Leader>sf :BLines<CR>
+
+" Markdown Preview
+nmap <Leader>pw <Plug>MarkdownPreviewToggle
 
 " incsearch
 map / <Plug>(incsearch-forward)

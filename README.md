@@ -44,12 +44,13 @@ That's it, now it should work
 
 | Color schema                          | Motion             | Code helpers and syntax | Autocomplete     |
 | ------------------------------------- | ------------------ | ----------------------- | ---------------- |
-| gruvbox (Currently I'm using default) | vim-tmux-navigator | vim-multi-cursor-next   | editorconfig-vim |
-| vim-airline-theme                     | vim-easymotion     | nerdcommenter           | vim-surround     |
-| vim-devicons                          | incsearch.vim      | vim-css-color           | vim-closetag     |
-| vim-airline                           | nerdtree           | vim-polyglot            | vim-snippets     |
-|                                       | fzf.vim            | vim-fugitive            | vim-ultisnip     |
-|                                       | ack.vim            | vim-signify             | auto-pairs       |
+| gruvbox (Currently I'm using default) | vim-tmux-navigator | markdown-preview.nvim   | editorconfig-vim |
+| vim-airline-theme                     | vim-easymotion     | vim-multi-cursor-next   | vim-surround     |
+| vim-devicons                          | incsearch.vim      | nerdcommenter           | vim-closetag     |
+| vim-airline                           | nerdtree           | vim-css-color           | vim-snippets     |
+|                                       | fzf.vim            | vim-polyglot            | vim-ultisnip     |
+|                                       | ack.vim            | vim-fugitive            | auto-pairs       |
+|                                       |                    | vim-signify             |                  |
 |                                       |                    | indentLine              |                  |
 |                                       |                    | vim-repeat              |                  |
 |                                       |                    | sxhkd-vim               |                  |
