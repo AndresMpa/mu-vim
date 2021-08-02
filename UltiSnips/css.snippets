@@ -122,3 +122,27 @@ snippet #i "Id" b
 	$3
 }
 endsnippet
+
+snippet media "Media queries skeleton" b
+@media screen and (max-width: $1px) {
+  $2
+}
+endsnippet
+
+snippet keyframe "Key frames animation skeleton" b
+.$1 {
+  animation-name: $1;
+  animation-duration: $6;
+}
+
+@keyframes $1 {
+  ${2:from} {
+		$4
+  }
+
+  ${3:to} {
+		$4
+		$5
+  }
+}
+endsnippet
