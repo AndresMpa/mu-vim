@@ -1,5 +1,44 @@
+snippet todo "To do list of items" b
+<!--
+TODO: `echo $user` ${1:desc} `!v strftime("%c")`
+-->
+endsnippet
+
+#FAD: Frecuency asked dudes
+snippet help "Small FAD" b
+/*
+Functions goes inside methods: {}
+Variabes are inside data() { return {} }
+To pass data we use props: {}
+To check Vue lifecycle type "life"
+*/
+endsnippet
+
+snippet life "Vue lifecycle" b
+/*
+beforeCreate() {}
+created() {}
+beforeMount() {}
+mounted() {}
+beforeUpdate() {}
+updated() {}
+activated() {}
+deactivated() {}
+beforeUnmount() {}
+unmounted() {}
+errorCaptured() {}
+renderTracked() {}
+renderTriggered() {}
+*/
+
+endsnippet
+
 snippet imp "vue import" b
 import ${1} from "@/components/${2}";
+endsnippet
+
+snippet log "console.log function" b
+console.log($1);
 endsnippet
 
 snippet vue "vue basic" b
@@ -18,11 +57,15 @@ ${3}
 </style>
 endsnippet
 
-snippet fun "Structure for funtion creation" b
+snippet fun "Vue functions (Methods)" b
 methods: {
-	$1() {
-		$2
-	},
+	f$1
+},
+endsnippet
+
+snippet f "JS funtions inside vue" b
+$1($2){
+	$3
 },
 endsnippet
 
