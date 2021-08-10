@@ -43,6 +43,22 @@ snippet r4 "Table of 4 row" b
 | ${6:Text}  	| ${7:Text}    | ${8:Text}    |${9:Text}    |
 endsnippet
 
+snippet c1 "Column for 1 row table" b
+| ${1:Text} |
+endsnippet
+
+snippet c2 "Column for 2 row table" b
+| ${1:Text} | ${2:Text} |
+endsnippet
+
+snippet c3 "Column for 3 row table" b
+| ${1:Text} | ${2:Text} | ${3:Text} |
+endsnippet
+
+snippet c4 "Column for 4 row table" b
+| ${1:Text} | ${2:Text} | ${3:Text} | ${4:Text} |
+endsnippet
+
 snippet l "Link" b
 [$1]($2)
 endsnippet
@@ -56,7 +72,7 @@ snippet hr "Line breaker" b
 endsnippet
 
 snippet code "Insert code" b
-${1:```}
-$${2:Code}
-${1:```}
+```
+$ $1
+```
 endsnippet

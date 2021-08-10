@@ -86,6 +86,7 @@ Plug 'KabbAmine/vCoolor.vim'                      " Color picker for css
 Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
 Plug 'kovetskiy/sxhkd-vim'                        " Vim stuff for indent, highlight syntax and detect sxhkd
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
+Plug 'rust-lang/rust.vim'                         " Support for Rust
 Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'mhinz/vim-signify'                          " Git diffs
 Plug 'tpope/vim-repeat'                           " Repat all the commands using
@@ -128,7 +129,7 @@ if !exists('g:airline_powerline_fonts')
   let g:airline_right_sep = ''
   let g:airline_left_alt_sep = ''
   let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
+  let g:airline_symbols.branch = '' "
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.whitespace = 'Ξ'
   let g:airline_symbols.paste = "\uE0CE"
