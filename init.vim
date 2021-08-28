@@ -180,6 +180,7 @@ endif
 " coc
 autocmd FileType json syntax match Comment +\/\/.\+$+
 "" Prettier, Emmet, HTML, CSS/Less/Sass, Json, JS/TS, Vue, Bash, Rust, Ruby, R, C/C++, PHP, Cmake, Go
+" Rust
 let g:coc_global_extensions = [
   \'coc-prettier',
   \'coc-emmet',
@@ -195,7 +196,8 @@ let g:coc_global_extensions = [
   \'coc-clangd',
   \'coc-phpls',
   \'coc-cmake',
-  \'coc-go']
+  \'coc-go',
+  \'coc-rls']
 
 " Multicursor
 let g:multi_cursor_select_all_word_key = '<A-n>'

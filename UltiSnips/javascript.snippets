@@ -29,6 +29,18 @@ snippet c "const = " b
 const $1 = $2;
 endsnippet
 
+snippet f "for structure" b
+for (let i in $1) {
+  $2
+}
+endsnippet
+
+snippet cf "Classic for" b
+for (let i = 0; i < $1; i++) {
+  $1[i]
+}
+endsnippet
+
 snippet clf "Classic function" i
 function $1($3){
   $2
@@ -95,6 +107,22 @@ snippet tst "Test what is being taking for event" b
 window.addEventListener("click", (e) => {
   console.log(e.target);
 });
+endsnippet
+
+snippet c_err "Append an error in the console" b
+console.error("$1");
+endsnippet
+
+snippet c_warn "Append a warning to the console" b
+console.warn("$1")
+endsnippet
+
+snippet time "Test how much time somethings take to be execute" b
+console.time("${1:test}");
+
+$2
+
+console.timeEnd("$1");
 endsnippet
 
 ############################################################################
