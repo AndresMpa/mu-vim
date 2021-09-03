@@ -10,17 +10,20 @@ endsnippet
 
 snippet * "Default" b
 :root {
-	--main: #fff;
+  --backgroundColor: #ffffff;
+	--letterColor: #000;
+	--linksColor: #000;
 }
 
 * {
-	padding: 0%;
 	margin: 0%;
+	padding: 0%;
+	color: var(--letterColor);
 	$1
 }
 
 body {
-	background-color: ${2:#fff};
+	background-color: ${2:var(--backgroundColor)};
 }
 
 ul,
@@ -31,7 +34,8 @@ li {
 
 a {
 	text-decoration: ${5:none};
-	$4
+	color: ${6:var(--linksColor)};
+	$7
 }
 endsnippet
 
