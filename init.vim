@@ -303,6 +303,7 @@ nmap <Leader>grv :Git remote -v<CR>
 
 " Commands that need especification
 nmap <Leader>ggaa :Git add<Space>
+nmap <Leader>gck :Git switch<Space>
 nmap <Leader>gck :Git checkout<Space>
 nmap <Leader>gcb :Git checkout -b<Space>
 nmap <Leader>ggpl :Git pull origin<Space>
