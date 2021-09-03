@@ -291,6 +291,8 @@ nnoremap <Leader>a :Ack!<Space>
 nnoremap <leader>R :%s/_/_/gc
 
 " vim-fugitive (git support)
+nmap <Leader>gpl :Git pull<CR>
+nmap <Leader>gps :Git push<CR>
 nmap <Leader>gii :Git init<CR>
 nmap <Leader>gsh :Git show<CR>
 nmap <Leader>gbl :Git blame<CR>
@@ -298,15 +300,16 @@ nmap <Leader>gst :Git status<CR>
 nmap <Leader>gcc :Git commit<CR>
 nmap <Leader>gaa :Git add --all<CR>
 nmap <Leader>grv :Git remote -v<CR>
-" Replace <oringin> <dev> to other branch if neccessary
-nmap <Leader>gpl :Git pull origin develop<CR>
-nmap <Leader>gps :Git push origin develop<CR>
+
 " Commands that need especification
-"nmap <Leader>gck :Git check<Space>
-"nmap <Leader>gccaa :Git add<Space>
-"nmap <Leader>gnb :Git check -b<Space>
-"nmap <Leader>gccpl :Git pull origin<Space>
-"nmap <Leader>gccps :Git push origin<Space>
+nmap <Leader>ggaa :Git add<Space>
+nmap <Leader>gck :Git checkout<Space>
+nmap <Leader>gcb :Git checkout -b<Space>
+nmap <Leader>ggpl :Git pull origin<Space>
+nmap <Leader>ggps :Git push origin<Space>
+
+" To performe different actions
+nnoremap <Leader>ggg :Git<Space>
 
 " coc
 nmap <silent>cd <Plug>(coc-definition)
