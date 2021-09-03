@@ -242,6 +242,9 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 " coc
 autocmd FileType scss setl iskeyword+=@-@
+" Disable these options just when Kate is installed
+" and running with vim
+
 "autocmd FileType go let b:coc_suggest_disable = 1
 "autocmd FileType python let b:coc_suggest_disable = 1
 "autocmd FileType javascript let b:coc_suggest_disable = 1
