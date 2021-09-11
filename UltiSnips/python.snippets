@@ -27,8 +27,12 @@ endsnippet
 snippet try "Try except block" b
 try:
     $1
-except:
-    ${2:continue}
+except $2:
+    ${3:continue}
+else:
+    ${4:print("It works")}
+finally:
+    ${5:print("Process has end")}
 endsnippet
 
 # Functions
