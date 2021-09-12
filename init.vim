@@ -132,7 +132,7 @@ if !exists('g:airline_powerline_fonts')
   let g:airline_symbols.branch = '' "
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.whitespace = 'Ξ'
-  let g:airline_symbols.paste = "\uE0CE"
+  let g:airline_symbols.paste = "puE0CE"
   let g:airline_symbols.linenr = "\uE0CC"
   let g:airline#extensions#branch#prefix = '⤴' "➔, ➥, ⎇
   let g:airline#extensions#readonly#symbol = '⊘'
@@ -280,8 +280,8 @@ nmap <leader>nt :NERDTreeToggle<CR>
 nmap <leader>nc :NERDTreeToggleVCS<CR>
 
 " fzf
-nmap <Leader>ff :FZF<CR>
-nmap <Leader>ft :Filetypes<CR>
+nmap <Leader>ff :Ag<CR>
+nmap <Leader>ft :FZF<CR>
 
 " AcK
 cnoreabbrev Ack Ack!
@@ -337,10 +337,12 @@ nmap <Leader>h :bdelete<CR>
 nmap <Leader>j :bprevious<CR>
 nmap <Leader>k :bnext<CR>
 nmap <Leader>l :ls<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>x :!node %<CR>
 nmap <Leader>vj :split<CR>
 nmap <Leader>vk :vsplit<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>< :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>> :exe "resize " . (winheight(0) * 2/3)<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""TERMINAL"""""""""""""""""""""""""""""""""""""""
