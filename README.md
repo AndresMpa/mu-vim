@@ -24,9 +24,9 @@ If you don't know to much about vim or nvim just follow the next steps:
 ### If you are using Linux or mac
 
 ```
-$ git clone https://github.com/AndresMpa/My-NVIM-configuration.git
-$ cd nvim-configuration/ && ./install.sh && exit
-$ nvim
+git clone https://github.com/AndresMpa/My-NVIM-configuration.git
+cd nvim-configuration/ && ./install.sh && exit
+nvim
 ```
 
 Now you must being on neovim (or vim) just make the following commands to install the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
