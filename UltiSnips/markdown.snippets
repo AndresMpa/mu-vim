@@ -59,12 +59,28 @@ snippet c4 "Column for 4 row table" b
 | ${1:Text} | ${2:Text} | ${3:Text} | ${4:Text} |
 endsnippet
 
-snippet l "Link" b
+snippet ln "Link" b
 [$1]($2)
 endsnippet
 
 snippet i "Link" b
 ![$1]($2)
+endsnippet
+
+snippet bq "Blockquote" i
+> $1
+endsnippet
+
+snippet ol "Ordered list" b
+1. $1
+2. $2
+3. $3
+endsnippet
+
+snippet ul "Unordered list" b
+- $1
+- $2
+- $3
 endsnippet
 
 snippet hr "Line breaker" b
@@ -75,4 +91,24 @@ snippet code "Insert code" b
 ```
 $ $1
 ```
+endsnippet
+
+snippet help "Instructions and help" b
+
+If you want review markdown
+leader + pw
+
+Snippets:
+
+- do: To do reminder
+- t#: Title number skeleton
+- r#: Table with # rows skeleton
+- c#: Add # colums skeleton
+- ln: Add a link skeleton
+- i: Add a image skeleton
+- bq: Add a Blockquote
+- hr: Add line breaker
+- code: Add code segment
+
+Reference: https://www.markdownguide.org/cheat-sheet/
 endsnippet
