@@ -13,12 +13,11 @@ snippet do "To do reminder" b
 //////////////////////////////////////////////////
 endsnippet
 
-snippet log "Simple console.log()" b
-console.log("$1");
-endsnippet
+snippet // "Multiline comment" b
+/*
+ * $1
+ * */
 
-snippet imp "General import from" b
-import ${2:{ $3 }} from '$1';
 endsnippet
 
 snippet l "let =" b
@@ -96,6 +95,10 @@ try {
 }
 endsnippet
 
+snippet imp "General import from" b
+import ${2:{ $3 }} from '$1';
+endsnippet
+
 snippet iife "Inmediatly Invoke Function Expression" b
 (function(){
   "use strict";
@@ -109,11 +112,15 @@ window.addEventListener("click", (e) => {
 });
 endsnippet
 
-snippet c_err "Append an error in the console" b
+snippet log "Simple console.log()" b
+console.log($1);
+endsnippet
+
+snippet err "Append an error in the console" b
 console.error("$1");
 endsnippet
 
-snippet c_warn "Append a warning to the console" b
+snippet warn "Append a warning to the console" b
 console.warn("$1")
 endsnippet
 

@@ -4,6 +4,12 @@ TODO: `echo $user` ${1:desc} `!v strftime("%c")`
 -->
 endsnippet
 
+snippet // "Multiline comments" b
+/*
+ * $1
+ * */
+endsnippet
+
 #FAD: Frecuency asked dudes
 snippet help "Small FAD" b
 /*
@@ -31,6 +37,12 @@ renderTracked() {}
 renderTriggered() {}
 */
 
+endsnippet
+
+snippet keys "Get json keys" b
+Object.keys($1).forEach((jsonKey) => {
+	console.log(jsonKey + "\n" + ${1}[jsonKey]);
+});
 endsnippet
 
 snippet imp "vue import" b
