@@ -101,6 +101,10 @@ Plug 'tpope/vim-surround'                         " It helps to 'CRUD' parentesi
 Plug 'alvan/vim-closetag'                         " Autocomplete tags
 Plug 'sirver/ultisnips'                           " Snippers engine
 
+""""""""""""""""""""""""""""""""""DATA TRACKING"""""""""""""""""""""""""""""""""""""
+
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
