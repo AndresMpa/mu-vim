@@ -29,6 +29,10 @@ cd nvim-configuration/ && ./install.sh && exit
 nvim
 ```
 
+#### Note:
+
+If you feel lost inside nvim or vim and you are using my config, just press "space + h + h"
+
 Now you must being on neovim (or vim) just make the following commands to install the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
 
 - space + p + i
@@ -201,7 +205,7 @@ That's it, now it should work
 | Git init                  | space + g + i + i         |
 | Git show                  | space + g + s + h         |
 | Git blame                 | space + g + b + l         |
-| Git commit                | space + g + c + m         |
+| Git commit                | space + g + c             |
 | Git status                | space + g + s + t         |
 | Git add --all             | space + g + a + a         |
 | Git remote -v             | space + g + r + v         |
