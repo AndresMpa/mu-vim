@@ -6,7 +6,7 @@ I made a basic tutorial where you can see how to make a vim or nvim file like th
 > I really like web dev so this configuration is focus on that stuff anyway, everything have been well documented, so you can take it just a model, if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
 
 > Tip #2
-> You can use my init.vim file in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
+> You can use my (init.vim file)[https://github.com/AndresMpa/nvim-configuration/blob/singleFile/init.vim] in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
 
 ![nvim](./.examples/nvim_0.png)
 ![nvim](./.examples/nvim_1.png)
@@ -47,7 +47,7 @@ That's it, now it should work
 
 ## Future changes
 
-- [ ] Split this into files, my config is getting hard to mantein
+- [x] Split this into files, my config is getting hard to mantein
 - [ ] Improve documentation
 - [ ] Add more helpers
 
