@@ -442,78 +442,92 @@ nmap <Leader>xd :call OpenServer("django")<CR>
 nmap <Leader>xv :call OpenServer("vue")<CR>
 
 function! HelpMapping()
-  let info = "Current features
-  \
-  \# Basics
-  \w -> Write
-  \q -> Quite
-  \h -> Close file
-  \j -> Previous
-  \k -> Next
-  \l -> List
-  \b -> Buffers
-  \
-  \
-  \# File control
-  \vj -> Split horizontally
-  \vk -> Split vertically
-  \< -> Hide prompt
-  \> -> Expand promt
-  \
-  \
-  \# Motion mappings
-  \ss -> Search by line
-  \sf -> Search by files
-  \? or \ -> Search by characters
-  \n -> Search with nerdtree
-  \ff -> Search with ag (folders)
-  \fs -> Search with fzf (files)
-  \a -> Search using Ack
-  \
-  \
-  \# Replace text
-  \R -> Replace a with b
-  \
-  \
-  \# Git (Inmediate commands)
-  \gpl -> Git pull
-  \gps -> Git push
-  \gii -> Git init
-  \gsh -> Git show
-  \gbl -> Git blame
-  \gst -> Git status
-  \gc -> Git commit
-  \gaa -> Git add
-  \grv -> Git remote
-  \
-  \# Git (Writting)
-  \ga  -> Git add
-  \gsw -> Git switch
-  \gco -> Git checkout
-  \gcb -> Git checkout
-  \gll -> Git pull
-  \gpp -> Git push
-  \ggg -> Git (General command)
-  \
-  \
-  \# CoC
-  \cd -> Coc definition
-  \ct -> Coc type
-  \cg -> Coc implementation
-  \cr -> Coc references
-  \
-  \# Formatter
-  \f -> Prettier
-  \
-  \
-  \# Maintenance
-  \
-  \pc -> PlugClean
-  \pi -> PlugInstall
-  \pu -> PlugUpdate
-  \pd -> PlugUpgrade
-  "
+  let info = [
+        \"Current features",
+        \"\n",
+        \"\n",
+        \"# Basics",
+        \"\n",
+        \"w -> Write",
+        \"q -> Quite",
+        \"h -> Close file",
+        \"nj -> Previous",
+        \"k -> Next",
+        \"nl -> List",
+        \"b -> Buffers",
+        \"\n",
+        \"\n",
+        \"# File control",
+        \"\n",
+        \"vj -> Split horizontally",
+        \"vk -> Split vertically",
+        \"< -> Hide prompt",
+        \"> -> Expand promt",
+        \"\n",
+        \"\n",
+        \"# Motion mappings",
+        \"\n",
+        \"ss -> Search by line",
+        \"sf -> Search by files",
+        \"? or \ -> Search by characters",
+        \"n -> Search with nerdtree",
+        \"ff -> Search with ag (folders)",
+        \"fs -> Search with fzf (files)",
+        \"a -> Search using Ack",
+        \"\n",
+        \"\n",
+        \"# Replace text",
+        \"\n",
+        \"R -> Replace a with b",
+        \"\n",
+        \"\n",
+        \"# Git (Inmediate commands)",
+        \"gpl -> Git pull",
+        \"gps -> Git push",
+        \"gii -> Git init",
+        \"gsh -> Git show",
+        \"gbl -> Git blame",
+        \"gst -> Git status",
+        \"gc -> Git commit",
+        \"gaa -> Git add",
+        \"grv -> Git remote",
+        \"\n",
+        \"# Git (Writting)",
+        \"\n",
+        \"ga  -> Git add",
+        \"gsw -> Git switch",
+        \"gco -> Git checkout",
+        \"gcb -> Git checkout -b",
+        \"gll -> Git pull",
+        \"gpp -> Git push",
+        \"ggg -> Git (General command)",
+        \"\n",
+        \"\n",
+        \"# CoC",
+        \"\n",
+        \"cd -> Coc definition",
+        \"ct -> Coc type",
+        \"cg -> Coc implementation",
+        \"cr -> Coc references",
+        \"\n",
+        \"# Formatter",
+        \"\n",
+        \"f -> Prettier",
+        \"\n",
+        \"\n",
+        \"# Maintenance",
+        \"\n",
+        \"pc -> PlugClean",
+        \"pi -> PlugInstall",
+        \"pu -> PlugUpdate",
+        \"pd -> PlugUpgrade"]
+
+  for tip in info
+    execute "echo tip"
+  endfor
 endfunction
+
+nmap <Leader>hh :call HelpMapping()<CR>
 
 "function! TriggerIdentation()
   "let extention = expand('%:e')
