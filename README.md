@@ -45,6 +45,14 @@ That's it, now it should work
 
 ---
 
+## Future changes
+
+- [ ] Split this into files, my config is getting hard to mantein
+- [ ] Improve documentation
+- [ ] Add more helpers
+
+---
+
 ## Summary
 
 | Color schema                          | Motion             | Code helpers and syntax | Autocomplete     | Tracking |
