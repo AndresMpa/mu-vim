@@ -234,21 +234,26 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<d-tab>"
 
-au BufNewFile,BufRead /*.rasi setf css
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 
 " vim-closetag
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""AUTOCOMMANDS""""""""""""""""""""""""""""""""""""
+
+au BufNewFile,BufRead /*.rasi setf css
 
 " Auto-close pop up helpers
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 " coc
 autocmd FileType scss setl iskeyword+=@-@
-" Disable these options just when Kate is installed
+au FileType css,scss let b:prettier_exec_cmd = "prettier-stylelint"
+
+
+
+" Disable these options just when Kite is installed
 " and running with vim
 
 "autocmd FileType go let b:coc_suggest_disable = 1
@@ -272,9 +277,6 @@ nmap <Leader>ss <Plug>(easymotion-s2)
 
 " Files
 nmap <Leader>sf :BLines<CR>
-
-" Markdown Preview
-nmap <Leader>pw <Plug>MarkdownPreviewToggle
 
 " incsearch
 map / <Plug>(incsearch-forward)
@@ -342,16 +344,15 @@ nmap <Leader>q :q!<CR>
 nmap <Leader>h :bdelete<CR>
 nmap <Leader>j :bprevious<CR>
 nmap <Leader>k :bnext<CR>
-nmap <Leader>l :ls<CR>
 nmap <Leader>b :Buffers<CR>
-nmap <Leader>x :!node %<CR>
+nmap <Leader>l :ls<CR>
 nmap <Leader>vj :split<CR>
 nmap <Leader>vk :vsplit<CR>
 nnoremap <silent> <Leader>< :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>> :exe "resize " . (winheight(0) * 2/3)<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""TERMINAL"""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""FUNCTION"""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Note: I took this function from https://github.com/nschurmann/configs/blob/master/.vim/maps.vim
@@ -392,12 +393,61 @@ function! OpenTerminal()
 endfunction
 nnoremap <C-t> :call OpenTerminal()<CR>
 
+function! OpenFileServer()
+  let extention = expand('%:e')
+  execute "echo extention"
+
+  "Markdown Preview
+  if extention == "md"
+    execute "normal \<Plug>MarkdownPreviewToggle"
+  endif
+
+  "Preview html files
+  if extention == "html"
+    execute "!firefox %"
+  endif
+
+  " Execute python
+  if extention == "py"
+    execute "!python %"
+  endif
+
+  "Execute node
+  if extention == "js"
+    execute "!node %"
+  endif
+
+endfunction
+
+
+function! OpenServer(flag)
+  let message="Starting a developer server for: "
+  execute "echo message"
+  execute "echo a:flag"
+
+  " Execute django server
+  if a:flag == "django"
+    execute ":terminal python manage.py runserver"
+  endif
+
+  "Start vue project
+  if a:flag == "vue"
+    execute ":terminal npm run serve"
+  endif
+
+endfunction
+
+nmap <Leader>x :call OpenFileServer()<CR>
+nmap <Leader>xd :call OpenServer("django")<CR>
+nmap <Leader>xv :call OpenServer("vue")<CR>
 
 "function! TriggerIdentation()
-  "let filetype_md = "md"
-  "if filetype_md == *'.md':
-    "<Plug>(coc-codeaction)
-  "else:
-    "execute :Prettier<CR>
+  "let extention = expand('%:e')
+
+  "if extention == "md"
+    "execute "normal \<Plug>(coc-codeaction)"
+  "else
+    "execute ":Prettier"
   "endif
 "endfunction
+
