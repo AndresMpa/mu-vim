@@ -305,17 +305,17 @@ nmap <Leader>gii :Git init<CR>
 nmap <Leader>gsh :Git show<CR>
 nmap <Leader>gbl :Git blame<CR>
 nmap <Leader>gst :Git status<CR>
-nmap <Leader>gcc :Git commit<CR>
+nmap <Leader>gc :Git commit<CR>
 nmap <Leader>gaa :Git add --all<CR>
 nmap <Leader>grv :Git remote -v<CR>
 
 " Commands that need especification
-nmap <Leader>ggaa :Git add<Space>
-nmap <Leader>gck :Git switch<Space>
-nmap <Leader>gck :Git checkout<Space>
+nmap <Leader>ga :Git add<Space>
+nmap <Leader>gsw :Git switch<Space>
+nmap <Leader>gco :Git checkout<Space>
 nmap <Leader>gcb :Git checkout -b<Space>
-nmap <Leader>ggpl :Git pull origin<Space>
-nmap <Leader>ggps :Git push origin<Space>
+nmap <Leader>gll :Git pull origin<Space>
+nmap <Leader>gpp :Git push origin<Space>
 
 " To performe different actions
 nnoremap <Leader>ggg :Git<Space>
@@ -419,6 +419,7 @@ function! OpenFileServer()
 
 endfunction
 
+nmap <Leader>x :call OpenFileServer()<CR>
 
 function! OpenServer(flag)
   let message="Starting a developer server for: "
@@ -437,9 +438,82 @@ function! OpenServer(flag)
 
 endfunction
 
-nmap <Leader>x :call OpenFileServer()<CR>
 nmap <Leader>xd :call OpenServer("django")<CR>
 nmap <Leader>xv :call OpenServer("vue")<CR>
+
+function! HelpMapping()
+  let info = "Current features
+  \
+  \# Basics
+  \w -> Write
+  \q -> Quite
+  \h -> Close file
+  \j -> Previous
+  \k -> Next
+  \l -> List
+  \b -> Buffers
+  \
+  \
+  \# File control
+  \vj -> Split horizontally
+  \vk -> Split vertically
+  \< -> Hide prompt
+  \> -> Expand promt
+  \
+  \
+  \# Motion mappings
+  \ss -> Search by line
+  \sf -> Search by files
+  \? or \ -> Search by characters
+  \n -> Search with nerdtree
+  \ff -> Search with ag (folders)
+  \fs -> Search with fzf (files)
+  \a -> Search using Ack
+  \
+  \
+  \# Replace text
+  \R -> Replace a with b
+  \
+  \
+  \# Git (Inmediate commands)
+  \gpl -> Git pull
+  \gps -> Git push
+  \gii -> Git init
+  \gsh -> Git show
+  \gbl -> Git blame
+  \gst -> Git status
+  \gc -> Git commit
+  \gaa -> Git add
+  \grv -> Git remote
+  \
+  \# Git (Writting)
+  \ga  -> Git add
+  \gsw -> Git switch
+  \gco -> Git checkout
+  \gcb -> Git checkout
+  \gll -> Git pull
+  \gpp -> Git push
+  \ggg -> Git (General command)
+  \
+  \
+  \# CoC
+  \cd -> Coc definition
+  \ct -> Coc type
+  \cg -> Coc implementation
+  \cr -> Coc references
+  \
+  \# Formatter
+  \f -> Prettier
+  \
+  \
+  \# Maintenance
+  \
+  \pc -> PlugClean
+  \pi -> PlugInstall
+  \pu -> PlugUpdate
+  \pd -> PlugUpgrade
+  "
+endfunction
 
 "function! TriggerIdentation()
   "let extention = expand('%:e')
@@ -450,4 +524,3 @@ nmap <Leader>xv :call OpenServer("vue")<CR>
     "execute ":Prettier"
   "endif
 "endfunction
-
