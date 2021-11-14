@@ -35,6 +35,7 @@ Now you must being on neovim (or vim) just make the following commands to instal
 - esc
 - :source%
 - :CocInstall
+- :call mkdp#util#install()
 
 That's it, now it should work
 
@@ -42,21 +43,21 @@ That's it, now it should work
 
 ## Summary
 
-| Color schema                          | Motion             | Code helpers and syntax | Autocomplete     |
-| ------------------------------------- | ------------------ | ----------------------- | ---------------- |
-| gruvbox (Currently I'm using default) | vim-tmux-navigator | markdown-preview.nvim   | editorconfig-vim |
-| vim-airline-theme                     | vim-easymotion     | vim-multi-cursor-next   | vim-surround     |
-| vim-devicons                          | incsearch.vim      | nerdcommenter           | vim-closetag     |
-| vim-airline                           | nerdtree           | vim-css-color           | vim-snippets     |
-|                                       | fzf.vim            | vim-polyglot            | vim-ultisnip     |
-|                                       | ack.vim            | vim-fugitive            | auto-pairs       |
-|                                       |                    | vim-signify             |                  |
-|                                       |                    | indentLine              |                  |
-|                                       |                    | vim-repeat              |                  |
-|                                       |                    | sxhkd-vim               |                  |
-|                                       |                    | coc.vim                 |                  |
-|                                       |                    | kite IA                 |                  |
-|                                       |                    | vCoolor                 |                  |
+| Color schema                          | Motion             | Code helpers and syntax | Autocomplete     | Tracking |
+| ------------------------------------- | ------------------ | ----------------------- | ---------------- | -------- |
+| gruvbox (Currently I'm using default) | vim-tmux-navigator | markdown-preview.nvim   | editorconfig-vim | wakatime |
+| vim-airline-theme                     | vim-easymotion     | vim-multi-cursor-next   | vim-surround     |          |
+| vim-devicons                          | incsearch.vim      | nerdcommenter           | vim-closetag     |          |
+| vim-airline                           | nerdtree           | vim-css-color           | vim-snippets     |          |
+|                                       | fzf.vim            | vim-polyglot            | vim-ultisnip     |          |
+|                                       | ack.vim            | vim-fugitive            | auto-pairs       |          |
+|                                       |                    | vim-signify             |                  |          |
+|                                       |                    | indentLine              |                  |          |
+|                                       |                    | vim-repeat              |                  |          |
+|                                       |                    | sxhkd-vim               |                  |          |
+|                                       |                    | coc.vim                 |                  |          |
+|                                       |                    | kite IA                 |                  |          |
+|                                       |                    | vCoolor                 |                  |          |
 
 ## Cheat sheet
 
