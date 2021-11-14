@@ -12,6 +12,7 @@ I made a basic tutorial where you can see how to make a vim or nvim file like th
 ![nvim](./.examples/nvim_1.png)
 ![nvim](./.examples/nvim_2.png)
 ![nvim](./.examples/nvim_3.png)
+![nvim](./.examples/nvim_4.png)
 
 ## Prerequisites
 
