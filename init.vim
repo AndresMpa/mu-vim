@@ -11,3 +11,7 @@ source $vimcf/PluginSetUp.vim
 
 "Mapping for vim acctions
 source $vimcf/Mapping.vim
+
+"Auto update
+source $vimcf/Update.vim
+
