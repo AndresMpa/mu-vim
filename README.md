@@ -6,16 +6,19 @@ I made a basic tutorial where you can see how to make a vim or nvim file like th
 > I really like web dev so this configuration is focus on that stuff anyway, everything have been well documented, so you can take it just a model, if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
 
 > Tip #2
-> You can use my init.vim file in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
+> You can use my (init.vim file)[https://github.com/AndresMpa/nvim-configuration/blob/singleFile/init.vim] in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
 
 ![nvim](./.examples/nvim_0.png)
 ![nvim](./.examples/nvim_1.png)
 ![nvim](./.examples/nvim_2.png)
 ![nvim](./.examples/nvim_3.png)
+![nvim](./.examples/nvim_4.png)
+
+[Example from YouTube](https://youtu.be/9L-k6n9SQds)
 
 ## Prerequisites
 
-You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself
+You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself, if you want the complete search engine, you will also need [the_silver_search](https://github.com/ggreer/the_silver_searcher) and [Ack](https://beyondgrep.com/install/)
 
 ## Quick Start
 
@@ -29,34 +32,47 @@ cd nvim-configuration/ && ./install.sh && exit
 nvim
 ```
 
+#### Note:
+
+If you feel lost inside nvim or vim and you are using my config, just press "space + h + h"
+
 Now you must being on neovim (or vim) just make the following commands to install the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
 
 - space + p + i
 - esc
 - :source%
 - :CocInstall
+- :call mkdp#util#install()
 
 That's it, now it should work
 
 ---
 
+## Future changes
+
+- [x] Split this into files, my config is getting hard to mantein
+- [ ] Improve documentation
+- [ ] Add more helpers
+
+---
+
 ## Summary
 
-| Color schema                          | Motion             | Code helpers and syntax | Autocomplete     |
-| ------------------------------------- | ------------------ | ----------------------- | ---------------- |
-| gruvbox (Currently I'm using default) | vim-tmux-navigator | markdown-preview.nvim   | editorconfig-vim |
-| vim-airline-theme                     | vim-easymotion     | vim-multi-cursor-next   | vim-surround     |
-| vim-devicons                          | incsearch.vim      | nerdcommenter           | vim-closetag     |
-| vim-airline                           | nerdtree           | vim-css-color           | vim-snippets     |
-|                                       | fzf.vim            | vim-polyglot            | vim-ultisnip     |
-|                                       | ack.vim            | vim-fugitive            | auto-pairs       |
-|                                       |                    | vim-signify             |                  |
-|                                       |                    | indentLine              |                  |
-|                                       |                    | vim-repeat              |                  |
-|                                       |                    | sxhkd-vim               |                  |
-|                                       |                    | coc.vim                 |                  |
-|                                       |                    | kite IA                 |                  |
-|                                       |                    | vCoolor                 |                  |
+| Color schema                          | Motion             | Code helpers and syntax | Autocomplete     | Tracking |
+| ------------------------------------- | ------------------ | ----------------------- | ---------------- | -------- |
+| gruvbox (Currently I'm using default) | vim-tmux-navigator | markdown-preview.nvim   | editorconfig-vim | wakatime |
+| vim-airline-theme                     | vim-easymotion     | vim-multi-cursor-next   | vim-surround     |          |
+| vim-devicons                          | incsearch.vim      | nerdcommenter           | vim-closetag     |          |
+| vim-airline                           | nerdtree           | vim-css-color           | vim-snippets     |          |
+|                                       | fzf.vim            | vim-polyglot            | vim-ultisnip     |          |
+|                                       | ack.vim            | vim-fugitive            | auto-pairs       |          |
+|                                       |                    | vim-signify             |                  |          |
+|                                       |                    | indentLine              |                  |          |
+|                                       |                    | vim-repeat              |                  |          |
+|                                       |                    | sxhkd-vim               |                  |          |
+|                                       |                    | coc.vim                 |                  |          |
+|                                       |                    | kite IA                 |                  |          |
+|                                       |                    | vCoolor                 |                  |          |
 
 ## Cheat sheet
 
@@ -200,7 +216,7 @@ That's it, now it should work
 | Git init                  | space + g + i + i         |
 | Git show                  | space + g + s + h         |
 | Git blame                 | space + g + b + l         |
-| Git commit                | space + g + c + m         |
+| Git commit                | space + g + c             |
 | Git status                | space + g + s + t         |
 | Git add --all             | space + g + a + a         |
 | Git remote -v             | space + g + r + v         |
