@@ -10,7 +10,7 @@ endsnippet
 
 snippet * "Default" b
 :root {
-  --backgroundColor: #ffffff;
+	--backgroundColor: #ffffff;
 	--letterColor: #000;
 	--linksColor: #000;
 }
@@ -28,8 +28,8 @@ body {
 
 ul,
 li {
-  text-decoration: ${3:none};
-  list-style: ${4:none};
+	text-decoration: ${3:none};
+	list-style: ${4:none};
 }
 
 a {
@@ -129,24 +129,60 @@ endsnippet
 
 snippet media "Media queries skeleton" b
 @media screen and (max-width: $1px) {
-  $2
+	$2
 }
 endsnippet
 
 snippet keyframe "Key frames animation skeleton" b
 .$1 {
-  animation-name: $1;
-  animation-duration: $6;
+	animation-name: $1;
+	animation-duration: $6;
 }
 
 @keyframes $1 {
-  ${2:from} {
+	${2:from} {
 		$4
-  }
+	}
 
-  ${3:to} {
+	${3:to} {
 		$4
 		$5
-  }
+	}
+}
+endsnippet
+
+snippet center "Different ways to center something" b
+/*Using negative position*/
+.${1:containter} {
+	position: relative;
+}
+
+.${1:containter}--wrapper {
+	margin: -25px 0 0 -25px
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+
+/*Using position*/
+.${1:containter} {
+	position: relative;
+}
+
+.${1:containter}--wrapper {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+
+/*Using flex*/
+.${1:containter} {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.${1:containter}--wrapper {
 }
 endsnippet
