@@ -125,6 +125,14 @@ let g:multi_cursor_quit_key = '<Esc>'
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 
+" Shfmt
+let g:shfmt_fmt_on_save = 1
+
+if executable('shfmt')
+  let &l:formatprg='shfmt -i ' . &l:shiftwidth . ' -ln posix -sr -ci -s'
+endif
+
+
 " UltiSnips
 " Here are the snippets if you need more you can write them here
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
@@ -151,8 +159,6 @@ autocmd CompleteDone * if !pumvisible() | pclose | endif
 " coc
 autocmd FileType scss setl iskeyword+=@-@
 au FileType css,scss let b:prettier_exec_cmd = "prettier-stylelint"
-
-
 
 " Disable these options just when Kite is installed
 " and running with vim

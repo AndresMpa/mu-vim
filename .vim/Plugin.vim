@@ -41,6 +41,7 @@ Plug 'mhinz/vim-signify'                          " Git diffs
 Plug 'tpope/vim-repeat'                           " Repat all the commands using
 Plug 'ap/vim-css-color'                           " Show #fffffffff with colors
 Plug 'jalvesaq/Nvim-R'                            " R support
+Plug 'z0mbix/vim-shfmt'
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 

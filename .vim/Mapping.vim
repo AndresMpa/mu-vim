@@ -59,7 +59,6 @@ nmap <silent>cd <Plug>(coc-definition)
 nmap <silent>ct <Plug>(coc-type-definition)
 nmap <silent>cg <Plug>(coc-implementation)
 nmap <silent>cr <Plug>(coc-references)
-nmap <leader>f :Prettier<CR>
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -263,12 +262,15 @@ endfunction
 
 nmap <Leader>hh :call HelpMapping()<CR>
 
-"function! TriggerIdentation()
-  "let extention = expand('%:e')
+function! TriggerIdentation()
+  let extention = expand('%:e')
 
-  "if extention == "md"
+  if extention == "sh"
     "execute "normal \<Plug>(coc-codeaction)"
-  "else
-    "execute ":Prettier"
-  "endif
-"endfunction
+    execute ":Shfmt"
+  else
+    execute ":Prettier"
+  endif
+endfunction
+
+nmap <leader>f :call TriggerIdentation()<CR>

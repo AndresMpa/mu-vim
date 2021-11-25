@@ -8,10 +8,20 @@ snippet als "Alias for commands" b
 alias $1="$2"
 endsnippet
 
+snippet reg "Regrex template" b
+'^($1)$'
+endsnippet
+
+snippet read "Read variables templates" b
+read -p "$1" $2
+endsnippet
+
 snippet if "if condition" b
 if [[ $1 ]];
 then
 	$2
+else
+	$3
 fi
 endsnippet
 
@@ -39,3 +49,10 @@ bspc rule -a $1 desktop=^$2 follow=on focus=on state=fullscreen layer=below
 endsnippet
 
 
+snippet help "Help cheatsheet data" b
+echo ""
+echo -n ""
+read -p "" var
+read $REPLY
+
+endsnippet
