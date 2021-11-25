@@ -18,7 +18,7 @@ I made a basic tutorial where you can see how to make a vim or nvim file like th
 
 ## Prerequisites
 
-You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself, if you want the complete search engine, you will also need [the_silver_search](https://github.com/ggreer/the_silver_searcher) and [Ack](https://beyondgrep.com/install/)
+You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself, if you want the complete search engine, you will also need [the_silver_search](https://github.com/ggreer/the_silver_searcher) and [Ack](https://beyondgrep.com/install/), if you bash support install shfmt
 
 ## Quick Start
 
@@ -70,6 +70,7 @@ That's it, now it should work
 |                                       |                    | indentLine              |                  |          |
 |                                       |                    | vim-repeat              |                  |          |
 |                                       |                    | sxhkd-vim               |                  |          |
+|                                       |                    | vim-shfmt               |                  |          |
 |                                       |                    | coc.vim                 |                  |          |
 |                                       |                    | kite IA                 |                  |          |
 |                                       |                    | vCoolor                 |                  |          |
