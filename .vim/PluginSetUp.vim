@@ -151,7 +151,7 @@ let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
 """"""""""""""""""""""""""""""""""AUTOCOMMANDS""""""""""""""""""""""""""""""""""""
 
 au BufNewFile,BufRead /*.rasi setf css
-au BufNewFile,BufRead *.html set filetype=htmldjango
+"au BufNewFile,BufRead *.html set filetype=htmldjango
 
 " Auto-close pop up helpers
 autocmd CompleteDone * if !pumvisible() | pclose | endif
