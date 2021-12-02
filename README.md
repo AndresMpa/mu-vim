@@ -36,6 +36,15 @@ cd nvim-configuration/ && ./install.sh && exit
 nvim
 ```
 
+### If you are using Windows
+
+```
+cd C:\Users\$USER\AppData\Local\nvim
+move nvim nvim_old
+git clone https://github.com/AndresMpa/nvim-configuration/tree/singleFile
+move nvim-configuration nvim
+```
+
 #### Note:
 
 If you feel lost inside nvim or vim and you are using my config, just press "space + h + h"
