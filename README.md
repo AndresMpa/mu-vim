@@ -29,6 +29,15 @@ cd nvim-configuration/ && ./install.sh && exit
 nvim
 ```
 
+### If you are using Windows
+
+```
+cd C:\Users\$USER\AppData\Local\nvim
+move nvim nvim_old
+git clone https://github.com/AndresMpa/nvim-configuration/tree/singleFile
+move nvim-configuration nvim
+```
+
 #### Note:
 
 If you feel lost inside nvim or vim and you are using my config, just press "space + h + h"
@@ -42,14 +51,6 @@ Now you must being on neovim (or vim) just make the following commands to instal
 - :call mkdp#util#install()
 
 That's it, now it should work
-
----
-
-## Future changes
-
-- [ ] Split this into files, my config is getting hard to mantein
-- [ ] Improve documentation
-- [ ] Add more helpers
 
 ---
 
