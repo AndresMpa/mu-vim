@@ -2,60 +2,60 @@ snippet do "To do reminder" b
 <!--TODO: `echo $user` ${1:desc} `!v strftime("%c")`-->
 endsnippet
 
-snippet t1 "h1" b
+snippet h1 "h1" b
 # $1
 endsnippet
 
-snippet t2 "h2" b
+snippet h2 "h2" b
 ## $1
 endsnippet
 
-snippet t3 "h3" b
+snippet h3 "h3" b
 ### $1
 endsnippet
 
 
-snippet t4 "h4" b
+snippet h4 "h4" b
 #### $1
 endsnippet
 
-snippet r1 "Table of 1 row" b
+snippet t1 "Table of 1 row" b
 | ${1:Title}  |
 | ----------- |
 | ${2:Text}  	|
 endsnippet
 
-snippet r2 "Table of 2 row" b
+snippet t2 "Table of 2 row" b
 | ${1:Title}  | ${2:Section} |
 | ----------- | ------------ |
 | ${3:Text}  	| ${4:Text}    |
 endsnippet
 
-snippet r3 "Table of 3 row" b
+snippet t3 "Table of 3 row" b
 | ${1:Title}  | ${2:Section} | ${3:Section} |
 | ----------- | ------------ | ------------ |
 | ${4:Text}  	| ${5:Text}    | ${6:Text}    |
 endsnippet
 
-snippet r4 "Table of 4 row" b
+snippet t4 "Table of 4 row" b
 | ${1:Title}  | ${2:Section} | ${4:Section} |${5:Section} |
 | ----------- | ------------ | ------------ |------------ |
 | ${6:Text}  	| ${7:Text}    | ${8:Text}    |${9:Text}    |
 endsnippet
 
-snippet c1 "Column for 1 row table" b
+snippet r1 "Column for 1 row table" b
 | ${1:Text} |
 endsnippet
 
-snippet c2 "Column for 2 row table" b
+snippet r2 "Column for 2 row table" b
 | ${1:Text} | ${2:Text} |
 endsnippet
 
-snippet c3 "Column for 3 row table" b
+snippet r3 "Column for 3 row table" b
 | ${1:Text} | ${2:Text} | ${3:Text} |
 endsnippet
 
-snippet c4 "Column for 4 row table" b
+snippet r4 "Column for 4 row table" b
 | ${1:Text} | ${2:Text} | ${3:Text} | ${4:Text} |
 endsnippet
 
@@ -107,9 +107,9 @@ leader + pw
 Snippets:
 
 - do: To do reminder
-- t#: Title number skeleton
-- r#: Table with # rows skeleton
-- c#: Add # colums skeleton
+- h#: Title number skeleton
+- t#: Table with # rows skeleton
+- r#: Add # colums skeleton
 - ln: Add a link skeleton
 - i: Add a image skeleton
 - bq: Add a Blockquote
