@@ -2,9 +2,14 @@
 
 instalation_dir=~/.config/nvim
 
+# Removing useless scripts
+rm ./updateSnippets.sh
+
+# Renaming dir
 cd ..
 mv nvim-configuration nvim
 
+# Downloading tools
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -20,6 +25,7 @@ else
 	installed=0
 fi
 
+# Installation for Arch
 if [ `which pacman` == "/usr/bin/pacman" ];
 then
 	echo "pacman"
@@ -28,6 +34,7 @@ then
 	then
 		sudo pacman -S neovim
 	fi
+# Installation for apt
 elif [ `which apt` == "/usr/bin/apt" ];
 then
 	echo "apt"
@@ -45,6 +52,7 @@ else
 	need manually"
 fi
 
+# Custom dirs functionality
 echo "Are you using a custom config dir? (Default ~/.config)[y/n]: "
 read custom_dir
 
@@ -54,6 +62,7 @@ then
 	read instalation_dir
 fi
 
+# Saving old configs
 if [ -e ~/.config/nvim ];
 then
 	mv ~/.config/nvim old-nvim
