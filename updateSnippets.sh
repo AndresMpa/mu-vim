@@ -6,4 +6,9 @@ git switch singleFile
 rm -rf ./UltiSnips
 mv ../UltiSnips .
 git add .
-git commit -am "Updating snippets"
+if [[ `git status --porcelain` ]]; then
+	git commit -am "Updating snippets"
+	git push
+else
+  echo "Ok"
+fi
