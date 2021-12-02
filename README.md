@@ -2,6 +2,10 @@
 
 I made a basic tutorial where you can see how to make a vim or nvim file like this, check the link [here](https://andresmpa.github.io/nvim-configuration/)
 
+## Note:
+
+Previous version using only one file can be [find here](https://github.com/AndresMpa/nvim-configuration/tree/singleFile), I'll mantein it for a while
+
 > Tip #1
 > I really like web dev so this configuration is focus on that stuff anyway, everything have been well documented, so you can take it just a model, if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
 
@@ -53,6 +57,7 @@ That's it, now it should work
 - [x] Split this into files, my config is getting hard to mantein
 - [ ] Improve documentation
 - [ ] Add more helpers
+- [ ] Create a new config using Lua
 
 ---
 
@@ -242,4 +247,4 @@ There's a couple of apps I recommend you to improve a little bit more your veloc
 
 ## Pats on the back
 
-If you are reading this it means that you want to improve your velocity or you want to make your own things so, if you start by nvim or vim I may by a little bit complicated but just at the beginning them you'd look like a professional "Ninja Dev"
+If you are reading this it means that you want to improve your velocity or you want to make your own things so, if you start by nvim or vim It may by a little bit complicated but just at the beginning them you'll look like a professional "Ninja Dev"
