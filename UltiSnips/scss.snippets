@@ -6,7 +6,7 @@ endsnippet
 
 snippet mx "Mixing default schema" b
 @mixin $1(${2:$$3}) {
-  $4: $5;
+	$4: $5;
 }
 endsnippet
 
@@ -44,8 +44,11 @@ endsnippet
 
 snippet f "Quick font set up" b
 //Font
-$projectFont: cursive, fantasy, Arial, Helvetica, sans-serif;
-$fontSize: 1em;
+@mixin google-font($family) {
+	@import url("http://fonts.googleapis.com/css?family=#{$family}");
+}
+
+@include google-font("Nunito");
 endsnippet
 
 snippet * "Default" b
@@ -62,9 +65,13 @@ body {
 	background-color: $background;
 }
 
+ul,
+ol,
+li,
 a {
-	text-decoration: $3;
-	$4
+	text-decoration: none;
+	list-style: none;
+	color: $text;
 }
 endsnippet
 
@@ -143,14 +150,14 @@ $1::selection ${2:{}
 endsnippet
 
 # Classes
-snippet .c "Classes" b
+snippet . "Classes" b
 .$1 ${2:{}
 	$3
 }
 endsnippet
 
 # Id
-snippet #i "Id" b
+snippet # "Id" b
 #$1 ${2:{}
 	$3
 }
