@@ -29,8 +29,8 @@ const $1 = $2;
 endsnippet
 
 snippet f "for structure" b
-for (let i in $1) {
-  $2
+for (let i ${1:in} $2) {
+  $3
 }
 endsnippet
 
@@ -130,6 +130,18 @@ console.time("${1:test}");
 $2
 
 console.timeEnd("$1");
+endsnippet
+
+snippet sort "Sort an array using .sort"
+const sortArray = (itemList) => itemList.sort((a, b) => a - b);
+endsnippet
+
+snippet isEven "Gef if a number is even" b
+const isEven = (number) => number % 2;
+endsnippet
+
+snippet rmDuplicate "removeDuplicates" b
+const removeRepetition = (itemList) => [...new Set(itemList)];
 endsnippet
 
 ############################################################################
