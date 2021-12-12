@@ -63,6 +63,7 @@ That's it, now it should work
 
 ## Future changes
 
+- [ ] Dude WTF about ES12?; Throw to trash JS snippets and update them to ES12
 - [x] Split this into files, my config is getting hard to mantein
 - [ ] Improve documentation
 - [ ] Add more helpers
