@@ -20,7 +20,7 @@ snippet // "Multiline comment" b
 
 endsnippet
 
-snippet l "let =" b
+snippet l "let = " b
 let $1 = $2;
 endsnippet
 
@@ -28,59 +28,64 @@ snippet c "const = " b
 const $1 = $2;
 endsnippet
 
-snippet f "for structure" b
+snippet if "If structure" b
+($1)
+  ? $2
+  : $3
+endsnippet
+
+snippet cif "Classic if structure" b
+if ( $1 ) {
+  $2
+} else {
+  $3
+}
+endsnippet
+
+snippet fe "For structure" b
+$1.forEach((item) => {
+  ${2:console.log(item)}
+});
+endsnippet
+
+snippet for "Usual for structure" b
 for (let i ${1:in} $2) {
   $3
 }
 endsnippet
 
-snippet cf "Classic for" b
+snippet cf "Classic for structure" b
 for (let i = 0; i < $1; i++) {
   $1[i]
 }
 endsnippet
 
-snippet clf "Classic function" i
-function $1($3){
-  $2
-};
-endsnippet
-
-snippet arf "Arrow function" i
+snippet fun "Arrow function" i
 ($1) => {
   $2
 }
 endsnippet
 
-snippet anf "Anonimus arrow function" i
+snippet af "Anonimus arrow function" i
 ${1:const $2 =} function($3){
   $4
 };
 endsnippet
 
-snippet it "it('', () => {})" b
-it('$1', () => {
-  $2
-})
-endsnippet
-
-snippet dsc "describe('', () => {})" b
-describe('$1', () => {
-  $2
-})
-endsnippet
-
-
-snippet obj "= {}" b
-const $1 = {
+snippet cfn "Classic function" i
+function $1($3){
   $2
 };
 endsnippet
 
-snippet arr "= []" b
-const $1 = [
+snippet arr "Array template" b
+const ${1:itemList} = [
   $2
-];
+endsnippet
+
+snippet obj "Object template" b
+const ${1:obj} = {
+  $2
 endsnippet
 
 snippet des "const {} =" b
@@ -90,14 +95,56 @@ endsnippet
 snippet try "try-catch block" i
 try {
   $1
-} catch (e) {
-  ${2:console.log(e);}
+} catch {
+  ${2:console.error(error);}
 }
 endsnippet
 
 snippet imp "General import from" b
 import ${2:{ $3 }} from '$1';
 endsnippet
+
+snippet exp "General export template" b
+export default {}
+
+endsnippet
+
+
+############################################################################
+############################################################################
+############################################################################
+
+snippet group "Create a group of log" b
+console.group("${1:test}");
+$2
+console.groupEnd($1);
+endsnippet
+
+snippet log "Simple console.log()" b
+console.log(${1:"$2"});
+endsnippet
+
+snippet err "Append an error in the console" b
+console.error(${1:"$2"});
+endsnippet
+
+snippet warn "Append a warning to the console" b
+console.warn(${1:"$2"});
+endsnippet
+
+snippet tab "Append a table of array element" b
+console.table(${1:itemList});
+endsnippet
+
+snippet time "Test how much time somethings take to be execute" b
+console.time("${1:test}");
+$2
+console.timeEnd("$1");
+endsnippet
+
+############################################################################
+############################################################################
+############################################################################
 
 snippet iife "Inmediatly Invoke Function Expression" b
 (function(){
@@ -112,26 +159,6 @@ window.addEventListener("click", (e) => {
 });
 endsnippet
 
-snippet log "Simple console.log()" b
-console.log($1);
-endsnippet
-
-snippet err "Append an error in the console" b
-console.error("$1");
-endsnippet
-
-snippet warn "Append a warning to the console" b
-console.warn("$1")
-endsnippet
-
-snippet time "Test how much time somethings take to be execute" b
-console.time("${1:test}");
-
-$2
-
-console.timeEnd("$1");
-endsnippet
-
 snippet sort "Sort an array using .sort"
 const sortArray = (itemList) => itemList.sort((a, b) => a - b);
 endsnippet
@@ -142,6 +169,13 @@ endsnippet
 
 snippet rmDuplicate "removeDuplicates" b
 const removeRepetition = (itemList) => [...new Set(itemList)];
+endsnippet
+
+snippet promise "Promise template" b
+new Promise((resolve, reject) => {
+  resolve($1);
+  reject($2);
+});
 endsnippet
 
 ############################################################################
@@ -170,11 +204,11 @@ endsnippet
 #            |_|   |_|
 ############################################################################
 
-snippet gtid "getElementById()" b
+snippet id "getElementById()" b
 ${1:const} $2 = document.getElementById('$3')
 endsnippet
 
-snippet gttg "getElementsByTagName()" b
+snippet tag "getElementsByTagName()" b
 ${1:const} $2 = document.getElementsByTagName('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
@@ -183,7 +217,7 @@ for( let i = 0; i < $2.length; i++ ) {
 }
 endsnippet
 
-snippet gtcl "getElementsByClassName()" b
+snippet class "getElementsByClassName()" b
 ${1:const} $2 = document.getElementsByClassName('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
@@ -330,73 +364,3 @@ endsnippet
 ############################################################################
 ############################################################################
 
-############################################################################
-# ____                        _ _
-#/ ___|  ___  __ _ _   _  ___| (_)_______
-#\___ \ / _ \/ _` | | | |/ _ \ | |_  / _ \
-# ___) |  __/ (_| | |_| |  __/ | |/ /  __/
-#|____/ \___|\__, |\__,_|\___|_|_/___\___|
-#               |_|
-#           _                  _
-# ___ _ __ (_)_ __  _ __   ___| |_ ___
-#/ __| '_ \| | '_ \| '_ \ / _ \ __/ __|
-#\__ \ | | | | |_) | |_) |  __/ |_\__ \
-#|___/_| |_|_| .__/| .__/ \___|\__|___/
-#            |_|   |_|
-############################################################################
-
-
-snippet sequelize "Sequelize init snippet" b
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class $1 extends Model {
-    static associate(${2:models}) {
-    }
-  };
-  $1.init({
-    $2
-  }, {
-    sequelize,
-    modelName: '$1',
-  });
-  return $1;
-};
-endsnippet
-
-snippet data "General structure for SQL DB files" b
-$1: {
-  type: DataTypes.$2,
-  defaultValue: $3,
-  allowNull: $4,
-  unique: $5,
-}
-endsnippet
-
-snippet int "Basic structure for integer data type" b
-$1: DataTypes.INTEGER,
-endsnippet
-
-snippet str "Basic structure for string data type" b
-$1: DataTypes.STRING${2:($3)},
-endsnippet
-
-snippet tbo "Basic structure for boolena data type" b
-$1: DataTypes.BOOLEAN,
-endsnippet
-
-snippet date "Basic structure for data data type" b
-$1: DataTypes.DATE,
-endsnippet
-
-snippet tb "Basic structure for SQL tables" b
-$1.init({
-  $2
-}, {
-  sequelize,
-  modelName: '$1',
-});
-return $1;
-endsnippet
