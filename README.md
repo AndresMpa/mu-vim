@@ -83,6 +83,7 @@ That's it, now it should work
 |                                       | ack.vim            | vim-fugitive            | auto-pairs       |          |
 |                                       |                    | vim-signify             |                  |          |
 |                                       |                    | indentLine              |                  |          |
+|                                       |                    | bracey.vim              |                  |          |
 |                                       |                    | vim-repeat              |                  |          |
 |                                       |                    | sxhkd-vim               |                  |          |
 |                                       |                    | vim-shfmt               |                  |          |

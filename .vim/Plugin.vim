@@ -38,10 +38,11 @@ Plug 'Yggdroot/indentLine'                        " Identation helper (It shows 
 Plug 'rust-lang/rust.vim'                         " Support for Rust
 Plug 'tpope/vim-fugitive'                         " Support to git commands
 Plug 'mhinz/vim-signify'                          " Git diffs
+Plug 'turbio/bracey.vim'                          " Vim live server
 Plug 'tpope/vim-repeat'                           " Repat all the commands using
 Plug 'ap/vim-css-color'                           " Show #fffffffff with colors
+Plug 'z0mbix/vim-shfmt'                           " Identation for vim scripts
 Plug 'jalvesaq/Nvim-R'                            " R support
-Plug 'z0mbix/vim-shfmt'
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""
 

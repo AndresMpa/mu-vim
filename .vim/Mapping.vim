@@ -88,92 +88,6 @@ nnoremap <silent> <Leader>> :exe "resize " . (winheight(0) * 2/3)<CR>
 """""""""""""""""""""""""""""""""""FUNCTION"""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Note: I took this function from https://github.com/nschurmann/configs/blob/master/.vim/maps.vim
-
-" Function
-function! OpenTerminal()
-  " move to right most buffer
-  execute "normal \<C-l>"
-  execute "normal \<C-l>"
-  execute "normal \<C-l>"
-  execute "normal \<C-l>"
-
-  let bufNum = bufnr("%")
-  let bufType = getbufvar(bufNum, "&buftype", "not found")
-
-  if bufType == "terminal"
-    " close existing terminal
-    execute "q"
-  else
-    " open terminal
-    execute "vsp term://zsh"
-
-    " turn off numbers
-    execute "set nonu"
-    execute "set nornu"
-
-    " toggle insert on enter/exit
-    silent au BufLeave <buffer> stopinsert!
-    silent au BufWinEnter,WinEnter <buffer> startinsert!
-
-    " set maps inside terminal buffer
-    execute "tnoremap <buffer> <C-h> <C-\\><C-n><C-w><C-h>"
-    execute "tnoremap <buffer> <C-t> <C-\\><C-n>:q<CR>"
-    execute "tnoremap <buffer> <C-\\><C-\\> <C-\\><C-n>"
-
-    startinsert!
-  endif
-endfunction
-nnoremap <C-t> :call OpenTerminal()<CR>
-
-function! OpenFileServer()
-  let extention = expand('%:e')
-  execute "echo extention"
-
-  "Markdown Preview
-  if extention == "md"
-    execute "normal \<Plug>MarkdownPreviewToggle"
-  endif
-
-  "Preview html files
-  if extention == "html"
-    execute "!firefox %"
-  endif
-
-  " Execute python
-  if extention == "py"
-    execute "!python %"
-  endif
-
-  "Execute node
-  if extention == "js"
-    execute "!node %"
-  endif
-
-endfunction
-
-nmap <Leader>x :call OpenFileServer()<CR>
-
-function! OpenServer(flag)
-  let message="Starting a developer server for: "
-  execute "echo message"
-  execute "echo a:flag"
-
-  " Execute django server
-  if a:flag == "django"
-    execute ":terminal python manage.py runserver"
-  endif
-
-  "Start vue project
-  if a:flag == "vue"
-    execute ":terminal npm run serve"
-  endif
-
-endfunction
-
-nmap <Leader>xd :call OpenServer("django")<CR>
-nmap <Leader>xv :call OpenServer("vue")<CR>
-
 function! HelpMapping()
   let info = [
         \"Current features",
@@ -277,6 +191,94 @@ function! HelpMapping()
 endfunction
 
 nmap <Leader>hh :call HelpMapping()<CR>
+
+
+
+" Note: I took this function from https://github.com/nschurmann/configs/blob/master/.vim/maps.vim
+
+" Function
+function! OpenTerminal()
+  " move to right most buffer
+  execute "normal \<C-l>"
+  execute "normal \<C-l>"
+  execute "normal \<C-l>"
+  execute "normal \<C-l>"
+
+  let bufNum = bufnr("%")
+  let bufType = getbufvar(bufNum, "&buftype", "not found")
+
+  if bufType == "terminal"
+    " close existing terminal
+    execute "q"
+  else
+    " open terminal
+    execute "vsp term://zsh"
+
+    " turn off numbers
+    execute "set nonu"
+    execute "set nornu"
+
+    " toggle insert on enter/exit
+    silent au BufLeave <buffer> stopinsert!
+    silent au BufWinEnter,WinEnter <buffer> startinsert!
+
+    " set maps inside terminal buffer
+    execute "tnoremap <buffer> <C-h> <C-\\><C-n><C-w><C-h>"
+    execute "tnoremap <buffer> <C-t> <C-\\><C-n>:q<CR>"
+    execute "tnoremap <buffer> <C-\\><C-\\> <C-\\><C-n>"
+
+    startinsert!
+  endif
+endfunction
+nnoremap <C-t> :call OpenTerminal()<CR>
+
+function! OpenFileServer()
+  let extention = expand('%:e')
+  execute "echo extention"
+
+  "Markdown Preview
+  if extention == "md"
+    execute "normal \<Plug>MarkdownPreviewToggle"
+  endif
+
+  "Preview html files
+  if extention == "html"
+    execute "!firefox %"
+  endif
+
+  " Execute python
+  if extention == "py"
+    execute "!python %"
+  endif
+
+  "Execute node
+  if extention == "js"
+    execute "!node %"
+  endif
+
+endfunction
+
+nmap <Leader>x :call OpenFileServer()<CR>
+
+function! OpenServer(flag)
+  let message="Starting a developer server for: "
+  execute "echo message"
+  execute "echo a:flag"
+
+  " Execute django server
+  if a:flag == "django"
+    execute ":terminal python manage.py runserver"
+  endif
+
+  "Start vue project
+  if a:flag == "vue"
+    execute ":terminal npm run serve"
+  endif
+
+endfunction
+
+nmap <Leader>xd :call OpenServer("django")<CR>
+nmap <Leader>xv :call OpenServer("vue")<CR>
 
 function! TriggerIdentation()
   let extention = expand('%:e')
