@@ -105,7 +105,7 @@ import ${2:{ $3 }} from '$1';
 endsnippet
 
 snippet exp "General export template" b
-export default {}
+export ${2:default} $1
 endsnippet
 
 
@@ -146,7 +146,7 @@ endsnippet
 ############################################################################
 
 snippet iife "Inmediatly Invoke Function Expression" b
-(function(){
+(() => {
   "use strict";
   $1
 })();
@@ -156,6 +156,10 @@ snippet tst "Test what is being taking for event" b
 window.addEventListener("click", (e) => {
   console.log(e.target);
 });
+endsnippet
+
+snippet random "Get a random number" b
+const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 endsnippet
 
 snippet sort "Sort an array using .sort"
