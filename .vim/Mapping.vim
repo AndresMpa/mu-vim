@@ -243,7 +243,7 @@ function! OpenFileServer()
 
   "Preview html files
   if extention == "html"
-    execute "!firefox %"
+    execute ":Bracey"
   endif
 
   " Execute python
