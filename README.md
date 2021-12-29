@@ -24,8 +24,10 @@ If you don't know to much about vim or nvim just follow the next steps:
 ### If you are using Linux or mac
 
 ```
-git clone https://github.com/AndresMpa/My-NVIM-configuration.git
-cd nvim-configuration/ && ./install.sh && exit
+git clone git@github.com:AndresMpa/nvim-configuration.git
+cd nvim-configuration/
+git switch singleFile
+./install.sh && exit
 nvim
 ```
 
