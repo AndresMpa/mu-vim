@@ -215,6 +215,12 @@ for( let i = 0; i < $2.length; i++ ) {
 }
 endsnippet
 
+snippet cs "Const as function" b
+const $1 = ($2) => {
+  $3
+};
+endsnippet
+
 snippet qs "querySelector" b
 ${1:const} $2 = document.querySelector("#$2")
 endsnippet
