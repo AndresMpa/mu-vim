@@ -17,13 +17,14 @@ Plug 'vim-airline/vim-airline-themes'				            " Airline themes
 
 """""""""""""""""""""""""""""""""""""MOTION"""""""""""""""""""""""""""""""""""""
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fzf install instructions
-Plug 'christoomey/vim-tmux-navigator'				                        " Navigation between windows
-Plug 'easymotion/vim-easymotion'						                        " Navigation in files
-Plug 'haya14busa/incsearch.vim'							                        " Better way to look for words
-Plug 'scrooloose/nerdtree'							                            " Navigation between files
-Plug 'junegunn/fzf.vim'                                             " Better way to search files
-Plug 'mileszs/ack.vim'                                              " Navigation in projects
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }         " fzf install instructions
+Plug 'christoomey/vim-tmux-navigator'				                              " Navigation between windows
+Plug 'severin-lemaignan/vim-minimap'                                      " A minimap
+Plug 'easymotion/vim-easymotion'						                              " Navigation in files
+Plug 'haya14busa/incsearch.vim'							                              " Better way to look for words
+Plug 'scrooloose/nerdtree'							                                  " Navigation between files
+Plug 'junegunn/fzf.vim'                                                   " Better way to search files
+Plug 'mileszs/ack.vim'                                                    " Navigation in projects
 
 """"""""""""""""""""""""""""""CODE HELPERS & SYNTAX""""""""""""""""""""""""""""""
 
