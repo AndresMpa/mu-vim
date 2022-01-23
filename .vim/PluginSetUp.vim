@@ -56,6 +56,9 @@ endif
 
 """"""""""""""""""""""""""""""""""""""NAVIGATION""""""""""""""""""""""""""""""""""""""""
 
+" Minimap
+let g:minimap_highlight='Visual'
+
 " incsearch
 let g:incsearch#auto_nohlsearch = 1 " Remove the highligth after search
 
