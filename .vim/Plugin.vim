@@ -31,9 +31,13 @@ Plug 'mileszs/ack.vim'                                                    " Navi
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Text editing support
 Plug 'iamcco/markdown-preview.nvim'               " Markdown preview
 Plug 'terryma/vim-multiple-cursors'               " Multicursor
+Plug 'leafgarland/typescript-vim'                 " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'                   " JS and JSX syntax
 Plug 'preservim/nerdcommenter'                    " Easy way to make commets
+Plug 'pangloss/vim-javascript'                    " JavaScript support
 Plug 'KabbAmine/vCoolor.vim'                      " Color picker for css
 Plug 'sheerun/vim-polyglot'		                    " Syntax highligth for multiple languajes
+Plug 'jparise/vim-graphql'                        " GraphQL syntax
 Plug 'kovetskiy/sxhkd-vim'                        " Vim stuff for indent, highlight syntax and detect sxhkd
 Plug 'Yggdroot/indentLine'                        " Identation helper (It shows the identation of functions, etc)
 Plug 'rust-lang/rust.vim'                         " Support for Rust
