@@ -43,6 +43,14 @@ snippet u "until bucle" b
 until
 endsnippet
 
+snippet try "try/catch block" b
+{
+	$1
+} || {
+	$2
+}
+endsnippet
+
 # This is used by BSPWM (You can remove it)
 snippet b "Create rules" b
 bspc rule -a $1 desktop=^$2 follow=on focus=on state=fullscreen layer=below

@@ -42,31 +42,43 @@ if ( $1 ) {
 }
 endsnippet
 
-snippet fe "For structure" b
+snippet fr "For structure" b
 $1.forEach((item) => {
   ${2:console.log(item)}
 });
 endsnippet
 
-snippet for "Usual for structure" b
-for (let i ${1:in} $2) {
+snippet frn "Usual for in structure" b
+for (let ${1:item} in $2) {
   $3
 }
 endsnippet
 
-snippet cf "Classic for structure" b
-for (let i = 0; i < $1; i++) {
-  $1[i]
+snippet frf "Usual for of structure" b
+for (let ${1:item} of $2) {
+  $2
 }
 endsnippet
 
-snippet fun "Arrow function" i
+snippet cfr "Classic for structure" b
+for (let ${1:item} = 0; $1 < $2; $1++) {
+  $2[$1]
+}
+endsnippet
+
+snippet fn "Arrow function" i
 ($1) => {
   $2
 }
 endsnippet
 
-snippet af "Anonimus arrow function" i
+snippet vfn "Const as function" b
+const $1 = ($2) => {
+  $3
+};
+endsnippet
+
+snippet afn "Anonimus function" i
 ${1:const $2 =} function($3){
   $4
 };
@@ -88,7 +100,7 @@ const ${1:obj} = {
   $2
 endsnippet
 
-snippet des "const {} =" b
+snippet des "Destructuring expression" b
 const { $1 } = $2
 endsnippet
 
@@ -181,6 +193,31 @@ new Promise((resolve, reject) => {
 });
 endsnippet
 
+snippet browser "Get browser" b
+
+const detectBrowser = () => {
+  if (
+    (navigator.userAgent.indexOf("Opera") ||
+      navigator.userAgent.indexOf("OPR")) != -1
+  ) {
+    return "Opera";
+  } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    return "Chrome";
+  } else if (navigator.userAgent.indexOf("Safari") != -1) {
+    return "Safari";
+  } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+    return "Firefox";
+  } else if (
+    navigator.userAgent.indexOf("MSIE") != -1 ||
+    !!document.documentMode == true
+  ) {
+    return "IE"; //crap
+  } else {
+    return "Unknown";
+  }
+};
+endsnippet
+
 ############################################################################
 ############################################################################
 ############################################################################
@@ -193,11 +230,11 @@ endsnippet
 ############################################################################
 ############################################################################
 
-snippet id "getElementById()" b
+snippet gi "getElementById()" b
 ${1:const} $2 = document.getElementById('$3')
 endsnippet
 
-snippet tag "getElementsByTagName()" b
+snippet gt "getElementsByTagName()" b
 ${1:const} $2 = document.getElementsByTagName('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
@@ -206,7 +243,7 @@ for( let i = 0; i < $2.length; i++ ) {
 }
 endsnippet
 
-snippet class "getElementsByClassName()" b
+snippet gc "getElementsByClassName()" b
 ${1:const} $2 = document.getElementsByClassName('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
@@ -222,33 +259,19 @@ endsnippet
 snippet qsa "querySelectorAll" b
 ${1:const} $2 = document.querySelectorAll("$2")
 ${4:
-for( let i = 0; i < $2.length; i++ ) {
-  ${5:console.log($2[i])}
-};
+  $2.forEach(($3) => {
+
+  });
 }
 endsnippet
 
-snippet stAtt "setAttribute" b
+snippet att "Hanlde attribute" b
+$1.getAttribute('$2')
+$1.removeAttribute('$2')
 $1.setAttribute('$2', '$3')
 endsnippet
 
-snippet rmAtt "removeAttribute" b
-$1.removeAttribute('$2')
-endsnippet
-
-snippet gAtt "getAttribute" b
-$1.getAttribute('$2')
-endsnippet
-
-snippet inn "innerHTML" b
-$1.innerHTML = ``;
-endsnippet
-
-snippet clNm "className" b
-$1.className = ``;
-endsnippet
-
-snippet cNode "create a new node" b
+snippet vnd "create a new node" b
 let $1Tag = document.createElement('$1');
 ${2:
 let tagText = document.createTextNode('$3');
@@ -258,87 +281,100 @@ let $4Container = document.querySelector('$5');
 $4Container.appendChild($1Tag);
 endsnippet
 
-snippet rmNode "remove an element" b
+snippet rmnd "remove an element" b
 let $1ToRemove = document.querySelector('$1');
 $1ToRemove.removeChild($1ToRemove.${2:children[0]})
 endsnippet
 
-snippet ael "Add event listeners trigger" b
-$1.addEventListener("click", ${2:fun});
+snippet eve "Add event listener" b
+$1.addEventListener("click", ${2:fn});
 endsnippet
 
-snippet eve "Create event listeners" b
+snippet ceve "Create event listeners" b
 const $1 = document.querySelector("#$1");
 $3
 
-$1.addEventListener("click", ${2:fun});
+$1.addEventListener("click", ${2:fn});
 endsnippet
 
 snippet seve "Create an single event by addEventListener" b
 document
   ${1:.querySelector('$1')}
-  .addEventListener('${2:click}',${3:fun});
-endsnippet
-
-############################################################################
-# ____                 _               _                  _
-#|  _ \ ___  __ _  ___| |_   ___ _ __ (_)_ __  _ __   ___| |_ ___
-#| |_) / _ \/ _` |/ __| __| / __| '_ \| | '_ \| '_ \ / _ \ __/ __|
-#|  _ <  __/ (_| | (__| |_  \__ \ | | | | |_) | |_) |  __/ |_\__ \
-#|_| \_\___|\__,_|\___|\__| |___/_| |_|_| .__/| .__/ \___|\__|___/
-#                                       |_|   |_|
-############################################################################
-
-snippet rct "React component" b
-import React, { Component } from "react";
-
-export default class $1 extends Component {
-  render() {
-    return (
-      $2
-    );
-  }
-}
-endsnippet
-
-snippet rctObj "React function component" b
-import React, { Component } from "react";
-
-export default class $1 extends Component {
-  constructor(props) {
-    super(props);
-
-    // Setting up state
-    this.state = {
-      $2: "",
-    };
-
-    // Setting up functions
-    this.$3 = this.$3.bind(this);
-
-  }
-
-  $3(e) {
-    this.setState({ $2: e.target.value });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    console.log(`Name: ${this.state}`);
-
-    this.setState({
-      $2: "",
-    });
-  }
-
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+  .addEventListener('${2:click}',${3:fn});
 endsnippet
 
 
+snippet manbsc "It shows all the shortcuts that I have" b
+/*
+//Basics
+
+do "To do reminder"
+// "Multiline comment"
+l "let = "
+c "const = "
+if "If structure"
+cif "Classic if structure"
+fr "For structure"
+frn "Usual for in structure"
+frf "Usual for of structure"
+cfr "Classic for structure"
+fn "Arrow function"
+vfn "Const as function"
+afn "Anonimus function"
+cfn "Classic function"
+arr "Array template"
+obj "Object template"
+des "Destructuring expression"
+try "try-catch block"
+imp "General import from"
+exp "General export template"
+*/
+endsnippet
+
+snippet manlog "It shows all the console snippets" b
+/*
+group "Create a group of log"
+log "Simple console.log()"
+err "Append an error in the console"
+warn "Append a warning to the console"
+tab "Append a table of array element"
+time "Test how much time somethings take to be execute"
+*/
+endsnippet
+
+snippet manfn "It shows all the pre written functions/utilities" b
+/*
+iife "Inmediatly Invoke Function Expression"
+tst "Test what is being taking for event"
+random "Get a random number"
+isEven "Gef if a number is even"
+rmDuplicate "removeDuplicates"
+promise "Promise template"
+browser "Get browser"
+*/
+endsnippet
+
+snippet manfront "It lists all the frontend utilities I have written" b
+/*
+gi "getElementById()"
+gt "getElementsByTagName()"
+gc "getElementsByClassName()"
+qs "querySelector"
+qsa "querySelectorAll"
+att "Hanlde attribute"
+vnd "create a new node"
+rmnd "remove an element"
+eve "Add event listener"
+ceve "Create event listeners"
+seve "Create an single event by addEventListener"
+*/
+endsnippet
+
+snippet man "The manual" b
+/*
+snippet manbsc "It shows all the shortcuts that I have" b
+snippet manlog "It shows all the console snippets" b
+snippet manfn "It shows all the pre written functions/utilities" b
+snippet manfront "It lists all the frontend utilities I have written" b
+*/
+endsnippet
