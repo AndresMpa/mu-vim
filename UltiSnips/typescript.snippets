@@ -1,0 +1,43 @@
+snippet do "To do reminder" b
+//////////////////////////////////////////////////
+//TODO: `echo $user` ${1:desc} `!v strftime("%c")`
+//////////////////////////////////////////////////
+endsnippet
+
+snippet // "Multiline comment" b
+/*
+ * $1
+ * */
+endsnippet
+
+snippet c "const" b
+const = $1;
+endsnippet
+
+snippet l "let" b
+let = $1;
+endsnippet
+
+snippet fn "function" i
+($2) => {
+  $1
+}
+endsnippet
+
+snippet cfun "classic function" b
+function($2) {
+  $1
+}
+endsnippet
+
+snippet imp "import default" b
+import { $2 } '$1'
+endsnippet
+
+snippet exp "export default" b
+export ${1:default }$2
+endsnippet
+
+snippet log "console.log" b
+console.log($1)
+endsnippet
