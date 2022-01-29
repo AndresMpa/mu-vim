@@ -192,8 +192,6 @@ endfunction
 
 nmap <Leader>hh :call HelpMapping()<CR>
 
-
-
 " Note: I took this function from https://github.com/nschurmann/configs/blob/master/.vim/maps.vim
 
 " Function

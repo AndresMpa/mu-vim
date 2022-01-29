@@ -73,23 +73,30 @@ That's it, now it should work
 
 ## Summary
 
-| Color schema                          | Motion             | Code helpers and syntax | Autocomplete     | Tracking |
-| ------------------------------------- | ------------------ | ----------------------- | ---------------- | -------- |
-| gruvbox (Currently I'm using default) | vim-tmux-navigator | markdown-preview.nvim   | editorconfig-vim | wakatime |
-| vim-airline-theme                     | vim-easymotion     | vim-multi-cursor-next   | vim-surround     |          |
-| vim-devicons                          | incsearch.vim      | nerdcommenter           | vim-closetag     |          |
-| vim-airline                           | nerdtree           | vim-css-color           | vim-snippets     |          |
-|                                       | fzf.vim            | vim-polyglot            | vim-ultisnip     |          |
-|                                       | ack.vim            | vim-fugitive            | auto-pairs       |          |
-|                                       |                    | vim-signify             |                  |          |
-|                                       |                    | indentLine              |                  |          |
-|                                       |                    | bracey.vim              |                  |          |
-|                                       |                    | vim-repeat              |                  |          |
-|                                       |                    | sxhkd-vim               |                  |          |
-|                                       |                    | vim-shfmt               |                  |          |
-|                                       |                    | coc.vim                 |                  |          |
-|                                       |                    | kite IA                 |                  |          |
-|                                       |                    | vCoolor                 |                  |          |
+| Color schema                   |
+| ------------------------------ |
+| kamykn/dark-theme.vim          |
+| morhetz/gruvbox                |
+|                                |
+|                                |
+| vim-airline/vim-airline-themes |
+| vim-airline/vim-airline        |
+| ryanoasis/vim-devicons         |
+
+| Motion                         | Identantion and syntax     | Utilities                    | Autocomplete                  |
+| ------------------------------ | -------------------------- | ---------------------------- | ----------------------------- |
+| christoomey/vim-tmux-navigator | leafgarland/typescript-vim | iamcco/markdown-preview.nvim | editorconfig/editorconfig-vim |
+| severin-lemaignan/vim-minimap  | maxmellon/vim-jsx-pretty   | terryma/vim-multiple-cursors | wakatime/vim-wakatime         |
+| easymotion/vim-easymotion      | pangloss/vim-javascript    | preservim/nerdcommenter      | jiangmiao/auto-pairs          |
+| haya14busa/incsearch.vim       | sheerun/vim-polyglot       | KabbAmine/vCoolor.vim        | tpope/vim-surround            |
+| scrooloose/nerdtree            | kovetskiy/sxhkd-vim        | turbio/bracey.vim            | alvan/vim-closetag            |
+| junegunn/fzf.vim               | jparise/vim-graphql        | mhinz/vim-signify            | sirver/ultisnips              |
+| mileszs/ack.vim                | Yggdroot/indentLine        | ap/vim-css-color             |                               |
+|                                | rust-lang/rust.vim         | tpope/vim-repeat             |                               |
+|                                | tpope/vim-fugitive         |                              |                               |
+|                                | neoclide/coc.nvim          |                              |                               |
+|                                | z0mbix/vim-shfmt           |                              |                               |
+|                                | jalvesaq/Nvim-R            |                              |                               |
 
 ## Cheat sheet
 
