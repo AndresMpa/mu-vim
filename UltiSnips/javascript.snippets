@@ -164,6 +164,14 @@ snippet iife "Inmediatly Invoke Function Expression" b
 })();
 endsnippet
 
+snippet sw "Service worker template" b
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/serviceWorker.js").catch((error) => {
+    console.error(error.message);
+  })
+}
+endsnippet
+
 snippet tst "Test what is being taking for event" b
 window.addEventListener("click", (e) => {
   console.log(e.target);
@@ -298,9 +306,7 @@ $1.addEventListener("click", ${2:fn});
 endsnippet
 
 snippet seve "Create an single event by addEventListener" b
-document
-  ${1:.querySelector('$1')}
-  .addEventListener('${2:click}',${3:fn});
+document.querySelector('$1').addEventListener('${2:click}',${3:fn});
 endsnippet
 
 
