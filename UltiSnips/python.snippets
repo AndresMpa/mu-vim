@@ -1,10 +1,16 @@
+snippet # "Multiline comment" b
+"""
+$1
+"""
+endsnippet
+
 # Print and end line
 snippet prt "print()" i
 print(${1:$2}, end='')
 endsnippet
 
 # Print in line
-snippet prl "print(, end='')" b
+snippet log "print(, end='')" b
 print(${1: $2 }, end='\n')
 endsnippet
 
@@ -13,13 +19,8 @@ snippet type "Type of for debuggig" b
 print(type($1))
 endsnippet
 
-# Import
-snippet imp "import " b
-import ${1: $2 }
-endsnippet
-
 # Dinamic import
-snippet imf "form X import Y" b
+snippet imp "form X import Y" b
 from $1 import $2 as $3
 endsnippet
 
@@ -71,17 +72,3 @@ if __name__ == "__main__"($1):
     ${2:pass}
 endsnippet
 
-snippet dj_test "D" b
-class $1(TestCase):
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def passTest(self):
-        self.assertFalse(False)
-
-    def failTest(self):
-        self.assertTrue(False)
-endsnippet
