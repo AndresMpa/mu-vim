@@ -254,6 +254,11 @@ function! OpenFileServer()
     execute "!node %"
   endif
 
+  "Execute node
+  if extention == "sh"
+    execute "!bash %"
+  endif
+
 endfunction
 
 nmap <Leader>x :call OpenFileServer()<CR>
