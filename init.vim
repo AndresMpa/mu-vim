@@ -10,6 +10,7 @@ source $vimcf/Plugin.vim
 source $vimcf/PluginSetUp.vim
 
 "Mapping for vim acctions
+source $vimcf/util/Extention.vim
 source $vimcf/Mapping.vim
 
 "Auto update
