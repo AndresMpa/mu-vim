@@ -41,3 +41,33 @@ endsnippet
 snippet log "console.log" b
 console.log($1)
 endsnippet
+
+snippet qs "querySelector" b
+const $1 = document.querySelector("#$2")
+
+$1.addEventListener("${3:click}", fn)
+endsnippet
+
+#Design Pattern
+
+snippet singleton "Singleton Pattern template" b
+class $1 {
+  private static instance: $1;
+  private constructor() {
+    $2
+  }
+
+  static getInstance() {
+    if (!$1.instance) {
+      $1.instance = new $1();
+    }
+
+    return $1.instance;
+  }
+
+  $3
+}
+
+export default $1;
+
+endsnippet
