@@ -19,7 +19,7 @@ set showmatch		    " It shows the closing parentesis
 set splitright      " Open new panes to the right
 set cmdheight=1     " Better display for coc
 set nowritebackup   " Neccessary for some coc servers
-set encoding=utf-8	" Add characters
+set encoding=UTF-8	" Add characters
 set updatetime=300  " Changing update time make coc works better
 
 """""""""""""""""""""""""""""""""""""MOUSE"""""""""""""""""""""""""""""""""""""
