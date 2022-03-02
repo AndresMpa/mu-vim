@@ -308,6 +308,14 @@ snippet seve "Create an single event by addEventListener" b
 document.querySelector('$1').addEventListener('${2:click}',${3:fn});
 endsnippet
 
+snippet react "React skeleton" b
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./component/App";
+
+ReactDOM.render(<App />, document.querySelector("#app"));
+endsnippet
+
 
 snippet manbsc "It shows all the shortcuts that I have" b
 /*
