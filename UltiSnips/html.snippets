@@ -34,8 +34,8 @@ snippet awesome "Font Awesome CDN" b
 <link
 	rel="stylesheet"
 	crossorigin="anonymous"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+	integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
 />
 endsnippet
 
@@ -44,4 +44,21 @@ snippet animate "Animate.css CDN" b
 	rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
+endsnippet
+
+snippet og "Open graph protocal template" b
+<!-- Preview description -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="${1:title}" />
+<meta property="og:description" content="${2:description}" />
+<meta property="og:url" content="${3:deploy url}" />
+
+<!-- Preview image -->
+<meta property="og:image" content="${4:img}" />
+<meta property="og:image:secure_url" content="${4:img}" />
+<meta property="og:image:alt" content="${5:img alt}" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="80" />
+<meta property="og:image:width" content="80" />
+<meta property="og:locale" content="en_GB" />
 endsnippet
