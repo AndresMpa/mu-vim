@@ -87,7 +87,7 @@ If you don't know to much about vim or nvim just follow the next steps:
 ### If you are using Linux or mac
 
 ```
-git clone https://github.com/AndresMpa/My-NVIM-configuration.git
+git clone https://github.com/AndresMpa/nvim-configuration.git
 cd nvim-configuration/ && ./install.sh && exit
 nvim
 ```
@@ -97,8 +97,9 @@ nvim
 ```
 cd C:\Users\$USER\AppData\Local\nvim
 move nvim nvim_old
-git clone https://github.com/AndresMpa/nvim-configuration/tree/singleFile
+git clone https://github.com/AndresMpa/nvim-configuration.git
 move nvim-configuration nvim
+nvim
 ```
 
 Now you must being on neovim (or vim) just make the following commands to
