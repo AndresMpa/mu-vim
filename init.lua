@@ -1,22 +1,12 @@
 --==[ Neovim + Lua ]==--
 
--- Neovim Settings
+-- SETTINGS
+require('mapping')
 require('settings')
 
--- Plugin Manager
+-- PLUGIN
+-- Table list
 require('plugins')
+-- Set up
+require('pluginConfig')
 
--- Color Schemes
-require('scheme.material')
-
--- Highlighting
-require('config.treesitter')
-
--- Statusline
-require('config.lualine')
-
--- IDE Modules
-require('ide')
-
--- Key Bindings
-require('keymaps')
