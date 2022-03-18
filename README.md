@@ -16,6 +16,12 @@ bellow)
 
 [Example from YouTube](https://youtu.be/9L-k6n9SQds)
 
+Did you like it? If it don't check my other two version of this
+[singleFile](https://github.com/AndresMpa/nvim-configuration/tree/singleFile)
+could be easy to follow or if you're looking for something more complicated
+check my [Lua version](https://github.com/AndresMpa/nvim-configuration) which
+is the main version where I'm working
+
 ## Prerequisites
 
 Of course you need [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
@@ -111,7 +117,7 @@ That's it, now it should work
 #### Note:
 
 If you feel lost inside nvim or vim and you are using my config, just
-press `<SPACE> + <h> + <h>`
+press `<SPACE> + <h> + <h>` or check the [Cheat sheet](./CheatSheet.md)
 
 ---
 
