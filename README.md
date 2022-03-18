@@ -16,8 +16,8 @@ edit things on a server this configuration is more than
 enough for you.
 
 If this information match to you, check this version
-[prerequisites](https://github.com/AndresMpa/nvim-configuration#prerequisites)
-also see the [quick start](https://github.com/AndresMpa/nvim-configuration#quick-start)
+[prerequisites](https://github.com/AndresMpa/nvim-configuration/tree/vimscript#prerequisites)
+also see the [quick start](https://github.com/AndresMpa/nvim-configuration/blob/vimscript/CheatSheet.md)
 to install its minimal version
 
 ### As a plus
@@ -39,12 +39,14 @@ This version is quite simple an it's divied on "slides", each "slide" contains
 a piece of information that vim/nvim uses to make what we tell it to do, check
 the [init.vim](https://github.com/AndresMpa/nvim-configuration/blob/singleFile/init.vim)
 file and look for the those lines with 3 double quotes, those are the headers
-of the "slides", also this can be a template if you're stating on nvim, but I
-also made other two versions of this project that are a little more complicated:
+of the "slides", also this can be a template if you're stating on nvim, but If
+you have some experience and you are looking for a couple of new features check the
+[Summary of plugins](https://github.com/AndresMpa/nvim-configuration/tree/vimscript#summary-of-plugins)
+moreover I made other two versions of this project that are a little more complicated:
 
 - [Core version](https://github.com/AndresMpa/nvim-configuration/tree/vimscript)
 - [Lua version](https://github.com/AndresMpa/nvim-configuration)
 
 I'd like to share a couple of tools to make me a better developer, check those
-[tools](https://github.com/AndresMpa/nvim-configuration/tree/main#apps)
+[tools](https://github.com/AndresMpa/nvim-configuration/tree/vimscript#recommended-apps)
 could be a good idea
