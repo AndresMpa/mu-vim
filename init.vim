@@ -339,6 +339,9 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " repeat
 "nmap <Plug>(RepeatUndo) U
 
+" vCoolor
+nmap <Leader>r :VCoolIns ra<CR>
+
 " Plug
 nmap <Leader>pc :PlugClean<CR>
 nmap <Leader>pi :PlugInstall<CR>
