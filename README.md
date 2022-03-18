@@ -98,18 +98,20 @@ move nvim-configuration nvim
 Now you must being on neovim (or vim) just make the following commands to
 install the plugins and that stuff
 
-- space + p + i
-- esc
-- :source%
-- :CocInstall
-- :call mkdp#util#install()
+```
+<SPACE> + <p> + <i>
+// <ESC>
+:source%
+:CocInstall
+:call mkdp#util#install()
+```
 
 That's it, now it should work
 
 #### Note:
 
 If you feel lost inside nvim or vim and you are using my config, just
-press "space + h + h"
+press `<SPACE> + <h> + <h>`
 
 ---
 
