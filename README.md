@@ -30,11 +30,11 @@ I'm moving to lua; please check [core version]()
 If you want to use Lua you might need [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 otherwise [vim](https://www.vim.org/download.php) should be enough
 
-### VimScript & Single Vim file
-
 #### General dependencies
 
-- As plugin manager I use [vim-plug](https://github.com/junegunn/vim-plug#installation)
+### Lua
+
+- [packer](https://github.com/wbthomason/packer.nvim#quickstart) (Still working on this) as plugin manager, still using [vim-plug](https://github.com/junegunn/vim-plug#installation)
 - It is necessary to make CoC works to install [npm](https://www.npmjs.com/get-npm)
   (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable))
 - Also [nodejs](https://nodejs.org/es/download/) will be necessary
@@ -47,10 +47,6 @@ otherwise [vim](https://www.vim.org/download.php) should be enough
 #### Bash support
 
 - [shfmt](https://snapcraft.io/install/shfmt/ubuntu)
-
-### Lua
-
-- [packer](https://github.com/wbthomason/packer.nvim#quickstart) (Still working on this)
 
 ## Quick Start
 

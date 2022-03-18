@@ -1,11 +1,11 @@
 -- SET UP
 
 -- Welcome screen
-require('setUp.welcome')
+require('setUp.alpha')
 
 -- MOTION
 -- File manager
-require('setUp.navigator')
+require('setUp.nvimTree')
 
 -- Multitab
 require("bufferline").setup{}
