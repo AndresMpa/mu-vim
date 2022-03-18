@@ -32,6 +32,9 @@ map('n', '<Leader>ft', ':FZF<CR>', {})
 -- AcK
 map('n', '<Leader>a', ':Ack<Space>', {})
 
+-- vCoolor
+map('n', '<Leader>r', ':VCoolIns ra', {})
+
 -- Replace
 map('n', '<Leader>R', ':%s/_/_/gc', {})
 
