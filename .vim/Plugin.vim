@@ -46,15 +46,16 @@ Plug 'jalvesaq/Nvim-R'                            " R support
 
 
 """"""""""""""""""""""""""""""""""""""UTILITIES"""""""""""""""""""""""""""""""""""""
-Plug 'iamcco/markdown-preview.nvim'               " Markdown preview
-Plug 'terryma/vim-multiple-cursors'               " Multicursor
-Plug 'preservim/nerdcommenter'                    " Easy way to make commets
-Plug 'wakatime/vim-wakatime'                      " Data tracking
-Plug 'KabbAmine/vCoolor.vim'                      " Color picker for css
-Plug 'turbio/bracey.vim'                          " Vim live server
-Plug 'mhinz/vim-signify'                          " Git diffs
-Plug 'ap/vim-css-color'                           " Show #fffffffff with colors
-Plug 'tpope/vim-repeat'                           " Repat all the commands using dot key
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} " Markdown preview
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}                                           " Vim live server
+Plug 'terryma/vim-multiple-cursors'                                                                       " Multicursor
+Plug 'preservim/nerdcommenter'                                                                            " Easy way to make commets
+Plug 'wakatime/vim-wakatime'                                                                              " Data tracking
+Plug 'KabbAmine/vCoolor.vim'                                                                              " Color picker for css
+Plug 'mhinz/vim-signify'                                                                                  " Git diffs
+Plug 'ap/vim-css-color'                                                                                   " Show #fffffffff with colors
+Plug 'tpope/vim-repeat'                                                                                   " Repat all the commands using dot key
 
 
 """"""""""""""""""""""""""""""""""AUTOCOMPLETE"""""""""""""""""""""""""""""""""""""

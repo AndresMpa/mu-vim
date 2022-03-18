@@ -1,16 +1,12 @@
-# My nvim configuration
+# VimScript (Core version)
 
-I made a basic tutorial where you can see how to make a vim or nvim file like this, check the link [here](https://andresmpa.github.io/nvim-configuration/)
+Looking for a modular version for nvim/vim? Check this branch. Here I have
+my core version for nvim this is what is currently working perfectly (As
+perfect as an editor can work); in this version we can work with laguages
+such as JS, HTML, CSS, C/C++, Bash, etc... Check at the examples here (Just
+bellow)
 
-## Note:
-
-Previous version using only one file can be [find here](https://github.com/AndresMpa/nvim-configuration/tree/singleFile), I'll mantein it for a while
-
-> Tip #1
-> I really like web dev so this configuration is focus on that stuff anyway, everything have been well documented, so you can take it just a model, if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
-
-> Tip #2
-> You can use my [init.vim file](https://github.com/AndresMpa/nvim-configuration/blob/singleFile/init.vim) in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
+## Take a look
 
 ![nvim](./.examples/nvim_0.png)
 ![nvim](./.examples/nvim_1.png)
@@ -22,7 +18,61 @@ Previous version using only one file can be [find here](https://github.com/Andre
 
 ## Prerequisites
 
-You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself, if you want the complete search engine, you will also need [the_silver_search](https://github.com/ggreer/the_silver_searcher) and [Ack](https://beyondgrep.com/install/), if you bash support install shfmt
+Of course you need [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+or [vim](https://www.vim.org/download.php) itself, both of them should work just
+right we also need [Plug](https://github.com/junegunn/vim-plug), with is the plugin
+manager
+
+### Depencencies
+
+Most of these one will be require by [CoC](https://github.com/neoclide/coc.nvim),
+if you don't want any of them try switch CoC for any other plugin such as
+[YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
+
+- [npm](https://www.npmjs.com/get-npm)
+  (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable))
+- [nodejs](https://nodejs.org/es/download/)
+
+### Optional
+
+#### Search engine
+
+I'm pretty lazy to check line by line what I'm looking on a file, so I use a
+"search engine", this means that I need to extra software to make that work
+
+- [the_silver_search](https://github.com/ggreer/the_silver_searcher)
+- [Ack](https://beyondgrep.com/install/)
+
+#### Live server like plugin
+
+This is pretty usefull for those who make web apps; follow step 1; if it doesn't
+work by default
+
+- [Installation](https://github.com/turbio/bracey.vim#installation)
+
+#### Markdown support
+
+Follow these steps on your init.vim or .vimrc
+
+```
+:source %
+:PluginInstall
+:call mkdp#util#install()
+```
+
+#### Bash support
+
+Since I use a custom OS, I use a lot bash scripting, that why I saw the necessity of
+using a tool to make my code more easy to read, that dependecy need of:
+
+- [shfmt](https://diarioinforme.com/como-usar-shfmt-para-formatear-mejor-los-scripts-de-shell/)
+
+#### R support
+
+Sometimes I use R, for those cases I added an R plugin
+
+- [R language](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/)
+- [Some utils](https://github.com/jamespeapen/Nvim-R/wiki/Installation)
 
 ## Quick Start
 
@@ -45,11 +95,8 @@ git clone https://github.com/AndresMpa/nvim-configuration/tree/singleFile
 move nvim-configuration nvim
 ```
 
-#### Note:
-
-If you feel lost inside nvim or vim and you are using my config, just press "space + h + h"
-
-Now you must being on neovim (or vim) just make the following commands to install the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
+Now you must being on neovim (or vim) just make the following commands to
+install the plugins and that stuff
 
 - space + p + i
 - esc
@@ -59,19 +106,14 @@ Now you must being on neovim (or vim) just make the following commands to instal
 
 That's it, now it should work
 
----
+#### Note:
 
-## Future changes
-
-- [ ] Dude WTF about ES12?; Throw to trash JS snippets and update them to ES12
-- [x] Split this into files, my config is getting hard to mantein
-- [ ] Improve documentation
-- [ ] Add more helpers
-- [ ] Create a new config using Lua
+If you feel lost inside nvim or vim and you are using my config, just
+press "space + h + h"
 
 ---
 
-## Summary
+## Summary of plugins
 
 | Color schema          | Icon theme                     |
 | --------------------- | ------------------------------ |
@@ -94,9 +136,10 @@ That's it, now it should work
 |                                | z0mbix/vim-shfmt           |                              |                               |
 |                                | jalvesaq/Nvim-R            |                              |                               |
 
-## Apps
+## Recommended apps
 
-There's a couple of apps I recommend you to improve a little bit more your velocity, they are:
+There's a couple of apps I recommend you to improve a little bit
+more your velocity, they are:
 
 - [rofi](https://github.com/davatorium/rofi)
 - [Ulauncher](https://ulauncher.io/)
@@ -106,4 +149,7 @@ There's a couple of apps I recommend you to improve a little bit more your veloc
 
 ## Pats on the back
 
-If you are reading this it means that you want to improve your velocity or you want to make your own things so, if you start by nvim or vim It may by a little bit complicated but just at the beginning them you'll look like a professional "Ninja Dev"
+If you are reading this it means that you want to improve your
+velocity or you want to make your own things so, if you start by
+nvim or vim It may by a little bit complicated but just at the
+beginning them you'll look like a professional "Ninja Dev"
