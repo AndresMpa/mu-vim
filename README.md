@@ -1,16 +1,29 @@
 # My nvim configuration
 
-I made a basic tutorial where you can see how to make a vim or nvim file like this, check the link [here](https://andresmpa.github.io/nvim-configuration/)
 
-## Note:
+This repository contains 3 different branches each one of them have a different
+config, choose anyone, all of them should work. I recommend to follow this "guide"
+based on my branches. 
 
-Previous version using only one file can be [find here](https://github.com/AndresMpa/nvim-configuration/tree/singleFile), I'll mantein it for a while
+## Guide lines
 
-> Tip #1
-> I really like web dev so this configuration is focus on that stuff anyway, everything have been well documented, so you can take it just a model, if you want to make your own config check about ["CoC"](https://github.com/neoclide/coc.nvim) if want to add more languages support
+### Sigle init.vim
 
-> Tip #2
-> You can use my [init.vim file](https://github.com/AndresMpa/nvim-configuration/blob/singleFile/init.vim) in a .vimrc file if you want, almost everything works, but it may be necessary to change or replace a couple of things
+[This configuration](https://github.com/AndresMpa/nvim-configuration/tree/singleFile)
+is pretty usefull to take it as a template; I've been mainteining it sincrohinzed with
+"VimScript" branch, so also the functionalities I have there should work here too. Also
+I made a basic tutorial where you can see how to make a vim or nvim file like this,
+check the link [here](https://andresmpa.github.io/nvim-configuration/)
+
+### VimScript (Core version)
+
+"VimScript" is the language that comes by default with vim/nvim in both of them it works;
+[this version](https://github.com/AndresMpa/nvim-configuration/tree/singleFile) uses this
+language to handle their characteristics, such as "modules", those modules make it a little
+bit more difficult to understand, but also easier to mantein and extend
+
+### Lua version (Working on this)
+
 
 ![nvim](./.examples/nvim_0.png)
 ![nvim](./.examples/nvim_1.png)
@@ -22,7 +35,26 @@ Previous version using only one file can be [find here](https://github.com/Andre
 
 ## Prerequisites
 
-You will need [npm](https://www.npmjs.com/get-npm) (or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable)) for some CoC services (It means that you'd need [nodejs](https://nodejs.org/es/download/)) and [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) or [vim](https://www.vim.org/download.php) itself, if you want the complete search engine, you will also need [the_silver_search](https://github.com/ggreer/the_silver_searcher) and [Ack](https://beyondgrep.com/install/), if you bash support install shfmt
+If you want to use Lua you might need [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+otherwise [vim](https://www.vim.org/download.php) should be enough
+
+### VimScript & Single Vim file
+
+#### General dependencies
+- As plugin manager I use [vim-plug](https://github.com/junegunn/vim-plug#installation)
+- It is necessary to make CoC works to install [npm](https://www.npmjs.com/get-npm)
+(or [yarm](https://classic.yarnpkg.com/en/docs/install/#debian-stable))
+- Also [nodejs](https://nodejs.org/es/download/) will be necessary
+
+#### Search engine
+- [the_silver_search](https://github.com/ggreer/the_silver_searcher)
+- [Ack](https://beyondgrep.com/install/)
+
+#### Bash support
+- [shfmt](https://snapcraft.io/install/shfmt/ubuntu)
+
+### Lua
+- [packer](https://github.com/wbthomason/packer.nvim#quickstart)
 
 ## Quick Start
 
@@ -49,7 +81,8 @@ move nvim-configuration nvim
 
 If you feel lost inside nvim or vim and you are using my config, just press "space + h + h"
 
-Now you must being on neovim (or vim) just make the following commands to install the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
+Now you must being on neovim (or vim) just make the following commands to install
+the plugins and that stuff (You may need to install [Plug](https://github.com/junegunn/vim-plug))
 
 - space + p + i
 - esc
@@ -58,16 +91,6 @@ Now you must being on neovim (or vim) just make the following commands to instal
 - :call mkdp#util#install()
 
 That's it, now it should work
-
----
-
-## Future changes
-
-- [ ] Dude WTF about ES12?; Throw to trash JS snippets and update them to ES12
-- [x] Split this into files, my config is getting hard to mantein
-- [ ] Improve documentation
-- [ ] Add more helpers
-- [ ] Create a new config using Lua
 
 ---
 
