@@ -1,4 +1,3 @@
---==[ Plugins ]==--
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
@@ -12,8 +11,6 @@ Plug 'nvim-lualine/lualine.nvim'                            -- Status line
 Plug 'akinsho/bufferline.nvim'                              -- Files openned
 
 -- Nvim
---Plug('morhetz/gruvbox', { 'as' = 'gruvbox' })	            -- Nvim theme
---Plug 'kamykn/dark-theme.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'marko-cerovac/material.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'

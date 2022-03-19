@@ -1,23 +1,20 @@
---==[ Material ]==--
-
--- Global Config
 require('material').setup({
 	contrast = {
-		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+		non_current_windows = false, -- Enable darker background for non-current windows
 		floating_windows = false, -- Enable contrast for floating windows
-		line_numbers = false, -- Enable contrast background for line numbers
+		line_numbers = true, -- Enable contrast background for line numbers
 		sign_column = false, -- Enable contrast background for the sign column
 		cursor_line = false, -- Enable darker background for the cursor line
-		non_current_windows = false, -- Enable darker background for non-current windows
 		popup_menu = false, -- Enable lighter background for the popup menu
+		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
 	},
 
 	italics = {
-		comments = false, -- Enable italic comments
+		variables = false, -- Enable italic variables
+		functions = true, -- Enable italic functions
 		keywords = false, -- Enable italic keywords
-		functions = false, -- Enable italic functions
+		comments = true, -- Enable italic comments
 		strings = false, -- Enable italic strings
-		variables = false -- Enable italic variables
 	},
 
 	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background

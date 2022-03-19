@@ -1,4 +1,3 @@
---==[ Settings ]==--
 local set = vim.opt
 
 -- Performance

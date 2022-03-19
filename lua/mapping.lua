@@ -1,5 +1,3 @@
---==[ Key Bindings ]==--
-
 -- Set new keymap
 local map = vim.api.nvim_set_keymap
 
