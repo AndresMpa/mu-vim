@@ -89,7 +89,9 @@ map('n', '<Leader>>', ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
 
 
 -- Extentions
-map('n', '<Leader>hh', ':call HelpMapping()<CR>', {})
+
+-- Type something
+map('n', '<Leader>hh', '[[<Cmd>lua require(util.extention)HelpMapping()<CR>]]', {})
 map('n', '<Leader>x', ':call OpenFileServer()<CR>', {})
 
 map('n', '<Leader>xd', ":call OpenServer('django')<CR>", {})

@@ -8,7 +8,7 @@ require('setUp.alpha')
 require('setUp.nvimTree')
 
 -- Multitab
-require("bufferline").setup{}
+require("setUp.bufferline")
 
 -- THEME
 -- Nvim

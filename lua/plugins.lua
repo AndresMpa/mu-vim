@@ -43,7 +43,6 @@ Plug 'z0mbix/vim-shfmt'                             -- Identation for bash scrip
 Plug 'iamcco/markdown-preview.nvim'               -- Markdown preview
 Plug 'terryma/vim-multiple-cursors'               -- Multicursor
 Plug 'preservim/nerdcommenter'                    -- Easy way to make commets
-Plug 'wakatime/vim-wakatime'                      -- Data tracking
 Plug 'KabbAmine/vCoolor.vim'                      -- Color picker for css
 Plug 'turbio/bracey.vim'                          -- Vim live server
 Plug 'mhinz/vim-signify'                          -- Git diffs

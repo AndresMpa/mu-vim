@@ -40,7 +40,7 @@ local config = {
         theme = {
             normal = { c = { fg = colors.fg, bg = colors.bg } },
             inactive = { c = { fg = colors.fg, bg = colors.bg } },
-        },  
+        },
     },
     sections = {
         lualine_a = {},

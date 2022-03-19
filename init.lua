@@ -1,8 +1,10 @@
 --==[ Neovim + Lua ]==--
 
 -- SETTINGS
-require('mapping')
+-- Nvim Basics
 require('settings')
+-- Key map
+require('mapping')
 
 -- PLUGIN
 -- Table list
