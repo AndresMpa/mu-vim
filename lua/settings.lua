@@ -55,6 +55,6 @@ set.cursorline = false
 set.clipboard = 'unnamedplus'
 
 -- Spaces & Tabs
-set.tabstop = 2
-set.shiftwidth = 2
-set.expandtab = true
+--set.tabstop = 2
+--set.shiftwidth = 2
+--set.expandtab = true

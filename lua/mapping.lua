@@ -84,18 +84,3 @@ map('n', '<Leader>vj', ':split<CR>', {})
 map('n', '<Leader>vk', ':vsplit<CR>', {})
 map('n', '<Leader><', ':exe "resize " . (winheight(0) * 3/2)<CR>', {})
 map('n', '<Leader>>', ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
-
-
--- Extentions
-
--- Type something
-map('n', '<Leader>hh', '[[<Cmd>lua require(util.extention)HelpMapping()<CR>]]', {})
-map('n', '<Leader>x', ':call OpenFileServer()<CR>', {})
-
-map('n', '<Leader>xd', ":call OpenServer('django')<CR>", {})
-map('n', '<Leader>xv', ":call OpenServer('vue')<CR>", {})
-
-map('n', '<leader>f', ':call TriggerIdentation()<CR>', {})
-
-map('n', '<C-t>', ':call OpenTerminal()<CR>', {})
-

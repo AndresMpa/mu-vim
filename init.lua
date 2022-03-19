@@ -1,5 +1,3 @@
---==[ Neovim + Lua ]==--
-
 -- SETTINGS
 -- Nvim Basics
 require('settings')
@@ -11,4 +9,3 @@ require('mapping')
 require('plugins')
 -- Set up
 require('pluginConfig')
-

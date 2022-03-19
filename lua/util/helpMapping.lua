@@ -1,12 +1,7 @@
-function HelpMapping()
+local function HelpMapping()
   echo "Help"
+end
 
-function TriggerIdentation()
-  pass
+map('n', '<Leader>hh', '[[<Cmd>lua require(util.extention)HelpMapping()<CR>]]', {})
 
-function OpenFileServer()
-  pass
-
-function OpenServer(service)
-  pass
 
