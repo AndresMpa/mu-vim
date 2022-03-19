@@ -25,6 +25,13 @@ bit more difficult to understand, but also easier to mantein and extend
 
 I'm moving to lua; please check [core version]()
 
+#### Take a look
+
+![nvim_0](./.examples/nvim_0.png)
+![nvim 1](./.examples/nvim_1.png)
+![nvim_2](./.examples/nvim_2.png)
+![nvim_3](./.examples/nvim_3.png)
+
 ## Prerequisites
 
 If you want to use Lua you might need [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
@@ -55,7 +62,7 @@ If you don't know to much about vim or nvim just follow the next steps:
 ### If you are using Linux or mac
 
 ```
-git clone https://github.com/AndresMpa/My-NVIM-configuration.git
+git clone https://github.com/AndresMpa/nvim-configuration.git
 cd nvim-configuration/ && ./install.sh && exit
 nvim
 ```
@@ -65,7 +72,7 @@ nvim
 ```
 cd C:\Users\$USER\AppData\Local\nvim
 move nvim nvim_old
-git clone https://github.com/AndresMpa/nvim-configuration/tree/singleFile
+git clone https://github.com/AndresMpa/nvim-configuration.git
 move nvim-configuration nvim
 ```
 
