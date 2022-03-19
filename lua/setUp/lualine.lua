@@ -1,5 +1,3 @@
---==[ Lualine ]==--
-
 local colors = {
   bg       = '#0c0e15',
   fg       = '#bbc2cf',

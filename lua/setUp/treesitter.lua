@@ -1,7 +1,4 @@
---==[ Treesitter ]==--
-
--- Modules
-require 'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
     highlight = {
         enable = true,
         disable = {},
@@ -15,7 +12,7 @@ require 'nvim-treesitter.configs'.setup {
 
     ensure_installed = {
         "bash",
-        "c", 
+        "c",
         "cmake",
         "cpp",
         "css",
