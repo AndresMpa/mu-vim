@@ -110,6 +110,35 @@ return require('packer').startup(function()
     -- Autocomplete tags
     use 'alvan/vim-closetag'
 
-    -- SNIPPETS
-    use 'sirver/ultisnips'                           -- Snippers engine
+
+
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+
+    -- Snippets
+    use 'tomtom/tlib_vim'
+    use 'L3MON4D3/LuaSnip'
+    use 'garbas/vim-snipmate'
+    use 'MarcWeber/vim-addon-mw-utils'
+    use {
+      'hrsh7th/nvim-cmp',
+      config = function ()
+        require'cmp'.setup {
+        snippet = {
+          expand = function(args)
+            require'luasnip'.lsp_expand(args.body)
+          end
+        },
+
+        sources = {
+          { name = 'luasnip' },
+          -- more sources
+        },
+      }
+      end
+    }
+    use { 'saadparwaiz1/cmp_luasnip' }
 end)

@@ -1,4 +1,4 @@
-snippet do "To do reminder" b
+snippet do "To do reminder"
 <!--
 TODO:
 ${1:desc}
@@ -6,31 +6,31 @@ ${1:desc}
 Written `!v strftime("%c")`
 By: `echo $USER`
 -->
-endsnippet
 
-snippet ex "Example" b
+
+snippet ex "Example"
 <${1:div}>
 	Hello world
 </${1/(\w+).*/$1/}>
-endsnippet
 
-snippet ls "List" b
+
+snippet ls "List"
 <${1:ul} ${2:class="$3"}>
 	<li${4: class="$3__$5"}>$6</li>
 	<li$4>$7</li>
 	<li$4>$8</li>
 </${1/(\w+).*/$1/}>
-endsnippet
 
-snippet ma "Main default schema" b
+
+snippet ma "Main default schema"
 <main ${1:id="$2" class="$3"}>
 	<article class="$3--$4">
 		$5
 	</article>
 </main>
-endsnippet
 
-snippet awesome "Font Awesome CDN" b
+
+snippet awesome "Font Awesome CDN"
 <link
 	rel="stylesheet"
 	crossorigin="anonymous"
@@ -41,16 +41,16 @@ snippet awesome "Font Awesome CDN" b
 	src="https://kit.fontawesome.com/d3d80a9c81.js"
 	crossorigin="anonymous">
 </script>
-endsnippet
 
-snippet animate "Animate.css CDN" b
+
+snippet animate "Animate.css CDN"
 <link
 	rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
-endsnippet
 
-snippet og "Open graph protocal template" b
+
+snippet og "Open graph protocal template"
 <!-- Preview description -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${1:title}" />
@@ -65,4 +65,4 @@ snippet og "Open graph protocal template" b
 <meta property="og:image:height" content="80" />
 <meta property="og:image:width" content="80" />
 <meta property="og:locale" content="en_GB" />
-endsnippet
+

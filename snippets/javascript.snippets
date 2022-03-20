@@ -7,102 +7,102 @@
 #                                     |_|   |_|
 ############################################################################
 
-snippet do "To do reminder" b
+snippet do "To do reminder"
 //////////////////////////////////////////////////
 //TODO: `echo $user` ${1:desc} `!v strftime("%c")`
 //////////////////////////////////////////////////
-endsnippet
 
-snippet // "Multiline comment" b
+
+snippet // "Multiline comment"
 /*
  * $1
  * */
 
-endsnippet
 
-snippet l "let = " b
+
+snippet l "let = "
 let $1 = $2;
-endsnippet
 
-snippet c "const = " b
+
+snippet c "const = "
 const $1 = $2;
-endsnippet
 
-snippet if "If structure" b
+
+snippet if "If structure"
 ($1)
   ? $2
   : $3
-endsnippet
 
-snippet cif "Classic if structure" b
+
+snippet cif "Classic if structure"
 if ( $1 ) {
   $2
 } else {
   $3
 }
-endsnippet
 
-snippet fr "For structure" b
+
+snippet fr "For structure"
 $1.forEach((item) => {
   ${2:console.log(item)}
 });
-endsnippet
 
-snippet frn "Usual for in structure" b
+
+snippet frn "Usual for in structure"
 for (let ${1:item} in $2) {
   $3
 }
-endsnippet
 
-snippet frf "Usual for of structure" b
+
+snippet frf "Usual for of structure"
 for (let ${1:item} of $2) {
   $2
 }
-endsnippet
 
-snippet cfr "Classic for structure" b
+
+snippet cfr "Classic for structure"
 for (let ${1:item} = 0; $1 < $2; $1++) {
   $2[$1]
 }
-endsnippet
+
 
 snippet fn "Arrow function" i
 ($1) => {
   $2
 }
-endsnippet
 
-snippet vfn "Const as function" b
+
+snippet vfn "Const as function"
 const $1 = ($2) => {
   $3
 };
-endsnippet
+
 
 snippet afn "Anonimus function" i
 ${1:const $2 =} function($3){
   $4
 };
-endsnippet
+
 
 snippet cfn "Classic function" i
 function $1($3){
   $2
 };
-endsnippet
 
-snippet arr "Array template" b
+
+snippet arr "Array template"
 const ${1:itemList} = [
   $2
-endsnippet
 
-snippet obj "Object template" b
+
+snippet obj "Object template"
 const ${1:obj} = {
   $2
-endsnippet
 
-snippet des "Destructuring expression" b
+
+snippet des "Destructuring expression"
 const { $1 } = $2
-endsnippet
+
 
 snippet try "try-catch block" i
 try {
@@ -110,98 +110,98 @@ try {
 } catch {
   ${2:console.error(error);}
 }
-endsnippet
 
-snippet imp "General import from" b
+
+snippet imp "General import from"
 import ${2:{ $3 }} from '$1';
-endsnippet
 
-snippet exp "General export template" b
+
+snippet exp "General export template"
 export ${2:default} $1
-endsnippet
+
 
 
 ############################################################################
 ############################################################################
 ############################################################################
 
-snippet group "Create a group of log" b
+snippet group "Create a group of log"
 console.group("${1:test}");
 $2
 console.groupEnd($1);
-endsnippet
 
-snippet log "Simple console.log()" b
+
+snippet log "Simple console.log()"
 console.log(${1:"$2"});
-endsnippet
 
-snippet err "Append an error in the console" b
+
+snippet err "Append an error in the console"
 console.error(${1:"$2"});
-endsnippet
 
-snippet warn "Append a warning to the console" b
+
+snippet warn "Append a warning to the console"
 console.warn(${1:"$2"});
-endsnippet
 
-snippet tab "Append a table of array element" b
+
+snippet tab "Append a table of array element"
 console.table(${1:itemList});
-endsnippet
 
-snippet time "Test how much time somethings take to be execute" b
+
+snippet time "Test how much time somethings take to be execute"
 console.time("${1:test}");
 $2
 console.timeEnd("$1");
-endsnippet
+
 
 ############################################################################
 ############################################################################
 ############################################################################
 
-snippet iife "Inmediatly Invoke Function Expression" b
+snippet iife "Inmediatly Invoke Function Expression"
 (() => {
   "use strict";
   $1
 })();
-endsnippet
 
-snippet sw "Service worker template" b
+
+snippet sw "Service worker template"
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/serviceWorker.js").catch((error) => {
     console.error(error.message);
   })
 }
-endsnippet
 
-snippet tst "Test what is being taking for event" b
+
+snippet tst "Test what is being taking for event"
 window.addEventListener("click", (e) => {
   console.log(e.target);
 });
-endsnippet
 
-snippet random "Get a random number" b
+
+snippet random "Get a random number"
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-endsnippet
+
 
 snippet sort "Sort an array using .sort"
 const sortArray = (itemList) => itemList.sort((a, b) => a - b);
-endsnippet
 
-snippet isEven "Gef if a number is even" b
+
+snippet isEven "Gef if a number is even"
 const isEven = (number) => number % 2;
-endsnippet
 
-snippet rmDuplicate "removeDuplicates" b
+
+snippet rmDuplicate "removeDuplicates"
 const removeRepetition = (itemList) => [...new Set(itemList)];
-endsnippet
 
-snippet promise "Promise template" b
+
+snippet promise "Promise template"
 new Promise((resolve, reject) => {
   resolve($1);
   reject($2);
 });
-endsnippet
 
-snippet browser "Get browser" b
+
+snippet browser "Get browser"
 
 const detectBrowser = () => {
   if (
@@ -224,7 +224,7 @@ const detectBrowser = () => {
     return "Unknown";
   }
 };
-endsnippet
+
 
 ############################################################################
 ############################################################################
@@ -238,47 +238,47 @@ endsnippet
 ############################################################################
 ############################################################################
 
-snippet gi "getElementById()" b
+snippet gi "getElementById()"
 ${1:const} $2 = document.getElementById('$3')
-endsnippet
 
-snippet gt "getElementsByTagName()" b
+
+snippet gt "getElementsByTagName()"
 ${1:const} $2 = document.getElementsByTagName('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
   ${5:console.log($2[i])}
 };
 }
-endsnippet
 
-snippet gc "getElementsByClassName()" b
+
+snippet gc "getElementsByClassName()"
 ${1:const} $2 = document.getElementsByClassName('$3')
 ${4:
 for( let i = 0; i < $2.length; i++ ) {
   ${5:console.log($2[i])}
 };
 }
-endsnippet
 
-snippet qs "querySelector" b
+
+snippet qs "querySelector"
 ${1:const} $2 = document.querySelector("#$2")
-endsnippet
 
-snippet qsa "querySelectorAll" b
+
+snippet qsa "querySelectorAll"
 ${1:const} $2 = document.querySelectorAll("$2")
 ${4:
 $2.forEach(($3) => {
 });
 }
-endsnippet
 
-snippet att "Hanlde attribute" b
+
+snippet att "Hanlde attribute"
 $1.getAttribute('$2')
 $1.removeAttribute('$2')
 $1.setAttribute('$2', '$3')
-endsnippet
 
-snippet vnd "create a new node" b
+
+snippet vnd "create a new node"
 let $1Tag = document.createElement('$1');
 ${2:
 let tagText = document.createTextNode('$3');
@@ -286,38 +286,38 @@ $1Tag.appendChild(tagText);
 }
 let $4Container = document.querySelector('$5');
 $4Container.appendChild($1Tag);
-endsnippet
 
-snippet rmnd "remove an element" b
+
+snippet rmnd "remove an element"
 let $1ToRemove = document.querySelector('$1');
 $1ToRemove.removeChild($1ToRemove.${2:children[0]})
-endsnippet
 
-snippet eve "Add event listener" b
+
+snippet eve "Add event listener"
 $1.addEventListener("click", ${2:fn});
-endsnippet
 
-snippet ceve "Create event listeners" b
+
+snippet ceve "Create event listeners"
 const $1 = document.querySelector("#$1");
 $3
 
 $1.addEventListener("click", ${2:fn});
-endsnippet
 
-snippet seve "Create an single event by addEventListener" b
+
+snippet seve "Create an single event by addEventListener"
 document.querySelector('$1').addEventListener('${2:click}',${3:fn});
-endsnippet
 
-snippet react "React skeleton" b
+
+snippet react "React skeleton"
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./component/App";
 
 ReactDOM.render(<App />, document.querySelector("#app"));
-endsnippet
 
 
-snippet manbsc "It shows all the shortcuts that I have" b
+
+snippet manbsc "It shows all the shortcuts that I have"
 /*
 //Basics
 
@@ -342,9 +342,9 @@ try "try-catch block"
 imp "General import from"
 exp "General export template"
 */
-endsnippet
 
-snippet manlog "It shows all the console snippets" b
+
+snippet manlog "It shows all the console snippets"
 /*
 group "Create a group of log"
 log "Simple console.log()"
@@ -353,9 +353,9 @@ warn "Append a warning to the console"
 tab "Append a table of array element"
 time "Test how much time somethings take to be execute"
 */
-endsnippet
 
-snippet manfn "It shows all the pre written functions/utilities" b
+
+snippet manfn "It shows all the pre written functions/utilities"
 /*
 iife "Inmediatly Invoke Function Expression"
 tst "Test what is being taking for event"
@@ -365,9 +365,9 @@ rmDuplicate "removeDuplicates"
 promise "Promise template"
 browser "Get browser"
 */
-endsnippet
 
-snippet manfront "It lists all the frontend utilities I have written" b
+
+snippet manfront "It lists all the frontend utilities I have written"
 /*
 gi "getElementById()"
 gt "getElementsByTagName()"
@@ -381,13 +381,13 @@ eve "Add event listener"
 ceve "Create event listeners"
 seve "Create an single event by addEventListener"
 */
-endsnippet
 
-snippet man "The manual" b
+
+snippet man "The manual"
 /*
-snippet manbsc "It shows all the shortcuts that I have" b
-snippet manlog "It shows all the console snippets" b
-snippet manfn "It shows all the pre written functions/utilities" b
-snippet manfront "It lists all the frontend utilities I have written" b
+snippet manbsc "It shows all the shortcuts that I have"
+snippet manlog "It shows all the console snippets"
+snippet manfn "It shows all the pre written functions/utilities"
+snippet manfront "It lists all the frontend utilities I have written"
 */
-endsnippet
+

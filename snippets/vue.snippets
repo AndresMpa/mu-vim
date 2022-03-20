@@ -1,26 +1,26 @@
-snippet todo "To do list of items" b
+snippet todo "To do list of items"
 <!--
 TODO: `echo $user` ${1:desc} `!v strftime("%c")`
 -->
-endsnippet
 
-snippet // "Multiline comments" b
+
+snippet // "Multiline comments"
 /*
  * $1
  * */
-endsnippet
+
 
 #FAD: Frecuency asked dudes
-snippet help "Small FAD" b
+snippet help "Small FAD"
 /*
 Functions goes inside methods: {}
 Variabes are inside data() { return {} }
 To pass data we use props: {}
 To check Vue lifecycle type "life"
 */
-endsnippet
 
-snippet life "Vue lifecycle" b
+
+snippet life "Vue lifecycle"
 /*
 beforeCreate() {}
 created() {}
@@ -37,23 +37,23 @@ renderTracked() {}
 renderTriggered() {}
 */
 
-endsnippet
 
-snippet keys "Get json keys" b
+
+snippet keys "Get json keys"
 Object.keys($1).forEach((jsonKey) => {
 	console.log(jsonKey + "\n" + ${1}[jsonKey]);
 });
-endsnippet
 
-snippet imp "vue import" b
+
+snippet imp "vue import"
 import ${1} from "@/components/${2}";
-endsnippet
 
-snippet log "console.log function" b
+
+snippet log "console.log function"
 console.log($1);
-endsnippet
 
-snippet vue "vue basic" b
+
+snippet vue "vue basic"
 <template>
 ${1}
 </template>
@@ -67,22 +67,22 @@ export default {
 <style lang="${3:css}" scoped>
 ${3}
 </style>
-endsnippet
 
-snippet fun "Vue functions (Methods)" b
+
+snippet fun "Vue functions (Methods)"
 methods: {
 	f$1
 },
-endsnippet
 
-snippet f "JS funtions inside vue" b
+
+snippet f "JS funtions inside vue"
 $1($2){
 	$3
 },
-endsnippet
 
-snippet media "Media query basic template" b
+
+snippet media "Media query basic template"
 @media (max-width: $1px) {
 	$2
 }
-endsnippet
+

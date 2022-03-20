@@ -1,0 +1,34 @@
+snippet i "init libraries"
+  #include <iostream>
+  $1
+
+  using namespace std;
+
+  /*
+   * Function headers
+   * */
+  $2
+
+  int main() {
+    $3
+
+    return 0;
+  }
+
+  $2
+
+
+snippet // "Multi line comment"
+  /*
+   * $1
+   * */
+
+snippet len "Array length"
+  int arraySize = *(&arr + 1) - arr;
+  cout<<arraySize<<endl;
+
+snippet out "cout"
+  cout<<$1<<endl;
+
+snippet log "cout as console.log"
+  cout<<$1<<endl;

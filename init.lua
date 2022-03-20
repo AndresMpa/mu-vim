@@ -8,7 +8,6 @@ require('mapping')
 require('autocommand')
 
 -- PLUGIN
-
 -- Table list
 require('plugins')
 -- Set up

@@ -10,8 +10,8 @@ require('setUp.nvimTree')
 -- Multitab
 require('setUp.bufferline')
 
--- UltiSnips
-require('setUp.ultisnipt')
+-- Snippets
+require('setUp.snippets')
 
 -- THEME
 -- Nvim

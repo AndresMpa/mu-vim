@@ -1,29 +1,29 @@
-snippet do "To do reminder" b
+snippet do "To do reminder"
 ///////////////////////////////////////////////////
 // TODO: `echo $user` ${1:desc} `!v strftime("%c")`
 ///////////////////////////////////////////////////
-endsnippet
 
-snippet mx "Mixing default schema" b
+
+snippet mx "Mixing default schema"
 @mixin $1(${2:$$3}) {
 	$4: $5;
 }
-endsnippet
 
-snippet m "Default main imports" b
+
+snippet m "Default main imports"
 //Basic standar style
 @import "__basics__";
 //Style functions
 @import "__mixing__";
 @import "template";
 @import "$4";
-endsnippet
 
-snippet i "Import schema" b
+
+snippet i "Import schema"
 @import "$1";
-endsnippet
 
-snippet cdf "A quick color palette" b
+
+snippet cdf "A quick color palette"
 //Color palette
 
 //Basics
@@ -36,22 +36,22 @@ $red: #ff2222;
 $green: #22ff22;
 $blue: #2222ff;
 ${1:$$2}: $3;
-endsnippet
 
-snippet c "Color schema" b
+
+snippet c "Color schema"
 ${1:$$2}: $3;
-endsnippet
 
-snippet f "Quick font set up" b
+
+snippet f "Quick font set up"
 //Font
 @mixin google-font($family) {
 	@import url("http://fonts.googleapis.com/css?family=#{$family}");
 }
 
 @include google-font("Nunito");
-endsnippet
 
-snippet * "Default" b
+
+snippet * "Default"
 $text: $1;
 $background: $2;
 
@@ -78,93 +78,93 @@ hr {
 	margin: 0.8% auto;
 	background-color: $gray;
 }
-endsnippet
+
 
 # Some Pseudo classes
-snippet :h "Hover property" b
+snippet :h "Hover property"
 $1:hover ${2:{}
 	$3
 }
-endsnippet
 
-snippet :f "Focus property" b
+
+snippet :f "Focus property"
 $1:focus ${2:{}
 	$3
 }
-endsnippet
 
-snippet :a "Active property" b
+
+snippet :a "Active property"
 $1:active ${2:{}
 	$3
 }
-endsnippet
 
-snippet :d "Disabled property" b
+
+snippet :d "Disabled property"
 $1:disabled ${2:{}
 	$3
 }
-endsnippet
 
-snippet :c "Checked property" b
+
+snippet :c "Checked property"
 $1:checked ${2:{}
 	$3
 }
-endsnippet
 
-snippet :e "Empty property" b
+
+snippet :e "Empty property"
 $1:empty ${2:{}
 	$3
 }
-endsnippet
+
 
 # Pseudo elements
-snippet ::a "After pseudo element" b
+snippet ::a "After pseudo element"
 $1::after ${2:{}
 	$3
 }
-endsnippet
 
-snippet ::b "Before pseudo element" b
+
+snippet ::b "Before pseudo element"
 $1::before ${2:{}
 	$3
 }
-endsnippet
 
-snippet ::flt "First letter pseudo element" b
+
+snippet ::flt "First letter pseudo element"
 $1::first-letter ${2:{}
 	$3
 }
-endsnippet
 
-snippet ::fln "First line pseudo element" b
+
+snippet ::fln "First line pseudo element"
 $1::first-line ${2:{}
 	$3
 }
-endsnippet
 
-snippet ::m "Marker pseudo element" b
+
+snippet ::m "Marker pseudo element"
 $1::marker ${2:{}
 	$3
 }
-endsnippet
 
-snippet ::s "Selection pseudo element" b
+
+snippet ::s "Selection pseudo element"
 $1::selection ${2:{}
 	$3
 }
-endsnippet
+
 
 # Classes
-snippet . "Classes" b
+snippet . "Classes"
 .$1 ${2:{}
 	$3
 }
-endsnippet
+
 
 # Id
-snippet # "Id" b
+snippet # "Id"
 #$1 ${2:{}
 	$3
 }
-endsnippet
+
 
