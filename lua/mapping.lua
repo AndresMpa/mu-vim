@@ -4,8 +4,6 @@ local map = vim.api.nvim_set_keymap
 -- Leader Key
 vim.g.mapleader = ' '
 
--- Settings commands
-
 -- easymotion
 map('n', '<Leader>ss', '<Plug>(easymotion-s2)', {})
 
@@ -67,12 +65,11 @@ map('n', '<silent>cr', '<Plug>(coc-references)', {})
 map('n', '<silent><expr> <c-space>', 'coc#refresh()', {})
 
 -- Plug
-map('n', '<Leader>pc', ':PlugClean<CR>', {})
-map('n', '<Leader>pi', ':PlugInstall<CR>', {})
-map('n', '<Leader>pu', ':PlugUpdate<CR>', {})
-map('n', '<Leader>pd', ':PlugUpgrade<CR>', {})
+map('n', '<Leader>pi', ':PackerInstall<CR>', {})
+map('n', '<Leader>pc', ':PackerClean<CR>', {})
+map('n', '<Leader>pu', ':PackerSync<CR>', {})
 
--- Extras
+-- Natives
 map('n', '<Leader>w', ':w<CR>', {})
 map('n', '<Leader>q', ':q!<CR>', {})
 map('n', '<Leader>h', ':bdelete<CR>', {})
@@ -84,3 +81,14 @@ map('n', '<Leader>vj', ':split<CR>', {})
 map('n', '<Leader>vk', ':vsplit<CR>', {})
 map('n', '<Leader><', ':exe "resize " . (winheight(0) * 3/2)<CR>', {})
 map('n', '<Leader>>', ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
+
+-- Terminal
+map('n', '<C-t>', ':terminal<CR>', { noremap = true })
+map('t', '<Esc>', '<C-\\><C-n>', {})
+
+-- Extentions
+map('n', '<Leader>hh', "<CMD>lua require('util.extention').HelpMapping()<CR>", {})
+map('n', '<Leader>x', "<CMD>lua require('util.extention').OpenFileServer()<CR>", {})
+map('n', '<leader>f', "<CMD>lua require('util.extention').TriggerIdentation()<CR>", {})
+map('n', '<Leader>xd', "<CMD>lua require('util.extention').OpenServer('django')<CR>", {})
+map('n', '<Leader>xv', "<CMD>lua require('util.extention').OpenServer('vue')<CR>", {})
