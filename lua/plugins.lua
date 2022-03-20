@@ -1,57 +1,115 @@
-local Plug = vim.fn['plug#']
+vim.cmd [[packadd packer.nvim]]
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+return require('packer').startup(function()
+    -- PLUGIN MANAGER
+    use 'wbthomason/packer.nvim'
 
--- START SCREEN
-Plug 'goolord/alpha-nvim'                                   -- First view
+    -- START SCREEN
+    use {
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+    }
 
--- Bar
-Plug 'kyazdani42/nvim-web-devicons'                         -- Icons font
-Plug 'nvim-lualine/lualine.nvim'                            -- Status line
-Plug 'akinsho/bufferline.nvim'                              -- Files openned
+    -- THEME
+    -- Status line
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+            opt = true
+        }
+    }
 
--- Nvim
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'marko-cerovac/material.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+    -- Nvim
+    use 'norcalli/nvim-colorizer.lua'
+    use 'marko-cerovac/material.nvim'
 
--- MOTION
-Plug 'christoomey/vim-tmux-navigator'				                              -- Navigation between windows
-Plug 'easymotion/vim-easymotion'						                              -- Navigation in files
-Plug 'haya14busa/incsearch.vim'							                              -- Better way to look for words
-Plug 'junegunn/fzf.vim'                                                   -- Better way to search files
-Plug 'mileszs/ack.vim'                                                    -- Navigation in projects
+    -- Highlight
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
 
---IDENTATION & SYNTAX
+    -- NAVIGATION
+    -- File explorer
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+    }
 
-Plug ('neoclide/coc.nvim', {branch = 'release'})    -- Text editing support
-Plug 'leafgarland/typescript-vim'                   -- TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'                     -- JS and JSX syntax
-Plug 'pangloss/vim-javascript'                      -- JavaScript support
-Plug 'sheerun/vim-polyglot'		                      -- Syntax highligth for multiple languajes
-Plug 'Yggdroot/indentLine'                          -- Identation helper (It shows the identation of functions, etc)
-Plug 'folke/trouble.nvim'                           -- Help to find issues
-Plug 'tpope/vim-fugitive'                           -- Support to git commands
-Plug 'z0mbix/vim-shfmt'                             -- Identation for bash scripts
+    -- Files openned
+    use 'akinsho/bufferline.nvim'
 
+    -- MOTION
 
--- UTILITIES
+    -- Navigation between windows
+    use 'christoomey/vim-tmux-navigator'
+    -- Navigation in files
+    use 'easymotion/vim-easymotion'
+    -- Better way to look for words
+    use 'haya14busa/incsearch.vim'
+    -- Better way to search files
+    use 'junegunn/fzf.vim'
+    -- Navigation in projects
+    use 'mileszs/ack.vim'
 
-Plug 'iamcco/markdown-preview.nvim'               -- Markdown preview
-Plug 'terryma/vim-multiple-cursors'               -- Multicursor
-Plug 'preservim/nerdcommenter'                    -- Easy way to make commets
-Plug 'KabbAmine/vCoolor.vim'                      -- Color picker for css
-Plug 'turbio/bracey.vim'                          -- Vim live server
-Plug 'mhinz/vim-signify'                          -- Git diffs
-Plug 'ap/vim-css-color'                           -- Show #fffffffff with colors
-Plug 'tpope/vim-repeat'                           -- Repat all the commands using dot key
+    --IDENTATION & SYNTAX
 
--- AUTOCOMPLETE
+    -- Identation helper (It shows the identation of functions, etc)
+    use "lukas-reineke/indent-blankline.nvim"
+    -- TypeScript syntax
+    use 'leafgarland/typescript-vim'
+    -- JS and JSX syntax
+    use 'maxmellon/vim-jsx-pretty'
+    -- JavaScript support
+    use 'pangloss/vim-javascript'
+    -- Syntax highligth for multiple languajes
+    use 'sheerun/vim-polyglot'
+    -- Help to find issues
+    use 'folke/trouble.nvim'
+    -- Support to git commands
+    use 'tpope/vim-fugitive'
+    -- Identation for bash scripts
+    use 'z0mbix/vim-shfmt'
 
-Plug 'editorconfig/editorconfig-vim'              -- It gives nvim a general editing config for identation
-Plug 'jiangmiao/auto-pairs'                       -- Autocomplete parentesis
-Plug 'tpope/vim-surround'                         -- It helps to 'CRUD' parentesis, comillas and tags
-Plug 'alvan/vim-closetag'                         -- Autocomplete tags
-Plug 'sirver/ultisnips'                           -- Snippers engine
+    -- UTILITIES
 
-vim.call('plug#end')
+    -- Markdown preview
+    use {
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+        cmd = 'MarkdownPreview'
+    }
+    -- Live server
+    use {
+        'turbio/bracey.vim',
+        run = 'npm install --prefix server',
+        cmd = 'Bracey'
+    }
+    -- Multicursor
+    use 'terryma/vim-multiple-cursors'
+    -- Easy way to make commets
+    use 'preservim/nerdcommenter'
+    -- Color picker for css
+    use 'KabbAmine/vCoolor.vim'
+    -- Git diffs
+    use 'mhinz/vim-signify'
+    -- Show #fffffffff with colors
+    use 'ap/vim-css-color'
+    -- Repat all the commands using dot key
+    use 'tpope/vim-repeat'
+
+    -- AUTOCOMPLETE
+
+    -- It gives nvim a general editing config for identation
+    use 'editorconfig/editorconfig-vim'
+    -- Autocomplete parentesis
+    use 'jiangmiao/auto-pairs'
+    -- It helps to 'CRUD' parentesis, comillas and tags
+    use 'tpope/vim-surround'
+    -- Autocomplete tags
+    use 'alvan/vim-closetag'
+
+    -- SNIPPETS
+    use 'sirver/ultisnips'                           -- Snippers engine
+end)
