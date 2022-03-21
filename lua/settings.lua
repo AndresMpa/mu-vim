@@ -44,8 +44,8 @@ set.expandtab = true
 -- Prefixes
 set.completeopt = "menu,menuone,noselect"
 set.errorformat:append('%f|%l col %c|%m')
---set.listchars:append("space:⋅")
---set.listchars:append("eol:↴")
+set.listchars:append("space:⋅")
+set.listchars:append("eol:↴")
 set.list = true
 
 
