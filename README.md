@@ -4,8 +4,8 @@
   <p>
     <a href="https://github.com/AndresMpa/mu-nvim">
       <img
-        src="https://img.shields.io/badge/-lua-purple?style=for-the-badge&logo=lua"
-        alt="Lua Script"
+        src="https://img.shields.io/badge/-vim-darkgreen?style=for-the-badge&logo=Vim"
+        alt="VimScript"
       />
     </a>
     <a href="https://github.com/AndresMpa/mu-nvim">
