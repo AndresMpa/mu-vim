@@ -2,19 +2,19 @@
 
 <div align="center">
   <p>
-    <a href="https://github.com/lunarvim/LunarVim/releases/latest">
+    <a href="https://github.com/AndresMpa/mu-nvim">
       <img
-        src="https://img.shields.io/badge/-neovim-darkblue?style=for-the-badge&logo=neovim)"
+        src="https://img.shields.io/badge/-neovim-darkblue?style=for-the-badge&logo=neovim"
         alt="Neovim"
       />
     </a>
-    <a href="https://github.com/lunarvim/LunarVim/pulse">
+    <a href="https://github.com/AndresMpa/mu-nvim">
       <img
         src="https://img.shields.io/badge/-lua-purple?style=for-the-badge&logo=lua"
         alt="Lua Script"
       />
     </a>
-    <a href="https://github.com/lunarvim/LunarVim/blob/main/LICENSE">
+    <a href="https://github.com/AndresMpa/mu-nvim">
       <img
         src="https://img.shields.io/badge/-bash-black?style=for-the-badge&logo=GNU%20Bash"
         alt="Bash Script"
