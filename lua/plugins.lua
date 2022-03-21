@@ -77,11 +77,8 @@ return require('packer').startup(function()
     -- UTILITIES
 
     -- Markdown preview
-    use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
-        cmd = 'MarkdownPreview'
-    }
+    use 'iamcco/markdown-preview.nvim'
+
     -- Live server
     use {
         'turbio/bracey.vim',

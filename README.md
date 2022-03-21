@@ -33,6 +33,7 @@ here then I move them to my previous versions, this is the fastest one also the 
 ![nvim 1](./.examples/nvim_1.png)
 ![nvim_2](./.examples/nvim_2.png)
 ![nvim_3](./.examples/nvim_3.png)
+![nvim_4](./.examples/nvim_4.png)
 
 ## Prerequisites
 
