@@ -52,8 +52,8 @@ difficult to understand for beginners, also easier to mantein and extend
 ### Lua (Core version)
 
 This is core editor version, used for working as Web developer, Editor maintenance... also
-handling my OS editing, keep this version if you want the latest features, new features 
-will be added here first, then those will be implemented on other branches, this is the 
+handling my OS editing, keep this version if you want the latest features, new features
+will be added here first, then those will be implemented on other branches, this is the
 fastest one version, the most complicated too
 
 #### Take a look
@@ -167,5 +167,19 @@ There's a couple of apps I recommend you to improve a little bit more your veloc
 ## Pats on the back
 
 If you are reading this, it means that you want to improve your velocity, or you want to make
-your own things so, if you start by nvim or vim It may be complicated, but just at the beginning 
+your own things so, if you start by nvim or vim It may be complicated, but just at the beginning
 them you'll look like a professional "Ninja Dev": keep working constancy  conquer whatever
+
+## Simiular projects
+
+If this project doesn't match to you, you could also check:
+
+  - [DoomVim](https://github.com/NTBBloodbath/doom-nvim)
+  - [NvChad](https://github.com/NvChad/NvChad)
+  - [LunarVim](https://github.com/LunarVim/LunarVim)
+
+<div align="center">
+  <p>
+    Special thanks to @jx11r for documentation provided
+  </p>
+</div>
