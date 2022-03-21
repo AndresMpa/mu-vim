@@ -1,4 +1,29 @@
-# VimScript
+![VimScript](./.examples/muVim_VimScript.png)
+
+<div align="center">
+  <p>
+    <a href="https://github.com/AndresMpa/mu-nvim">
+      <img
+        src="https://img.shields.io/badge/-neovim-darkblue?style=for-the-badge&logo=neovim"
+        alt="Neovim"
+      />
+    </a>
+    <a href="https://github.com/AndresMpa/mu-nvim">
+      <img
+        src="https://img.shields.io/badge/-vim-darkgreen?style=for-the-badge&logo=vim"
+        alt="VimScript"
+      />
+    </a>
+    <a href="https://github.com/AndresMpa/mu-nvim">
+      <img
+        src="https://img.shields.io/badge/-bash-black?style=for-the-badge&logo=GNU%20Bash"
+        alt="Bash Script"
+      />
+    </a>
+  </p>
+</div>
+
+# Documentation
 
 Looking for a modular config for nvim orvim? Check this branch. MμVim comes
 with this version, based on VimScript uses a modular orientation to split
@@ -43,7 +68,7 @@ if you don't want any of them try switch CoC for any other plugin such as
 #### Search engine
 
 Check line by line what we are looking on a file is unnecessary these days so MμVim
-uses a "search engine", this means that you need some extra software to make 
+uses a "search engine", this means that you need some extra software to make
 the engine works
 
 - [the_silver_search](https://github.com/ggreer/the_silver_searcher)
