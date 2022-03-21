@@ -1,30 +1,30 @@
 -- SET UP
 
--- Welcome screen
-require('setUp.alpha')
-
--- MOTION
--- File manager
-require('setUp.nvimTree')
-
--- Multitab
-require('setUp.bufferline')
-
--- Snippets
-require('setUp.snippets')
+-- GREETER
+require('setUp.greeter')
 
 -- THEME
 -- Nvim
 require('scheme.material')
-
 -- Bar
-require('setUp.lualine')
+require('setUp.statusLine')
 
--- Highlighting
-require('setUp.treesitter')
-
+-- VISUAL HELP
 -- Identation
-require('setUp.identBlankline')
-
--- Highlighter
+require('setUp.identation')
+-- Highlight
+require('setUp.highligth')
+-- Highlighter (theme)
 require('colorizer').setup()
+
+-- NAVIGATION
+-- File manager
+require('setUp.fileManager')
+-- Multitab
+require('setUp.buffer')
+
+-- CODE SUPPORT
+-- Snippets
+require('setUp.snippets')
+-- Bash
+require('setUp.bash')
