@@ -1,4 +1,23 @@
-# Single file version
+![mini](./.examples/muVim_mini.png)
+
+<div align="center">
+  <p>
+    <a href="https://github.com/AndresMpa/mu-nvim">
+      <img
+        src="https://img.shields.io/badge/-lua-purple?style=for-the-badge&logo=lua"
+        alt="Lua Script"
+      />
+    </a>
+    <a href="https://github.com/AndresMpa/mu-nvim">
+      <img
+        src="https://img.shields.io/badge/-bash-black?style=for-the-badge&logo=GNU%20Bash"
+        alt="Bash Script"
+      />
+    </a>
+  </p>
+</div>
+
+# Documentation
 
 I made a basic tutorial where you can see how to make a
 vim or nvim file like this, check the link
