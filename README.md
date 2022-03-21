@@ -1,4 +1,8 @@
-# My nvim configuration
+![Mμ Vim](./.examples/muVim.png)
+
+![neovim](https://img.shields.io/badge/-neovim-darkblue?style=for-the-badge&logo=neovim)
+![lua](https://img.shields.io/badge/-lua-purple?style=for-the-badge&logo=lua)
+![Bash](https://img.shields.io/badge/-bash-black?style=for-the-badge&logo=GNU%20Bash)
 
 This repository contains 3 different branches each one of them have a different
 config, choose anyone, all of them should work. I recommend to follow this "guide"
