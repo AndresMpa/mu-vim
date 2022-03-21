@@ -1,123 +1,100 @@
 snippet do "To do reminder"
-<!--TODO: `echo $user` ${1:desc} `!v strftime("%c")`-->
-
+	<!--TODO: `echo $user` ${1:desc} `!v strftime("%c")`-->
 
 snippet h1 "h1"
-# $1
-
+	# $1
 
 snippet h2 "h2"
-## $1
-
+	## $1
 
 snippet h3 "h3"
-### $1
-
-
+	### $1
 
 snippet h4 "h4"
-#### $1
-
+	#### $1
 
 snippet t1 "Table of 1 row"
-| ${1:Title}  |
-| ----------- |
-| ${2:Text}  	|
-
+	| ${1:Title}  |
+	| ----------- |
+	| ${2:Text}  	|
 
 snippet t2 "Table of 2 row"
-| ${1:Title}  | ${2:Section} |
-| ----------- | ------------ |
-| ${3:Text}  	| ${4:Text}    |
-
+	| ${1:Title}  | ${2:Section} |
+	| ----------- | ------------ |
+	| ${3:Text}  	| ${4:Text}    |
 
 snippet t3 "Table of 3 row"
-| ${1:Title}  | ${2:Section} | ${3:Section} |
-| ----------- | ------------ | ------------ |
-| ${4:Text}  	| ${5:Text}    | ${6:Text}    |
-
+	| ${1:Title}  | ${2:Section} | ${3:Section} |
+	| ----------- | ------------ | ------------ |
+	| ${4:Text}  	| ${5:Text}    | ${6:Text}    |
 
 snippet t4 "Table of 4 row"
-| ${1:Title}  | ${2:Section} | ${4:Section} |${5:Section} |
-| ----------- | ------------ | ------------ |------------ |
-| ${6:Text}  	| ${7:Text}    | ${8:Text}    |${9:Text}    |
-
+	| ${1:Title}  | ${2:Section} | ${4:Section} |${5:Section} |
+	| ----------- | ------------ | ------------ |------------ |
+	| ${6:Text}  	| ${7:Text}    | ${8:Text}    |${9:Text}    |
 
 snippet r1 "Column for 1 row table"
-| ${1:Text} |
-
+	| ${1:Text} |
 
 snippet r2 "Column for 2 row table"
-| ${1:Text} | ${2:Text} |
-
+	| ${1:Text} | ${2:Text} |
 
 snippet r3 "Column for 3 row table"
-| ${1:Text} | ${2:Text} | ${3:Text} |
-
+	| ${1:Text} | ${2:Text} | ${3:Text} |
 
 snippet r4 "Column for 4 row table"
-| ${1:Text} | ${2:Text} | ${3:Text} | ${4:Text} |
-
+	| ${1:Text} | ${2:Text} | ${3:Text} | ${4:Text} |
 
 snippet ln "Link"
-[$1]($2)
-
+	[$1]($2)
 
 snippet i "Link"
-![$1]($2)
-
+	![$1]($2)
 
 snippet bq "Blockquote" i
-> $1
-
+	> $1
 
 snippet ol "Ordered list"
-1. $1
-2. $2
-3. $3
-
+	1. $1
+	2. $2
+	3. $3
 
 snippet ul "Unordered list"
-- $1
-- $2
-- $3
-
+	- $1
+	- $2
+	- $3
 
 snippet tl "Task lisk"
-- [$1]$2
-- [$3]$4
-- [$5]$6
-
+	- [$1]$2
+	- [$3]$4
+	- [$5]$6
 
 snippet hr "Line breaker"
----
-
+	---
 
 snippet code "Insert code"
-```
-$ $1
-```
-
+	```
+	$ $1
+	```
 
 snippet help "Instructions and help"
 
-If you want review markdown
-leader + pw
+	If you want review markdown
+	leader + pw
 
-Snippets:
+	Snippets:
 
-- do: To do reminder
-- h#: Title number skeleton
-- t#: Table with # rows skeleton
-- r#: Add # colums skeleton
-- ln: Add a link skeleton
-- i: Add a image skeleton
-- bq: Add a Blockquote
-- ol: Add an order list
-- ul: Add an unorder list
-- tl: Add an task list
-- hr: Add line breaker
-- code: Add code segment
+	- do: To do reminder
+	- h#: Title number skeleton
+	- t#: Table with # rows skeleton
+	- r#: Add # colums skeleton
+	- ln: Add a link skeleton
+	- i: Add a image skeleton
+	- bq: Add a Blockquote
+	- ol: Add an order list
+	- ul: Add an unorder list
+	- tl: Add an task list
+	- hr: Add line breaker
+	- code: Add code segment
 
-Reference: https://www.markdownguide.org/cheat-sheet/
-
+	Reference: https://www.markdownguide.org/cheat-sheet/

@@ -1,3 +1,18 @@
+snippet // "Multi line comment"
+  /*
+  * $1
+  * */
+
+snippet len "Array length"
+  int arraySize = *(&arr + 1) - arr;
+  cout<<arraySize<<endl;
+
+snippet out "cout"
+  cout<<$1<<endl;
+
+snippet log "cout as console.log"
+  cout<<$1<<endl;
+
 snippet i "init libraries"
   #include <iostream>
   $1
@@ -18,17 +33,3 @@ snippet i "init libraries"
   $2
 
 
-snippet // "Multi line comment"
-  /*
-   * $1
-   * */
-
-snippet len "Array length"
-  int arraySize = *(&arr + 1) - arr;
-  cout<<arraySize<<endl;
-
-snippet out "cout"
-  cout<<$1<<endl;
-
-snippet log "cout as console.log"
-  cout<<$1<<endl;

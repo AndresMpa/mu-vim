@@ -1,88 +1,86 @@
 snippet todo "To do list of items"
-<!--
-TODO: `echo $user` ${1:desc} `!v strftime("%c")`
--->
+	<!--
+	TODO: `echo $user` ${1:desc} `!v strftime("%c")`
+	-->
 
 
 snippet // "Multiline comments"
-/*
- * $1
- * */
+	/*
+	 * $1
+	 * */
 
 
-#FAD: Frecuency asked dudes
 snippet help "Small FAD"
-/*
-Functions goes inside methods: {}
-Variabes are inside data() { return {} }
-To pass data we use props: {}
-To check Vue lifecycle type "life"
-*/
+	/*
+	Functions goes inside methods: {}
+	Variabes are inside data() { return {} }
+	To pass data we use props: {}
+	To check Vue lifecycle type "life"
+	*/
 
 
 snippet life "Vue lifecycle"
-/*
-beforeCreate() {}
-created() {}
-beforeMount() {}
-mounted() {}
-beforeUpdate() {}
-updated() {}
-activated() {}
-deactivated() {}
-beforeUnmount() {}
-unmounted() {}
-errorCaptured() {}
-renderTracked() {}
-renderTriggered() {}
-*/
+	/*
+	beforeCreate() {}
+	created() {}
+	beforeMount() {}
+	mounted() {}
+	beforeUpdate() {}
+	updated() {}
+	activated() {}
+	deactivated() {}
+	beforeUnmount() {}
+	unmounted() {}
+	errorCaptured() {}
+	renderTracked() {}
+	renderTriggered() {}
+	*/
 
 
 
 snippet keys "Get json keys"
-Object.keys($1).forEach((jsonKey) => {
-	console.log(jsonKey + "\n" + ${1}[jsonKey]);
-});
-
+	Object.keys($1).forEach((jsonKey) => {
+		console.log(jsonKey + "\n" + ${1}[jsonKey]);
+	});
 
 snippet imp "vue import"
-import ${1} from "@/components/${2}";
+	import ${1} from "@/components/${2}";
 
 
 snippet log "console.log function"
-console.log($1);
+	console.log($1);
 
 
 snippet vue "vue basic"
-<template>
-${1}
-</template>
+	<template>
+	${1}
+	</template>
 
-<script>
-export default {
-	${2}
-}
-</script>
+	<script>
+	export default {
+		${2}
+	}
+	</script>
 
-<style lang="${3:css}" scoped>
-${3}
-</style>
+	<style lang="${3:css}" scoped>
+	${3}
+	</style>
 
 
 snippet fun "Vue functions (Methods)"
-methods: {
-	f$1
-},
+	methods: {
+		f$1
+	},
 
 
 snippet f "JS funtions inside vue"
-$1($2){
-	$3
-},
+	$1($2){
+		$3
+	},
 
 
 snippet media "Media query basic template"
-@media (max-width: $1px) {
-	$2
-}
+	@media (max-width: $1px) {
+		$2
+	}
 

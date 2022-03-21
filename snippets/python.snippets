@@ -1,74 +1,52 @@
 snippet # "Multiline comment"
-"""
-$1
-"""
-
-
-# Print and end line
-snippet prt "print()" i
-print(${1:$2}, end='')
-
-
-# Print in line
-snippet log "print(, end='')"
-print(${1: $2 }, end='\n')
-
-
-# Tipe of
-snippet type "Type of for debuggig"
-print(type($1))
-
-
-# Dinamic import
-snippet imp "form X import Y"
-from $1 import $2 as $3
-
-
-# Try block
-snippet try "Try except block"
-try:
+    """
     $1
-except $2:
-    ${3:continue}
-else:
-    ${4:print("It works")}
-finally:
-    ${5:print("Process has end")}
+    """
 
+snippet prt "print()" i
+    print(${1:$2}, end='')
 
-# Functions
+snippet log "print(, end='')"
+    print(${1: $2 }, end='\n')
+
+snippet type "Type of for debuggig"
+    print(type($1))
+
+snippet imp "form X import Y"
+    from $1 import $2 as $3
+
+snippet try "Try except block"
+    try:
+        $1
+    except $2:
+        ${3:continue}
+    else:
+        ${4:print("It works")}
+    finally:
+        ${5:print("Process has end")}
+
 snippet fun "Function declaration" i
-def $1(${2:$3}):
-    ${4:$5}
+    def $1(${2:$3}):
+        ${4:$5}
 
-
-# Help methods
 snippet help "This display helping functions on python"
-help($1)
-dir($1)
+    help($1)
+    dir($1)
 
-
-# Lambda function
 snippet lam "Lambda function declaration"
-lambda $1: $2
+    lambda $1: $2
 
-
-# Anonymous lambda function
 snippet afu "Anonymous lambda function declaration" i
-def $1($2):
-    return lambda $1: $2
+    def $1($2):
+        return lambda $1: $2
 
-
-# Basic object declaration
 snippet obj "Python object declaration"
-class $1:
-    def __init__(self, $2):
-        self.$2 = $2
+    class $1:
+        def __init__(self, $2):
+            self.$2 = $2
 
-
-# Main function
 snippet ini "Basic python main function"
-if __name__ == "__main__"($1):
-    ${2:pass}
+    if __name__ == "__main__"($1):
+        ${2:pass}
 
 

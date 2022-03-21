@@ -1,68 +1,68 @@
 snippet do "To do reminder"
-<!--
-TODO:
-${1:desc}
+	<!--
+	TODO:
+	${1:desc}
 
-Written `!v strftime("%c")`
-By: `echo $USER`
--->
+	Written `!v strftime("%c")`
+	By: `echo $USER`
+	-->
 
 
 snippet ex "Example"
-<${1:div}>
-	Hello world
-</${1/(\w+).*/$1/}>
+	<${1:div}>
+		Hello world
+	</${1/(\w+).*/$1/}>
 
 
 snippet ls "List"
-<${1:ul} ${2:class="$3"}>
-	<li${4: class="$3__$5"}>$6</li>
-	<li$4>$7</li>
-	<li$4>$8</li>
-</${1/(\w+).*/$1/}>
+	<${1:ul} ${2:class="$3"}>
+		<li${4: class="$3__$5"}>$6</li>
+		<li$4>$7</li>
+		<li$4>$8</li>
+	</${1/(\w+).*/$1/}>
 
 
 snippet ma "Main default schema"
-<main ${1:id="$2" class="$3"}>
-	<article class="$3--$4">
-		$5
-	</article>
-</main>
+	<main ${1:id="$2" class="$3"}>
+		<article class="$3--$4">
+			$5
+		</article>
+	</main>
 
 
 snippet awesome "Font Awesome CDN"
-<link
-	rel="stylesheet"
-	crossorigin="anonymous"
-	href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
-	integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
-/>
-<script
-	src="https://kit.fontawesome.com/d3d80a9c81.js"
-	crossorigin="anonymous">
-</script>
+	<link
+		rel="stylesheet"
+		crossorigin="anonymous"
+		href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+		integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
+	/>
+	<script
+		src="https://kit.fontawesome.com/d3d80a9c81.js"
+		crossorigin="anonymous">
+	</script>
 
 
 snippet animate "Animate.css CDN"
-<link
-	rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+	/>
 
 
 snippet og "Open graph protocal template"
-<!-- Preview description -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="${1:title}" />
-<meta property="og:description" content="${2:description}" />
-<meta property="og:url" content="${3:deploy url}" />
+	<!-- Preview description -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="${1:title}" />
+	<meta property="og:description" content="${2:description}" />
+	<meta property="og:url" content="${3:deploy url}" />
 
-<!-- Preview image -->
-<meta property="og:image" content="${4:img}" />
-<meta property="og:image:secure_url" content="${4:img}" />
-<meta property="og:image:alt" content="${5:img alt}" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:height" content="80" />
-<meta property="og:image:width" content="80" />
-<meta property="og:locale" content="en_GB" />
+	<!-- Preview image -->
+	<meta property="og:image" content="${4:img}" />
+	<meta property="og:image:secure_url" content="${4:img}" />
+	<meta property="og:image:alt" content="${5:img alt}" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="80" />
+	<meta property="og:image:width" content="80" />
+	<meta property="og:locale" content="en_GB" />
 

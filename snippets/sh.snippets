@@ -1,66 +1,53 @@
 snippet i "Init for bash files"
-#!/bin/bash
+	#!/bin/bash
 
-$1
-
+	$1
 
 snippet als "Alias for commands"
-alias $1="$2"
-
+	alias $1="$2"
 
 snippet reg "Regrex template"
-'^($1)$'
-
+	'^($1)$'
 
 snippet read "Read variables templates"
-read -p "$1" $2
-
+	read -p "$1" $2
 
 snippet if "if condition"
-if [[ $1 ]];
-then
-	$2
-else
-	$3
-fi
-
+	if [[ $1 ]];
+	then
+		$2
+	else
+		$3
+	fi
 
 snippet f "for bucle"
-for [ $1 in $2 ];
-do
-	$3
-done
-
+	for [ $1 in $2 ];
+	do
+		$3
+	done
 
 snippet w "while bucle"
-while [ $1 $2 $3 ];
-do
-	$4
-done
-
+	while [ $1 $2 $3 ];
+	do
+		$4
+	done
 
 snippet u "until bucle"
-until
+	until
 
 
 snippet try "try/catch block"
-{
-	$1
-} || {
-	$2
-}
+	{
+		$1
+	} || {
+		$2
+	}
 
-
-# This is used by BSPWM (You can remove it)
 snippet b "Create rules"
-bspc rule -a $1 desktop=^$2 follow=on focus=on state=fullscreen layer=below
-
-
+	bspc rule -a $1 desktop=^$2 follow=on focus=on state=fullscreen layer=below
 
 snippet help "Help cheatsheet data"
-echo ""
-echo -n ""
-read -p "" var
-read $REPLY
-
-
+	echo ""
+	echo -n ""
+	read -p "" var
+	read $REPLY

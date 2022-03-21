@@ -1,17 +1,16 @@
-snippet do "TODO structure"
 snippet do "To do reminder"
-${1:Comment}
-$2 TODO: `echo $user` ${1:desc} `!v strftime("%c")`
-$1
-${3:}
+	${1:Comment}
+	$2 TODO: `echo $user` ${1:desc} `!v strftime("%c")`
+	$1
+	${3:}
 
 
 snippet s "Snippet structure"
 snippet $1 "$2"
-$3
-${4:}
+	$3
+	${4:}
 
 
 snippet # "Separator"
-############################################################################
+	############################################################################
 
