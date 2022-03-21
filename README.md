@@ -144,11 +144,13 @@ nvim
 
 Once you make this, open nvim then:
 
-``
+```
 :source %
 <Space> + p + i
 <Space> + p + u
 ```
+
+That's it, done
 
 ---
 
