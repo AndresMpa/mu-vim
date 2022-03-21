@@ -8,7 +8,7 @@ require('mapping')
 require('autocommand')
 
 -- PLUGIN
--- Table list
+-- Plugin list
 require('plugins')
 -- Set up
 require('composition')

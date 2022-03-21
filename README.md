@@ -6,7 +6,7 @@ based on my branches.
 
 ## Guide lines
 
-### Sigle init.vim
+### Sigle init.vim (Mini config)
 
 [This configuration](https://github.com/AndresMpa/nvim-configuration/tree/singleFile)
 is pretty usefull to take it as a template; I've been mainteining it sincrohinzed with
@@ -14,16 +14,18 @@ is pretty usefull to take it as a template; I've been mainteining it sincrohinze
 I made a basic tutorial where you can see how to make a vim or nvim file like this,
 check the link [here](https://andresmpa.github.io/nvim-configuration/)
 
-### VimScript (Core version)
+### VimScript (LTS version)
 
 "VimScript" is the language that comes by default with vim/nvim in both of them it works;
 [this version](https://github.com/AndresMpa/nvim-configuration/tree/singleFile) uses this
 language to handle their characteristics, such as "modules", those modules make it a little
 bit more difficult to understand, but also easier to mantein and extend
 
-### Lua version (Working on this)
+### Lua (Core version)
 
-I'm moving to lua; please check [core version]()
+This is my core editor, I use this as my mine editor for working as Web developer, also
+handling my OS editing, keep this version if you want my last features, I create new featues
+here then I move them to my previous versions, this is the fastest one also the most complicated
 
 #### Take a look
 
