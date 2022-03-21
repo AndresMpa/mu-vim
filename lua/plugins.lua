@@ -7,7 +7,11 @@ return require('packer').startup(function()
     -- START SCREEN
     use {
         'goolord/alpha-nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' },
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'kyazdani42/nvim-web-devicons',
+            'nvim-telescope/telescope.nvim',
+        },
     }
 
     -- THEME
@@ -38,25 +42,18 @@ return require('packer').startup(function()
         'kyazdani42/nvim-tree.lua',
         requires = 'kyazdani42/nvim-web-devicons',
     }
-
     -- Files openned
     use 'akinsho/bufferline.nvim'
 
     -- MOTION
-
-    -- Navigation between windows
+   -- Navigation between windows
     use 'christoomey/vim-tmux-navigator'
     -- Navigation in files
     use 'easymotion/vim-easymotion'
     -- Better way to look for words
     use 'haya14busa/incsearch.vim'
-    -- Better way to search files
-    use 'junegunn/fzf.vim'
-    -- Navigation in projects
-    use 'mileszs/ack.vim'
 
     --IDENTATION & SYNTAX
-
     -- Identation helper (It shows the identation of functions, etc)
     use "lukas-reineke/indent-blankline.nvim"
     -- TypeScript syntax
@@ -75,10 +72,8 @@ return require('packer').startup(function()
     use 'z0mbix/vim-shfmt'
 
     -- UTILITIES
-
     -- Markdown preview
     use 'iamcco/markdown-preview.nvim'
-
     -- Live server
     use {
         'turbio/bracey.vim',
@@ -99,7 +94,6 @@ return require('packer').startup(function()
     use 'tpope/vim-repeat'
 
     -- AUTOCOMPLETE
-
     -- It gives nvim a general editing config for identation
     use 'editorconfig/editorconfig-vim'
     -- Autocomplete parentesis
@@ -109,17 +103,16 @@ return require('packer').startup(function()
     -- Autocomplete tags
     use 'alvan/vim-closetag'
 
+    -- SNIPPETS
+    use 'tomtom/tlib_vim'
+    use 'L3MON4D3/LuaSnip'
+    use 'garbas/vim-snipmate'
+    use 'MarcWeber/vim-addon-mw-utils'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
-
-    -- Snippets
-    use 'tomtom/tlib_vim'
-    use 'L3MON4D3/LuaSnip'
-    use 'garbas/vim-snipmate'
-    use 'MarcWeber/vim-addon-mw-utils'
     use {
       'hrsh7th/nvim-cmp',
       config = function ()

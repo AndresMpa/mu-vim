@@ -18,15 +18,11 @@ map('n', '<Leader>mj', ":BufferLineMovePrev", {})
 map('n', '/', '<Plug>(incsearch-forward)', {})
 map('n', '?', '<Plug>(incsearch-backward)', {})
 
--- NERDTree
+-- NvimTree
 map('n', '<leader>n', ':NvimTreeToggle<CR>', {})
 
--- fzf
-map('n', '<Leader>ff', ':Ag<CR>', {})
-map('n', '<Leader>ft', ':FZF<CR>', {})
-
--- AcK
-map('n', '<Leader>a', ':Ack<Space>', {})
+-- Telescope
+map('n', '<Leader>ff', ':Telescope<CR>', {})
 
 -- vCoolor
 map('n', '<Leader>r', ':VCoolIns ra', {})
