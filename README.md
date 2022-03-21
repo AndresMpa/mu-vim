@@ -127,7 +127,7 @@ If you don't know to much about vim or nvim just follow the next steps:
 ### If you are using Linux or mac
 
 ```
-git clone https://github.com/AndresMpa/mu-nvim.git
+git clone https://github.com/AndresMpa/mu-vim.git
 cd mu-nvim/ && ./install.sh && exit
 nvim
 ```
@@ -137,7 +137,7 @@ nvim
 ```
 cd C:\Users\$USER\AppData\Local\
 move nvim nvim_old
-git clone https://github.com/AndresMpa/mu-nvim.git
+git clone https://github.com/AndresMpa/mu-vim.git
 move mu-nvim nvim
 nvim
 ```
