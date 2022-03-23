@@ -140,8 +140,6 @@ function! OpenTerminal()
   endif
 endfunction
 
-
-
 function! OpenFileServer()
   let extention = expand('%:e')
   execute "echo extention"
@@ -172,8 +170,6 @@ function! OpenFileServer()
   endif
 endfunction
 
-
-
 function! OpenServer(flag)
   let message="Starting a developer server for: "
   execute "echo message"
@@ -190,11 +186,6 @@ function! OpenServer(flag)
   endif
 
 endfunction
-
-
-
-
-
 
 function! TriggerIdentation()
   let extention = expand('%:e')
