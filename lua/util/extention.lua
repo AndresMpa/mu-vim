@@ -136,7 +136,7 @@ extentions.OpenServer = function(service)
 end
 
 extentions.TriggerIdentation = function()
-  print('Ident')
+  execute(":Prettier")
 end
 
 return extentions

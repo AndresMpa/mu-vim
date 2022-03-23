@@ -26,5 +26,8 @@ require('setUp.buffer')
 -- CODE SUPPORT
 -- Snippets
 require('setUp.snippets')
+-- General
+require('setUp.completion')
 -- Bash
 require('setUp.bash')
+

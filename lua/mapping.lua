@@ -85,6 +85,7 @@ map('t', '<Esc>', '<C-\\><C-n>', {})
 -- Extentions
 map('n', '<Leader>hh', "<CMD>lua require('util.extention').HelpMapping()<CR>", {})
 map('n', '<Leader>x', "<CMD>lua require('util.extention').OpenFileServer()<CR>", {})
-map('n', '<leader>f', "<CMD>lua require('util.extention').TriggerIdentation()<CR>", {})
+map('n', '<leader>f', ":CocCommand prettier.formatFile<CR>", {})
+--map('n', '<leader>f', "<CMD>lua require('util.extention').TriggerIdentation()<CR>", {})
 map('n', '<Leader>xd', "<CMD>lua require('util.extention').OpenServer('django')<CR>", {})
 map('n', '<Leader>xv', "<CMD>lua require('util.extention').OpenServer('vue')<CR>", {})

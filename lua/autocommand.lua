@@ -1,8 +1,14 @@
+--Packer
 vim.cmd([[
     augroup packer_user_config
         autocmd!
         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
     augroup end
+]])
+
+--CoC
+vim.cmd([[
+    autocmd FileType json syntax match Comment +\/\/.\+$+
 ]])
 
 vim.cmd([[
