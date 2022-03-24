@@ -40,7 +40,7 @@ all of them should work. It's recommended to follow this "guide" based on projec
 is pretty usefull to take it as a template; This version have sincrohinzed with
 "VimScript" branch, so functionalities there should work here too. Also
 there is a basic tutorial where you can see how to make a vim or nvim file like this,
-check the link [here](https://andresmpa.github.io/nvim-configuration/)
+check the link [here](https://andresmpa.github.io/mu-vim/)
 
 ### VimScript (LTS version)
 
