@@ -23,8 +23,6 @@
   </p>
 </div>
 
-
-
 This is a NeoVim and Vim configuration, It has 3 versions actually, one of them is
 just 1 .vim file, so it's really easy to use and modify; what you see in main branch
 is more complicated and it's the main config, check the wiki if you want more information;
@@ -66,59 +64,11 @@ fastest one version, the most complicated too
 
 ## Prerequisites
 
-If you want to use Lua you need [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-otherwise [vim](https://www.vim.org/download.php) should be enough,
-![Lua itself](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux/),, then it's on you
+If you want to use Μμ Vim on its Lua version you will need a couple of resources to make works,
+[nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) is necessary, unfortunelly we can't
+use this config with [vim](https://www.vim.org/download.php) should be enough,
+![Lua itself](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux/), then it's on you
 to install some other features
-
-#### General dependencies
-
-### Lua
-
-- As plugin manager [packer](https://github.com/wbthomason/packer.nvim#quickstart)
-
-### Optional
-
-#### Search engine
-
-To check line by line what you are looking on a file, this configuration use a
-"search engine", it means that you will need some extra software to make it works
-
-- [the_silver_search](https://github.com/ggreer/the_silver_searcher)
-- [Ack](https://beyondgrep.com/install/)
-
-#### Live server like plugin
-
-This is pretty useful for those who make web apps; follow step 1; if it doesn't
-work, by default
-
-- [Installation](https://github.com/turbio/bracey.vim#installation)
-
-#### Markdown support
-
-Follow these steps on your init.vim or .vimrc
-
-```
-:source %
-<Space> + p + i
-:call mkdp#util#install()
-```
-
-#### Bash support
-
-For OS maintenance, Bash scripting is a good tool that's why this configuration
-have support for it to make code easy to read, if you want support for that language
-dependecy, you need:
-
-- [shfmt](https://diarioinforme.com/como-usar-shfmt-para-formatear-mejor-los-scripts-de-shell/)
-
-#### R support
-
-This project has R support, for those cases when R is needed has been added an R plugin
-
-- [R language](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/)
-- [Some utils](https://github.com/jamespeapen/Nvim-R/wiki/Installation)
-
 
 ## Quick Start
 
@@ -168,15 +118,15 @@ There's a couple of apps I recommend you to improve a little bit more your veloc
 
 If you are reading this, it means that you want to improve your velocity, or you want to make
 your own things so, if you start by nvim or vim It may be complicated, but just at the beginning
-them you'll look like a professional "Ninja Dev": keep working constancy  conquer whatever
+them you'll look like a professional "Ninja Dev": keep working constancy conquer whatever
 
 ## Simiular projects
 
 If this project doesn't match to you, you could also check:
 
-  - [DoomVim](https://github.com/NTBBloodbath/doom-nvim)
-  - [NvChad](https://github.com/NvChad/NvChad)
-  - [LunarVim](https://github.com/LunarVim/LunarVim)
+- [DoomVim](https://github.com/NTBBloodbath/doom-nvim)
+- [NvChad](https://github.com/NvChad/NvChad)
+- [LunarVim](https://github.com/LunarVim/LunarVim)
 
 <div align="center">
   <p>
