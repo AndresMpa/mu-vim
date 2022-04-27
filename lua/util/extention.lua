@@ -136,7 +136,19 @@ extentions.OpenServer = function(service)
 end
 
 extentions.TriggerIdentation = function()
-  execute(":Prettier")
+  local extention = vim.bo.filetype
+
+  print('Starting ', extention, 'file')
+
+  if extention == "sh" then
+    vim.cmd([[
+      execute ":Shfmt"
+    ]])
+  else
+    vim.cmd([[
+      execute ":CocCommand prettier.formatFile"
+    ]])
+  end
 end
 
 return extentions
