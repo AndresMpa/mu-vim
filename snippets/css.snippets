@@ -12,33 +12,34 @@ snippet i "import status file"
 
 snippet * "Default"
 	:root {
-		--backgroundColor: #ffffff;
-		--letterColor: #000;
-		--linksColor: #000;
+		--primary: #b3fae6;
+		--secondary: #d1fff2;
+		--terdary: #6cad9b;
+		--letter: #7a4d40;
+		--links: #ad6d5a;
 	}
 
 	* {
 		margin: 0%;
 		padding: 0%;
+		color: var(--letter);
 		overflow-anchor: none;
-		color: var(--letterColor);
-		$1
+		font-family: "Nunito", sans-serif;
 	}
 
 	body {
-		background-color: ${2:var(--backgroundColor)};
+		background-color: var(--primary);
 	}
 
 	ul,
 	li {
-		text-decoration: ${3:none};
-		list-style: ${4:none};
+		text-decoration: none;
+		list-style: none;
 	}
 
 	a {
-		text-decoration: ${5:none};
-		color: ${6:var(--linksColor)};
-		$7
+		text-decoration: none;
+		color: var(--links);
 	}
 
 snippet :h "Hover property"
