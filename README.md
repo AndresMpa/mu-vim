@@ -104,6 +104,18 @@ That's it, done
 
 ---
 
+### Check nvim health
+
+```
+nvim
+:checkhealth
+```
+
+There may be some issues on nvim that should be solve, a common one can be not having a C compiler
+(On windows) or not having some commands (Any system) such as fd; checkhealth in general should
+give you all the information you might need, but there's also a guide of troubleshooting
+[here](https://github.com/AndresMpa/mu-vim/wiki/General-dependencies)
+
 ## Apps
 
 There's a couple of apps I recommend you to improve a little bit more your velocity, they are:
