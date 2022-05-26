@@ -32,7 +32,7 @@ extentions.HelpMapping = function()
     ']z move to end of open fold',
     '\n',
     '\n',
-    '# File control',
+   '# File control',
     '\n',
     'vj -> Split horizontally',
     'vk -> Split vertically',
@@ -105,7 +105,7 @@ extentions.OpenFileServer = function()
   local execute = vim.api.nvim_command
   local extention = vim.bo.filetype
 
-  print('Starting ', extention, 'file')
+  print('Starting', extention, 'file')
 
   if extention == "md" then
     vim.cmd([[
@@ -113,14 +113,12 @@ extentions.OpenFileServer = function()
     ]])
   end
   if extention == "html" then
-    vim.cmd([[
-      execute ":Bracey"
-    ]])
+    execute("Bracey")
   end
-  if extention == "py" then
-    execute('!python %')
+  if extention == "python" then
+     execute("!python %")
   end
-  if extention == "js" then
+  if extention == "javascript" then
     execute("!node %")
   end
   if extention == "sh" then
