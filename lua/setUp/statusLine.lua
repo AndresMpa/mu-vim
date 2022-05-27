@@ -3,7 +3,6 @@ local colors = {
   fg       = '#bbc2cf',
   alt_fg   = '#07090d',
 
-
   -- Status
   -- git
   branch   = '#98be65',

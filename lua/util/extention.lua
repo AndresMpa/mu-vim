@@ -1,7 +1,9 @@
+local execute = vim.api.nvim_command
+local extention = vim.bo.filetype
 local extentions = {}
 
 extentions.HelpMapping = function()
-  hints = {
+  local hints = {
     'Current features',
     '\n',
     '\n',
@@ -97,23 +99,18 @@ extentions.HelpMapping = function()
     'pi -> Packernstall',
   }
   for index, hint in ipairs(hints) do
-    print(hint)
+    print(index, hint)
   end
 end
 
 extentions.OpenFileServer = function()
-  local execute = vim.api.nvim_command
-  local extention = vim.bo.filetype
-
   print('Starting', extention, 'file')
 
   if extention == "md" then
-    vim.cmd([[
-      execute "normal \<Plug>MarkdownPreviewToggle"
-    ]])
+    execute(":MarkdownPreviewToggle")
   end
   if extention == "html" then
-    execute("Bracey")
+    execute(":Bracey")
   end
   if extention == "python" then
      execute("!python %")
@@ -134,18 +131,12 @@ extentions.OpenServer = function(service)
 end
 
 extentions.TriggerIdentation = function()
-  local extention = vim.bo.filetype
-
-  print('Starting ', extention, 'file')
+  print('Identating', extention, 'file')
 
   if extention == "sh" then
-    vim.cmd([[
-      execute ":Shfmt"
-    ]])
+    execute(":Shfmt")
   else
-    vim.cmd([[
-      execute ":CocCommand prettier.formatFile"
-    ]])
+    execute(":CocCommand prettier.formatFile")
   end
 end
 
