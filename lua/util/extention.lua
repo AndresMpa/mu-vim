@@ -126,8 +126,17 @@ extentions.OpenFileServer = function()
   end
 end
 
-extentions.OpenServer = function(service)
-  print(service)
+extentions.OpenTerminal = function()
+  local file = vim.fn.expand('%')
+  if string.match(file, "/usr/bin/zsh") then
+    execute("bdelete!")
+  else
+    execute("set nonu")
+    execute("set nornu")
+    execute("belowright split")
+    execute("resize 10")
+    execute("terminal")
+  end
 end
 
 extentions.TriggerIdentation = function()

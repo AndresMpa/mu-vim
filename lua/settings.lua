@@ -40,14 +40,12 @@ set.shiftwidth = 2
 set.softtabstop = 2
 set.expandtab = true
 
-
 -- Prefixes
 set.completeopt = "menu,menuone,noselect"
 set.errorformat:append('%f|%l col %c|%m')
 set.listchars:append("space:⋅")
 set.listchars:append("eol:↴")
 set.list = true
-
 
 local disabled_built_ins = {
     "netrw",
