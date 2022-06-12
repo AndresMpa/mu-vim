@@ -43,6 +43,5 @@ cmp.setup({
   },
 })
 
---require("luasnip.loaders.from_snipmate").load({ path = { "/home/andresmpa/.config/nvim/snippets" } })
 require("luasnip.loaders.from_snipmate").lazy_load()
 
