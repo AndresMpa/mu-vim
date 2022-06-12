@@ -105,6 +105,7 @@ end
 
 extentions.OpenFileServer = function()
   print('Starting', extention, 'file')
+  local file = vim.fn.expand('%')
 
   if extention == "md" then
     execute(":MarkdownPreviewToggle")
@@ -123,6 +124,15 @@ extentions.OpenFileServer = function()
   end
   if extention == "lua" then
     execute("!lua %")
+  end
+  if string.match(file, "vue") then
+    execute("npm run start")
+  end
+  if string.match(file, "jsx") then
+    execute("npm run start")
+  end
+  if string.match(file, "django") then
+    execute("!python %")
   end
 end
 

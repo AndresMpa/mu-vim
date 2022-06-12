@@ -130,5 +130,5 @@ return require('packer').startup(function()
       }
       end
     }
-    use { 'saadparwaiz1/cmp_luasnip' }
+    use 'saadparwaiz1/cmp_luasnip'
 end)
