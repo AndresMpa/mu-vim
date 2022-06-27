@@ -1,4 +1,16 @@
-snippet comp "React component skeleton" b
+snippet l "let type variables" b
+let $1 = $2;
+endsnippet
+
+snippet c "const type variables" b
+const $1 = $2;
+endsnippet
+
+snippet fn "Arrow function" b
+($1) => {$2}
+endsnippet
+
+snippet rct "React component skeleton" b
 import React from "react";
 
 const $1 = () => {
@@ -9,3 +21,9 @@ const $1 = () => {
 
 export default $1;
 endsnippet
+
+snippet log "Console.log" b
+console.log($1)
+endsnippet
+
+

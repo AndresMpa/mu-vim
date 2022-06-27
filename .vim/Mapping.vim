@@ -17,9 +17,7 @@ map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 
 " NERDTree
-nmap <leader>n :NERDTreeFind<CR>
-nmap <leader>nt :NERDTreeToggle<CR>
-nmap <leader>nc :NERDTreeToggleVCS<CR>
+nmap <leader>n :NERDTreeToggleVCS<CR>
 
 " fzf
 nmap <Leader>ff :Ag<CR>
