@@ -51,7 +51,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}                                           " Vim live server
 Plug 'terryma/vim-multiple-cursors'                                                                       " Multicursor
 Plug 'preservim/nerdcommenter'                                                                            " Easy way to make commets
-Plug 'wakatime/vim-wakatime'                                                                              " Data tracking
+"Plug 'wakatime/vim-wakatime'                                                                              " Data tracking
 Plug 'KabbAmine/vCoolor.vim'                                                                              " Color picker for css
 Plug 'mhinz/vim-signify'                                                                                  " Git diffs
 Plug 'ap/vim-css-color'                                                                                   " Show #fffffffff with colors

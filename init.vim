@@ -15,4 +15,3 @@ source $vimcf/Mapping.vim
 
 "Auto update
 source $vimcf/Update.vim
-
