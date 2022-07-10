@@ -1,88 +1,88 @@
 snippet todo "To do list of items" b
-<!--
-TODO: `echo $user` ${1:desc} `!v strftime("%c")`
--->
+	<!--
+	TODO: `echo $user` ${1:desc} `!v strftime("%c")`
+	-->
 endsnippet
 
 snippet // "Multiline comments" b
-/*
- * $1
- * */
+	/*
+	 * $1
+	 * */
 endsnippet
 
 #FAD: Frecuency asked dudes
 snippet help "Small FAD" b
-/*
-Functions goes inside methods: {}
-Variabes are inside data() { return {} }
-To pass data we use props: {}
-To check Vue lifecycle type "life"
-*/
+	/*
+	Functions goes inside methods: {}
+	Variabes are inside data() { return {} }
+	To pass data we use props: {}
+	To check Vue lifecycle type "life"
+	*/
 endsnippet
 
 snippet life "Vue lifecycle" b
-/*
-beforeCreate() {}
-created() {}
-beforeMount() {}
-mounted() {}
-beforeUpdate() {}
-updated() {}
-activated() {}
-deactivated() {}
-beforeUnmount() {}
-unmounted() {}
-errorCaptured() {}
-renderTracked() {}
-renderTriggered() {}
-*/
+	/*
+	beforeCreate() {}
+	created() {}
+	beforeMount() {}
+	mounted() {}
+	beforeUpdate() {}
+	updated() {}
+	activated() {}
+	deactivated() {}
+	beforeUnmount() {}
+	unmounted() {}
+	errorCaptured() {}
+	renderTracked() {}
+	renderTriggered() {}
+	*/
 
 endsnippet
 
 snippet keys "Get json keys" b
-Object.keys($1).forEach((jsonKey) => {
-	console.log(jsonKey + "\n" + ${1}[jsonKey]);
-});
+	Object.keys($1).forEach((jsonKey) => {
+		console.log(jsonKey + "\n" + ${1}[jsonKey]);
+	});
 endsnippet
 
 snippet imp "vue import" b
-import ${1} from "@/components/${2}";
+	import ${1} from "@/components/${2}";
 endsnippet
 
 snippet log "console.log function" b
-console.log($1);
+	console.log($1);
 endsnippet
 
 snippet vue "vue basic" b
-<template>
-${1}
-</template>
+	<template>
+	${1}
+	</template>
 
-<script>
-export default {
-	${2}
-}
-</script>
+	<script>
+	export default {
+		${2}
+	}
+	</script>
 
-<style lang="${3:css}" scoped>
-${3}
-</style>
+	<style lang="${3:css}" scoped>
+	${3}
+	</style>
 endsnippet
 
 snippet fun "Vue functions (Methods)" b
-methods: {
-	f$1
-},
+	methods: {
+		f$1
+	},
 endsnippet
 
 snippet f "JS funtions inside vue" b
-$1($2){
-	$3
-},
+	$1($2){
+		$3
+	},
 endsnippet
 
 snippet media "Media query basic template" b
-@media (max-width: $1px) {
-	$2
-}
+	@media (max-width: $1px) {
+		$2
+	}
 endsnippet

@@ -1,73 +1,73 @@
 snippet do "To do reminder" b
-//////////////////////////////////////////////////
-//TODO: `echo $user` ${1:desc} `!v strftime("%c")`
-//////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //TODO: `echo $user` ${1:desc} `!v strftime("%c")`
+  //////////////////////////////////////////////////
 endsnippet
 
 snippet // "Multiline comment" b
-/*
- * $1
- * */
+  /*
+   * $1
+   * */
 endsnippet
 
 snippet c "const" b
-const $1: $2 = $3;
+  const $1: $2 = $3;
 endsnippet
 
 snippet l "let" b
-let $1: $2 = $3;
+  let $1: $2 = $3;
 endsnippet
 
 snippet fn "function" i
-($1): ${3:any} => {
-  $2
-}
+  ($1): ${3:any} => {
+    $2
+  }
 endsnippet
 
 snippet cfun "classic function" b
-function($1): ${3:any} {
-  $2
-}
+  function($1): ${3:any} {
+    $2
+  }
 endsnippet
 
 snippet imp "import default" b
-import { $2 } from '$1'
+  import { $2 } from '$1'
 endsnippet
 
 snippet exp "export default" b
-export ${1:default }$2
+  export ${1:default }$2
 endsnippet
 
 snippet log "console.log" b
-console.log($1)
+  console.log($1)
 endsnippet
 
 snippet qs "querySelector" b
-const $1 = document.querySelector("#$2")
+  const $1 = document.querySelector("#$2")
 
-$1.addEventListener("${3:click}", fn)
+  $1.addEventListener("${3:click}", fn)
 endsnippet
 
 #Design Pattern
 
 snippet singleton "Singleton Pattern template" b
-class $1 {
-  private static instance: $1;
-  private constructor() {
-    $2
-  }
-
-  static getInstance() {
-    if (!$1.instance) {
-      $1.instance = new $1();
+  class $1 {
+    private static instance: $1;
+    private constructor() {
+      $2
     }
 
-    return $1.instance;
+    static getInstance() {
+      if (!$1.instance) {
+        $1.instance = new $1();
+      }
+
+      return $1.instance;
+    }
+
+    $3
   }
 
-  $3
-}
-
-export default $1;
+  export default $1;
 
 endsnippet
