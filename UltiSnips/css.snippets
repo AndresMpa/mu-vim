@@ -1,193 +1,193 @@
 snippet do "To do reminder" b
-	/***************************************************
-	* TODO:
-	* ${1:desc}
-	*
-	* Written: `!v strftime("%c")`
-	* By: `echo $USER`
-	***************************************************/
+/***************************************************
+* TODO:
+* ${1:desc}
+*
+* Written: `!v strftime("%c")`
+* By: `echo $USER`
+***************************************************/
 endsnippet
 
 snippet i "import status file" b
-	@import "$1";
+@import "$1";
 endsnippet
 
 snippet * "Default" b
-	:root {
-		--backgroundColor: #ffffff;
-		--letterColor: #000;
-		--linksColor: #000;
-	}
+:root {
+	--backgroundColor: #ffffff;
+	--letterColor: #000;
+	--linksColor: #000;
+}
 
-	* {
-		margin: 0%;
-		padding: 0%;
-		overflow-anchor: none;
-		color: var(--letterColor);
-		$1
-	}
+* {
+	margin: 0%;
+	padding: 0%;
+	overflow-anchor: none;
+	color: var(--letterColor);
+	$1
+}
 
-	body {
-		background-color: ${2:var(--backgroundColor)};
-	}
+body {
+	background-color: ${2:var(--backgroundColor)};
+}
 
-	ul,
-	li {
-		text-decoration: ${3:none};
-		list-style: ${4:none};
-	}
+ul,
+li {
+	text-decoration: ${3:none};
+	list-style: ${4:none};
+}
 
-	a {
-		text-decoration: ${5:none};
-		color: ${6:var(--linksColor)};
-		$7
-	}
+a {
+	text-decoration: ${5:none};
+	color: ${6:var(--linksColor)};
+	$7
+}
 endsnippet
 
 # Some Pseudo classes
 snippet :h "Hover property" b
-	$1:hover ${2:{}
-		$3
-	}
+$1:hover ${2:{}
+	$3
+}
 endsnippet
 
 snippet :f "Focus property" b
-	$1:focus ${2:{}
-		$3
-	}
+$1:focus ${2:{}
+	$3
+}
 endsnippet
 
 snippet :a "Active property" b
-	$1:active ${2:{}
-		$3
-	}
+$1:active ${2:{}
+	$3
+}
 endsnippet
 
 snippet :d "Disabled property" b
-	$1:disabled ${2:{}
-		$3
-	}
+$1:disabled ${2:{}
+	$3
+}
 endsnippet
 
 snippet :c "Checked property" b
-	$1:checked ${2:{}
-		$3
-	}
+$1:checked ${2:{}
+	$3
+}
 endsnippet
 
 snippet :e "Empty property" b
-	$1:empty ${2:{}
-		$3
-	}
+$1:empty ${2:{}
+	$3
+}
 endsnippet
 
 # Pseudo elements
 snippet ::a "After pseudo element" b
-	$1::after ${2:{}
-		$3
-	}
+$1::after ${2:{}
+	$3
+}
 endsnippet
 
 snippet ::b "Before pseudo element" b
-	$1::before ${2:{}
-		$3
-	}
+$1::before ${2:{}
+	$3
+}
 endsnippet
 
 snippet ::flt "First letter pseudo element" b
-	$1::first-letter ${2:{}
-		$3
-	}
+$1::first-letter ${2:{}
+	$3
+}
 endsnippet
 
 snippet ::fln "First line pseudo element" b
-	$1::first-line ${2:{}
-		$3
-	}
+$1::first-line ${2:{}
+	$3
+}
 endsnippet
 
 snippet ::m "Marker pseudo element" b
-	$1::marker ${2:{}
-		$3
-	}
+$1::marker ${2:{}
+	$3
+}
 endsnippet
 
 snippet ::s "Selection pseudo element" b
-	$1::selection ${2:{}
-		$3
-	}
+$1::selection ${2:{}
+	$3
+}
 endsnippet
 
 # Classes
 snippet .c "Classes" b
-	.$1 ${2:{}
-		$3
-	}
+.$1 ${2:{}
+	$3
+}
 endsnippet
 
 # Id
 snippet #i "Id" b
-	#$1 ${2:{}
-		$3
-	}
+#$1 ${2:{}
+	$3
+}
 endsnippet
 
 snippet media "Media queries skeleton" b
-	@media screen and (max-width: $1px) {
-		$2
-	}
+@media screen and (max-width: $1px) {
+	$2
+}
 endsnippet
 
 snippet keyframe "Key frames animation skeleton" b
-	.$1 {
-		animation-name: $1;
-		animation-duration: $6;
+.$1 {
+	animation-name: $1;
+	animation-duration: $6;
+}
+
+@keyframes $1 {
+	${2:from} {
+		$4
 	}
 
-	@keyframes $1 {
-		${2:from} {
-			$4
-		}
-
-		${3:to} {
-			$4
-			$5
-		}
+	${3:to} {
+		$4
+		$5
 	}
+}
 endsnippet
 
 snippet center "Different ways to center something" b
-	/*Using negative position*/
-	.${1:containter} {
-		position: relative;
-	}
+/*Using negative position*/
+.${1:containter} {
+	position: relative;
+}
 
-	.${1:containter}--wrapper {
-		margin: -25px 0 0 -25px
-		position: absolute;
-		left: 50%;
-		top: 50%;
-	}
+.${1:containter}--wrapper {
+	margin: -25px 0 0 -25px
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
 
-	/*Using position*/
-	.${1:containter} {
-		position: relative;
-	}
+/*Using position*/
+.${1:containter} {
+	position: relative;
+}
 
-	.${1:containter}--wrapper {
-		transform: translate(-50%, -50%);
-		position: absolute;
-		left: 50%;
-		top: 50%;
-	}
+.${1:containter}--wrapper {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
 
-	/*Using flex*/
-	.${1:containter} {
-		justify-content: center;
-		align-items: center;
-		display: flex;
-	}
+/*Using flex*/
+.${1:containter} {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
 
-	.${1:containter}--wrapper {
-	}
+.${1:containter}--wrapper {
+}
 endsnippet
