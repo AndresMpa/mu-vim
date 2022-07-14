@@ -49,5 +49,3 @@ set completeopt+=menuone
 autocmd CursorHold,CursorHoldI * update
 
 syntax enable		" Change the natural rgb
-
-let g:polyglot_disabled = ['markdown']
