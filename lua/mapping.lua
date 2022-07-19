@@ -75,6 +75,7 @@ map('n', '<Leader>b', ':Buffers<CR>', {})
 map('n', '<Leader>l', ':ls<CR>', {})
 map('n', '<Leader>vj', ':split<CR>', {})
 map('n', '<Leader>vk', ':vsplit<CR>', {})
+map('n', '<Leader>vv', ':on<CR>', {})
 map('n', '<Leader><', ':exe "resize " . (winheight(0) * 3/2)<CR>', {})
 map('n', '<Leader>>', ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
 
