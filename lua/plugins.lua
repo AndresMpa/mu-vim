@@ -73,7 +73,11 @@ return require('packer').startup(function()
 
     -- UTILITIES
     -- Markdown preview
-    use 'iamcco/markdown-preview.nvim'
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
     -- Live server
     use {
         'turbio/bracey.vim',
