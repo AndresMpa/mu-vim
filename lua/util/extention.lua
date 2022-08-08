@@ -1,5 +1,4 @@
 local execute = vim.api.nvim_command
-local extention = vim.bo.filetype
 local extentions = {}
 
 extentions.HelpMapping = function()
@@ -104,8 +103,9 @@ extentions.HelpMapping = function()
 end
 
 extentions.OpenFileServer = function()
-  print('Starting', extention, 'file')
+  local extention = vim.bo.filetype
   local file = vim.fn.expand('%')
+  print('Starting', extention, 'file')
 
   if extention == "md" then
     execute(":MarkdownPreviewToggle")
@@ -150,6 +150,7 @@ extentions.OpenTerminal = function()
 end
 
 extentions.TriggerIdentation = function()
+  local extention = vim.bo.filetype
   print('Identating', extention, 'file')
 
   if extention == "sh" then
