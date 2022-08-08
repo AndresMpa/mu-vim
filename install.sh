@@ -26,36 +26,35 @@ cd ..
 mv mu-nvim nvim
 
 # Downloading tools
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 installed=1
 
 if [ nvim ]; then
-echo "nvim"
+  echo "nvim"
 elif [ vim ]; then
-echo "vim"
+  echo "vim"
 else
-installed=0
+  installed=0
 fi
 
 # Installation for Arch
 if [ $(which pacman) == "/usr/bin/pacman" ]; then
-echo "pacman"
-sudo pacman -Syu nodejs npm ripgrep fd
-if [ installed ]; then
-sudo pacman -S neovim
-fi
+  echo "pacman"
+  sudo pacman -Syu nodejs npm ripgrep fd
+  if [ installed ]; then
+    sudo pacman -S neovim
+  fi
 # Installation for apt
 elif [ $(which apt) == "/usr/bin/apt" ]; then
-echo "apt"
-sudo apt-get install nodejs
-sudo apt-get install npm
-if [ installed ]; then
-sudo apt-get install neovim
-fi
+  echo "apt"
+  sudo apt-get install nodejs
+  sudo apt-get install npm
+  if [ installed ]; then
+    sudo apt-get install neovim
+  fi
 else
-echo "
+  echo "
 Sorry I don't know how to make this
 thing work in your OS yet, check the
 following links to install what you
@@ -67,21 +66,21 @@ echo "Are you using a custom config dir? (Default ~/.config)[y/n]: "
 read custom_dir
 
 if [ $custom_dir == "y" ]; then
-echo "Write your custom dir name: "
-read instalation_dir
+  echo "Write your custom dir name: "
+  read instalation_dir
 fi
 
 # Saving old configs
 if [ -e ~/.config/nvim ]; then
-mv ~/.config/nvim old-nvim
-mv $(pwd) $instalation_dir
+  mv ~/.config/nvim old-nvim
+  mv $(pwd) $instalation_dir
 else
-if [ -e ~/.config ]; then
-mv nvim $instalation_dir
-else
-mkdir ~/.config
-mv nvim $instalation_dir
-fi
+  if [ -e ~/.config ]; then
+    mv nvim $instalation_dir
+  else
+    mkdir ~/.config
+    mv nvim $instalation_dir
+  fi
 fi
 
 echo "
