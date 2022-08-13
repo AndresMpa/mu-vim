@@ -134,9 +134,13 @@ return require("packer").startup(function(use)
 			use("hrsh7th/cmp-nvim-lsp"),
 			use("hrsh7th/cmp-nvim-lua"),
 			use("dmitmel/cmp-digraphs"),
+			use("onsails/lspkind.nvim"),
+			use("ray-x/cmp-treesitter"),
+			use("hrsh7th/cmp-nvim-lua"),
 			use("uga-rosa/cmp-dictionary"),
 			use("saadparwaiz1/cmp_luasnip"),
-			use("hrsh7th/cmp-nvim-lsp-signature-help")
+			use("hrsh7th/cmp-nvim-lsp-signature-help"),
+			use("hrsh7th/cmp-nvim-lsp-document-symbol"),
 		},
 	})
 end)
