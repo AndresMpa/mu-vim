@@ -23,10 +23,6 @@ require("setUp.fileManager")
 -- Multitab
 require("setUp.buffer")
 
--- CODE SUPPORT
--- Snippets
-require("setUp.snippets")
-
 -- AUTOCOMPLETION
 require("setUp.completion")
 
