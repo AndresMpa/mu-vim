@@ -20,12 +20,10 @@ vim.cmd([[
     autocmd CursorHold, CursorHoldI * update
 ]])
 
-vim.cmd [[
+vim.cmd([[
   syntax enable
-]]
+]])
 
 vim.cmd([[
     autocmd BufNewFile,BufRead *.html set ft=html
 ]])
-
-

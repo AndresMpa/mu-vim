@@ -1,4 +1,4 @@
-require('material').setup({
+require("material").setup({
 	contrast = {
 		non_current_windows = false, -- Enable darker background for non-current windows
 		floating_windows = false, -- Enable contrast for floating windows
@@ -20,26 +20,26 @@ require('material').setup({
 	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
 		"terminal", -- Darker terminal background
 		"packer", -- Darker packer background
-		"qf" -- Darker qf list background
+		"qf", -- Darker qf list background
 	},
 
 	high_visibility = {
 		lighter = false, -- Enable higher contrast text for lighter style
-		darker = false -- Enable higher contrast text for darker style
+		darker = false, -- Enable higher contrast text for darker style
 	},
 
 	disable = {
 		borders = false, -- Disable borders between verticaly split windows
 		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
 		term_colors = false, -- Prevent the theme from setting terminal colors
-		eob_lines = false -- Hide the end-of-buffer lines
+		eob_lines = false, -- Hide the end-of-buffer lines
 	},
 
-	custom_highlights = {} -- Overwrite highlights with your own
+	custom_highlights = {}, -- Overwrite highlights with your own
 })
 
-vim.g.material_style = 'deep ocean'
-vim.cmd[[colorscheme material]]
+vim.g.material_style = "deep ocean"
+vim.cmd([[colorscheme material]])
 
 -- Styles:
 -- darker

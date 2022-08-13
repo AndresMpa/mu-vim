@@ -1,33 +1,34 @@
 -- SET UP
 
 -- GREETER
-require('setUp.greeter')
+require("setUp.greeter")
 
 -- THEME
 -- Nvim
-require('scheme.material')
+require("scheme.material")
 -- Bar
-require('setUp.statusLine')
+require("setUp.statusLine")
 
 -- VISUAL HELP
 -- Identation
-require('setUp.identation')
+require("setUp.identation")
 -- Highlight
-require('setUp.highligth')
+require("setUp.highligth")
 -- Highlighter (theme)
-require('colorizer').setup()
+require("colorizer").setup()
 
 -- NAVIGATION
 -- File manager
-require('setUp.fileManager')
+require("setUp.fileManager")
 -- Multitab
-require('setUp.buffer')
+require("setUp.buffer")
 
 -- CODE SUPPORT
 -- Snippets
-require('setUp.snippets')
--- General
-require('setUp.completion')
--- Bash
-require('setUp.bash')
+require("setUp.snippets")
 
+-- AUTOCOMPLETION
+require("setUp.completion")
+
+-- LSP
+require("lsp")
