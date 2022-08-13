@@ -1,9 +1,10 @@
+-- Options
+local opts = { noremap = true, silent = true }
 -- Set new keymap
 local map = vim.api.nvim_set_keymap
 
 -- Leader Key
 vim.g.mapleader = " "
-
 -- easymotion
 map("n", "<Leader>ss", "<Plug>(easymotion-s2)", {})
 
@@ -27,9 +28,6 @@ map("n", "<Leader>ts", ":Telescope grep_string<CR>", {})
 -- vCoolor
 map("n", "<Leader>r", ":VCoolIns ra", {})
 
--- Formatter
-map("n", "<leader>f", ":Format<CR>", {})
-
 -- vim-fugitive (git support)
 map("n", "<Leader>gpl", ":Git pull<CR>", {})
 map("n", "<Leader>gps", ":Git push<CR>", {})
@@ -51,6 +49,19 @@ map("n", "<Leader>gpp", ":Git push origin<Space>", {})
 
 -- To performe different actions
 map("n", "<Leader>ggg", ":Git<Space>", {})
+
+-- LSP motion
+--[[map("n", "K", "<CMD>vim.lsp.buf.hover()<CR>", opts)]]
+--[[map("n", "gd", "<CMD>vim.lsp.buf.definition()<CR>", opts)]]
+--[[map("n", "gr", "<CMD>vim.lsp.buf.references()<CR>", opts)]]
+--[[map("n", "gD", "<CMD>vim.lsp.buf.declaration()<CR>", opts)]]
+--[[map("n", "gi", "<CMD>vim.lsp.buf.implementation()<CR>", opts)]]
+
+-- Formatter
+map("n", "<leader>f", ":Format<CR>", {})
+
+--[[map("n", "<C-k>", "<CMD>vim.lsp.buf.signature_help()<CR>", opts)]]
+--[[map("n", "<space>ca", "<CMD>vim.lsp.buf.code_action()<CR>", opts)]]
 
 -- Plugin manager
 map("n", "<Leader>pi", ":PackerInstall<CR>", {})
