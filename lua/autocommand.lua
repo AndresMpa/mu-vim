@@ -6,11 +6,6 @@ vim.cmd([[
     augroup end
 ]])
 
---CoC
-vim.cmd([[
-    autocmd FileType json syntax match Comment +\/\/.\+$+
-]])
-
 vim.cmd([[
     au BufEnter * set fo-=c fo-=r fo-=o
 ]])
@@ -20,12 +15,16 @@ vim.cmd([[
     autocmd CursorHold, CursorHoldI * update
 ]])
 
-vim.cmd [[
+vim.cmd([[
   syntax enable
-]]
+]])
 
 vim.cmd([[
     autocmd BufNewFile,BufRead *.html set ft=html
 ]])
 
-
+vim.api.nvim_create_augroup("lsp_completion_group", { clear = true })
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+	group = "lsp_completion_group",
+  callback = vim.lsp.buf.hover
+})
