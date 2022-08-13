@@ -7,12 +7,9 @@ vim.g.mapleader = ' '
 -- easymotion
 map('n', '<Leader>ss', '<Plug>(easymotion-s2)', {})
 
--- Files
-map('n', '<Leader>sf', ':BLines<CR>', {})
-
 -- bufferline
-map('n', '<Leader>mk', ":BufferLineMoveNext", {})
-map('n', '<Leader>mj', ":BufferLineMovePrev", {})
+map('n', '<Leader>mk', ":BufferLineMoveNext<CR>", {})
+map('n', '<Leader>mj', ":BufferLineMovePrev<CR>", {})
 
 -- incsearch
 map('n', '/', '<Plug>(incsearch-forward)', {})
@@ -22,7 +19,10 @@ map('n', '?', '<Plug>(incsearch-backward)', {})
 map('n', '<leader>n', ':NvimTreeToggle<CR>', {})
 
 -- Telescope
-map('n', '<Leader>ff', ':Telescope<CR>', {})
+map('n', '<Leader>t', ':Telescope<CR>', {})
+map('n', '<Leader>ts', ':Telescope grep_string<CR>', {})
+map('n', '<Leader>tf', ':Telescope fd<CR>', {})
+map('n', '<Leader>tt', ':Telescope live_grep<CR>', {})
 
 -- vCoolor
 map('n', '<Leader>r', ':VCoolIns ra', {})
@@ -52,15 +52,7 @@ map('n', '<Leader>gpp', ':Git push origin<Space>', {})
 -- To performe different actions
 map('n', '<Leader>ggg', ':Git<Space>', {})
 
--- coc
-map('n', '<silent>cd', '<Plug>(coc-definition)', {})
-map('n', '<silent>ct', '<Plug>(coc-type-definition)', {})
-map('n', '<silent>cg', '<Plug>(coc-implementation)', {})
-map('n', '<silent>cr', '<Plug>(coc-references)', {})
--- Use <c-space> to trigger completion.
-map('n', '<silent><expr> <c-space>', 'coc#refresh()', {})
-
--- Plug
+-- Plugin manager
 map('n', '<Leader>pi', ':PackerInstall<CR>', {})
 map('n', '<Leader>pc', ':PackerClean<CR>', {})
 map('n', '<Leader>pu', ':PackerSync<CR>', {})
@@ -78,6 +70,10 @@ map('n', '<Leader>vk', ':vsplit<CR>', {})
 map('n', '<Leader>vv', ':on<CR>', {})
 map('n', '<Leader><', ':exe "resize " . (winheight(0) * 3/2)<CR>', {})
 map('n', '<Leader>>', ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
+
+-- Folding
+map('v', 'f', 'zf<CR>', {})
+map('n', 'f', 'za<CR>', {})
 
 -- Extentions
 map('n', '<Leader>hh', "<CMD>lua require('util.extention').HelpMapping()<CR>", {})
