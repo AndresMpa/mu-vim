@@ -22,6 +22,10 @@ set.encoding = "UTF-8"
 set.writebackup = false
 set.termguicolors = true
 
+-- Spelling
+set.spell = true
+set.spelllang = { "en_us" }
+
 -- Mouse support
 set.mouse = "a"
 set.title = true
@@ -41,7 +45,7 @@ set.softtabstop = 2
 set.expandtab = true
 
 -- Prefixes
-set.completeopt = "menu,menuone,noselect"
+set.completeopt = { "menu", "menuone", "noselect" }
 set.errorformat:append("%f|%l col %c|%m")
 set.listchars:append("space:⋅")
 set.listchars:append("eol:↴")
