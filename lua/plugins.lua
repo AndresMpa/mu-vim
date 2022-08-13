@@ -4,6 +4,9 @@ return require('packer').startup(function()
     -- PLUGIN MANAGER
     use 'wbthomason/packer.nvim'
 
+    -- LSP
+    use 'neovim/nvim-lspconfig'
+
     -- START SCREEN
     use {
         'goolord/alpha-nvim',
@@ -23,8 +26,6 @@ return require('packer').startup(function()
             opt = true
         }
     }
-
-    use {'neoclide/coc.nvim', branch = 'release'}
 
     -- Nvim
     use 'norcalli/nvim-colorizer.lua'
@@ -112,7 +113,8 @@ return require('packer').startup(function()
     use 'L3MON4D3/LuaSnip'
     use 'garbas/vim-snipmate'
     use 'MarcWeber/vim-addon-mw-utils'
-    use 'neovim/nvim-lspconfig'
+
+    -- AUTOCOMPLETE
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-buffer'
