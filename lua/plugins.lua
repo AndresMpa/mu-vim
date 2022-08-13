@@ -39,6 +39,7 @@ return require("packer").startup(function(use)
 	-- Highlight
 	use({
 		"nvim-treesitter/nvim-treesitter",
+		"lewis6991/spellsitter.nvim",
 		run = ":TSUpdate",
 	})
 
@@ -102,17 +103,17 @@ return require("packer").startup(function(use)
 	use("mhinz/vim-signify")
 	-- Show #fffffffff with colors
 	use("ap/vim-css-color")
-	-- Repat all the commands using dot key
+	-- Repeat all the commands using dot key
 	use("tpope/vim-repeat")
 
-	-- AUTOCOMPLETE
-	-- It gives nvim a general editing config for identation
+	-- AUTO COMPLETE
+	-- It gives nvim a general editing configuration for identation
 	use("editorconfig/editorconfig-vim")
-	-- Autocomplete parentesis
+	-- Auto complete parentesis
 	use("jiangmiao/auto-pairs")
 	-- It helps to 'CRUD' parentesis, comillas and tags
 	use("tpope/vim-surround")
-	-- Autocomplete tags
+	-- Auto complete tags
 	use("alvan/vim-closetag")
 
 	-- SNIPPETS
@@ -121,32 +122,21 @@ return require("packer").startup(function(use)
 	use("garbas/vim-snipmate")
 	use("MarcWeber/vim-addon-mw-utils")
 
-	-- AUTOCOMPLETE
-
+	-- AUTO COMPLETE
 	use({
 		"hrsh7th/nvim-cmp",
 		require = {
 			use("hrsh7th/cmp-git"),
 			use("hrsh7th/cmp-path"),
+			use("hrsh7th/cmp-calc"),
 			use("hrsh7th/cmp-buffer"),
 			use("hrsh7th/cmp-cmdline"),
 			use("hrsh7th/cmp-nvim-lsp"),
 			use("hrsh7th/cmp-nvim-lua"),
+			use("dmitmel/cmp-digraphs"),
+			use("uga-rosa/cmp-dictionary"),
 			use("saadparwaiz1/cmp_luasnip"),
+			use("hrsh7th/cmp-nvim-lsp-signature-help")
 		},
-		config = function()
-			require("cmp").setup({
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-
-				sources = {
-					{ name = "luasnip" },
-					-- more sources
-				},
-			})
-		end,
 	})
 end)
