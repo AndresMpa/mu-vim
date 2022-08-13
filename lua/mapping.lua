@@ -27,8 +27,8 @@ map("n", "<Leader>ts", ":Telescope grep_string<CR>", {})
 -- vCoolor
 map("n", "<Leader>r", ":VCoolIns ra", {})
 
--- Replace
-map("n", "<Leader>R", ":%s/_/_/gc", {})
+-- Formatter
+map("n", "<leader>f", ":Format<CR>", {})
 
 -- vim-fugitive (git support)
 map("n", "<Leader>gpl", ":Git pull<CR>", {})
@@ -60,9 +60,9 @@ map("n", "<Leader>pu", ":PackerSync<CR>", {})
 -- Natives
 map("n", "<Leader>w", ":w<CR>", {})
 map("n", "<Leader>q", ":q!<CR>", {})
-
--- Tabs
--- Motion
+-- Replace
+map("n", "<Leader>R", ":%s/_/_/gc", {})
+-- Tabs motion
 map("n", "<Leader>k", ":bnext<CR>", {})
 map("n", "<Leader>h", ":bdelete!<CR>", {})
 map("n", "<Leader>j", ":bprevious<CR>", {})
@@ -72,10 +72,9 @@ map("n", "<Leader>H", ":%bd | e# | bd#<CR>", {})
 map("n", "<Leader>vv", ":on<CR>", {})
 map("n", "<Leader>vj", ":split<CR>", {})
 map("n", "<Leader>vk", ":vsplit<CR>", {})
-
+-- Window
 map("n", "<Leader><", ':exe "resize " . (winheight(0) * 3/2)<CR>', {})
 map("n", "<Leader>>", ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
-
 -- Folding
 map("v", "f", "zf<CR>", {})
 map("n", "f", "za<CR>", {})
@@ -83,7 +82,6 @@ map("n", "f", "za<CR>", {})
 -- Extentions
 map("n", "<Leader>hh", "<CMD>lua require('util.extention').HelpMapping()<CR>", {})
 map("n", "<Leader>x", "<CMD>lua require('util.extention').OpenFileServer()<CR>", {})
-map("n", "<leader>f", "<CMD>lua require('util.extention').TriggerIdentation()<CR>", {})
 
 -- Terminal
 map("n", "<C-t>", "<CMD>lua require('util.extention').OpenTerminal()<CR>", { noremap = true })
