@@ -133,7 +133,6 @@ return require("packer").startup(function(use)
 			use("hrsh7th/cmp-cmdline"),
 			use("hrsh7th/cmp-nvim-lsp"),
 			use("hrsh7th/cmp-nvim-lua"),
-			use("dmitmel/cmp-digraphs"),
 			use("onsails/lspkind.nvim"),
 			use("ray-x/cmp-treesitter"),
 			use("hrsh7th/cmp-nvim-lua"),

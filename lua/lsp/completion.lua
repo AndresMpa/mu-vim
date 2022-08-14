@@ -31,7 +31,6 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "treesitter" },
 		{ name = "dictionary" },
-		{ name = "digraphs" },
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
