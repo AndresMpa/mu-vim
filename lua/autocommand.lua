@@ -23,8 +23,10 @@ vim.cmd([[
     autocmd BufNewFile,BufRead *.html set ft=html
 ]])
 
+--[[ Too annoying
 vim.api.nvim_create_augroup("lsp_completion_group", { clear = true })
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	group = "lsp_completion_group",
   callback = vim.lsp.buf.hover
 })
+]]--
