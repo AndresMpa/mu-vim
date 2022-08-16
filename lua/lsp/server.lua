@@ -33,4 +33,14 @@ require("mason-lspconfig").setup_handlers({
 			},
 		})
 	end,
+	-- JS/TS configuration
+	["tsserver"] = function()
+		require("lspconfig").tsserver.setup({
+			init_options = {
+				preferences = {
+					disableSuggestions = true,
+				},
+			},
+		})
+	end,
 })
