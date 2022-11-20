@@ -9,12 +9,28 @@ require("material").setup({
 		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
 	},
 
-	italics = {
-		variables = false, -- Enable italic variables
-		functions = true, -- Enable italic functions
-		keywords = false, -- Enable italic keywords
-		comments = true, -- Enable italic comments
-		strings = false, -- Enable italic strings
+	styles = {
+		comments = {
+			italic = true
+	  },
+	  strings = {
+			bold = true,
+		  italic = true
+		},
+	  keywords = {
+		  underline = true
+	  },
+	  functions = {
+		  bold = true,
+		  undercurl = true
+		},
+	  variables = {
+		  bold = true
+		},
+		operators = {
+		  bold = true
+		},
+		types = {}
 	},
 
 	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
