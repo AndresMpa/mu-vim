@@ -9,23 +9,8 @@ require("formatter").setup({
 	log_level = vim.log.levels.WARN,
 	-- All formatter configurations are opt-in
 	filetype = {
-		lua = {
-			require("formatter.filetypes.lua").stylua,
-			function()
-				return {
-					exe = "stylua",
-					args = {
-						"--search-parent-directories",
-						"--stdin-filepath",
-						util.escape_path(util.get_current_buffer_file_path()),
-						"--",
-						"-",
-					},
-					stdin = true,
-				}
-			end,
-		},
 		sh = { require("formatter.filetypes.sh").shfmt },
+		lua = { require("formatter.filetypes.lua").stylua },
 		css = { require("formatter.filetypes.css").prettier },
 		scss = { require("formatter.filetypes.css").prettier },
 		less = { require("formatter.filetypes.css").prettier },
@@ -42,6 +27,7 @@ require("formatter").setup({
 		typescript = { require("formatter.filetypes.typescript").prettier },
 		javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
 		typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
+
 		["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
 	},
 })
