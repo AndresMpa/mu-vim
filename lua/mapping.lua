@@ -51,11 +51,11 @@ map("n", "<Leader>gpp", ":Git push origin<Space>", {})
 map("n", "<Leader>ggg", ":Git<Space>", {})
 
 -- LSP motion
---[[map("n", "K", "<CMD>vim.lsp.buf.hover()<CR>", opts)]]
---[[map("n", "gd", "<CMD>vim.lsp.buf.definition()<CR>", opts)]]
---[[map("n", "gr", "<CMD>vim.lsp.buf.references()<CR>", opts)]]
---[[map("n", "gD", "<CMD>vim.lsp.buf.declaration()<CR>", opts)]]
---[[map("n", "gi", "<CMD>vim.lsp.buf.implementation()<CR>", opts)]]
+map("n", "K", "<CMD>vim.lsp.buf.hover()<CR>", opts)
+map("n", "gd", "<CMD>vim.lsp.buf.definition()<CR>", opts)
+map("n", "gr", "<CMD>vim.lsp.buf.references()<CR>", opts)
+map("n", "gD", "<CMD>vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gi", "<CMD>vim.lsp.buf.implementation()<CR>", opts)
 
 -- Formatter
 map("n", "<leader>f", ":Format<CR>", {})
@@ -73,6 +73,7 @@ map("n", "<Leader>w", ":w<CR>", {})
 map("n", "<Leader>q", ":q!<CR>", {})
 -- Replace
 map("n", "<Leader>R", ":%s/_/_/gc", {})
+map("n", "U", "<C-r>", {})
 -- Tabs motion
 map("n", "<Leader>k", ":bnext<CR>", {})
 map("n", "<Leader>h", ":bdelete!<CR>", {})
