@@ -18,17 +18,17 @@ require("material").setup({
 		  italic = true
 		},
 	  keywords = {
-		  underline = true
+		  underline = false
 	  },
 	  functions = {
 		  bold = true,
-		  undercurl = true
+		  undercurl = false,
 		},
 	  variables = {
 		  bold = true
 		},
 		operators = {
-		  bold = true
+		  bold = false
 		},
 		types = {}
 	},
