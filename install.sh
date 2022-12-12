@@ -18,9 +18,6 @@ echo '
 
 instalation_dir=~/.config/nvim
 
-# Removing useless scripts
-rm ./updateSnippets.sh
-
 # Renaming dir
 cd ..
 mv mu-nvim nvim
@@ -32,8 +29,6 @@ installed=1
 
 if [ nvim ]; then
   echo "nvim"
-elif [ vim ]; then
-  echo "vim"
 else
   installed=0
 fi
@@ -55,22 +50,25 @@ elif [ $(which apt) == "/usr/bin/apt" ]; then
   fi
 else
   echo "
-Sorry I don't know how to make this
-thing work in your OS yet, check the
-following links to install what you
-need manually"
+  Sorry I don't know how to make this
+  thing work in your OS yet, check the
+  following links to install what you
+  need manually
+
+  https://github.com/neovim/neovim/wiki/Installing-Neovim
+  "
 fi
 
 # Custom dirs functionality
-echo "Are you using a custom config dir? (Default ~/.config)[y/n]: "
+echo "Are you using a custom configuration directory? (Default is ~/.config)[y/n]: "
 read custom_dir
 
 if [ $custom_dir == "y" ]; then
-  echo "Write your custom dir name: "
+  echo "Write your custom directory path: "
   read instalation_dir
 fi
 
-# Saving old configs
+# Saving old configurations
 if [ -e ~/.config/nvim ]; then
   mv ~/.config/nvim old-nvim
   mv $(pwd) $instalation_dir
@@ -84,9 +82,10 @@ else
 fi
 
 echo "
-Thanks to try my nvim config files,
-now, you need to close this terminal
-and start a new one to see the changes
+Thanks for giving MμVim a try
+
+You can close this terminal now
+and start a new one to see changes
 
 Then open the editor with:
 
@@ -97,13 +96,13 @@ ___
 
 Short documentation
 
-If you want to edit the config file
-go to:
+If you want/need to edit the
+configuration files go to:
 
 $ nvim ~/.config/nvim/init.lua
 
-There you can see the configs and
-some esthetic dependencies, highlight,
+There you can see the configurations
+files and some dependencies, highlight,
 themes, etc...
 ___
 "
