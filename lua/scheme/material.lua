@@ -6,7 +6,7 @@ require("material").setup({
 		sign_column = false, -- Enable contrast background for the sign column
 		cursor_line = false, -- Enable darker background for the cursor line
 		popup_menu = false, -- Enable lighter background for the popup menu
-		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+		sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
 	},
 
 	styles = {
@@ -25,7 +25,8 @@ require("material").setup({
 		  undercurl = false,
 		},
 	  variables = {
-		  bold = true
+		  bold = true,
+		  underline = false
 		},
 		operators = {
 		  bold = false
@@ -41,7 +42,7 @@ require("material").setup({
 
 	high_visibility = {
 		lighter = false, -- Enable higher contrast text for lighter style
-		darker = false, -- Enable higher contrast text for darker style
+		darker = true, -- Enable higher contrast text for darker style
 	},
 
 	disable = {
