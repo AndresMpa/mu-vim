@@ -142,4 +142,7 @@ return require("packer").startup(function(use)
 			use("hrsh7th/cmp-nvim-lsp-document-symbol"),
 		},
 	})
+
+	-- AUTO SAVE
+	use("Pocco81/auto-save.nvim")
 end)
