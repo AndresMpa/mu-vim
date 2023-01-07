@@ -65,7 +65,7 @@ local disabled_built_ins = {
 	"getscriptPlugin",
 	"vimball",
 	"vimballPlugin",
-	"2html_plugin",
+	--"2html_plugin",
 	"logipat",
 	"rrhelper",
 	"spellfile_plugin",
