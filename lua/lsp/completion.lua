@@ -1,5 +1,5 @@
 local has_words_before = function()
-  local line = vim.api.nvim_win_get_cursor(0)[1]
+	local line = vim.api.nvim_win_get_cursor(0)[1]
 	local col = vim.api.nvim_win_get_cursor(0)[2]
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
@@ -12,6 +12,14 @@ local luasnip = require("luasnip")
 local cmp = require("cmp")
 
 local select_opts = { behavior = cmp.SelectBehavior.Select }
+
+cmp.setup.cmdline("/", {
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp_document_symbol" },
+	}, {
+		{ name = "buffer" },
+	}),
+})
 
 cmp.setup({
 	history = true,
@@ -36,6 +44,15 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
+		{
+			name = "spell",
+			option = {
+				keep_all_entries = false,
+				is_available = function()
+					return require("cmp.config.context").in_treesitter_capture("spell")
+				end,
+			},
+		},
 		{ name = "path" },
 		{ name = "calc" },
 	},
