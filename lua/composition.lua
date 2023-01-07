@@ -1,5 +1,8 @@
 -- SET UP
 
+-- AUTO SAVE
+require("setUp.autosave")
+
 -- GREETER
 require("setUp.greeter")
 
