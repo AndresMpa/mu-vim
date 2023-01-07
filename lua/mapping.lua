@@ -26,7 +26,7 @@ map("n", "<Leader>tt", ":Telescope live_grep<CR>", {})
 map("n", "<Leader>ts", ":Telescope grep_string<CR>", {})
 
 -- vCoolor
-map("n", "<Leader>r", ":VCoolIns ra", {})
+map("n", "<Leader>r", ":VCoolIns ra<CR>", {})
 
 -- vim-fugitive (git support)
 map("n", "<Leader>gpl", ":Git pull<CR>", {})
@@ -56,6 +56,9 @@ map("n", "gd", "<CMD>vim.lsp.buf.definition()<CR>", opts)
 map("n", "gr", "<CMD>vim.lsp.buf.references()<CR>", opts)
 map("n", "gD", "<CMD>vim.lsp.buf.declaration()<CR>", opts)
 map("n", "gi", "<CMD>vim.lsp.buf.implementation()<CR>", opts)
+
+-- Auto save
+map("n", "<leader>aw", ":ASToggle<CR>", {})
 
 -- Formatter
 map("n", "<leader>f", ":Format<CR>", {})
