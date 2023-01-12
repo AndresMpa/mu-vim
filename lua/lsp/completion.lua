@@ -47,8 +47,9 @@ cmp.setup({
 			name = "spell",
 			option = {
 				keep_all_entries = false,
-				is_available = function()
-					return require("cmp.config.context").in_treesitter_capture("spell")
+				enable_in_context = function()
+					--return require("cmp.config.context").in_treesitter_capture("spell")
+					return false
 				end,
 			},
 		},
