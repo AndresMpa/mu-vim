@@ -57,11 +57,17 @@ nmap <silent>cd <Plug>(coc-definition)
 nmap <silent>ct <Plug>(coc-type-definition)
 nmap <silent>cg <Plug>(coc-implementation)
 nmap <silent>cr <Plug>(coc-references)
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" Use <TAB> to trigger completion.
+inoremap <silent><expr> <S-TAB>
+      \ coc#pum#visible() ? coc#pum#prev(1) :
+      \ coc#refresh()
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
 
 " repeat
-"nmap <Plug>(RepeatUndo) U
+nmap U <C-r>
 
 " vCoolor
 nmap <Leader>r :VCoolIns ra<CR>
@@ -82,6 +88,7 @@ nmap <Leader>b :Buffers<CR>
 nmap <Leader>l :ls<CR>
 nmap <Leader>vj :split<CR>
 nmap <Leader>vk :vsplit<CR>
+nmap <leader>H :%bd\|e#\|bd#<cr>
 nnoremap <silent> <Leader>< :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>> :exe "resize " . (winheight(0) * 2/3)<CR>
 
