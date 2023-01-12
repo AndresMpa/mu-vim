@@ -1,6 +1,12 @@
 require("cmp_dictionary").setup({
 	dic = {
-		["*"] = "~/.config/nvim/dicts/english.dict",
+		--I removing this support for every possibility, I found it annoying
+		--["*"] = "~/.config/nvim/dicts/english.dict",
+		filepath = {
+			["*%.html"] = "~/.config/nvim/dicts/english.dict",
+			["*%.txt"] = "~/.config/nvim/dicts/english.dict",
+			["*%.md"] = "~/.config/nvim/dicts/english.dict",
+		},
 		spelllang = {
 			--en = "/path/to/en.dict",
 		},
