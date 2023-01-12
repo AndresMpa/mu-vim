@@ -30,6 +30,12 @@ main config is based on lua, but there's a VimScript based on config. This repos
 contains 3 different branches each one of them have a different config, choose anyone,
 all of them should work. It's recommended to follow this "guide" based on project branches.
 
+## To do
+
+- Refactor MuVim's wiki [ ]
+- Make some introduction's video
+- Improve documentation
+
 ## Guidelines
 
 ### Sigle init.vim (Mini config)
