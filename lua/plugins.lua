@@ -87,12 +87,22 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- IMAGE PREVIEWER
+	use({ "m00qek/baleia.nvim", tag = "v1.2.0" })
+	use({
+		"samodostal/image.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
+
 	-- Live server
 	use({
 		"turbio/bracey.vim",
 		run = "npm install --prefix server",
 		cmd = "Bracey",
 	})
+
 	-- Multicursor
 	use("terryma/vim-multiple-cursors")
 	-- Easy way to make commets
@@ -135,7 +145,6 @@ return require("packer").startup(function(use)
 			use("hrsh7th/cmp-nvim-lua"),
 			use("onsails/lspkind.nvim"),
 			use("ray-x/cmp-treesitter"),
-			use("hrsh7th/cmp-nvim-lua"),
 			use("uga-rosa/cmp-dictionary"),
 			use("saadparwaiz1/cmp_luasnip"),
 			use("hrsh7th/cmp-nvim-lsp-signature-help"),
