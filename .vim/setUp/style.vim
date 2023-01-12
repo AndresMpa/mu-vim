@@ -43,5 +43,5 @@ endif
 " THEME
 colorscheme gruvbox
 
-let g:gruvbox_color_column='bg0_h'
+let g:gruvbox_color_column='bg0'
 let g:gruvbox_contrast_dark='hard'
