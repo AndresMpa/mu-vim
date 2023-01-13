@@ -1,4 +1,7 @@
 ./coc-settings.json
+*node_modules/*
+utilities/node_modules/
+*package-lock.json
 .netrwhist
 plugged
 plugin
