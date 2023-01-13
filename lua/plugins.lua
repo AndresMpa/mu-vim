@@ -124,7 +124,7 @@ return require("packer").startup(function(use)
 	-- It helps to 'CRUD' parentesis, comillas and tags
 	use("tpope/vim-surround")
 	-- Auto complete tags
-	use("alvan/vim-closetag")
+	use("windwp/nvim-ts-autotag")
 
 	-- SNIPPETS
 	use("tomtom/tlib_vim")
