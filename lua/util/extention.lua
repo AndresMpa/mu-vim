@@ -29,6 +29,13 @@ extentions.OpenFileServer = function()
 	if extention == "javascript" then
 		execute("!node %")
 	end
+	if extention == "typescript" then
+		print("Compiling", extention, "file")
+		execute("!npx tsc %")
+
+		print("node output " .. string.sub(file, 1, -3) .. "js")
+		execute("!node " .. string.sub(file, 1, -3) .. "js")
+	end
 	if extention == "sh" then
 		execute("!bash %")
 	end
