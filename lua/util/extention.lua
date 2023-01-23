@@ -2,13 +2,43 @@ local execute = vim.api.nvim_command
 local extentions = {}
 
 extentions.HelpMapping = function()
+	local branch = vim.fn.system("git branch --show-current | tr -d '\n'")
+	print(branch)
 	local hints = {
+		"GIT",
+		"gpl -> git pull",
+		"gps -> git push",
+		"gii -> git init",
+		"gsh -> git show",
+		"gbl -> git blame",
+		"gc -> git commit",
+		"gst -> git status",
+		"gaa -> git add <CURRENT_FILE>",
+		"gap -> git add -p <CURRENT_FILE>",
+		"grv -> git remote -v",
+		"gsw -> git switch",
+		"gco -> git checkout",
+		"gcb -> git checkout -b",
+		"gll -> git push origin <CURRENT_BRANCH>",
+		"gpp -> git pull origin <CURRENT_BRANCH>",
+
+		"CUSTOME",
 		"x -> Execute file",
 		"f -> Format file",
 		"<C-t> -> Open a terminal",
 	}
 	for index, hint in ipairs(hints) do
 		print(index, hint)
+	end
+end
+
+extentions.HandleGitCustomActions = function (action)
+	local branch = vim.fn.system "git branch --show-current | tr -d '\n'"
+	if action == 'pull' then
+		execute(':Git pull origin' .. branch)
+	end
+	if action == 'push' then
+		execute(':Git push origin' .. branch)
 	end
 end
 
