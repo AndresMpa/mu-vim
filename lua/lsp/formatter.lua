@@ -11,16 +11,19 @@ require("formatter").setup({
 	filetype = {
 		sh = { require("formatter.filetypes.sh").shfmt },
 
-		css = { require("formatter.filetypes.css").rome },
-		html = { require("formatter.filetypes.html").rome },
-		json = { require("formatter.filetypes.json").rome },
-		markdown = { require("formatter.filetypes.markdown").rome },
-		javascript = { require("formatter.filetypes.javascript").rome },
-		typescript = { require("formatter.filetypes.typescript").rome },
+		javascript = { require("formatter.filetypes.javascript").prettier },
+		typescript = { require("formatter.filetypes.typescript").prettier },
 
+		html = { require("formatter.filetypes.html").prettier },
+		markdown = { require("formatter.filetypes.markdown").prettier },
+
+		css = { require("formatter.filetypes.css").prettier },
 		scss = { require("formatter.filetypes.css").prettier },
 		less = { require("formatter.filetypes.css").prettier },
+
 		yaml = { require("formatter.filetypes.yaml").prettier },
+		json = { require("formatter.filetypes.json").prettier },
+
 		svelte = { require("formatter.filetypes.svelte").prettier },
 		vue = { require("formatter.filetypes.javascript").prettier },
 		graphql = { require("formatter.filetypes.graphql").prettier },
