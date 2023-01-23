@@ -17,7 +17,8 @@ extentions.OpenFileServer = function()
 	local file = vim.fn.expand("%")
 	print("Starting", extention, "file")
 
-	if extention == "md" then
+	if extention == "markdown" then
+		print("Check your browser")
 		execute(":MarkdownPreviewToggle")
 	end
 	if extention == "html" then
