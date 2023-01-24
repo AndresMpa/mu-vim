@@ -23,6 +23,8 @@ require("setUp.spelling")
 require("setUp.fileManager")
 -- Multitab
 require("setUp.buffer")
+-- Finder
+require("setUp.finder")
 
 -- AUTO SAVE
 require("setUp.autosave")

@@ -4,6 +4,13 @@ return require("packer").startup(function(use)
 	-- PLUGIN MANAGER
 	use("wbthomason/packer.nvim")
 
+	-- DIAGNOSTICS
+	use("folke/lsp-colors.nvim")
+	use({
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+	})
+
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("mfussenegger/nvim-dap")
