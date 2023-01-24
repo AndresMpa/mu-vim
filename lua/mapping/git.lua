@@ -1,4 +1,7 @@
+local custom = require("mapping.util.extention")
 local map = vim.api.nvim_set_keymap
+
+local opts = { noremap = true, silent = true }
 
 -- vim-fugitive (git support)
 map("n", "<Leader>gpl", ":Git pull<CR>", {})
@@ -18,8 +21,12 @@ map("n", "<Leader>gco", ":Git checkout<Space>", {})
 map("n", "<Leader>gcb", ":Git checkout -b<Space>", {})
 
 -- Custom action
-map("n", "<Leader>gll", "<CMD>lua require('mapping.util.extention').HandleGitCustomActions(pull)<CR>", {})
-map("n", "<Leader>gpp", "<CMD>lua require('mapping.util.extention').HandleGitCustomActions(push)<CR>", {})
+vim.keymap.set("n", "<Leader>gll", function()
+	custom.HandleGitCustomActions("pull")
+end, opts)
+vim.keymap.set("n", "<Leader>gpp", function()
+	custom.HandleGitCustomActions("push")
+end, opts)
 
 -- To performe different actions
 map("n", "<Leader>ggg", ":Git<Space>", {})

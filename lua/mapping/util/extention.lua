@@ -32,13 +32,16 @@ extentions.HelpMapping = function()
 	end
 end
 
-extentions.HandleGitCustomActions = function (action)
-	local branch = vim.fn.system "git branch --show-current | tr -d '\n'"
-	if action == 'pull' then
-		execute(':Git pull origin' .. branch)
+extentions.HandleGitCustomActions = function(action)
+	print(action)
+	local branch = vim.fn.system("git branch --show-current | tr -d '\n'")
+	if action == "pull" then
+		print("pulling " .. branch .. " to origin")
+		execute(":Git pull origin " .. branch)
 	end
-	if action == 'push' then
-		execute(':Git push origin' .. branch)
+	if action == "push" then
+		print("pushing " .. branch .. " to origin")
+		execute(":Git push origin " .. branch)
 	end
 end
 
