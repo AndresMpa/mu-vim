@@ -15,9 +15,10 @@ local toggleDiagnostic = function()
 	end
 end
 
+vim.keymap.set("n", "mt", "<CMD>:TroubleToggle<CR>", opts)
 vim.keymap.set("n", "mm", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "md", vim.diagnostic.enable, opts)
-vim.keymap.set("n", "ma", vim.diagnostic.disable, opts)
+vim.keymap.set("n", "md", vim.diagnostic.disable, opts)
+vim.keymap.set("n", "ma", vim.diagnostic.enable, opts)
 --vim.keymap.set("n", "ma", toggleDiagnostic, opts)
 
 vim.keymap.set("n", "mj", vim.diagnostic.goto_prev, opts)
