@@ -1,8 +1,8 @@
 require("mason").setup({
 	ui = {
 		icons = {
-			package_installed = "",
 			package_pending = "",
+			package_installed = "",
 			package_uninstalled = "",
 		},
 	},
@@ -12,7 +12,7 @@ require("mason-lspconfig").setup({
 	ensure_installed = { "sumneko_lua" },
 })
 
-local mapping = require("lsp.mapping")
+local mapping = require("../mapping/lsp")
 require("mason-lspconfig").setup_handlers({
 	-- Default configuration
 	function(server_name)
