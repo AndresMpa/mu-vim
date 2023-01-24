@@ -19,6 +19,9 @@ return require("packer").startup(function(use)
 	use("mhartington/formatter.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 
+	-- MODES
+	use("Iron-E/nvim-libmodal")
+
 	-- START SCREEN
 	use({
 		"goolord/alpha-nvim",
