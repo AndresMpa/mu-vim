@@ -1,7 +1,7 @@
 -- Options
 local opts = { noremap = true, silent = true }
 -- Set new keymap
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 -- Natives
 map("n", "<Leader>w", ":w<CR>", {})

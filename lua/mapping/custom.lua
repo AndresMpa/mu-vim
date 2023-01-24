@@ -1,6 +1,6 @@
 local custom = require("mapping.util.extention")
 -- Set new keymap
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 -- Options
 local opts = { noremap = true, silent = true }

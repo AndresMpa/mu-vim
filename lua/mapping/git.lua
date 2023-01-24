@@ -1,5 +1,5 @@
 local custom = require("mapping.util.extention")
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 local opts = { noremap = true, silent = true }
 
@@ -21,10 +21,10 @@ map("n", "<Leader>gco", ":Git checkout<Space>", {})
 map("n", "<Leader>gcb", ":Git checkout -b<Space>", {})
 
 -- Custom action
-vim.keymap.set("n", "<Leader>gll", function()
+map("n", "<Leader>gll", function()
 	custom.HandleGitCustomActions("pull")
 end, opts)
-vim.keymap.set("n", "<Leader>gpp", function()
+map("n", "<Leader>gpp", function()
 	custom.HandleGitCustomActions("push")
 end, opts)
 
