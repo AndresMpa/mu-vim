@@ -4,9 +4,21 @@
 -- Options
 local opts = { noremap = true, silent = true }
 
+-- Waiting for Nvim team to release feature #21527
+--https://github.com/neovim/neovim/pull/21527
+--https://github.com/neovim/neovim/commit/572cd8031dd7c91ac9e17cbdfab16d87f1fed6b7
+local toggleDiagnostic = function()
+	if vim.diagnostic.is_disabled(0) then
+		return vim.diagnostic.disable
+	else
+		return vim.diagnostic.enable
+	end
+end
+
 vim.keymap.set("n", "mm", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "md", vim.diagnostic.enable, opts)
 vim.keymap.set("n", "ma", vim.diagnostic.disable, opts)
+--vim.keymap.set("n", "ma", toggleDiagnostic, opts)
 
 vim.keymap.set("n", "mj", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "mk", vim.diagnostic.goto_next, opts)
