@@ -35,6 +35,8 @@ all of them should work. It's recommended to follow this "guide" based on projec
 - Refactor MuVim's wiki [ ]
 - Make some introduction's video
 - Improve documentation
+- Wait for [NeoVim](https://github.com/neovim/neovim) to release [function #21527](https://github.com/neovim/neovim/pull/21527) about
+    [diagnostics](https://github.com/neovim/neovim/commit/572cd8031dd7c91ac9e17cbdfab16d87f1fed6b7)
 
 ## Guidelines
 
