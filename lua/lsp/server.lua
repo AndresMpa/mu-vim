@@ -12,13 +12,13 @@ require("mason-lspconfig").setup({
 	ensure_installed = { "sumneko_lua" },
 })
 
-local mapping = require("../mapping/lsp")
+local lspMapping = require("../mapping/lsp")
 require("mason-lspconfig").setup_handlers({
 	-- Default configuration
 	function(server_name)
 		require("lspconfig")[server_name].setup({
-			on_attach = mapping.on_attach,
-			flags = mapping.lsp_flags,
+			on_attach = lspMapping.on_attach,
+			flags = lspMapping.lsp_flags,
 		})
 	end,
 	-- Lua configuration
