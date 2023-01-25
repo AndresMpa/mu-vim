@@ -15,6 +15,8 @@ map("n", "<Leader>h", ":bdelete!<CR>", {})
 map("n", "<Leader>j", ":bprevious<CR>", {})
 map("n", "K", "<C-u>", {})
 map("n", "J", "<C-d>", {})
+map("n", "<C-k>", "<C-b>", {})
+map("n", "<C-j>", "<C-f>", {})
 -- Buffers control
 map("n", "<Leader>H", ":%bd | e# | bd#<CR>", {})
 -- Split control
