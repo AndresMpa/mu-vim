@@ -5,6 +5,21 @@ extentions.HelpMapping = function()
 	local branch = vim.fn.system("git branch --show-current | tr -d '\n'")
 	print("Current branch: " .. branch)
 	local hints = {
+		"LSP Diagnostic",
+		"mt -> Trouble",
+		"mm -> Open diagnostic",
+		"md -> Disable",
+		"ma -> Enable",
+		"mj -> Go previous",
+		"mk -> Go next",
+		"M -> Infom",
+		"mf -> Go definition",
+		"mr -> Go reference",
+		"mD -> Go declaration",
+		"mca -> Code action",
+		"mi -> Go implementation",
+		"<c-m> -> Show help",
+
 		"GIT",
 		"gpl -> git pull",
 		"gps -> git push",
