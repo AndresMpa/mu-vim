@@ -49,7 +49,6 @@ return require("packer").startup(function(use)
 	-- Highlight
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		"lewis6991/spellsitter.nvim",
 		run = ":TSUpdate",
 	})
 
@@ -81,8 +80,6 @@ return require("packer").startup(function(use)
 	use("pangloss/vim-javascript")
 	-- Syntax highligth for multiple languajes
 	use("sheerun/vim-polyglot")
-	-- Help to find issues
-	use("folke/trouble.nvim")
 	-- Support to git commands
 	use("tpope/vim-fugitive")
 	-- Identation for bash scripts

@@ -15,8 +15,6 @@ require("colorizer").setup()
 -- CODE
 -- Identation
 require("setUp.identation")
--- Spell
-require("setUp.spelling")
 
 -- NAVIGATION
 -- File manager
