@@ -1,6 +1,7 @@
 require("nvim-tree").setup({
 	disable_netrw = true,
 	hijack_netrw = true,
+  open_on_setup_file = false,
 	open_on_setup = false,
 	open_on_tab = false,
 	hijack_cursor = false,
@@ -40,8 +41,8 @@ require("nvim-tree").setup({
     hide_root_folder = false,
     centralize_selection = false,
     preserve_window_proportions = false,
-    number = false,
     relativenumber = false,
+    number = false,
     signcolumn = "yes",
     mappings = {
       custom_only = false,
@@ -50,10 +51,10 @@ require("nvim-tree").setup({
   },
 
   renderer = {
-    add_trailing = false,
-    group_empty = false,
-    highlight_git = false,
     full_name = false,
+    group_empty = false,
+    add_trailing = false,
+    highlight_git = false,
     highlight_opened_files = "none",
     root_folder_modifier = ":~",
     indent_width = 2,
