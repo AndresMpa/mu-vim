@@ -9,7 +9,32 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls" },
+	ensure_installed = {
+		"efm", -- General purpose server
+		"astro", -- Astro support
+		"gopls", -- Go
+		"sqlls", -- SQL
+		"taplo", -- TOML
+		"vimls", -- Vim
+		"vuels", -- Vue
+		"yamlls", -- YAML
+		"svelte", -- Svelte
+		"jsonls", -- JSON
+		"lua_ls", -- Lua
+		"eslint", -- ESLint
+		"bashls", -- Bash
+		"clangd", -- C/C++
+		"emmet_ls", -- Emmet
+		"dockerls", -- Docker
+		"marksman", -- Markdown
+		"tsserver", -- TS/JS
+		"grammarly", -- Grammar support
+		"angularls", -- Angular support
+		"tailwindcss", -- HTML/CSS
+		"diagnosticls", -- Diagnostics
+		"rust_analyzer", -- Rust
+		"jedi_language_server", -- Python
+	},
 })
 
 local lspMapping = require("../mapping/lsp")
