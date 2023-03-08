@@ -7,10 +7,6 @@ map("n", "<Leader>ss", "<Plug>(easymotion-s2)", {})
 map("n", "<Leader>mk", ":BufferLineMoveNext<CR>", {})
 map("n", "<Leader>mj", ":BufferLineMovePrev<CR>", {})
 
--- incsearch
-map("n", "/", "<Plug>(incsearch-forward)", {})
-map("n", "?", "<Plug>(incsearch-backward)", {})
-
 -- NvimTree
 map("n", "<leader>n", ":NvimTreeToggle<CR>", {})
 

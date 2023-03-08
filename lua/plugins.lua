@@ -66,8 +66,6 @@ return require("packer").startup(function(use)
 	use("christoomey/vim-tmux-navigator")
 	-- Navigation in files
 	use("easymotion/vim-easymotion")
-	-- Better way to look for words
-	use("haya14busa/incsearch.vim")
 
 	--IDENTATION & SYNTAX
 	-- Identation helper (It shows the identation of functions, etc)
