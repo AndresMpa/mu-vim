@@ -29,3 +29,4 @@ map("n", "<Leader>>", ':exe "resize " . (winheight(0) * 2/3)<CR>', {})
 -- Folding
 map("v", "f", "zf<CR>", {})
 map("n", "f", "za<CR>", {})
+map("n", "fd", "zd<CR>", {})
