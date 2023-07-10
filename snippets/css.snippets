@@ -12,11 +12,13 @@ snippet i "import status file"
 
 snippet * "Default"
 	:root {
-		--primary: #b3fae6;
-		--secondary: #d1fff2;
-		--terdary: #6cad9b;
-		--letter: #7a4d40;
-		--links: #ad6d5a;
+		--main: #0125EB;
+		--strong: #EB8B17;
+		--details: #EBE317;
+		--label: #630CEB;
+		--links: #0CA2EB;
+		--background: #ffffff
+		--letter: #000000
 	}
 
 	* {
@@ -28,7 +30,7 @@ snippet * "Default"
 	}
 
 	body {
-		background-color: var(--primary);
+		background-color: var(--background);
 	}
 
 	ul,
@@ -187,594 +189,449 @@ snippet center "Different ways to center something"
 	}
 
 snippet align-content "flexbox"
-	align-content
-
+	align-content: ${1:}
 
 snippet align-items "flexbox"
-	align-items
-
+	align-items: ${1:}
 
 snippet align-self "flexbox"
-	align-self
-
+	align-self: ${1:}
 
 snippet animation-delay "animations"
-	animation-delay
-
+	animation-delay: ${1:}
 
 snippet animation-direction "animations"
-	animation-direction
-
+	animation-direction: ${1:}
 
 snippet animation-duration "animations"
-	animation-duration
-
+	animation-duration: ${1:}
 
 snippet animation-fill-mode "animations"
-	animation-fill-mode
-
+	animation-fill-mode: ${1:}
 
 snippet animation-iteration-count "animations"
-	animation-iteration-count
-
+	animation-iteration-count: ${1:}
 
 snippet animation-name "animations"
-	animation-name
-
+	animation-name: ${1:}
 
 snippet animation-play-state "animations"
-	animation-play-state
-
+	animation-play-state: ${1:}
 
 snippet animation-timing-function "animations"
-	animation-timing-function
-
+	animation-timing-function: ${1:}
 
 snippet animation "animations"
-	animation
-
+	animation: ${1:}
 
 snippet background-attachment "backgrounds"
-	background-attachment
-
+	background-attachment: ${1:}
 
 snippet background-clip "backgrounds"
-	background-clip
-
+	background-clip: ${1:}
 
 snippet background-color "backgrounds"
-	background-color
-
+	background-color: ${1:}
 
 snippet background-image "backgrounds"
-	background-image
-
+	background-image: ${1:}
 
 snippet background-origin "backgrounds"
-	background-origin
-
+	background-origin: ${1:}
 
 snippet background-position "backgrounds"
-	background-position
-
+	background-position: ${1:}
 
 snippet background-repeat "backgrounds"
-	background-repeat
-
+	background-repeat: ${1:}
 
 snippet background-size "backgrounds"
-	background-size
-
+	background-size: ${1:}
 
 snippet background "backgrounds"
-	background
-
+	background: ${1:}
 
 snippet border-bottom-color ""
-	border-bottom-color
-
+	border-bottom-color: ${1:}
 
 snippet border-bottom-left-radius ""
-	border-bottom-left-radius
-
+	border-bottom-left-radius: ${1:}
 
 snippet border-bottom-right-radius ""
-	border-bottom-right-radius
-
+	border-bottom-right-radius: ${1:}
 
 snippet border-bottom-style ""
-	border-bottom-style
-
+	border-bottom-style: ${1:}
 
 snippet border-bottom-width "box-model"
-	border-bottom-width
-
+	border-bottom-width: ${1:}
 
 snippet border-bottom ""
-	border-bottom
-
+	border-bottom: ${1:}
 
 snippet border-collapse ""
-	border-collapse
-
+	border-collapse: ${1:}
 
 snippet border-color ""
-	border-color
-
+	border-color: ${1:}
 
 snippet border-left-color ""
-	border-left-color
-
+	border-left-color: ${1:}
 
 snippet border-left-style ""
-	border-left-style
-
+	border-left-style: ${1:}
 
 snippet border-left-width "box-model"
-	border-left-width
-
+	border-left-width: ${1:}
 
 snippet border-left ""
-	border-left
-
+	border-left: ${1:}
 
 snippet border-radius ""
-	border-radius
-
+	border-radius: ${1:}
 
 snippet border-right-color ""
-	border-right-color
-
+	border-right-color: ${1:}
 
 snippet border-right-style ""
-	border-right-style
-
+	border-right-style: ${1:}
 
 snippet border-right-width "box-model"
-	border-right-width
-
+	border-right-width: ${1:}
 
 snippet border-right ""
-	border-right
-
+	border-right: ${1:}
 
 snippet border-style ""
-	border-style
-
+	border-style: ${1:}
 
 snippet border-top-color ""
-	border-top-color
-
+	border-top-color: ${1:}
 
 snippet border-top-left-radius ""
-	border-top-left-radius
-
+	border-top-left-radius: ${1:}
 
 snippet border-top-right-radius ""
-	border-top-right-radius
-
+	border-top-right-radius: ${1:}
 
 snippet border-top-style ""
-	border-top-style
-
+	border-top-style: ${1:}
 
 snippet border-top-width "box-model"
-	border-top-width
-
+	border-top-width: ${1:}
 
 snippet border-top ""
-	border-top
-
+	border-top: ${1:}
 
 snippet border-width "box-model"
-	border-width
-
+	border-width: ${1:}
 
 snippet border ""
-	border
-
+	border: ${1:}
 
 snippet bottom "positioning"
-	bottom
-
+	bottom: ${1:}
 
 snippet box-shadow ""
-	box-shadow
-
+	box-shadow: ${1:}
 
 snippet box-sizing "box-model"
-	box-sizing
-
+	box-sizing: ${1:}
 
 snippet clear ""
-	clear
-
+	clear: ${1:}
 
 snippet color "typography"
-	color
-
+	color: ${1:}
 
 snippet column-count ""
-	column-count
-
+	column-count: ${1:}
 
 snippet column-gap ""
-	column-gap
-
+	column-gap: ${1:}
 
 snippet column-width ""
-	column-width
-
+	column-width: ${1:}
 
 snippet content ""
-	content
-
+	content: ${1:}
 
 snippet cursor ""
-	cursor
-
+	cursor: ${1:}
 
 snippet display ""
-	display
-
+	display: ${1:}
 
 snippet flex-basis "flexbox"
-	flex-basis
-
+	flex-basis: ${1:}
 
 snippet flex-direction "flexbox"
-	flex-direction
-
+	flex-direction: ${1:}
 
 snippet flex-flow "flexbox"
-	flex-flow
-
+	flex-flow: ${1:}
 
 snippet flex-grow "flexbox"
-	flex-grow
-
+	flex-grow: ${1:}
 
 snippet flex-shrink "flexbox"
-	flex-shrink
-
+	flex-shrink: ${1:}
 
 snippet flex-wrap "flexbox"
-	flex-wrap
-
+	flex-wrap: ${1:}
 
 snippet float ""
-	float
-
+	float: ${1:}
 
 snippet font-family "typography"
-	font-family
-
+	font-family: ${1:}
 
 snippet font-size "typography"
-	font-size
-
+	font-size: ${1:}
 
 snippet font-style "typography"
-	font-style
-
+	font-style: ${1:}
 
 snippet font-variant "typography"
-	font-variant
-
+	font-variant: ${1:}
 
 snippet font-weight "typography"
-	font-weight
-
+	font-weight: ${1:}
 
 snippet font "typography"
-	font
-
+	font: ${1:}
 
 snippet grid-area "css-grid"
-	grid-area
-
+	grid-area: ${1:}
 
 snippet grid-auto-columns "css-grid"
-	grid-auto-columns
-
+	grid-auto-columns: ${1:}
 
 snippet grid-auto-flow "css-grid"
-	grid-auto-flow
-
+	grid-auto-flow: ${1:}
 
 snippet grid-auto-rows "css-grid"
-	grid-auto-rows
-
+	grid-auto-rows: ${1:}
 
 snippet grid-column-end "css-grid"
-	grid-column-end
-
+	grid-column-end: ${1:}
 
 snippet grid-column-gap "css-grid"
-	grid-column-gap
-
+	grid-column-gap: ${1:}
 
 snippet grid-column-start "css-grid"
-	grid-column-start
-
+	grid-column-start: ${1:}
 
 snippet grid-column "css-grid"
-	grid-column
-
+	grid-column: ${1:}
 
 snippet grid-gap "css-grid"
-	grid-gap
-
+	grid-gap: ${1:}
 
 snippet grid-row-end "css-grid"
-	grid-row-end
-
+	grid-row-end: ${1:}
 
 snippet grid-row-gap "css-grid"
-	grid-row-gap
-
+	grid-row-gap: ${1:}
 
 snippet grid-row-start "css-grid"
-	grid-row-start
-
+	grid-row-start: ${1:}
 
 snippet grid-row "css-grid"
-	grid-row
-
+	grid-row: ${1:}
 
 snippet grid-template-areas "css-grid"
-	grid-template-areas
-
+	grid-template-areas: ${1:}
 
 snippet grid-template-columns "css-grid"
-	grid-template-columns
-
+	grid-template-columns: ${1:}
 
 snippet grid-template-rows "css-grid"
-	grid-template-rows
-
+	grid-template-rows: ${1:}
 
 snippet grid-template "css-grid"
-	grid-template
-
+	grid-template: ${1:}
 
 snippet grid "css-grid"
-	grid
-
+	grid: ${1:}
 
 snippet height "box-model"
-	height
-
+	height: ${1:}
 
 snippet justify-content "flexbox"
-	justify-content
-
+	justify-content: ${1:}
 
 snippet left "positioning"
-	left
-
+	left: ${1:}
 
 snippet letter-spacing "typography"
-	letter-spacing
-
+	letter-spacing: ${1:}
 
 snippet line-height "box-model typography"
-	line-height
-
+	line-height: ${1:}
 
 snippet list-style-image ""
-	list-style-image
-
+	list-style-image: ${1:}
 
 snippet list-style-position ""
-	list-style-position
-
+	list-style-position: ${1:}
 
 snippet list-style-type ""
-	list-style-type
-
+	list-style-type: ${1:}
 
 snippet list-style ""
-	list-style
-
+	list-style: ${1:}
 
 snippet margin-bottom "box-model"
-	margin-bottom
-
+	margin-bottom: ${1:}
 
 snippet margin-left "box-model"
-	margin-left
-
+	margin-left: ${1:}
 
 snippet margin-right "box-model"
-	margin-right
-
+	margin-right: ${1:}
 
 snippet margin-top "box-model"
-	margin-top
-
+	margin-top: ${1:}
 
 snippet margin "box-model"
-	margin
-
+	margin: ${1:}
 
 snippet max-height "box-model"
-	max-height
-
+	max-height: ${1:}
 
 snippet max-width "box-model"
-	max-width
-
+	max-width: ${1:}
 
 snippet min-height "box-model"
-	min-height
-
+	min-height: ${1:}
 
 snippet min-width "box-model"
-	min-width
-
+	min-width: ${1:}
 
 snippet mix-blend-mode ""
-	mix-blend-mode
-
+	mix-blend-mode: ${1:}
 
 snippet opacity ""
-	opacity
-
+	opacity: ${1:}
 
 snippet order "flexbox"
-	order
-
+	order: ${1:}
 
 snippet outline-color ""
-	outline-color
-
+	outline-color: ${1:}
 
 snippet outline-style ""
-	outline-style
-
+	outline-style: ${1:}
 
 snippet outline-width ""
-	outline-width
-
+	outline-width: ${1:}
 
 snippet outline ""
-	outline
-
+	outline: ${1:}
 
 snippet overflow-wrap ""
-	overflow-wrap
-
+	overflow-wrap: ${1:}
 
 snippet overflow-x ""
-	overflow-x
-
+	overflow-x: ${1:}
 
 snippet overflow-y ""
-	overflow-y
-
+	overflow-y: ${1:}
 
 snippet overflow ""
-	overflow
-
+	overflow: ${1:}
 
 snippet padding-bottom "box-model"
-	padding-bottom
-
+	padding-bottom: ${1:}
 
 snippet padding-left "box-model"
-	padding-left
-
+	padding-left: ${1:}
 
 snippet padding-right "box-model"
-	padding-right
-
+	padding-right: ${1:}
 
 snippet padding-top "box-model"
-	padding-top
-
+	padding-top: ${1:}
 
 snippet padding "box-model"
-	padding
-
+	padding: ${1:}
 
 snippet pointer-events ""
-	pointer-events
-
+	pointer-events: ${1:}
 
 snippet position "positioning"
-	position
-
+	position: ${1:}
 
 snippet resize ""
-	resize
-
+	resize: ${1:}
 
 snippet right "positioning"
-	right
-
+	right: ${1:}
 
 snippet text-align "typography"
-	text-align
-
+	text-align: ${1:}
 
 snippet text-decoration "typography"
-	text-decoration
-
+	text-decoration: ${1:}
 
 snippet text-indent "typography"
-	text-indent
-
+	text-indent: ${1:}
 
 snippet text-overflow "typography"
-	text-overflow
-
+	text-overflow: ${1:}
 
 snippet text-shadow "typography"
-	text-shadow
-
+	text-shadow: ${1:}
 
 snippet text-transform "typography"
-	text-transform
-
+	text-transform: ${1:}
 
 snippet top "positioning"
-	top
-
+	top: ${1:}
 
 snippet transform-origin ""
-	transform-origin
-
+	transform-origin: ${1:}
 
 snippet transform ""
-	transform
-
+	transform: ${1:}
 
 snippet transition-delay "transitions"
-	transition-delay
-
+	transition-delay: ${1:}
 
 snippet transition-duration "transitions"
-	transition-duration
-
+	transition-duration: ${1:}
 
 snippet transition-property "transitions"
-	transition-property
-
+	transition-property: ${1:}
 
 snippet transition-timing-function "transitions"
-	transition-timing-function
-
+	transition-timing-function: ${1:}
 
 snippet transition "transitions"
-	transition
+	transition: ${1:}
 
+snippet vertical-align "Defines how an inline or table-cell element aligns vertically."
 
-snippet vertical-align ""
-	vertical-align
+	vertical-align: ${1:baseline|sub|super|text-top|text-bottom|middle|top|bottom}
 
-
-snippet white-space "typography"
-	white-space
-
+snippet white-space "typography. Defines how the element's white space is handled."
+	white-space: ${1:normal|nowrap|pre|pre-wrap|pre-line}
 
 snippet width "box-model"
-	width
+	width: ${1:auto|50%}
 
+snippet will-change "Defines which properties are expected to change in the future."
 
-snippet will-change ""
-	will-change
-
+	will-change: ${1:auto|scroll-position|contents|box-shadow}
 
 snippet word-break "typography"
-	word-break
-
+	word-break: ${1:normal|break-all}
 
 snippet word-spacing "typography"
-	word-spacing
-
+	word-spacing: ${1:normal|5px|2em}
 
 snippet z-index "positioning"
-	z-index
+	z-index: ${1:auto|1|-1}
 
 
