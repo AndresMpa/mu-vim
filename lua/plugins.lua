@@ -12,6 +12,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- LSP
+	use("glepnir/lspsaga.nvim")
 	use("neovim/nvim-lspconfig")
 	use("mfussenegger/nvim-dap")
 	use("mfussenegger/nvim-lint")
