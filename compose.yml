@@ -1,0 +1,4 @@
+services:
+  test_env:
+    build: .
+    container_name: test_env
