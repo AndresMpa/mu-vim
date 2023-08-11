@@ -1,4 +1,19 @@
 services:
-  test_env:
-    build: .
-    container_name: test_env
+  apk_test:
+    build: ./docker/apk/Dockerfile
+    container_name: apk_test
+  apt_test:
+    build: ./docker/apt/Dockerfile
+    container_name: apt_test
+  dnf_test:
+    build: ./docker/dnf/Dockerfile
+    container_name: dnf_test
+  emerge_test:
+    build: ./docker/emerge/Dockerfile
+    container_name: emerge_test
+  pacman_test:
+    build: ./docker/pacman/Dockerfile
+    container_name: pacman_test
+  zypp_test:
+    build: ./docker/zypp/Dockerfile
+    container_name: zypp_test
