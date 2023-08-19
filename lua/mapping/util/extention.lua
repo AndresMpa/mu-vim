@@ -97,6 +97,21 @@ extentions.OpenFileServer = function()
 	if string.match(file, "django") then
 		execute("!python %")
 	end
+	if string.match(file, "png") then
+		execute("!xdg-open %")
+	end
+	if string.match(file, "jpg") then
+		execute("!xdg-open %")
+	end
+	if string.match(file, "svg") then
+		execute("!xdg-open %")
+	end
+	if string.match(file, "jpeg") then
+		execute("!xdg-open %")
+	end
+	if string.match(file, "mp4") then
+		execute("!xdg-open %")
+	end
 end
 
 extentions.OpenTerminal = function()
