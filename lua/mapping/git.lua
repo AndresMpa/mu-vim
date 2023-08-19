@@ -27,6 +27,10 @@ end, opts)
 map("n", "<Leader>gpp", function()
 	custom.HandleGitCustomActions("push")
 end, opts)
+map("n", "<Leader>gpx", function()
+	custom.HandleGitCustomActions("push-commit")
+end, opts)
+
 
 -- To performe different actions
 map("n", "<Leader>ggg", ":Git<Space>", {})
