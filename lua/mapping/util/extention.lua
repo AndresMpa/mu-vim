@@ -128,7 +128,6 @@ end
 
 extentions.HandleGitCustomActions = function(action)
   local branch = vim.fn.system("git branch --show-current | tr -d '\n'")
-  local commit = vim.fn.system("git log --format='%H' -n 1 | tr -d '\n'")
 
   if action == "pull" then
     execute(":Git pull origin " .. branch)
@@ -137,7 +136,7 @@ extentions.HandleGitCustomActions = function(action)
     execute(":Git push origin " .. branch)
   end
   if action == "push-commit" then
-    execute(":Git push origin --set-upstream origin dev-" .. commit)
+    execute(":Git push --set-upstream origin " .. branch)
   end
 end
 
