@@ -18,6 +18,7 @@ set.showmode = false
 set.showmatch = true
 set.swapfile = false
 set.splitright = true
+set.display="lastline"
 set.encoding = "UTF-8"
 set.writebackup = false
 set.termguicolors = true
