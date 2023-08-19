@@ -137,7 +137,7 @@ extentions.HandleGitCustomActions = function(action)
     execute(":Git push origin " .. branch)
   end
   if action == "push-commit" then
-    execute(":Git push origin " .. commit)
+    execute(":Git push origin --set-upstream origin dev-" .. commit)
   end
 end
 
