@@ -145,8 +145,9 @@ extentions.OpenFileServer = function()
   local file = vim.fn.expand("%")
 
   if serviceActions[extention] ~= "Option not supported" then
-    execute("!echo " .. extention)
     serviceActions[extention](extention, file)
+  elseif serviceActions[string.sub(file, -3)] ~= "Option not supported" then
+    serviceActions[string.sub(file, -3)](extention, file)
   else
     execute("!echo Option not supported")
     execute("!" .. extention .. " %")
