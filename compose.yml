@@ -1,19 +1,19 @@
 services:
   apk_test:
-    build: ./docker/apk/Dockerfile
+    build: ./docker/apk
     container_name: apk_test
   apt_test:
-    build: ./docker/apt/Dockerfile
+    build: ./docker/apt
     container_name: apt_test
   dnf_test:
-    build: ./docker/dnf/Dockerfile
+    build: ./docker/dnf
     container_name: dnf_test
   emerge_test:
-    build: ./docker/emerge/Dockerfile
+    build: ./docker/emerge
     container_name: emerge_test
   pacman_test:
-    build: ./docker/pacman/Dockerfile
+    build: ./docker/pacman
     container_name: pacman_test
   zypp_test:
-    build: ./docker/zypp/Dockerfile
+    build: ./docker/zypp
     container_name: zypp_test
