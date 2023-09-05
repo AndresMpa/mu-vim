@@ -272,10 +272,14 @@ snippet seve "Create an single event by addEventListener"
 
 snippet react "React skeleton"
   import React from "react";
-  import ReactDOM from "react-dom";
-  import App from "./component/App";
+  import { createRoot } from "react-dom/client";
 
-  ReactDOM.render(<App />, document.querySelector("#app"));
+  import App from "@routes/App";
+
+  const container = document.querySelector("#app")
+  const root = createRoot(container);
+
+  root.render(<App />)
 
 
 
@@ -352,4 +356,3 @@ snippet man "The manual"
   snippet manfn "It shows all the pre written functions/utilities"
   snippet manfront "It lists all the frontend utilities I have written"
   */
-
