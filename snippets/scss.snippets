@@ -44,38 +44,58 @@ snippet f "Quick font set up"
 
 	@include google-font("Nunito");
 
-snippet ! "Default"
+snippet theme "Default color palette"
 	:root {
-		--main: #0125EB;
-		--strong: #EB8B17;
-		--details: #EBE317;
-		--label: #630CEB;
-		--links: #0CA2EB;
-		--background: #ffffff
-		--letter: #000000
+		--background: #dfe4f2;
+		--canvas: #f0f2f2;
+		--strong: #f20505;
+		--detail: #235fd9;
+		--label: #044bd9;
 	}
+
+	:root[data-theme="light"] {
+		--background: #242526;
+		--canvas: #010d26;
+		--strong: #011640;
+		--detail: #f26938;
+		--label: #f2522e;
+	}
+
+	$background: var(--background);
+	$canvas: var(--canvas);
+	$strong: var(--strong);
+	$detail: var(--detail);
+	$label: var(--label);
+
+snippet ! "Default"
+	$background: #242526;
+	$canvas: #010d26;
+	$strong: #011640;
+	$detail: #f26938;
+	$label: #f2522e;
+	$letter: white;
 
 	* {
 		margin: 0%;
 		padding: 0%;
-		color: var(--letter);
+		color: $letter;
 		overflow-anchor: none;
 		font-family: "Nunito", sans-serif;
 	}
 
 	body {
-		background-color: var(--background);
-	}
+		background-color: $background;
 
-	ul,
-	li {
-		text-decoration: none;
-		list-style: none;
-	}
+		ul,
+		li {
+			text-decoration: none;
+			list-style: none;
+		}
 
-	a {
-		text-decoration: none;
-		color: var(--links);
+		a {
+			text-decoration: none;
+			color: $links;
+		}
 	}
 
 snippet :h "Hover property"
@@ -653,4 +673,3 @@ snippet word-spacing "typography"
 
 snippet z-index "positioning"
 	z-index: ${1:auto|1|-1}
-
