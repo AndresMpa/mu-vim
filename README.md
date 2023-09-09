@@ -32,6 +32,7 @@ all of them should work. It's recommended to follow this "guide" based on projec
 
 ## To do
 
+- Complete installation script
 - Refactor MuVim's wiki [ ]
 - Make some introduction's video
 - Improve documentation
@@ -74,7 +75,7 @@ fastest one version, the most complicated too
 
 If you want to use Μμ Vim on its Lua version you will need a couple of resources to make works,
 [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) is necessary, unfortunelly we can't
-use this config with [vim](https://www.vim.org/download.php) should be enough, 
+use this config with [vim](https://www.vim.org/download.php) should be enough,
 [Lua itself](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux/), then it's on you
 to install some other features
 
