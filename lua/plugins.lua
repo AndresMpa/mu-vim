@@ -12,13 +12,6 @@ return require("packer").startup(function(use)
   })
 
   -- LSP
-  use({
-    "nvimdev/lspsaga.nvim",
-    after = "nvim-lspconfig",
-    config = function()
-      require("lspsaga").setup({})
-    end,
-  })
   use("neovim/nvim-lspconfig")
   use("mfussenegger/nvim-dap")
   use("mfussenegger/nvim-lint")
@@ -65,7 +58,7 @@ return require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
   })
-  -- Files openned
+  -- Files opened
   use("akinsho/bufferline.nvim")
 
   -- MOTION
@@ -74,8 +67,8 @@ return require("packer").startup(function(use)
   -- Navigation in files
   use("easymotion/vim-easymotion")
 
-  --IDENTATION & SYNTAX
-  -- Identation helper (It shows the identation of functions, etc)
+  --INDENTATION & SYNTAX
+  -- Indentation helper (It shows the indentation of functions, etc)
   use("lukas-reineke/indent-blankline.nvim")
   -- TypeScript syntax
   use("leafgarland/typescript-vim")
@@ -83,11 +76,11 @@ return require("packer").startup(function(use)
   use("maxmellon/vim-jsx-pretty")
   -- JavaScript support
   use("pangloss/vim-javascript")
-  -- Syntax highligth for multiple languajes
+  -- Syntax highlight for multiple languages
   use("sheerun/vim-polyglot")
   -- Support to git commands
   use("tpope/vim-fugitive")
-  -- Identation for bash scripts
+  -- Indentation for bash scripts
   use("z0mbix/vim-shfmt")
 
   -- UTILITIES
@@ -117,7 +110,7 @@ return require("packer").startup(function(use)
 
   -- Multicursor
   use("terryma/vim-multiple-cursors")
-  -- Easy way to make commets
+  -- Easy way to make comments
   use("preservim/nerdcommenter")
   -- Color picker for css
   use("KabbAmine/vCoolor.vim")
