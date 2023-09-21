@@ -1,14 +1,39 @@
-snippet ! "React component skeleton"
+snippet log "Simple console.log()"
+	console.log(${1})
+
+snippet component "React component"
 	import React from "react";
+
+  // Action creators
 
 	const $1 = () => {
 		return (
-			$2;
+			$2
 		);
 	}
 
 	export default $1;
 
+snippet reducer "Reducer boilerplate"
+  const initialState = {
+    error: false,
+  };
 
-snippet log "Simple console.log()"
-  console.log(${1})
+  const actionTypes = {
+    error: 'ERROR',
+  };
+
+  const reducerObject = (state, payload) => ({
+    [actionTypes.error]: {
+      ...state,
+      error: true,
+    },
+  });
+
+  const reducer = (state, action) => {
+    return reducerObject(state)[action.type]
+      ? reducerObject(state, action.payload)[action.type]
+      : state;
+  };
+
+  export { reducer, actionTypes, reducerObject, initialState };
