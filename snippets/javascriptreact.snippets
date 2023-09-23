@@ -1,12 +1,12 @@
 snippet log "Simple console.log()"
 	console.log(${1})
 
-snippet component "React component"
+snippet comp "React component"
 	import React from "react";
 
-  // Action creators
-
 	const $1 = () => {
+    // Action creators
+
 		return (
 			$2
 		);
@@ -30,10 +30,7 @@ snippet reducer "Reducer boilerplate"
     },
   });
 
-  const reducer = (state, action) => {
-    return reducerObject(state)[action.type]
-      ? reducerObject(state, action.payload)[action.type]
-      : state;
-  };
+  const reducer = (state, action) =>
+    reducerObject(state, action.payload)[action.type] || state;
 
   export { reducer, actionTypes, reducerObject, initialState };
