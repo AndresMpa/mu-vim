@@ -1,108 +1,51 @@
 #!/bin/bash
 
-echo '
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆⡆⠀⠀⠀⠀⠀⢀⠜⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠁⢰⠀⠀⠀⠀⢀⠊⢠⠀⠀⢠⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⠀⡆⠀⠀⠠⠃⠀⡘⠀⠀⡘⠀⠀⠀⠀⡘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢰⠀⡰⠁⠀⠀⠇⠀⠀⡇⠀⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠀⠀⠀⠀⠞⠀⠀⠀⠰⠀⠀⢰⠑⠤⠤⠔⠱⠀⣿⡆⠀⠀⠀⣾⡗⠀⠀⠰⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡌⠀⠀⠀⠀⠀⠀⠸⣿⡄⠀⣸⣿⠁⠀⣴⣶⣶⡄⠀⠀⢰⣦⣶⣤⣴⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣷⢠⣿⠇⠀⠀⠀⠀⣿⡇⠀⠀⢸⣿⠀⣿⡏⠈⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⡟⠀⠀⠀⠀⠀⣿⡇⠀⠀⢸⣿⠀⣿⡇⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠿⠁⠀⠀⠀⠀⠀⠿⠿⠿⠀⠸⠟⠀⠻⠇⠀⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀'
+source ./utilities/installation/installer.sh
+source ./utilities/installation/greeter.sh
+source ./utilities/installation/done.sh
+source ./utilities/installation/util.sh
 
-instalation_dir=~/.config/nvim
-
-# Renaming dir
-cd ..
-mv mu-nvim nvim
-
-# Downloading tools
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-installed=1
-
-if [ nvim ]; then
-  echo "nvim"
-else
-  installed=0
-fi
-
-# Installation for Arch
-if [ $(which pacman) == "/usr/bin/pacman" ]; then
-  echo "pacman"
-  sudo pacman -Syu nodejs npm ripgrep fd
-  if [ installed ]; then
-    sudo pacman -S neovim
-  fi
-# Installation for apt
-elif [ $(which apt) == "/usr/bin/apt" ]; then
-  echo "apt"
-  sudo apt-get install nodejs
-  sudo apt-get install npm
-  if [ installed ]; then
-    sudo apt-get install neovim
-  fi
-else
-  echo "
-  Sorry I don't know how to make this
-  thing work in your OS yet, check the
-  following links to install what you
-  need manually
-
-  https://github.com/neovim/neovim/wiki/Installing-Neovim
-  "
-fi
+PREVIOUS=~/.config/previous-mu-vim/
+INSTALATION_DIR=~/.config/nvim
+FAIL=0
 
 # Custom dirs functionality
 echo "Are you using a custom configuration directory? (Default is ~/.config)[y/n]: "
-read custom_dir
+read CUSTOM_DIR
 
-if [ $custom_dir == "y" ]; then
+if [ $CUSTOM_DIR == "y" ]; then
   echo "Write your custom directory path: "
-  read instalation_dir
+  read INSTALATION_DIR
 fi
 
-# Saving old configurations
-if [ -e ~/.config/nvim ]; then
-  mv ~/.config/nvim old-nvim
-  mv $(pwd) $instalation_dir
-else
-  if [ -e ~/.config ]; then
-    mv nvim $instalation_dir
-  else
-    mkdir ~/.config
-    mv nvim $instalation_dir
-  fi
+{
+  greeter
+  sleep 5s
+} || {
+  echo "Something when wrong while greeting" >>fails.log
+  let FAIL++
+}
+
+{
+  replace_old $INSTALATION_DIR $PREVIOUS
+} || {
+  echo "Something when wrong replacing old nvim config" >>fails.log
+  let FAIL++
+}
+
+{
+  MANAGER=$(get_package_manager)
+  echo $MANAGER
+  installDependencies $MANAGER
+} && {
+  installation_success
+} || {
+  echo "Something while ending" >>fails.log
+  let FAIL++
+}
+
+if [[ $FAIL -gt 0 ]]; then
+  echo "It seems to be some failures, pleace submit an issue in the following repository"
+  echo
+  echo "\thttps://github.com/AndresMpa/mu-vim/issues/new"
 fi
-
-echo "
-Thanks for giving MμVim a try
-
-You can close this terminal now
-and start a new one to see changes
-
-Then open the editor with:
-
-$ nvim
-
-Then enjoy...
-___
-
-Short documentation
-
-If you want/need to edit the
-configuration files go to:
-
-$ nvim ~/.config/nvim/init.lua
-
-There you can see the configurations
-files and some dependencies, highlight,
-themes, etc...
-___
-"
