@@ -37,7 +37,7 @@ require("mason-lspconfig").setup({
 	},
 })
 
-local lspMapping = require("../mapping/lsp")
+local lspMapping = require("../mapping/diagnostics")
 require("mason-lspconfig").setup_handlers({
 	-- Default configuration
 	function(server_name)
