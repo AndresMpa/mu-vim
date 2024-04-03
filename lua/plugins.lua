@@ -69,7 +69,12 @@ return require("packer").startup(function(use)
 
   --INDENTATION & SYNTAX
   -- Indentation helper (It shows the indentation of functions, etc)
-  use("lukas-reineke/indent-blankline.nvim")
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup()
+    end,
+  })
   -- TypeScript syntax
   use("leafgarland/typescript-vim")
   -- JS and JSX syntax
