@@ -1,4 +1,4 @@
-require("cmp_dictionary").switcher({
+require("cmp_dictionary").setup({
 	--I removing this support for every possibility, I found it annoying
 	--["*"] = "~/.config/nvim/dicts/english.dict",
 	filetype = {
