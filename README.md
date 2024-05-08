@@ -123,6 +123,21 @@ There may be some issues on nvim that should be solve, a common one can be not h
 give you all the information you might need, but there's also a guide of troubleshooting
 [here](https://github.com/AndresMpa/mu-vim/wiki/General-dependencies)
 
+## Star History
+
+Wanna help a litte? Hit the start button, I'm still wondering if it works
+
+<p align="center">
+  <a href="https://star-history.com/#AndresMpa/mu-vim&Date">
+   <picture>
+     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=AndresMpa/mu-vim&type=Date&theme=dark" />
+     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=AndresMpa/mu-vim&type=Date" />
+     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=AndresMpa/mu-vim&type=Date" />
+   </picture>
+  </a>
+</p>
+
+
 ## Apps
 
 There's a couple of apps I recommend you to improve a little bit more your velocity, they are:
