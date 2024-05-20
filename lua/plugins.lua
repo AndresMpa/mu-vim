@@ -11,6 +11,9 @@ return require("packer").startup(function(use)
     requires = "nvim-tree/nvim-web-devicons",
   })
 
+  -- Ollama
+  use("David-Kunz/gen.nvim")
+
   -- LSP
   use("neovim/nvim-lspconfig")
   use("mfussenegger/nvim-dap")
