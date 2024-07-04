@@ -32,6 +32,7 @@ all of them should work. It's recommended to follow this "guide" based on projec
 
 ## To do
 
+- Replace packer.nvim
 - Complete installation script
 - Refactor MuVim's wiki [ ]
 - Make some introduction's video
