@@ -33,6 +33,7 @@ all of them should work. It's recommended to follow this "guide" based on projec
 ## To do
 
 - Replace packer.nvim
+- Find some better package manager for main branch and single script too
 - Complete installation script
 - Refactor MuVim's wiki [ ]
 - Make some introduction's video
