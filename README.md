@@ -32,7 +32,6 @@ all of them should work. It's recommended to follow this "guide" based on projec
 
 ## To do
 
-- Fix material under new package Manager 
 - Find some better package manager for main branch and single script too
 - Complete installation script
 - Refactor MuVim's wiki [ ]
