@@ -32,7 +32,7 @@ all of them should work. It's recommended to follow this "guide" based on projec
 
 ## To do
 
-- Find some better package manager for main branch and single script too
+- Update single script config
 - Complete installation script
 - Refactor MuVim's wiki [ ]
 - Make some introduction's video
