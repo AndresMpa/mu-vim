@@ -34,7 +34,7 @@ all of them should work. It's recommended to follow this "guide" based on projec
 
 - Update single script config to pckr.nvim
 - Update installation script
-- Refactor MuVim's wiki [ ]
+- Refactor MuVim's wiki
 - Make some introduction's video
 - Improve documentation
 
