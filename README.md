@@ -23,12 +23,12 @@
   </p>
 </div>
 
-This is a NeoVim and Vim configuration, It has 3 versions actually, one of them is
-just 1 .vim file, so it's really easy to use and modify; what you see in main branch
+This is a NeoVim and Vim configuration, It has 3 versions actually, and one of them is
+just 1 .vim file, so it's straightforward to use and modify; what you see in the main branch
 is more complicated and it's the main config, check the wiki if you want more information;
-main config is based on lua, but there's a VimScript based on config. This repository
-contains 3 different branches each one of them have a different config, choose anyone,
-all of them should work. It's recommended to follow this "guide" based on project branches.
+The main config is based on Lua, but there's a VimScript based on config. This repository
+contains 3 different branches each one of them has a different config, choose anyone,
+and all of them should work. You should follow this "guide" based on project branches.
 
 ## To do
 
