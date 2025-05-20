@@ -32,11 +32,11 @@ and all of them should work. You should follow this "guide" based on project bra
 
 ## To do
 
-- Update single script config to pckr.nvim
-- Update installation script
-- Refactor MuVim's wiki
-- Make some introduction's video
-- Improve documentation
+- [ ] Update single script config to pckr.nvim
+- [ ] Update installation script
+- [ ] Refactor MuVim's wiki
+- [ ] Make some introduction's video
+- [ ] Improve documentation
 
 ## Guidelines
 
