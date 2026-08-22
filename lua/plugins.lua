@@ -32,9 +32,7 @@ require('pckr').add{
   "neovim/nvim-lspconfig",
   "mfussenegger/nvim-dap",
   "mfussenegger/nvim-lint",
-  "williamboman/mason.nvim",
   "mhartington/formatter.nvim",
-  "williamboman/mason-lspconfig.nvim",
 
   -- MODES
   "Iron-E/nvim-libmodal",
@@ -125,7 +123,7 @@ require('pckr').add{
   -- Live server
   {
     "turbio/bracey.vim",
-    run = "npm install --prefix server",
+    run = "pnpm install --prefix server",
     cmd = "Bracey",
   },
 
