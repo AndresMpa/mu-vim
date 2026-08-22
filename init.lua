@@ -7,6 +7,9 @@ require('mapping')
 -- Auto commands
 require('autocommand')
 
+-- FIRST RUN (instala dependencias del sistema una sola vez)
+require('first_run').run()
+
 -- PLUGIN
 -- Plugin list
 require('plugins')
