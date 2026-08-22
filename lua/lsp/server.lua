@@ -1,71 +1,79 @@
 require("mason").setup({
-	ui = {
-		icons = {
-			package_pending = "",
-			package_installed = "",
-			package_uninstalled = "",
-		},
-	},
+  PATH = "append",
+
+  pip = {
+    upgrade_pip = true,
+  },
+
+  npm = {
+    package_manager = "pnpm",
+  },
+
+  ui = {
+    icons = {
+      package_pending = "",
+      package_installed = "",
+      package_uninstalled = "",
+    },
+  },
 })
+
+local servers = {
+  "efm",
+  "astro",
+  "sqlls",
+  "taplo",
+  "vimls",
+  "vuels",
+  "yamlls",
+  "svelte",
+  "jsonls",
+  "lua_ls",
+  "eslint",
+  "bashls",
+  "clangd",
+  "emmet_ls",
+  "dockerls",
+  "marksman",
+  "ts_ls",
+  "grammarly",
+  "angularls",
+  "tailwindcss",
+  "diagnosticls",
+  "rust_analyzer",
+  "jedi_language_server",
+}
 
 require("mason-lspconfig").setup({
-	ensure_installed = {
-		"efm", -- General purpose server
-		"astro", -- Astro support
-		"gopls", -- Go
-		"sqlls", -- SQL
-		"taplo", -- TOML
-		"vimls", -- Vim
-		"vuels", -- Vue
-		"yamlls", -- YAML
-		"svelte", -- Svelte
-		"jsonls", -- JSON
-		"lua_ls", -- Lua
-		"eslint", -- ESLint
-		"bashls", -- Bash
-		"clangd", -- C/C++
-		"emmet_ls", -- Emmet
-		"dockerls", -- Docker
-		"marksman", -- Markdown
-		"tsserver", -- TS/JS
-		"grammarly", -- Grammar support
-		"angularls", -- Angular support
-		"tailwindcss", -- HTML/CSS
-		"diagnosticls", -- Diagnostics
-		"rust_analyzer", -- Rust
-		"jedi_language_server", -- Python
-	},
+  ensure_installed = servers,
 })
 
-local lspMapping = require("../mapping/diagnostics")
-require("mason-lspconfig").setup_handlers({
-	-- Default configuration
-	function(server_name)
-		require("lspconfig")[server_name].setup({
-			on_attach = lspMapping.on_attach,
-			flags = lspMapping.lsp_flags,
-		})
-	end,
-	-- Lua configuration
-	["lua_ls"] = function()
-		require("lspconfig").lua_ls.setup({
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-				},
-			},
-		})
-	end,
-	-- JS/TS configuration
-	["tsserver"] = function()
-		require("lspconfig").tsserver.setup({
-			init_options = {
-				preferences = {
-					disableSuggestions = true,
-				},
-			},
-		})
-	end,
-})
+
+local defaults = {}
+
+local configs = {
+
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+      },
+    },
+  },
+
+  ts_ls = {
+    init_options = {
+      preferences = {
+        disableSuggestions = true,
+      },
+    },
+  },
+}
+
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, vim.tbl_deep_extend("force", defaults, configs[server] or {}))
+
+  vim.lsp.enable(server)
+end

@@ -3,11 +3,11 @@ local function bootstrap_pckr()
 
   if not vim.uv.fs_stat(pckr_path) then
     vim.fn.system({
-      'git',
-      'clone',
+      "git",
+      "clone",
       "--filter=blob:none",
-      'https://github.com/lewis6991/pckr.nvim',
-      pckr_path
+      "https://github.com/lewis6991/pckr.nvim",
+      pckr_path,
     })
   end
 
@@ -16,168 +16,129 @@ end
 
 bootstrap_pckr()
 
+require("pckr").add({
 
-require('pckr').add{
-  -- DIAGNOSTICS
-  "folke/lsp-colors.nvim",
-  {
-    "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-  },
+  --=========================================================
+  -- LSP CORE
+  --=========================================================
 
-  -- Ollama
-  "David-Kunz/gen.nvim",
-
-  -- LSP
   "neovim/nvim-lspconfig",
-  "mfussenegger/nvim-dap",
-  "mfussenegger/nvim-lint",
   "williamboman/mason.nvim",
-  "mhartington/formatter.nvim",
   "williamboman/mason-lspconfig.nvim",
 
-  -- MODES
-  "Iron-E/nvim-libmodal",
+  "mfussenegger/nvim-lint",
+  "mhartington/formatter.nvim",
 
-  -- START SCREEN
+  --=========================================================
+  -- AI CORE (CORRECTO)
+  --=========================================================
+
   {
-    "goolord/alpha-nvim",
+    "olimorris/codecompanion.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
-      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
   },
 
-  -- THEME
-  -- Status line
+  --=========================================================
+  -- AUTOCOMPLETE
+  --=========================================================
+
   {
-    "nvim-lualine/lualine.nvim",
+    "hrsh7th/nvim-cmp",
     requires = {
-      "kyazdani42/nvim-web-devicons",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
+      "onsails/lspkind.nvim",
     },
   },
 
-  -- Nvim
-  "norcalli/nvim-colorizer.lua",
-  "marko-cerovac/material.nvim",
+  "L3MON4D3/LuaSnip",
 
-  -- Highlight
+  --=========================================================
+  -- TREESITTER
+  --=========================================================
+
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   },
 
-  -- NAVIGATION
-  -- File explorer
-  {
-    "kyazdani42/nvim-tree.lua",
-    requires = "kyazdani42/nvim-web-devicons",
-  },
-  -- Files opened
-  "akinsho/bufferline.nvim",
-
-  -- MOTION
-  -- Navigation between windows
-  "christoomey/vim-tmux-navigator",
-  -- Navigation in files
-  "easymotion/vim-easymotion",
-
-  --INDENTATION & SYNTAX
-  -- Indentation helper (It shows the indentation of functions, etc)
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("ibl").setup()
-    end,
-  },
-  -- TypeScript syntax
-  "leafgarland/typescript-vim",
-  -- JS and JSX syntax
-  "maxmellon/vim-jsx-pretty",
-  -- JavaScript support
-  "pangloss/vim-javascript",
-  -- Syntax highlight for multiple languages
-  "sheerun/vim-polyglot",
-  -- Support to git commands
-  "tpope/vim-fugitive",
-  -- Indentation for bash scripts
-  "z0mbix/vim-shfmt",
-
-  -- UTILITIES
-  -- Markdown preview
-  {
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  },
-
-  -- IMAGE PREVIEWER
-  { "m00qek/baleia.nvim", tag = "v1.2.0" },
-  {
-    "samodostal/image.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-
-  -- Live server
-  {
-    "turbio/bracey.vim",
-    run = "npm install --prefix server",
-    cmd = "Bracey",
-  },
-
-  -- Multicursor
-  "terryma/vim-multiple-cursors",
-  -- Easy way to make comments
-  "preservim/nerdcommenter",
-  -- Color picker for css
-  "KabbAmine/vCoolor.vim",
-  -- Git diffs
-  "mhinz/vim-signify",
-  -- Show #fffffffff with colors
-  "ap/vim-css-color",
-  -- Repeat all the commands using dot key
-  "tpope/vim-repeat",
-
-  -- AUTO COMPLETE
-  -- It gives nvim a general editing configuration for identation
-  "editorconfig/editorconfig-vim",
-  -- Auto complete parentesis
-  "jiangmiao/auto-pairs",
-  -- It helps to 'CRUD' parentesis, comillas and tags
-  "tpope/vim-surround",
-  -- Auto complete tags
   "windwp/nvim-ts-autotag",
 
-  -- SNIPPETS
-  "tomtom/tlib_vim",
-  "L3MON4D3/LuaSnip",
-  "garbas/vim-snipmate",
-  "MarcWeber/vim-addon-mw-utils",
+  --=========================================================
+  -- UI CORE
+  --=========================================================
 
-  -- AUTO COMPLETE
+  "marko-cerovac/material.nvim",
+  "nvim-tree/nvim-web-devicons",
+  "nvim-lualine/lualine.nvim",
+  "akinsho/bufferline.nvim",
+  "nvim-tree/nvim-tree.lua",
+  "nvim-telescope/telescope.nvim",
+  "lukas-reineke/indent-blankline.nvim",
+
+  --=========================================================
+  -- GIT
+  --=========================================================
+
   {
-    "hrsh7th/nvim-cmp",
-    requires = {
-      "hrsh7th/cmp-git",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "onsails/lspkind.nvim",
-      "ray-x/cmp-treesitter",
-      "uga-rosa/cmp-dictionary",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
+    "lewis6991/gitsigns.nvim",
+  },
+
+  "tpope/vim-fugitive",
+
+  --=========================================================
+  -- COMMENTS (mantengo pero ya moderno)
+  --=========================================================
+
+  {
+    "numToStr/Comment.nvim",
+  },
+
+  --=========================================================
+  -- COLOR HIGHLIGHT (FIX REAL)
+  --=========================================================
+
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {
+      render = "background",
+      enable_named_colors = true,
+      enable_tailwind = true,
     },
   },
 
-  -- AUTO SAVE
-  "Pocco81/auto-save.nvim"
-}
+  --=========================================================
+  -- MOTION
+  --=========================================================
+
+  "christoomey/vim-tmux-navigator",
+  "easymotion/vim-easymotion",
+
+  --=========================================================
+  -- START SCREEN
+  --=========================================================
+
+  {
+    "goolord/alpha-nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
+
+  --=========================================================
+  -- UTILITIES
+  --=========================================================
+
+  {
+    "Pocco81/auto-save.nvim",
+  },
+
+})

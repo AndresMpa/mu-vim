@@ -11,4 +11,6 @@ require('autocommand')
 -- Plugin list
 require('plugins')
 -- Set up
-require('composition')
+vim.defer_fn(function()
+  require("composition")
+end, 0)
