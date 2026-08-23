@@ -1,7 +1,7 @@
 -- SET UP
 
 -- LSP
---require("lsp")
+require("lsp")
 
 -- VISUAL HELP
 

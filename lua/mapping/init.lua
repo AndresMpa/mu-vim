@@ -7,11 +7,14 @@ require("mapping.basis")
 -- CHAT
 require("mapping.chat")
 
--- GIT MANAGEMENT
-require("mapping.git")
-
 -- CUSTOM
 require("mapping.custom")
 
+-- GIT MANAGEMENT
+require("mapping.git")
+
 -- NAVIGATION THROUGH VIM
 require("mapping.navigation")
+
+-- NAVIGATION THROUGH VIM
+require("mapping.packageManager")

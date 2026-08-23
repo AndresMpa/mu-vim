@@ -25,12 +25,15 @@ require("pckr").add({
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
+  "mfussenegger/nvim-dap",
+  "mfussenegger/nvim-lint",
+  "mhartington/formatter.nvim",
 
   "mfussenegger/nvim-lint",
   "mhartington/formatter.nvim",
 
   --=========================================================
-  -- AI CORE (CORRECTO)
+  -- AI CORE
   --=========================================================
 
   {
@@ -68,6 +71,88 @@ require("pckr").add({
     run = ":TSUpdate",
   },
 
+  -- NAVIGATION
+  -- File explorer
+  {
+    "kyazdani42/nvim-tree.lua",
+    requires = "kyazdani42/nvim-web-devicons",
+  },
+  -- Files opened
+  "akinsho/bufferline.nvim",
+
+  -- MOTION
+  -- Navigation between windows
+  "christoomey/vim-tmux-navigator",
+  -- Navigation in files
+  "easymotion/vim-easymotion",
+
+  --INDENTATION & SYNTAX
+  -- Indentation helper (It shows the indentation of functions, etc)
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup()
+    end,
+  },
+  -- TypeScript syntax
+  "leafgarland/typescript-vim",
+  -- JS and JSX syntax
+  "maxmellon/vim-jsx-pretty",
+  -- JavaScript support
+  "pangloss/vim-javascript",
+  -- Syntax highlight for multiple languages
+  "sheerun/vim-polyglot",
+  -- Support to git commands
+  "tpope/vim-fugitive",
+  -- Indentation for bash scripts
+  "z0mbix/vim-shfmt",
+
+  -- UTILITIES
+  -- Markdown preview
+  {
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+
+  -- IMAGE PREVIEWER
+  { "m00qek/baleia.nvim", tag = "v1.2.0" },
+  {
+    "samodostal/image.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  -- Live server
+  {
+    "turbio/bracey.vim",
+    run = "pnpm install --prefix server",
+    cmd = "Bracey",
+  },
+
+  -- Multicursor
+  "terryma/vim-multiple-cursors",
+  -- Easy way to make comments
+  "preservim/nerdcommenter",
+  -- Color picker for css
+  "KabbAmine/vCoolor.vim",
+  -- Git diffs
+  "mhinz/vim-signify",
+  -- Show #fffffffff with colors
+  "ap/vim-css-color",
+  -- Repeat all the commands using dot key
+  "tpope/vim-repeat",
+
+  -- AUTO COMPLETE
+  -- It gives nvim a general editing configuration for identation
+  "editorconfig/editorconfig-vim",
+  -- Auto complete parentesis
+  "jiangmiao/auto-pairs",
+  -- It helps to 'CRUD' parentesis, comillas and tags
+  "tpope/vim-surround",
+  -- Auto complete tags
   "windwp/nvim-ts-autotag",
 
   --=========================================================
@@ -93,7 +178,7 @@ require("pckr").add({
   "tpope/vim-fugitive",
 
   --=========================================================
-  -- COMMENTS (mantengo pero ya moderno)
+  -- COMMENTS
   --=========================================================
 
   {
@@ -101,7 +186,7 @@ require("pckr").add({
   },
 
   --=========================================================
-  -- COLOR HIGHLIGHT (FIX REAL)
+  -- COLOR HIGHLIGHT
   --=========================================================
 
   {

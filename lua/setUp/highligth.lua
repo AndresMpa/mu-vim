@@ -1,12 +1,4 @@
-local ok, treesitter =
-  pcall(require, "nvim-treesitter.configs")
-
-if not ok then
-  return
-end
-
-treesitter.setup({
-
+require("nvim-treesitter").setup({
   highlight = {
     enable = true,
     disable = {},
@@ -23,23 +15,20 @@ treesitter.setup({
   },
 
   ensure_installed = {
-    "bash",
     "c",
-    "cmake",
     "cpp",
-    "css",
-    "haskell",
-    "html",
-    "java",
-    "javascript",
-    "json",
     "lua",
-    "php",
-    "python",
-    "rust",
-    "typescript",
     "vim",
+    "css",
+    "html",
+    "bash",
+    "java",
+    "rust",
+    "json",
     "yaml",
+    "python",
+    "javascript",
+    "typescript",
   },
 
   ignore_install = {},
