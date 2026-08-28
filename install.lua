@@ -32,6 +32,7 @@ local HOME = os.getenv("HOME") or ""
 local LOG_FILE = SCRIPT_DIR .. "/fails.log"
 local DEFAULT_INSTALL_DIR = HOME .. "/.config/nvim"
 local PREVIOUS_DIR = HOME .. "/.config/previous-mu-vim"
+local FONT_SOURCE = SCRIPT_DIR .. "/utilities/installation/iosevka_nerd_font.ttf"
 
 local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME")
 if XDG_DATA_HOME == nil or XDG_DATA_HOME == "" then
@@ -73,6 +74,37 @@ local function expand_path(path)
     return home .. path:sub(2)
   end
   return path
+end
+
+-- --- install_font -------------------------------------------------------
+--
+-- Copia la Nerd Font empaquetada con mu-vim al directorio de fuentes del
+-- usuario y refresca el cache (fc-cache en Linux; en mac Font Book la
+-- recoge sola, no hace falta refrescar nada). font_path = ruta absoluta
+-- al .ttf, ya resuelta por install.lua con SCRIPT_DIR.
+function M.install_font(font_path)
+  local home = os.getenv("HOME") or ""
+  local handle = io.popen("uname -s 2>/dev/null")
+  local os_name = handle and handle:read("*l") or ""
+  if handle then handle:close() end
+
+  local fonts_dir = (os_name == "Darwin") and (home .. "/Library/Fonts") or (home .. "/.local/share/fonts")
+
+  if not os.execute('mkdir -p -- "' .. fonts_dir .. '"') then
+    io.stderr:write("The fonts directory could not load: " .. fonts_dir .. "\n")
+    return false
+  end
+
+  if not os.execute('cp -- "' .. font_path .. '" "' .. fonts_dir .. '/"') then
+    io.stderr:write("[ERROR] The fonts was not added " .. fonts_dir .. "\n")
+    return false
+  end
+
+  if os_name ~= "Darwin" and has_command("fc-cache") then
+    os.execute('fc-cache -f "' .. fonts_dir .. '" >/dev/null 2>&1')
+  end
+
+  return true
 end
 
 -- --- Main ---------------------------------------------------------------
@@ -176,6 +208,12 @@ else
 end
 
 mark_as_run()
+
+if installer.install_font(FONT_SOURCE) then
+  io.write("Fuente instalada correctamente.\n")
+else
+  log_fail("No se pudo instalar la fuente Iosevka Nerd Font")
+end
 
 if FAIL_COUNT > 0 then
   io.write("It seems there were some failures (" .. FAIL_COUNT .. "), please submit an issue at:\n\n")
