@@ -108,4 +108,35 @@ function M.installDependencies(manager, packages)
   return status
 end
 
+-- --- install_font -------------------------------------------------------
+--
+-- Copia la Nerd Font empaquetada con mu-vim al directorio de fuentes del
+-- usuario y refresca el cache (fc-cache en Linux; en mac Font Book la
+-- recoge sola, no hace falta refrescar nada). font_path = ruta absoluta
+-- al .ttf, ya resuelta por install.lua con SCRIPT_DIR.
+function M.install_font(font_path)
+  local home = os.getenv("HOME") or ""
+  local handle = io.popen("uname -s 2>/dev/null")
+  local os_name = handle and handle:read("*l") or ""
+  if handle then handle:close() end
+
+  local fonts_dir = (os_name == "Darwin") and (home .. "/Library/Fonts") or (home .. "/.local/share/fonts")
+
+  if not os.execute('mkdir -p -- "' .. fonts_dir .. '"') then
+    io.stderr:write("The fonts directory could not load: " .. fonts_dir .. "\n")
+    return false
+  end
+
+  if not os.execute('cp -- "' .. font_path .. '" "' .. fonts_dir .. '/"') then
+    io.stderr:write("[ERROR] The fonts was not added " .. fonts_dir .. "\n")
+    return false
+  end
+
+  if os_name ~= "Darwin" and has_command("fc-cache") then
+    os.execute('fc-cache -f "' .. fonts_dir .. '" >/dev/null 2>&1')
+  end
+
+  return true
+end
+
 return M
