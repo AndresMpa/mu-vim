@@ -86,8 +86,8 @@ If you don't know to much about vim or nvim just follow the next steps:
 ### If you are using Linux or mac
 
 ```
-git clone https://github.com/AndresMpa/mu-vim.git
-cd mu-nvim/ && ./install.sh && exit
+git clone https://github.com/AndresMpa/mu-vim.git ~/.config/nvim
+cd ~/.config/nvim && lua install.lua
 nvim
 ```
 

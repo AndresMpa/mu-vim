@@ -33,6 +33,12 @@ local LOG_FILE = SCRIPT_DIR .. "/fails.log"
 local DEFAULT_INSTALL_DIR = HOME .. "/.config/nvim"
 local PREVIOUS_DIR = HOME .. "/.config/previous-mu-vim"
 
+local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME")
+if XDG_DATA_HOME == nil or XDG_DATA_HOME == "" then
+  XDG_DATA_HOME = HOME .. "/.local/share"
+end
+local MARKER = XDG_DATA_HOME .. "/nvim/mu-vim-installed
+
 local FAIL_COUNT = 0
 
 local function dir_exists(path)
@@ -51,6 +57,14 @@ local function log_fail(msg)
     f:close()
   end
   FAIL_COUNT = FAIL_COUNT + 1
+end
+
+local function mark_as_run()
+  local f = io.open(MARKER, "w")
+  if f then
+    f:write(tostring(os.time()))
+    f:close()
+  end
 end
 
 local function expand_path(path)
@@ -160,6 +174,8 @@ else
     log_fail("installDependencies failed for manager: " .. manager)
   end
 end
+
+mark_as_run()
 
 if FAIL_COUNT > 0 then
   io.write("It seems there were some failures (" .. FAIL_COUNT .. "), please submit an issue at:\n\n")

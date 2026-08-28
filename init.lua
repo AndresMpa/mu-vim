@@ -14,6 +14,4 @@ require('first_run').run()
 -- Plugin list
 require('plugins')
 -- Set up
-vim.defer_fn(function()
-  require("composition")
-end, 0)
+require("composition")

@@ -77,3 +77,4 @@ alpha.setup({
 	},
 	opts = {},
 })
+alpha.start(true)
