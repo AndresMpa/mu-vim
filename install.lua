@@ -42,8 +42,22 @@ local MARKER = XDG_DATA_HOME .. "/nvim/mu-vim-installed"
 
 local FAIL_COUNT = 0
 
+-- os.execute cambia de firma entre Lua 5.1/LuaJIT (devuelve el status
+-- crudo del proceso como número — SIEMPRE truthy, incluso 0) y Lua 5.2+
+-- (devuelve boolean, "exit"|"signal", código). Sin esto, cualquier
+-- `if not os.execute(cmd) then` corriendo bajo luajit nunca detecta un
+-- fallo real, y el instalador reporta éxito aunque el comando haya
+-- tronado (ej. `cp` de la fuente cuando el .ttf no existe).
+local function exec_ok(cmd)
+  local a = os.execute(cmd)
+  if type(a) == "number" then
+    return a == 0
+  end
+  return a == true
+end
+
 local function dir_exists(path)
-  return os.execute('[ -d "' .. path .. '" ]') and true or false
+  return exec_ok('[ -d "' .. path .. '" ]')
 end
 
 local function log_fail(msg)
@@ -90,7 +104,7 @@ end
 -- todavía); las llamadas a `sudo` de installDependencies más adelante
 -- reusan ese cache sin volver a pedir contraseña.
 io.write("Se necesitan permisos de administrador para instalar dependencias del sistema.\n")
-if not os.execute("sudo -v") then
+if not exec_ok("sudo -v") then
   io.stderr:write("No se pudieron validar los permisos de sudo, abortando.\n")
   os.exit(1)
 end

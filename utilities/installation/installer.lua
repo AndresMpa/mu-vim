@@ -31,20 +31,32 @@ M.EXTRA_PACKAGES = {
   { name = "stylua", desc = "Formateador de código Lua" },
 }
 
+-- Ver comentario en install.lua: os.execute bajo Lua 5.1/LuaJIT devuelve
+-- un número crudo (siempre truthy), no boolean. Esto normaliza ambos
+-- casos para que los `if not exec_ok(cmd)` de más abajo detecten fallos
+-- de verdad, sin importar con qué intérprete se corra el script.
+local function exec_ok(cmd)
+  local a = os.execute(cmd)
+  if type(a) == "number" then
+    return a == 0
+  end
+  return a == true
+end
+
 local function has_command(cmd)
-  return os.execute("command -v " .. cmd .. " >/dev/null 2>&1") and true or false
+  return exec_ok("command -v " .. cmd .. " >/dev/null 2>&1")
 end
 
 function M.install_packer()
   local home = os.getenv("HOME") or ""
   local packer_dir = home .. "/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
-  if os.execute('[ -d "' .. packer_dir .. '" ]') then
+  if exec_ok('[ -d "' .. packer_dir .. '" ]') then
     io.write("packer.nvim already present, skipping clone\n")
     return true
   end
 
-  local ok = os.execute(
+  local ok = exec_ok(
     'git clone --depth 1 https://github.com/wbthomason/packer.nvim "' .. packer_dir .. '"'
   )
   if not ok then
@@ -69,7 +81,7 @@ function M.installDependencies(manager, packages)
   local status = true
 
   if manager == "pacman" and has_command("yay") then
-    if not os.execute("yay -S --noconfirm nvim-packer-git") then
+    if not exec_ok("yay -S --noconfirm nvim-packer-git") then
       io.stderr:write("yay failed to install nvim-packer-git\n")
       status = false
     end
@@ -101,7 +113,7 @@ function M.installDependencies(manager, packages)
     return false
   end
 
-  if not os.execute(command) then
+  if not exec_ok(command) then
     status = false
   end
 
@@ -115,6 +127,11 @@ end
 -- recoge sola, no hace falta refrescar nada). font_path = ruta absoluta
 -- al .ttf, ya resuelta por install.lua con SCRIPT_DIR.
 function M.install_font(font_path)
+  if not exec_ok('[ -f "' .. font_path .. '" ]') then
+    io.stderr:write("[ERROR] Font source not found: " .. font_path .. "\n")
+    return false
+  end
+
   local home = os.getenv("HOME") or ""
   local handle = io.popen("uname -s 2>/dev/null")
   local os_name = handle and handle:read("*l") or ""
@@ -122,18 +139,18 @@ function M.install_font(font_path)
 
   local fonts_dir = (os_name == "Darwin") and (home .. "/Library/Fonts") or (home .. "/.local/share/fonts")
 
-  if not os.execute('mkdir -p -- "' .. fonts_dir .. '"') then
+  if not exec_ok('mkdir -p -- "' .. fonts_dir .. '"') then
     io.stderr:write("The fonts directory could not load: " .. fonts_dir .. "\n")
     return false
   end
 
-  if not os.execute('cp -- "' .. font_path .. '" "' .. fonts_dir .. '/"') then
+  if not exec_ok('cp -- "' .. font_path .. '" "' .. fonts_dir .. '/"') then
     io.stderr:write("[ERROR] The fonts was not added " .. fonts_dir .. "\n")
     return false
   end
 
   if os_name ~= "Darwin" and has_command("fc-cache") then
-    os.execute('fc-cache -f "' .. fonts_dir .. '" >/dev/null 2>&1')
+    exec_ok('fc-cache -f "' .. fonts_dir .. '" >/dev/null 2>&1')
   end
 
   return true

@@ -1,10 +1,4 @@
-local mason_ok, mason = pcall(require, "mason")
-if not mason_ok then
-  vim.notify("mason.nvim todavía se está instalando. Corre :PckrSync y reinicia nvim.", vim.log.levels.WARN)
-  return
-end
-
-mason.setup({
+require("mason").setup({
   PATH = "append",
 
   pip = {
@@ -53,7 +47,6 @@ local servers = {
 require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
-
 
 local defaults = {}
 
