@@ -11,7 +11,7 @@ map("n", "<Leader>gsh", ":Git show<CR>", {})
 map("n", "<Leader>gbl", ":Git blame<CR>", {})
 map("n", "<Leader>gc", ":Git commit<CR>", {})
 map("n", "<Leader>gst", ":Git status<CR>", {})
-map("n", "<Leader>gaa", ":Git add %<CR>", {})
+map("n", "<Leader>gaa", ":Git add --all<CR>", {})
 map("n", "<Leader>gap", ":Git add % -p<CR>", {})
 map("n", "<Leader>grv", ":Git remote -v<CR>", {})
 
