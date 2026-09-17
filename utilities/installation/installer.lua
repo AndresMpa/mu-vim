@@ -18,6 +18,7 @@ local M = {}
 
 M.CORE_PACKAGES = {
   "nodejs",
+  "pnpm",
   "ripgrep",
   "fd",
   "python-neovim",
@@ -25,7 +26,6 @@ M.CORE_PACKAGES = {
 }
 
 M.EXTRA_PACKAGES = {
-  { name = "pnpm", desc = "Gestor de paquetes rápido, alternativa a npm" },
   { name = "zenity", desc = "Diálogos GUI usados por algunos scripts" },
   { name = "shfmt", desc = "Formateador de scripts de shell" },
   { name = "stylua", desc = "Formateador de código Lua" },

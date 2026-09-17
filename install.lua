@@ -167,7 +167,7 @@ else
   io.write("Detected package manager: " .. manager .. "\n")
 
   -- Extras: checklist multi-selección, todo pre-marcado (como los
-  -- "optionalDependencies" que la mayoría de instaladores tipo npm traen
+  -- "optionalDependencies" que la mayoría de instaladores tipo pnpm traen
   -- activados salvo que el usuario los desmarque).
   local extra_options = {}
   for _, pkg in ipairs(installer.EXTRA_PACKAGES) do
