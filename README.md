@@ -108,6 +108,14 @@ Once you make this, open nvim then:
 <Space> + p + u
 ```
 
+## Tests
+
+Mapping contract (Current, Mini, and VimScript from this repo):
+
+```
+python3 tests/run.py --all
+```
+
 That's it, done
 
 ---

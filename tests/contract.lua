@@ -1,0 +1,81 @@
+-- Shared mapping contract. Keys are normalized: <leader>x, <c-t>, u.
+-- Flavor "current" is Lua. Flavor "vim" is Mini or VimScript.
+
+local M = {}
+
+M.shared = {
+  { key = "<leader>w", name = "save" },
+  { key = "<leader>q", name = "quit" },
+  { key = "<leader>h", name = "close buffer" },
+  { key = "<leader>j", name = "prev buffer" },
+  { key = "<leader>k", name = "next buffer" },
+  { key = "<leader>H", name = "close other buffers" },
+  { key = "<leader>vv", name = "only this window" },
+  { key = "<leader>vj", name = "split" },
+  { key = "<leader>vk", name = "vsplit" },
+  { key = "<leader><", name = "resize grow" },
+  { key = "<leader>>", name = "resize shrink" },
+  { key = "<leader>R", name = "substitute" },
+  { key = "<leader>ss", name = "easymotion" },
+  { key = "<leader>n", name = "file tree" },
+  { key = "<leader>pi", name = "plugin install" },
+  { key = "<leader>pc", name = "plugin clean" },
+  { key = "<leader>pu", name = "plugin update" },
+  { key = "<leader>gpl", name = "git pull" },
+  { key = "<leader>gps", name = "git push" },
+  { key = "<leader>gii", name = "git init" },
+  { key = "<leader>gsh", name = "git show" },
+  { key = "<leader>gbl", name = "git blame" },
+  { key = "<leader>gst", name = "git status" },
+  { key = "<leader>gc", name = "git commit" },
+  { key = "<leader>gaa", name = "git add --all" },
+  { key = "<leader>grv", name = "git remote" },
+  { key = "<leader>gsw", name = "git switch" },
+  { key = "<leader>gco", name = "git checkout" },
+  { key = "<leader>gcb", name = "git checkout -b" },
+  { key = "<leader>gll", name = "git pull origin" },
+  { key = "<leader>gpp", name = "git push origin" },
+  { key = "<leader>ggg", name = "git prompt" },
+  { key = "<leader>r", name = "color picker" },
+  { key = "<leader>hh", name = "keymap help" },
+  { key = "<leader>x", name = "run/preview file" },
+  { key = "<leader>f", name = "format" },
+  { key = "<leader>aw", name = "toggle autosave" },
+  { key = "<c-t>", name = "terminal" },
+  { key = "u", name = "redo" },
+}
+
+M.current = {
+  { key = "<leader>t", name = "telescope" },
+  { key = "<leader>tf", name = "telescope fd" },
+  { key = "<leader>tt", name = "telescope live_grep" },
+  { key = "<leader>ts", name = "telescope grep_string" },
+  { key = "<leader>mk", name = "bufferline next" },
+  { key = "<leader>mj", name = "bufferline prev" },
+  { key = "<leader>gap", name = "git add patch" },
+  { key = "<leader>gpx", name = "git push -u" },
+  { key = "j", name = "half page down" },
+  { key = "k", name = "half page up" },
+  { key = "<c-j>", name = "full page down" },
+  { key = "<c-k>", name = "full page up" },
+  { key = "fd", name = "delete fold" },
+}
+
+M.vim_family = {
+  { key = "<leader>sf", name = "blines" },
+  { key = "<leader>ff", name = "ag" },
+  { key = "<leader>ft", name = "fzf" },
+  { key = "<leader>a", name = "ack" },
+  { key = "<leader>b", name = "buffers" },
+  { key = "<leader>l", name = "list buffers" },
+  { key = "<leader>pd", name = "plug upgrade" },
+  { key = "<leader>ga", name = "git add prompt" },
+  { key = "<leader>xd", name = "django server" },
+  { key = "<leader>xv", name = "vue server" },
+  { key = "cd", name = "coc definition" },
+  { key = "ct", name = "coc type" },
+  { key = "cg", name = "coc implementation" },
+  { key = "cr", name = "coc references" },
+}
+
+return M
