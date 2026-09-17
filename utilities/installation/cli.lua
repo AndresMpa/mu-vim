@@ -1,7 +1,7 @@
 --[[
   utilities/installation/cli.lua
 
-  Widgets de terminal reutilizables al estilo "npm init": un menú de
+  Widgets de terminal reutilizables al estilo "pnpm init": un menú de
   selección única y una checklist de selección múltiple, ambos navegables
   con las flechas ↑/↓ y confirmados con Enter (la checklist además usa
   Espacio para marcar/desmarcar). También incluye un prompt de texto plano.

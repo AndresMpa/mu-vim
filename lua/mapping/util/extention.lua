@@ -38,7 +38,7 @@ local serviceActions = {
   end,
   typescript = function(extention, file)
     print("Compiling", extention, "file")
-    execute("!npx tsc %")
+    execute("!pnpm exec tsc %")
 
     print("node output " .. string.sub(file, 1, -3) .. "js")
     execute("!node " .. string.sub(file, 1, -3) .. "js")
@@ -50,11 +50,11 @@ local serviceActions = {
     execute("!lua %")
   end,
   vue = function()
-    execute("npm run start")
+    execute("!pnpm start")
     --OpenPackage()
   end,
   jsx = function()
-    execute("npm run start")
+    execute("!pnpm start")
     --OpenPackage()
   end,
   django = function()
