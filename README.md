@@ -108,6 +108,16 @@ Once you make this, open nvim then:
 <Space> + p + u
 ```
 
+## Tests
+
+Mapping contract for Current, Mini, and VimScript (Mini and VimScript have no test repos of their own):
+
+```
+./tests/run.sh
+```
+
+That uses Podman if it is installed, otherwise Docker. With Go on the host: `cd tests && go test -count=1 -parallel 8 .`
+
 That's it, done
 
 ---

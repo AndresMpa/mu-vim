@@ -5,6 +5,7 @@ require("mason").setup({
     upgrade_pip = true,
   },
 
+  -- Mason names this key "npm"; the manager we actually run is pnpm.
   npm = {
     package_manager = "pnpm",
   },

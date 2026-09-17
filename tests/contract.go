@@ -1,0 +1,81 @@
+package tests
+
+type item struct {
+	key  string
+	name string
+}
+
+var shared = []item{
+	{"<leader>w", "save"},
+	{"<leader>q", "quit"},
+	{"<leader>h", "close buffer"},
+	{"<leader>j", "prev buffer"},
+	{"<leader>k", "next buffer"},
+	{"<leader>H", "close other buffers"},
+	{"<leader>vv", "only this window"},
+	{"<leader>vj", "split"},
+	{"<leader>vk", "vsplit"},
+	{"<leader><", "resize grow"},
+	{"<leader>>", "resize shrink"},
+	{"<leader>R", "substitute"},
+	{"<leader>ss", "easymotion"},
+	{"<leader>n", "file tree"},
+	{"<leader>pi", "plugin install"},
+	{"<leader>pc", "plugin clean"},
+	{"<leader>pu", "plugin update"},
+	{"<leader>gpl", "git pull"},
+	{"<leader>gps", "git push"},
+	{"<leader>gii", "git init"},
+	{"<leader>gsh", "git show"},
+	{"<leader>gbl", "git blame"},
+	{"<leader>gst", "git status"},
+	{"<leader>gc", "git commit"},
+	{"<leader>gaa", "git add --all"},
+	{"<leader>grv", "git remote"},
+	{"<leader>gsw", "git switch"},
+	{"<leader>gco", "git checkout"},
+	{"<leader>gcb", "git checkout -b"},
+	{"<leader>gll", "git pull origin"},
+	{"<leader>gpp", "git push origin"},
+	{"<leader>ggg", "git prompt"},
+	{"<leader>r", "color picker"},
+	{"<leader>hh", "keymap help"},
+	{"<leader>x", "run/preview file"},
+	{"<leader>f", "format"},
+	{"<leader>aw", "toggle autosave"},
+	{"<c-t>", "terminal"},
+	{"u", "redo"},
+}
+
+var currentOnly = []item{
+	{"<leader>t", "telescope"},
+	{"<leader>tf", "telescope fd"},
+	{"<leader>tt", "telescope live_grep"},
+	{"<leader>ts", "telescope grep_string"},
+	{"<leader>mk", "bufferline next"},
+	{"<leader>mj", "bufferline prev"},
+	{"<leader>gap", "git add patch"},
+	{"<leader>gpx", "git push -u"},
+	{"j", "half page down"},
+	{"k", "half page up"},
+	{"<c-j>", "full page down"},
+	{"<c-k>", "full page up"},
+	{"fd", "delete fold"},
+}
+
+var vimFamily = []item{
+	{"<leader>sf", "blines"},
+	{"<leader>ff", "ag"},
+	{"<leader>ft", "fzf"},
+	{"<leader>a", "ack"},
+	{"<leader>b", "buffers"},
+	{"<leader>l", "list buffers"},
+	{"<leader>pd", "plug upgrade"},
+	{"<leader>ga", "git add prompt"},
+	{"<leader>xd", "django server"},
+	{"<leader>xv", "vue server"},
+	{"cd", "coc definition"},
+	{"ct", "coc type"},
+	{"cg", "coc implementation"},
+	{"cr", "coc references"},
+}
