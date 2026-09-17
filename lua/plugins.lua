@@ -33,18 +33,6 @@ require("pckr").add({
   "mhartington/formatter.nvim",
 
   --=========================================================
-  -- AI CORE
-  --=========================================================
-
-  {
-    "olimorris/codecompanion.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-
-  --=========================================================
   -- AUTOCOMPLETE
   --=========================================================
 

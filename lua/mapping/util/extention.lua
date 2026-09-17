@@ -83,47 +83,7 @@ setmetatable(serviceActions, {
 })
 
 extentions.HelpMapping = function()
-  local hints = {
-    "LSP Diagnostic",
-    "mt -> Trouble",
-    "mm -> Open diagnostic",
-    "md -> Disable",
-    "ma -> Enable",
-    "mj -> Go previous",
-    "mk -> Go next",
-    "M -> Infom",
-    "mf -> Go definition",
-    "mr -> Go reference",
-    "mD -> Go declaration",
-    "mca -> Code action",
-    "mi -> Go implementation",
-    "<c-m> -> Show help",
-
-    "GIT",
-    "gpl -> git pull",
-    "gps -> git push",
-    "gii -> git init",
-    "gsh -> git show",
-    "gbl -> git blame",
-    "gc -> git commit",
-    "gst -> git status",
-    "gaa -> git add <CURRENT_FILE>",
-    "gap -> git add -p <CURRENT_FILE>",
-    "grv -> git remote -v",
-    "gsw -> git switch",
-    "gco -> git checkout",
-    "gcb -> git checkout -b",
-    "gll -> git push origin <CURRENT_BRANCH>",
-    "gpp -> git pull origin <CURRENT_BRANCH>",
-
-    "CUSTOME",
-    "x -> Execute file",
-    "f -> Format file",
-    "<C-t> -> Open a terminal",
-  }
-  for index, hint in ipairs(hints) do
-    execute("!echo " .. hint)
-  end
+  vim.cmd("Telescope keymaps")
 end
 
 extentions.HandleGitCustomActions = function(action)

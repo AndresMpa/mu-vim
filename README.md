@@ -37,7 +37,6 @@ and all of them should work. You should follow this "guide" based on project bra
 - Refactor MuVim's wiki
 - Make some introduction's video
 - Improve documentation
-- Complete integration with ollama
 
 ## Guidelines
 

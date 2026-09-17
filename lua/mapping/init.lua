@@ -4,9 +4,6 @@ vim.g.mapleader = " "
 -- NATIVE VIM
 require("mapping.basis")
 
--- CHAT
-require("mapping.chat")
-
 -- CUSTOM
 require("mapping.custom")
 
