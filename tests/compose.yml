@@ -1,0 +1,15 @@
+services:
+  mappings:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    volumes:
+      - ..:/src/current:ro
+      - ../../mu-vim-mini:/src/mini:ro
+      - ../../mu-vim-vimscript:/src/vimscript:ro
+    working_dir: /src/current/tests
+    environment:
+      MUVIM_CURRENT: /src/current
+      MUVIM_MINI: /src/mini
+      MUVIM_VIMSCRIPT: /src/vimscript
+    command: ["go", "test", "-count=1", "-parallel", "8", "."]
