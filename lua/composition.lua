@@ -20,8 +20,6 @@ require("setUp.highligth")
 -- CODE
 -- Identation
 require("setUp.identation")
--- AI
-require("setUp.aiSetting")
 
 -- NAVIGATION
 -- File manager
