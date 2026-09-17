@@ -16,6 +16,18 @@ local M = {}
 
 local ESC = string.char(27)
 
+local function can_use_raw()
+  if package.config:sub(1, 1) == "\\" then
+    return false
+  end
+  local f = io.open("/dev/tty", "r")
+  if not f then
+    return false
+  end
+  f:close()
+  return true
+end
+
 local function stty(args)
   os.execute("stty " .. args .. " < /dev/tty 2>/dev/null")
 end
@@ -94,6 +106,21 @@ function M.select(question, options)
     end
   end
 
+  if not can_use_raw() then
+    io.write(question .. "\n")
+    for i, label in ipairs(labels) do
+      io.write(string.format("  %d) %s\n", i, label))
+    end
+    io.write("Choose [1]: ")
+    io.flush()
+    local answer = io.read("*l")
+    local n = tonumber(answer) or 1
+    if n < 1 or n > #labels then
+      n = 1
+    end
+    return values[n], labels[n]
+  end
+
   local index = 1
   local lines_printed = 0
 
@@ -168,6 +195,38 @@ function M.multi_select(question, options)
     else
       checked[i] = opt.checked
     end
+  end
+
+  if not can_use_raw() then
+    io.write(question .. "\n")
+    io.write("  (numbers to keep, comma-separated; empty keeps the checked defaults)\n")
+    for i, opt in ipairs(options) do
+      local mark = (opt.checked ~= false) and "x" or " "
+      local desc = opt.desc and (" — " .. opt.desc) or ""
+      io.write(string.format("  %d) [%s] %s%s\n", i, mark, opt.label, desc))
+    end
+    io.write("Keep: ")
+    io.flush()
+    local answer = io.read("*l") or ""
+    local result = {}
+    if answer:match("%S") then
+      local want = {}
+      for n in answer:gmatch("%d+") do
+        want[tonumber(n)] = true
+      end
+      for i, opt in ipairs(options) do
+        if want[i] then
+          result[#result + 1] = opt.value ~= nil and opt.value or opt.label
+        end
+      end
+    else
+      for i, opt in ipairs(options) do
+        if opt.checked ~= false then
+          result[#result + 1] = opt.value ~= nil and opt.value or opt.label
+        end
+      end
+    end
+    return result
   end
 
   local index = 1

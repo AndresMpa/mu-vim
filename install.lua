@@ -2,22 +2,21 @@
 --[[
   install.lua
 
-  Puerto de install.sh a Lua. Requiere `lua5.4` (o `lua`, `luajit`) y las
-  herramientas de siempre (`stty`, `tput`, `git`, `sudo`) ya presentes en
-  cualquier sistema donde el instalador bash original corría.
+  Installer for Linux (pacman, apt, dnf), macOS (Homebrew), and Windows (winget).
+  Needs lua (5.4 / lua / luajit) and git. sudo only on apt/dnf/pacman.
 
-  Ejecutar como: lua5.4 install.lua   (o ./install.lua si es ejecutable)
+  Run: lua install.lua
 ]]
 
 -- Permite requerir "utilities.installation.X" sin importar desde qué
 -- directorio se invoque el script (equivalente al SCRIPT_DIR de bash).
 local function script_dir()
   local source = debug.getinfo(1, "S").source:sub(2)
-  local dir = source:match("(.*/)") or "./"
+  local dir = source:match("(.*/)") or source:match("(.*\\)") or "./"
   return dir
 end
 
-local SCRIPT_DIR = script_dir():gsub("/$", "")
+local SCRIPT_DIR = script_dir():gsub("[/\\]$", "")
 package.path = SCRIPT_DIR .. "/?.lua;" .. SCRIPT_DIR .. "/?/init.lua;" .. package.path
 
 local cli = require("utilities.installation.cli")
@@ -28,17 +27,15 @@ local done = require("utilities.installation.done")
 
 -- --- Config -----------------------------------------------------------
 
-local HOME = os.getenv("HOME") or ""
+local HOME = util.home()
 local LOG_FILE = SCRIPT_DIR .. "/fails.log"
-local DEFAULT_INSTALL_DIR = HOME .. "/.config/nvim"
-local PREVIOUS_DIR = HOME .. "/.config/previous-mu-vim"
-local FONT_SOURCE = SCRIPT_DIR .. "/utilities/installation/iosevka_nerd_font.ttf"
-
-local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME")
-if XDG_DATA_HOME == nil or XDG_DATA_HOME == "" then
-  XDG_DATA_HOME = HOME .. "/.local/share"
+local DEFAULT_INSTALL_DIR = util.nvim_config_dir()
+local PREVIOUS_DIR = util.path_join(HOME, ".config", "previous-mu-vim")
+if util.is_windows() then
+  PREVIOUS_DIR = util.path_join(util.data_home(), "previous-mu-vim")
 end
-local MARKER = XDG_DATA_HOME .. "/nvim/mu-vim-installed"
+local FONT_SOURCE = SCRIPT_DIR .. "/utilities/installation/iosevka_nerd_font.ttf"
+local MARKER = util.path_join(util.data_home(), "nvim", "mu-vim-installed")
 
 local FAIL_COUNT = 0
 
@@ -57,7 +54,7 @@ local function exec_ok(cmd)
 end
 
 local function dir_exists(path)
-  return exec_ok('[ -d "' .. path .. '" ]')
+  return util.dir_exists(path)
 end
 
 local function log_fail(msg)
@@ -65,7 +62,8 @@ local function log_fail(msg)
   -- SCRIPT_DIR desaparezca a mitad de ejecución, pero si de todos modos
   -- no existe (movido, permisos, lo que sea), caemos a /tmp en vez de que
   -- todo el script muera por un log que no se pudo escribir.
-  local target_log = dir_exists(SCRIPT_DIR) and LOG_FILE or "/tmp/mu-vim-fails.log"
+  local fallback_log = (os.getenv("TEMP") and (os.getenv("TEMP") .. "/mu-vim-fails.log")) or "/tmp/mu-vim-fails.log"
+  local target_log = dir_exists(SCRIPT_DIR) and LOG_FILE or fallback_log
   local f = io.open(target_log, "a")
   if f then
     f:write(string.format("[%s] %s\n", os.date("%Y-%m-%d %H:%M:%S"), msg))
@@ -75,6 +73,7 @@ local function log_fail(msg)
 end
 
 local function mark_as_run()
+  util.mkdir_p(util.path_join(util.data_home(), "nvim"))
   local f = io.open(MARKER, "w")
   if f then
     f:write(tostring(os.time()))
@@ -103,15 +102,22 @@ end
 -- tecla. `sudo -v` solo valida/cachea las credenciales (no ejecuta nada
 -- todavía); las llamadas a `sudo` de installDependencies más adelante
 -- reusan ese cache sin volver a pedir contraseña.
-io.write("Se necesitan permisos de administrador para instalar dependencias del sistema.\n")
-if not exec_ok("sudo -v") then
-  io.stderr:write("No se pudieron validar los permisos de sudo, abortando.\n")
-  os.exit(1)
+local manager, manager_err = util.get_package_manager()
+if manager == nil then
+  io.stderr:write((manager_err or "No package manager") .. "\n")
+end
+
+if manager and util.needs_sudo(manager) then
+  io.write("Se necesitan permisos de administrador para instalar dependencias del sistema.\n")
+  if not exec_ok("sudo -v") then
+    io.stderr:write("No se pudieron validar los permisos de sudo, abortando.\n")
+    os.exit(1)
+  end
 end
 
 local INSTALL_DIR = DEFAULT_INSTALL_DIR
 
-local use_custom_dir = cli.confirm("¿Quieres usar un directorio de configuración custom? (por defecto es ~/.config/nvim)", false)
+local use_custom_dir = cli.confirm("¿Quieres usar un directorio de configuración custom? (por defecto es " .. DEFAULT_INSTALL_DIR .. ")", false)
 
 if use_custom_dir then
   local custom_path = cli.text("Escribe la ruta de tu directorio custom")
@@ -122,7 +128,7 @@ if use_custom_dir then
   end
 end
 
-if INSTALL_DIR:sub(1, 1) ~= "/" then
+if not util.is_absolute(INSTALL_DIR) then
   io.stderr:write("Resolved install path is not absolute: " .. INSTALL_DIR .. "\n")
   os.exit(1)
 end
@@ -141,15 +147,7 @@ end
 -- Hacerlo antes borraba los propios archivos del instalador a mitad de
 -- ejecución (por eso fails.log dejaba de poder escribirse después: el
 -- directorio que lo contenía acababa de ser borrado con rm -rf).
-local function realpath(path)
-  local handle = io.popen('realpath -m -- "' .. path .. '" 2>/dev/null')
-  if not handle then return path end
-  local resolved = handle:read("*l")
-  handle:close()
-  return resolved or path
-end
-
-local RESOLVED_INSTALL_DIR = realpath(INSTALL_DIR)
+local RESOLVED_INSTALL_DIR = util.realpath(INSTALL_DIR)
 
 if RESOLVED_INSTALL_DIR == SCRIPT_DIR then
   io.write("Install directory (" .. INSTALL_DIR .. ") is the directory mu-vim is running from — nothing to back up, skipping.\n")
@@ -160,30 +158,18 @@ else
   end
 end
 
-local manager, manager_err = util.get_package_manager()
 if manager == nil then
-  log_fail("Could not detect a package manager")
+  log_fail(manager_err or "Could not detect a package manager")
 else
   io.write("Detected package manager: " .. manager .. "\n")
 
-  -- Extras: checklist multi-selección, todo pre-marcado (como los
-  -- "optionalDependencies" que la mayoría de instaladores tipo pnpm traen
-  -- activados salvo que el usuario los desmarque).
   local extra_options = {}
   for _, pkg in ipairs(installer.EXTRA_PACKAGES) do
     table.insert(extra_options, { label = pkg.name, value = pkg.name, desc = pkg.desc, checked = true })
   end
   local chosen_extras = cli.multi_select("Paquetes extra a instalar (todos opcionales):", extra_options)
 
-  local packages = {}
-  for _, name in ipairs(installer.CORE_PACKAGES) do
-    table.insert(packages, name)
-  end
-  for _, name in ipairs(chosen_extras) do
-    table.insert(packages, name)
-  end
-
-  if installer.installDependencies(manager, packages) then
+  if installer.installDependencies(manager, chosen_extras) then
     done.installation_success()
   else
     log_fail("installDependencies failed for manager: " .. manager)

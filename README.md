@@ -80,9 +80,17 @@ to install some other features
 
 ## Quick Start
 
-If you don't know to much about vim or nvim just follow the next steps:
+You need Git, Lua (`lua` / `lua5.4` / `luajit`), and a package manager:
 
-### If you are using Linux or mac
+| OS | Package manager | Default config dir |
+| --- | --- | --- |
+| Linux Arch / Manjaro | pacman | `~/.config/nvim` |
+| Linux Debian / Ubuntu | apt | `~/.config/nvim` |
+| Linux Fedora / RHEL | dnf | `~/.config/nvim` |
+| macOS | [Homebrew](https://brew.sh) | `~/.config/nvim` |
+| Windows | [winget](https://aka.ms/getwinget) | `%LOCALAPPDATA%\nvim` |
+
+### Linux and macOS
 
 ```
 git clone https://github.com/AndresMpa/mu-vim.git ~/.config/nvim
@@ -90,15 +98,20 @@ cd ~/.config/nvim && lua install.lua
 nvim
 ```
 
-### If you are using Windows
+On a Mac, install Homebrew first if you do not have it. The installer uses `brew install` and does not need sudo.
+
+### Windows
 
 ```
-cd C:\Users\$USER\AppData\Local\
+cd %LOCALAPPDATA%
 move nvim nvim_old
-git clone https://github.com/AndresMpa/mu-vim.git
-move mu-nvim nvim
+git clone https://github.com/AndresMpa/mu-vim.git nvim
+cd nvim
+lua install.lua
 nvim
 ```
+
+winget installs Neovim, Node LTS, pnpm, ripgrep, and fd. If Lua is missing, `winget install DEVCOM.Lua` (or install Lua from lua.org) and rerun `lua install.lua`.
 
 Once you make this, open nvim then:
 
@@ -129,9 +142,7 @@ nvim
 :checkhealth
 ```
 
-There may be some issues on nvim that should be solve, a common one can be not having a C compiler
-(On windows) or not having some commands (Any system) such as fd; checkhealth in general should
-give you all the information you might need, but there's also a guide of troubleshooting
+`:checkhealth` is the real next step. Windows often needs a C compiler (Visual Studio Build Tools) for Treesitter. Any OS can be missing `fd` or `pnpm` until the installer finishes. There is a troubleshooting guide
 [here](https://github.com/AndresMpa/mu-vim/wiki/General-dependencies)
 
 ## Star History
