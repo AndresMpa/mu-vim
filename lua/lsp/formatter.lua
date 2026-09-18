@@ -1,37 +1,41 @@
--- Utilities for creating configurations
---local util = require("formatter.util")
+-- Space f -> :Format
+-- Python: black (replaces autopep8)
+-- JS/TS/JSON/CSS/GraphQL: biome (Rust, faster than Prettier)
+-- HTML/Markdown/Vue/Svelte/SCSS/Less/YAML: Prettier (pnpm)
+-- Shell: shfmt  Lua: stylua
 
--- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+local function biome()
+	return {
+		exe = "biome",
+		args = { "format", "--stdin-file-path", vim.api.nvim_buf_get_name(0) },
+		stdin = true,
+	}
+end
+
 require("formatter").setup({
-	-- Enable or disable logging
 	logging = true,
-	-- Set the log level
 	log_level = vim.log.levels.WARN,
-	-- All formatter configurations are opt-in
 	filetype = {
 		sh = { require("formatter.filetypes.sh").shfmt },
 
-		javascript = { require("formatter.filetypes.javascript").prettier },
-		typescript = { require("formatter.filetypes.typescript").prettier },
+		javascript = { biome },
+		typescript = { biome },
+		javascriptreact = { biome },
+		typescriptreact = { biome },
+		json = { biome },
+		css = { biome },
+		graphql = { biome },
 
 		html = { require("formatter.filetypes.html").prettier },
 		markdown = { require("formatter.filetypes.markdown").prettier },
-
-		css = { require("formatter.filetypes.css").prettier },
 		scss = { require("formatter.filetypes.css").prettier },
 		less = { require("formatter.filetypes.css").prettier },
-
 		yaml = { require("formatter.filetypes.yaml").prettier },
-		json = { require("formatter.filetypes.json").prettier },
-
 		svelte = { require("formatter.filetypes.svelte").prettier },
 		vue = { require("formatter.filetypes.javascript").prettier },
-		graphql = { require("formatter.filetypes.graphql").prettier },
 		angular = { require("formatter.filetypes.javascript").prettier },
-		javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
-		typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
 
-		python = { require("formatter.filetypes.python").autopep8 },
+		python = { require("formatter.filetypes.python").black },
 
 		lua = { require("formatter.filetypes.lua").stylua },
 		["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
