@@ -114,6 +114,8 @@ nvim
 `:checkhealth` is the real next step. Windows often needs a C compiler (Visual Studio Build Tools) for Treesitter. Any OS can be missing `fd` or `pnpm` until the installer finishes. There is a troubleshooting guide
 [here](https://github.com/AndresMpa/mu-vim/wiki/General-dependencies)
 
+`Space f` formats the buffer. Python uses **black**, JS/TS/JSON/CSS use **biome** (`pnpm add -g @biomejs/biome` under `~/.local/share/pnpm` — a system pnpm prefix is not writable). HTML, Markdown, Vue, and YAML still use Prettier. Shell uses shfmt; Lua uses stylua.
+
 ## Star History
 
 If the project is useful, a star on GitHub helps.

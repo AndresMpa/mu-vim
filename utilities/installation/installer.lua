@@ -15,6 +15,7 @@ M.EXTRA_PACKAGES = {
   { name = "zenity", desc = "GUI dialogs used by some scripts (Linux)" },
   { name = "shfmt", desc = "Shell script formatter" },
   { name = "stylua", desc = "Lua formatter" },
+  { name = "black", desc = "Python formatter (replaces autopep8)" },
 }
 
 local CORE_BY_MANAGER = {
@@ -25,10 +26,10 @@ local CORE_BY_MANAGER = {
 }
 
 local EXTRA_BY_MANAGER = {
-  pacman = { zenity = "zenity", shfmt = "shfmt", stylua = "stylua" },
-  ["apt-get"] = { zenity = "zenity", shfmt = "shfmt" },
-  dnf = { zenity = "zenity", shfmt = "shfmt" },
-  brew = { shfmt = "shfmt", stylua = "stylua" },
+  pacman = { zenity = "zenity", shfmt = "shfmt", stylua = "stylua", black = "python-black" },
+  ["apt-get"] = { zenity = "zenity", shfmt = "shfmt", black = "black" },
+  dnf = { zenity = "zenity", shfmt = "shfmt", black = "python3-black" },
+  brew = { shfmt = "shfmt", stylua = "stylua", black = "black" },
 }
 
 -- winget uses package ids, not distro names.
@@ -87,7 +88,23 @@ function M.install_packer()
   return true
 end
 
+function M.pnpm_home()
+  if util.is_windows() then
+    return util.path_join(util.data_home(), "pnpm")
+  end
+  return util.path_join(util.home(), ".local", "share", "pnpm")
+end
+
+function M.pnpm_env()
+  local home = M.pnpm_home()
+  if util.is_windows() then
+    return string.format('set PNPM_HOME=%s&& set PATH=%s;%%PATH%%&& ', home, home)
+  end
+  return string.format('PNPM_HOME="%s" PATH="%s:$PATH" ', home, home)
+end
+
 function M.ensure_pnpm()
+  util.mkdir_p(M.pnpm_home())
   if util.has_command("pnpm") then
     return true
   end
@@ -98,6 +115,28 @@ function M.ensure_pnpm()
     )
   end
   return exec_ok("curl -fsSL https://get.pnpm.io/install.sh | sh -")
+end
+
+-- Global pnpm packages go under the user prefix. A system PNPM_HOME
+-- under /usr/local is not writable and fails with "create global install dir".
+function M.ensure_formatters()
+  local status = true
+  local env = M.pnpm_env()
+  if not util.has_command("biome") then
+    io.write("Installing biome with pnpm (user prefix)\n")
+    if not exec_ok(env .. "pnpm add -g @biomejs/biome") then
+      io.stderr:write("Could not install biome with pnpm\n")
+      status = false
+    end
+  end
+  if not util.has_command("black") then
+    io.write("Installing black with pip\n")
+    if not exec_ok("pip3 install --user black") and not exec_ok("pip install --user black") then
+      io.stderr:write("Could not install black\n")
+      status = false
+    end
+  end
+  return status
 end
 
 local function install_unix_packages(manager, packages)
@@ -184,6 +223,10 @@ function M.installDependencies(manager, extra_names)
 
   if not M.ensure_pnpm() then
     io.stderr:write("Could not install pnpm\n")
+    status = false
+  end
+
+  if not M.ensure_formatters() then
     status = false
   end
 
