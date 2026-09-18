@@ -2,7 +2,7 @@
 --[[
   delete.lua
 
-  Uninstall MμVim user data. Leaves the Neovim binary (and brew/apt/dnf
+  Uninstall MμVim user data. Leaves the Neovim binary (and package manager
   packages such as node, pnpm, ripgrep) in place.
 
   Removes:
@@ -12,6 +12,7 @@
     - nvim cache and state
     - the install marker and previous-config backup
     - the Iosevka Nerd Font file this installer copied
+    - shared palettes and the last theme (~/.config/muvim)
 
   Run from the config repo:  lua delete.lua
 ]]
@@ -71,6 +72,7 @@ local data_dir = util.path_join(util.data_home(), "nvim")
 local cache_dir = util.path_join(cache_home(), "nvim")
 local state_dir = util.path_join(state_home(), "nvim")
 local previous_dir = util.path_join(HOME, ".config", "previous-mu-vim")
+local themes_dir = util.path_join(HOME, ".config", "muvim")
 if util.is_windows() then
   previous_dir = util.path_join(util.data_home(), "previous-mu-vim")
 end
@@ -80,11 +82,12 @@ local targets = {
   { path = cache_dir, why = "Neovim cache" },
   { path = state_dir, why = "Neovim state" },
   { path = previous_dir, why = "Backup of the previous config" },
+  { path = themes_dir, why = "Shared palettes and last theme (~/.config/muvim)" },
   { path = font_file(), why = "Iosevka Nerd Font copied by install.lua" },
   { path = config_dir, why = "MμVim config (this repo if you cloned it here)" },
 }
 
-io.write("This removes MμVim config, Mason, and plugins.\n")
+io.write("This removes MμVim config, Mason, plugins, and themes.\n")
 io.write("Neovim itself (the binary) is not uninstalled.\n\n")
 for _, item in ipairs(targets) do
   local mark = util.path_exists(item.path) and "*" or " "
