@@ -8,3 +8,5 @@ plugin
 spell
 pack
 .env
+
+__pycache__/
