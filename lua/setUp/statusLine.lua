@@ -1,4 +1,28 @@
-local colors = {
+local function colors_from_palette()
+	local p = vim.g.muvim_palette
+	if type(p) ~= "table" or p.bg == nil then
+		return nil
+	end
+	return {
+		bg = p.bg,
+		fg = p.fg,
+		alt_fg = p.bg,
+		branch = p.green,
+		modified = p.purple,
+		removed = p.yellow,
+		added = p.cyan,
+		filename = p.purple,
+		error = p.red,
+		warning = p.yellow,
+		status = p.bg_alt,
+		normal = p.blue,
+		insert = p.green,
+		visual = p.purple,
+		replace = p.red,
+	}
+end
+
+local colors = colors_from_palette() or {
 	bg = "#0c0e15",
 	fg = "#bbc2cf",
 	alt_fg = "#07090d",

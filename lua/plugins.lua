@@ -148,7 +148,6 @@ require("pckr").add({
   -- UI CORE
   --=========================================================
 
-  "marko-cerovac/material.nvim",
   "nvim-tree/nvim-web-devicons",
   "nvim-lualine/lualine.nvim",
   "akinsho/bufferline.nvim",
