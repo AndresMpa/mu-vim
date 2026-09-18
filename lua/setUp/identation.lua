@@ -29,9 +29,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 require("ibl").setup({
 	scope = {
-		char = "│",
+		char = "▏",
 		enabled = true,
-		show_end = false,
+		show_end = true,
 		show_start = true,
 		show_exact_scope = true,
 		injected_languages = true,
@@ -45,7 +45,7 @@ require("ibl").setup({
 		},
 	},
 	indent = {
-		char = "│",
+		char = "▏",
 		smart_indent_cap = true,
 		highlight = {
 			"IndentBlanklineIndent1",

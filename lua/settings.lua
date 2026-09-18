@@ -48,8 +48,8 @@ set.expandtab = true
 -- Prefixes
 set.completeopt = { "menu", "menuone", "noselect" }
 set.errorformat:append("%f|%l col %c|%m")
--- Hide tab arrows (default `tab:> `). indent-blankline draws the guides.
-set.listchars = { tab = "  ", space = "⋅", eol = "↴", trail = "·" }
+-- Tabs as the same bar indent-blankline uses (not the default `tab:> `).
+set.listchars = { tab = "▏ ", space = "⋅", eol = "↴", trail = "·" }
 set.list = true
 
 local disabled_built_ins = {
