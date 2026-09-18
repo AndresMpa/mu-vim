@@ -5,7 +5,7 @@ local function safe_require(mod)
   if not ok then
     vim.notify(
       string.format(
-        "mu-vim: '%s' not loaded yet. Use :Pckr Sync then exit and open again.\n%s",
+        "mu-vim: '%s' not loaded yet. Wait for :Pckr sync, then quit and reopen.\n%s",
         mod,
         err
       ),

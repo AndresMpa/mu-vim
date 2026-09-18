@@ -69,20 +69,21 @@ function M.resolve_extras(manager, chosen)
   return mapped
 end
 
-function M.install_packer()
-  local packer_dir = util.path_join(util.data_home(), "nvim", "site", "pack", "packer", "start", "packer.nvim")
+function M.install_pckr()
+  -- Same path plugins.lua uses: stdpath("data")/pckr/pckr.nvim
+  local pckr_dir = util.path_join(util.data_home(), "nvim", "pckr", "pckr.nvim")
 
-  if util.dir_exists(packer_dir) then
-    io.write("packer.nvim already present, skipping clone\n")
+  if util.dir_exists(pckr_dir) then
+    io.write("pckr.nvim already present, skipping clone\n")
     return true
   end
 
-  util.mkdir_p(packer_dir:match("(.+)[/\\][^/\\]+$") or packer_dir)
+  util.mkdir_p(pckr_dir:match("(.+)[/\\][^/\\]+$") or pckr_dir)
   local ok = exec_ok(
-    'git clone --depth 1 https://github.com/wbthomason/packer.nvim "' .. packer_dir .. '"'
+    'git clone --filter=blob:none https://github.com/lewis6991/pckr.nvim "' .. pckr_dir .. '"'
   )
   if not ok then
-    io.stderr:write("Failed to clone packer.nvim\n")
+    io.stderr:write("Failed to clone pckr.nvim\n")
     return false
   end
   return true
@@ -169,18 +170,8 @@ function M.installDependencies(manager, extra_names)
 
   local status = true
 
-  if manager == "pacman" and util.has_command("yay") then
-    if not exec_ok("yay -S --noconfirm nvim-packer-git") then
-      io.stderr:write("yay failed to install nvim-packer-git\n")
-      status = false
-    end
-  else
-    if manager == "pacman" then
-      io.stderr:write("yay not found, falling back to a manual packer.nvim clone\n")
-    end
-    if not M.install_packer() then
-      status = false
-    end
+  if not M.install_pckr() then
+    status = false
   end
 
   if manager == "winget" then

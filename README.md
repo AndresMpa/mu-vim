@@ -86,13 +86,15 @@ nvim
 
 winget installs Neovim, Node LTS, pnpm, ripgrep, and fd. If Lua is missing, `winget install DEVCOM.Lua` (or install Lua from lua.org) and rerun `lua install.lua`.
 
-Then open Neovim and run:
+Then open Neovim:
 
 ```
-:source %
-<Space> + p + i
-<Space> + p + u
+nvim
 ```
+
+The first launch installs plugins with `:Pckr sync` (mason, formatter, and the rest). That is why a brand-new config reports `module 'mason' not found` until sync finishes. When Pckr is done, quit (`:qa`) and open `nvim` again.
+
+To sync by hand later: `<Space> p i` (install) or `<Space> p u` (sync).
 
 ## Tests
 
