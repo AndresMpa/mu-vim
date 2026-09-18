@@ -1,3 +1,6 @@
+vim.g.muvim_default_colorscheme = "material"
+
+pcall(function()
 require("material").setup({
 	contrast = {
 		non_current_windows = false, -- Enable darker background for non-current windows
@@ -57,6 +60,7 @@ require("material").setup({
 
 vim.g.material_style = "deep ocean"
 vim.cmd([[colorscheme material]])
+end)
 
 -- Styles:
 -- darker
@@ -64,3 +68,8 @@ vim.cmd([[colorscheme material]])
 -- oceanic
 -- palenight
 -- deep ocean
+
+local apply = vim.fn.stdpath("config") .. "/themes/apply.vim"
+if vim.fn.filereadable(apply) == 1 then
+	vim.cmd.source(apply)
+end

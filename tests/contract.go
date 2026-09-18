@@ -43,6 +43,7 @@ var shared = []item{
 	{"<leader>x", "run/preview file"},
 	{"<leader>f", "format"},
 	{"<leader>aw", "toggle autosave"},
+	{"<leader>th", "cycle theme"},
 	{"<leader>l", "list buffers"},
 	{"<c-t>", "terminal"},
 	{"u", "redo"},
