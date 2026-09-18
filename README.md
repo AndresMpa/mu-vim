@@ -93,7 +93,7 @@ On Windows, run `lua delete.lua` from `%LOCALAPPDATA%\nvim`.
 ./tests/run.sh
 ```
 
-Podman if present, otherwise Docker. On the host: `cd tests && go test -count=1 -parallel 8 .` Mapping tests also cover Mini and VimScript. Voice for READMEs: [WRITING.md](./WRITING.md).
+Podman if present, otherwise Docker. On the host: `cd tests && go test -count=1 -parallel 8 .` Mapping tests also cover Mini and VimScript.
 
 ## Star History
 
