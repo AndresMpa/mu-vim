@@ -73,14 +73,14 @@ local function process_sections(sections)
 	for name, section in pairs(sections) do
 		local left = name:sub(9, 10) < "x"
 		for pos = 1, name ~= "lualine_z" and #section or #section - 1 do
-			table.insert(section, pos * 2, { empty, color = { fg = colors.fg, bg = colors.bg } })
+			table.insert(section, pos * 2, { empty, color = { fg = colors.bg, bg = colors.bg } })
 		end
 		for id, comp in ipairs(section) do
 			if type(comp) ~= "table" then
 				comp = { comp }
 				section[id] = comp
 			end
-			comp.separator = left and { right = "" } or { left = "" }
+			comp.separator = left and { right = "" } or { left = "" }
 		end
 	end
 	return sections
@@ -107,11 +107,14 @@ local function modified()
 	return ""
 end
 
+vim.api.nvim_set_hl(0, "StatusLine", { fg = colors.fg, bg = colors.bg })
+vim.api.nvim_set_hl(0, "StatusLineNC", { fg = colors.fg, bg = colors.bg })
+
 require("lualine").setup({
 	options = {
 		theme = theme,
 		component_separators = "",
-		section_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 	},
 	sections = process_sections({
 		lualine_a = { "mode" },
