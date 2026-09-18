@@ -418,7 +418,7 @@ endfunction
 function! MuvimApplyTheme(name, ...) abort
   let quiet = a:0 && a:1
   if a:name ==# ''
-    echo 'Themes: ' . join(MuvimThemeNames(), ', ')
+    call MuvimThemePicker()
     return
   endif
   if a:name ==# 'none'
@@ -439,15 +439,252 @@ function! MuvimApplyTheme(name, ...) abort
 endfunction
 
 function! MuvimCycleTheme() abort
+  call MuvimThemePicker()
+endfunction
+
+let s:picker = {}
+
+function! s:picker_saved_name() abort
+  if filereadable(s:active)
+    let lines = readfile(s:active, '', 1)
+    if !empty(lines)
+      let name = substitute(lines[0], '^\s*\|\s*$', '', 'g')
+      if name !=# ''
+        return name
+      endif
+    endif
+  endif
+  return s:default_name()
+endfunction
+
+function! s:picker_restyle() abort
+  if !has('nvim')
+    return
+  endif
+  let win = get(s:picker, 'win', 0)
+  if win && nvim_win_is_valid(win)
+    call nvim_set_option_value('winhighlight',
+          \ 'Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder',
+          \ {'win': win})
+    call nvim_set_option_value('cursorline', v:true, {'win': win})
+  endif
+endfunction
+
+function! s:picker_line_name() abort
+  return substitute(getline('.'), '^[ *]*', '', '')
+endfunction
+
+function! s:picker_preview() abort
+  if get(s:picker, 'closing', 0)
+    return
+  endif
+  let name = s:picker_line_name()
+  if name ==# '' || name ==# get(s:picker, 'preview', '')
+    return
+  endif
+  let s:picker.preview = name
+  call s:load(name, 1)
+  call s:picker_restyle()
+endfunction
+
+function! s:picker_mouse() abort
+  if get(s:picker, 'closing', 0) || !exists('*getmousepos')
+    return
+  endif
+  let m = getmousepos()
+  if m.winid != get(s:picker, 'win', 0) || m.line < 1
+    return
+  endif
+  if line('.') != m.line
+    noautocmd call cursor(m.line, 1)
+  endif
+  call s:picker_preview()
+endfunction
+
+function! s:picker_finish(save) abort
+  if get(s:picker, 'closing', 0)
+    return
+  endif
+  let s:picker.closing = 1
+  let name = get(s:picker, 'preview', '')
+  let saved = get(s:picker, 'saved', s:default_name())
+  if exists('+mousemoveevent') && has_key(s:picker, 'old_move')
+    let &mousemoveevent = s:picker.old_move
+  endif
+  if has('nvim') && get(s:picker, 'win', 0) && nvim_win_is_valid(s:picker.win)
+    call nvim_win_close(s:picker.win, v:true)
+  endif
+  if a:save && name !=# ''
+    call s:persist(name)
+    echo 'MμVim theme: ' . name
+  else
+    call s:load(saved, 1)
+  endif
+  let s:picker = {}
+endfunction
+
+function! s:picker_confirm() abort
+  call s:picker_preview()
+  call s:picker_finish(1)
+endfunction
+
+function! s:picker_cancel() abort
+  call s:picker_finish(0)
+endfunction
+
+function! s:picker_nvim(names, current) abort
+  let lines = []
+  let start = 1
+  let i = 0
+  for n in a:names
+    let i += 1
+    if n ==# a:current
+      call add(lines, '* ' . n)
+      let start = i
+    else
+      call add(lines, '  ' . n)
+    endif
+  endfor
+  let buf = nvim_create_buf(v:false, v:true)
+  call nvim_buf_set_lines(buf, 0, -1, v:false, lines)
+  call nvim_buf_set_option(buf, 'modifiable', v:false)
+  call nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  let width = 28
+  for n in a:names
+    let width = max([width, strdisplaywidth(n) + 4])
+  endfor
+  let width = min([width, &columns - 4])
+  let height = min([len(lines), max([8, &lines / 2])])
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'width': width,
+        \ 'height': height,
+        \ 'row': max([0, (&lines - height) / 2]),
+        \ 'col': max([0, (&columns - width) / 2]),
+        \ 'style': 'minimal',
+        \ 'border': 'rounded',
+        \ }
+  try
+    let opts.title = ' Themes '
+    let opts.title_pos = 'center'
+  catch
+  endtry
+  let win = nvim_open_win(buf, v:true, opts)
+  let s:picker.buf = buf
+  let s:picker.win = win
+  call nvim_win_set_cursor(win, [start, 0])
+  setlocal cursorline nowrap nonumber norelativenumber signcolumn=no
+  nnoremap <buffer> <silent> <CR> :call <SID>picker_confirm()<CR>
+  nnoremap <buffer> <silent> <Esc> :call <SID>picker_cancel()<CR>
+  nnoremap <buffer> <silent> q :call <SID>picker_cancel()<CR>
+  nnoremap <buffer> <silent> <C-c> :call <SID>picker_cancel()<CR>
+  augroup MuvimThemePicker
+    autocmd! * <buffer>
+    autocmd CursorMoved <buffer> call s:picker_preview()
+  augroup END
+  if exists('+mousemoveevent') && exists('##MouseMove')
+    let s:picker.old_move = &mousemoveevent
+    set mousemoveevent
+    autocmd MuvimThemePicker MouseMove * call s:picker_mouse()
+  endif
+  call s:picker_restyle()
+  call s:picker_preview()
+endfunction
+
+function! s:picker_vim_lines() abort
+  let lines = []
+  let i = 0
+  for n in s:picker.names
+    if i == s:picker.idx
+      call add(lines, '* ' . n)
+    else
+      call add(lines, '  ' . n)
+    endif
+    let i += 1
+  endfor
+  return lines
+endfunction
+
+function! s:picker_vim_filter(id, key) abort
+  let last = len(s:picker.names) - 1
+  if a:key ==# 'j' || a:key ==# "\<Down>"
+    let s:picker.idx = min([s:picker.idx + 1, last])
+  elseif a:key ==# 'k' || a:key ==# "\<Up>"
+    let s:picker.idx = max([s:picker.idx - 1, 0])
+  elseif a:key ==# "\<CR>"
+    call popup_close(a:id, 1)
+    return 1
+  elseif a:key ==# "\<Esc>" || a:key ==# 'q' || a:key ==# "\<C-c>"
+    call popup_close(a:id, 0)
+    return 1
+  else
+    return 0
+  endif
+  call popup_settext(a:id, s:picker_vim_lines())
+  call win_execute(a:id, 'call cursor(' . (s:picker.idx + 1) . ', 1)')
+  let s:picker.preview = s:picker.names[s:picker.idx]
+  call s:load(s:picker.preview, 1)
+  return 1
+endfunction
+
+function! s:picker_vim_done(id, result) abort
+  if a:result == 1 && get(s:picker, 'preview', '') !=# ''
+    call s:persist(s:picker.preview)
+    echo 'MμVim theme: ' . s:picker.preview
+  else
+    call s:load(get(s:picker, 'saved', s:default_name()), 1)
+  endif
+  let s:picker = {}
+endfunction
+
+function! s:picker_vim(names, current) abort
+  let s:picker.names = a:names
+  let s:picker.idx = index(a:names, a:current)
+  if s:picker.idx < 0
+    let s:picker.idx = 0
+  endif
+  let s:picker.preview = a:names[s:picker.idx]
+  let win = popup_create(s:picker_vim_lines(), {
+        \ 'title': ' Themes ',
+        \ 'pos': 'center',
+        \ 'minwidth': 28,
+        \ 'maxheight': max([8, &lines / 2]),
+        \ 'border': [],
+        \ 'padding': [0, 1, 0, 1],
+        \ 'filter': function('s:picker_vim_filter'),
+        \ 'callback': function('s:picker_vim_done'),
+        \ 'cursorline': 1,
+        \ 'highlight': 'Pmenu',
+        \ })
+  let s:picker.win = win
+  call win_execute(win, 'call cursor(' . (s:picker.idx + 1) . ', 1)')
+  call s:load(s:picker.preview, 1)
+endfunction
+
+function! MuvimThemePicker() abort
   let names = MuvimThemeNames()
   if empty(names)
     echo 'No MμVim themes'
     return
   endif
-  let cur = get(g:, 'colors_name', '')
-  let idx = index(names, cur)
-  let next = names[(idx + 1) % len(names)]
-  call MuvimApplyTheme(next)
+  if get(s:picker, 'win', 0)
+    return
+  endif
+  let s:picker = {
+        \ 'saved': s:picker_saved_name(),
+        \ 'preview': '',
+        \ 'closing': 0,
+        \ 'win': 0,
+        \ }
+  if has('nvim')
+    call s:picker_nvim(names, s:picker.saved)
+  elseif exists('*popup_create')
+    call s:picker_vim(names, s:picker.saved)
+  else
+    let cur = get(g:, 'colors_name', '')
+    let idx = index(names, cur)
+    call MuvimApplyTheme(names[(idx + 1) % len(names)])
+  endif
 endfunction
 
 function! MuvimThemeRestore() abort
@@ -464,6 +701,7 @@ function! MuvimThemeRestore() abort
 endfunction
 
 command! -nargs=? -complete=custom,MuvimThemeComplete MuvimTheme call MuvimApplyTheme(<q-args>)
-nnoremap <silent> <Plug>(MuvimCycleTheme) :call MuvimCycleTheme()<CR>
+nnoremap <silent> <Plug>(MuvimThemePicker) :call MuvimThemePicker()<CR>
+nnoremap <silent> <Plug>(MuvimCycleTheme) :call MuvimThemePicker()<CR>
 
 call MuvimThemeRestore()

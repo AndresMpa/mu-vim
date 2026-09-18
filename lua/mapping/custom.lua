@@ -16,7 +16,7 @@ map("n", "<leader>f", ":Format<CR>", {})
 
 -- Extentions
 map("n", "<Leader>hh", ":Telescope keymaps<CR>", {})
-map("n", "<Leader>th", ":call MuvimCycleTheme()<CR>", {})
+map("n", "<Leader>th", ":call MuvimThemePicker()<CR>", {})
 
 map("n", "<Leader>x", function()
 	custom.OpenFileServer()
