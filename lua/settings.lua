@@ -48,8 +48,8 @@ set.expandtab = true
 -- Prefixes
 set.completeopt = { "menu", "menuone", "noselect" }
 set.errorformat:append("%f|%l col %c|%m")
-set.listchars:append("space:⋅")
-set.listchars:append("eol:↴")
+-- Hide tab arrows (default `tab:> `). indent-blankline draws the guides.
+set.listchars = { tab = "  ", space = "⋅", eol = "↴", trail = "·" }
 set.list = true
 
 local disabled_built_ins = {
