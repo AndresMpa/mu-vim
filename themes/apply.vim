@@ -150,8 +150,27 @@ function! s:paint(p) abort
   call s:hi('TelescopeSelection', fg, bg_alt, '')
   call s:hi('NvimTreeNormal', fg, bg, '')
   call s:hi('NvimTreeFolderName', blue, '', '')
+  call s:hi('NvimTreeOpenedFolderName', blue, '', 'bold')
+  call s:hi('NvimTreeEmptyFolderName', dim, '', '')
+  call s:hi('NvimTreeFolderIcon', blue, '', '')
+  call s:hi('NvimTreeIndentMarker', dim, '', '')
+  call s:hi('NvimTreeSymlink', cyan, '', '')
+  call s:hi('NvimTreeExecFile', green, '', '')
+  call s:hi('NvimTreeImageFile', purple, '', '')
+  call s:hi('NvimTreeGitDirty', yellow, '', '')
+  call s:hi('NvimTreeGitNew', green, '', '')
+  call s:hi('NvimTreeGitDeleted', red, '', '')
   call s:hi('NERDTreeDir', blue, '', '')
+  call s:hi('NERDTreeDirSlash', dim, '', '')
+  call s:hi('NERDTreeOpenable', blue, '', '')
+  call s:hi('NERDTreeClosable', blue, '', '')
   call s:hi('NERDTreeFile', fg, '', '')
+  call s:hi('NERDTreeExecFile', green, '', '')
+  call s:hi('NERDTreeLinkFile', cyan, '', '')
+  call s:hi('NERDTreeCWD', accent, '', 'bold')
+  call s:hi('NERDTreeFlags', orange, '', '')
+  call s:hi('WebDevIconsDefaultFolderSymbol', blue, '', '')
+  call s:hi('WebDevIconsDefaultFileSymbol', fg, '', '')
   call s:hi('StartifyHeader', blue, '', '')
   call s:hi('StartifySection', purple, '', 'bold')
   call s:hi('StartifyPath', dim, '', '')
@@ -194,8 +213,106 @@ function! s:paint(p) abort
   let g:terminal_color_14 = accent
   let g:terminal_color_15 = fg
 
+  call s:paint_icons(a:p, red, orange, yellow, green, cyan, blue, purple, accent, fg)
   call s:airline(a:p, bg, bg_alt, fg, dim, red, yellow, green, blue, purple)
   call s:refresh_lualine()
+endfunction
+
+function! s:paint_icons(p, red, orange, yellow, green, cyan, blue, purple, accent, fg) abort
+  let by_ext = {
+        \ 'js': a:yellow, 'mjs': a:yellow, 'cjs': a:yellow, 'jsx': a:cyan,
+        \ 'ts': a:blue, 'tsx': a:blue,
+        \ 'vue': a:green, 'svelte': a:orange,
+        \ 'html': a:orange, 'htm': a:orange,
+        \ 'css': a:purple, 'scss': a:purple, 'sass': a:purple, 'less': a:purple,
+        \ 'json': a:yellow, 'jsonc': a:yellow,
+        \ 'lua': a:blue, 'vim': a:green, 'vimrc': a:green,
+        \ 'py': a:yellow, 'rb': a:red, 'go': a:cyan, 'rs': a:orange,
+        \ 'c': a:blue, 'h': a:blue, 'cpp': a:blue, 'hpp': a:blue,
+        \ 'java': a:orange, 'kt': a:purple,
+        \ 'md': a:fg, 'markdown': a:fg,
+        \ 'yml': a:red, 'yaml': a:red, 'toml': a:orange, 'xml': a:orange,
+        \ 'sh': a:green, 'bash': a:green, 'zsh': a:green, 'fish': a:green,
+        \ 'git': a:red, 'gitignore': a:red, 'gitattributes': a:red,
+        \ 'dockerfile': a:cyan, 'docker': a:cyan, 'lock': a:fg,
+        \ 'svg': a:accent, 'png': a:purple, 'jpg': a:purple, 'jpeg': a:purple,
+        \ 'gif': a:purple, 'webp': a:purple,
+        \ 'txt': a:fg, 'default': a:fg,
+        \ }
+  for [ext, color] in items(by_ext)
+    let name = toupper(ext[0]) . ext[1:]
+    call s:hi('DevIcon' . name, color, '', '')
+  endfor
+  call s:hi('DevIconDefault', a:fg, '', '')
+  call s:hi('GlyphPalette1', a:red, '', '')
+  call s:hi('GlyphPalette2', a:green, '', '')
+  call s:hi('GlyphPalette3', a:yellow, '', '')
+  call s:hi('GlyphPalette4', a:blue, '', '')
+  call s:hi('GlyphPalette5', a:purple, '', '')
+  call s:hi('GlyphPalette6', a:cyan, '', '')
+  call s:hi('GlyphPalette7', a:fg, '', '')
+  call s:hi('GlyphPalette9', a:orange, '', '')
+
+  if has('nvim')
+    lua << EOF
+    local ok, devicons = pcall(require, "nvim-web-devicons")
+    local p = vim.g.muvim_palette
+    if ok and type(p) == "table" then
+      local map = {
+        js = p.yellow, mjs = p.yellow, cjs = p.yellow, jsx = p.cyan,
+        javascript = p.yellow, typescript = p.blue, ts = p.blue, tsx = p.blue,
+        vue = p.green, svelte = p.orange,
+        html = p.orange, htm = p.orange,
+        css = p.purple, scss = p.purple, sass = p.purple, less = p.purple,
+        json = p.yellow, jsonc = p.yellow,
+        lua = p.blue, vim = p.green,
+        py = p.yellow, python = p.yellow, rb = p.red, ruby = p.red,
+        go = p.cyan, rs = p.orange, rust = p.orange,
+        c = p.blue, h = p.blue, cpp = p.blue, hpp = p.blue,
+        java = p.orange, kt = p.purple,
+        md = p.fg, markdown = p.fg,
+        yml = p.red, yaml = p.red, toml = p.orange, xml = p.orange,
+        sh = p.green, bash = p.green, zsh = p.green, fish = p.green,
+        git = p.red, gitignore = p.red, gitattributes = p.red,
+        dockerfile = p.cyan, docker = p.cyan, lock = p.dim or p.fg,
+        svg = p.accent, png = p.purple, jpg = p.purple, jpeg = p.purple,
+        gif = p.purple, webp = p.purple, txt = p.fg, default = p.fg,
+      }
+      local wheel = { p.red, p.orange, p.yellow, p.green, p.cyan, p.blue, p.purple, p.accent }
+      local function color_for(key, spec)
+        local k = string.lower(key or "")
+        local n = string.lower((spec and (spec.name or spec.cterm_color)) or "")
+        if map[k] then return map[k] end
+        if map[n] then return map[n] end
+        local sum = 0
+        for i = 1, #k do
+          sum = sum + k:byte(i)
+        end
+        return wheel[(sum % #wheel) + 1]
+      end
+      local icons = devicons.get_icons()
+      if icons then
+        local overrides = {}
+        for key, spec in pairs(icons) do
+          if type(spec) == "table" then
+            overrides[key] = {
+              icon = spec.icon,
+              color = color_for(key, spec),
+              cterm_color = spec.cterm_color,
+              name = spec.name,
+            }
+          end
+        end
+        devicons.set_icon(overrides)
+        pcall(devicons.set_up_highlights)
+      end
+    end
+    if package.loaded["setUp.buffer"] then
+      package.loaded["setUp.buffer"] = nil
+      pcall(require, "setUp.buffer")
+    end
+EOF
+  endif
 endfunction
 
 function! s:airline(p, bg, bg_alt, fg, dim, red, yellow, green, blue, purple) abort
