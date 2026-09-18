@@ -354,14 +354,33 @@ function M.load(name)
 end
 
 function M.persist(name)
-	vim.fn.mkdir(user_themes, "p")
+	local dir = vim.fn.fnamemodify(active_file, ":h")
+	if vim.fn.isdirectory(dir) == 0 then
+		vim.fn.mkdir(dir, "p")
+	end
+	if vim.fn.isdirectory(user_themes) == 0 then
+		vim.fn.mkdir(user_themes, "p")
+	end
 	if not name or name == "" then
 		if vim.fn.filereadable(active_file) == 1 then
 			vim.fn.delete(active_file)
 		end
-		return
+		return true
 	end
-	vim.fn.writefile({ name }, active_file)
+	local ok = vim.fn.writefile({ name }, active_file)
+	if ok ~= 0 then
+		local f = io.open(active_file, "w")
+		if f then
+			f:write(name .. "\n")
+			f:close()
+			ok = 0
+		end
+	end
+	if ok ~= 0 then
+		vim.notify("Could not save theme to " .. active_file, vim.log.levels.ERROR)
+		return false
+	end
+	return true
 end
 
 function M.saved_name()
