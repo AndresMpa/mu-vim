@@ -2,13 +2,7 @@
 -- :Pckr sync still opens an editor instead of aborting.
 
 local function try(mod)
-  local ok, err = pcall(require, mod)
-  if not ok then
-    vim.notify(
-      string.format("mu-vim: %s not ready yet (%s)", mod, err:match("^[^\n]+") or err),
-      vim.log.levels.WARN
-    )
-  end
+  pcall(require, mod)
 end
 
 try("lsp")
