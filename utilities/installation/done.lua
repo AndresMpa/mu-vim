@@ -1,7 +1,7 @@
 --[[
   utilities/installation/done.lua
 
-  Puerto de utilities/installation/done.sh.
+  Port of done.sh.
 ]]
 
 local M = {}
@@ -25,10 +25,7 @@ local function right_justify(text, field_width)
   return string.rep(" ", pad) .. text
 end
 
--- `info` puede traer saltos de línea embebidos. printf "%*s" con un string
--- multilínea solo rellena la PRIMERA línea y deja las demás pegadas a la
--- columna 0 — el bash original ya se comportaba así, así que dividimos
--- por línea y justificamos cada una para conservar exactamente ese efecto.
+-- Split multiline info so each line is justified, matching the bash installer.
 local function print_centered_message(title, info)
   local width = term_width()
   local shift = math.floor((display_len(title) + width) / 8)

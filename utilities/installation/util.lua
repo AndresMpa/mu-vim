@@ -203,24 +203,24 @@ function M.replace_old(target, backup_dir)
 
   while true do
     local keep = cli.confirm(
-      "Existe configuración previa en " .. target .. ". ¿Quieres conservarla como backup?",
+      "A previous config exists at " .. target .. ". Keep it as a backup?",
       true
     )
 
     if keep then
       local parent = backup_dir:match("(.+)[/\\]") or "."
       if not M.mkdir_p(parent) then
-        io.stderr:write("No se pudo crear el directorio padre de " .. backup_dir .. "\n")
+        io.stderr:write("Could not create the parent directory of " .. backup_dir .. "\n")
         return false
       end
       if M.path_exists(backup_dir) then
-        io.stderr:write("El destino del backup ya existe: " .. backup_dir .. "\n")
+        io.stderr:write("Backup destination already exists: " .. backup_dir .. "\n")
         return false
       end
-      io.write("Respaldando configuración existente en " .. backup_dir .. "\n")
+      io.write("Backing up the existing config to " .. backup_dir .. "\n")
       return M.mv(target, backup_dir)
     else
-      io.write("Eliminando configuración previa\n")
+      io.write("Removing the previous config\n")
       return M.rm_rf(target)
     end
   end

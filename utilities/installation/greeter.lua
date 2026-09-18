@@ -1,10 +1,8 @@
 --[[
   utilities/installation/greeter.lua
 
-  Puerto de utilities/installation/greeter.sh. Mantiene las mismas fórmulas
-  de centrado del original (title_shift usa /8, banner_shift usa /2 — no es
-  un typo, así calculaba el bash original y lo dejamos igual para que el
-  resultado visual no cambie).
+  Port of greeter.sh. Centering uses the original /8 and /2 shifts so the
+  banner looks the same as the bash installer.
 ]]
 
 local M = {}
@@ -27,8 +25,7 @@ local BANNER = {
   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 }
 
--- Ancho de terminal vía `tput cols`; si no hay tty o falla, 80 por defecto
--- (mismo fallback que el bash original).
+-- Terminal width via tput cols; 80 if there is no tty.
 local function term_width()
   local handle = io.popen("tput cols 2>/dev/null < /dev/tty", "r")
   if not handle then return 80 end
@@ -38,9 +35,7 @@ local function term_width()
   return width or 80
 end
 
--- Longitud en caracteres UTF-8 (no bytes) para que el braille art del
--- banner, cuyos glifos ocupan varios bytes cada uno, se centre igual que
--- en bash bajo un locale UTF-8.
+-- UTF-8 character length so the braille banner centers the same as in bash.
 local function display_len(s)
   return utf8.len(s) or #s
 end

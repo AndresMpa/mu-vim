@@ -8,8 +8,7 @@
   Run: lua install.lua
 ]]
 
--- Permite requerir "utilities.installation.X" sin importar desde qué
--- directorio se invoque el script (equivalente al SCRIPT_DIR de bash).
+-- Allow require("utilities.installation.X") regardless of cwd.
 local function script_dir()
   local source = debug.getinfo(1, "S").source:sub(2)
   local dir = source:match("(.*/)") or source:match("(.*\\)") or "./"
@@ -39,12 +38,8 @@ local MARKER = util.path_join(util.data_home(), "nvim", "mu-vim-installed")
 
 local FAIL_COUNT = 0
 
--- os.execute cambia de firma entre Lua 5.1/LuaJIT (devuelve el status
--- crudo del proceso como número — SIEMPRE truthy, incluso 0) y Lua 5.2+
--- (devuelve boolean, "exit"|"signal", código). Sin esto, cualquier
--- `if not os.execute(cmd) then` corriendo bajo luajit nunca detecta un
--- fallo real, y el instalador reporta éxito aunque el comando haya
--- tronado (ej. `cp` de la fuente cuando el .ttf no existe).
+-- Lua 5.1/LuaJIT returns a raw status number from os.execute (always
+-- truthy, even 0). Lua 5.2+ returns a boolean. Normalize both.
 local function exec_ok(cmd)
   local a = os.execute(cmd)
   if type(a) == "number" then
@@ -58,10 +53,7 @@ local function dir_exists(path)
 end
 
 local function log_fail(msg)
-  -- Defensa en profundidad: el guard de más abajo debería evitar que
-  -- SCRIPT_DIR desaparezca a mitad de ejecución, pero si de todos modos
-  -- no existe (movido, permisos, lo que sea), caemos a /tmp en vez de que
-  -- todo el script muera por un log que no se pudo escribir.
+  -- If SCRIPT_DIR is gone mid-run, log to the system temp directory.
   local fallback_log = (os.getenv("TEMP") and (os.getenv("TEMP") .. "/mu-vim-fails.log")) or "/tmp/mu-vim-fails.log"
   local target_log = dir_exists(SCRIPT_DIR) and LOG_FILE or fallback_log
   local f = io.open(target_log, "a")
@@ -89,40 +81,29 @@ local function expand_path(path)
   return path
 end
 
--- --- Main ---------------------------------------------------------------
--- (mismo orden que install.sh: preguntar dir → validar → greeter → guard
--- de directorio/replace_old → gestor de paquetes)
-
--- Sudo se necesita más adelante para instalar los paquetes del sistema.
--- Lo pedimos ACÁ, con la terminal todavía en modo normal (cooked), antes
--- de que cli.lua toque `stty` para cualquier prompt interactivo. Pedirlo
--- más tarde —a mitad de una checklist en raw mode, compitiendo por
--- /dev/tty con nuestros propios prompts— es lo que hacía que la terminal
--- quedara en un estado roto y reescribiera contenido viejo con cada
--- tecla. `sudo -v` solo valida/cachea las credenciales (no ejecuta nada
--- todavía); las llamadas a `sudo` de installDependencies más adelante
--- reusan ese cache sin volver a pedir contraseña.
+-- Ask for sudo while the terminal is still in cooked mode, before any
+-- stty raw prompts. Later sudo calls reuse the cached credentials.
 local manager, manager_err = util.get_package_manager()
 if manager == nil then
   io.stderr:write((manager_err or "No package manager") .. "\n")
 end
 
 if manager and util.needs_sudo(manager) then
-  io.write("Se necesitan permisos de administrador para instalar dependencias del sistema.\n")
+  io.write("Administrator privileges are required to install system packages.\n")
   if not exec_ok("sudo -v") then
-    io.stderr:write("No se pudieron validar los permisos de sudo, abortando.\n")
+    io.stderr:write("Could not validate sudo credentials. Aborting.\n")
     os.exit(1)
   end
 end
 
 local INSTALL_DIR = DEFAULT_INSTALL_DIR
 
-local use_custom_dir = cli.confirm("¿Quieres usar un directorio de configuración custom? (por defecto es " .. DEFAULT_INSTALL_DIR .. ")", false)
+local use_custom_dir = cli.confirm("Use a custom config directory? (default is " .. DEFAULT_INSTALL_DIR .. ")", false)
 
 if use_custom_dir then
-  local custom_path = cli.text("Escribe la ruta de tu directorio custom")
+  local custom_path = cli.text("Enter the path of your custom directory")
   if custom_path == nil or custom_path == "" then
-    io.write("No se dio ninguna ruta, usando la ruta por defecto: " .. DEFAULT_INSTALL_DIR .. "\n")
+    io.write("No path given, using the default: " .. DEFAULT_INSTALL_DIR .. "\n")
   else
     INSTALL_DIR = expand_path(custom_path)
   end
@@ -140,13 +121,7 @@ else
   log_fail("Something went wrong while greeting")
 end
 
--- SAFETY GUARD: si la ruta de instalación resuelta es el mismo directorio
--- desde el que corre este script (el caso normal cuando mu-vim se clona
--- directo en ~/.config/nvim), replace_old NO debe tocarla. Ese directorio
--- YA ES la nueva config — no es una "config previa" que mover o borrar.
--- Hacerlo antes borraba los propios archivos del instalador a mitad de
--- ejecución (por eso fails.log dejaba de poder escribirse después: el
--- directorio que lo contenía acababa de ser borrado con rm -rf).
+-- If we are already running from the install directory, do not move it.
 local RESOLVED_INSTALL_DIR = util.realpath(INSTALL_DIR)
 
 if RESOLVED_INSTALL_DIR == SCRIPT_DIR then
@@ -167,7 +142,7 @@ else
   for _, pkg in ipairs(installer.EXTRA_PACKAGES) do
     table.insert(extra_options, { label = pkg.name, value = pkg.name, desc = pkg.desc, checked = true })
   end
-  local chosen_extras = cli.multi_select("Paquetes extra a instalar (todos opcionales):", extra_options)
+  local chosen_extras = cli.multi_select("Optional extra packages:", extra_options)
 
   if installer.installDependencies(manager, chosen_extras) then
     done.installation_success()
@@ -179,9 +154,9 @@ end
 mark_as_run()
 
 if installer.install_font(FONT_SOURCE) then
-  io.write("Fuente instalada correctamente.\n")
+  io.write("Font installed.\n")
 else
-  log_fail("No se pudo instalar la fuente Iosevka Nerd Font")
+  log_fail("Could not install the Iosevka Nerd Font")
 end
 
 if FAIL_COUNT > 0 then
