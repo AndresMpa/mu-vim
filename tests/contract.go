@@ -43,6 +43,7 @@ var shared = []item{
 	{"<leader>x", "run/preview file"},
 	{"<leader>f", "format"},
 	{"<leader>aw", "toggle autosave"},
+	{"<leader>l", "list buffers"},
 	{"<c-t>", "terminal"},
 	{"u", "redo"},
 }
@@ -69,7 +70,6 @@ var vimFamily = []item{
 	{"<leader>ft", "fzf"},
 	{"<leader>a", "ack"},
 	{"<leader>b", "buffers"},
-	{"<leader>l", "list buffers"},
 	{"<leader>pd", "plug upgrade"},
 	{"<leader>ga", "git add prompt"},
 	{"<leader>xd", "django server"},
