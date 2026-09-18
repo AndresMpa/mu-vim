@@ -24,6 +24,8 @@ local installer = require("utilities.installation.installer")
 local greeter = require("utilities.installation.greeter")
 local done = require("utilities.installation.done")
 
+SCRIPT_DIR = util.make_absolute(SCRIPT_DIR)
+
 -- --- Config -----------------------------------------------------------
 
 local HOME = util.home()
@@ -121,10 +123,15 @@ else
   log_fail("Something went wrong while greeting")
 end
 
--- If we are already running from the install directory, do not move it.
+-- Never move/delete the directory we are running from. A relative
+-- SCRIPT_DIR (./) used to miss this and rm -rf the cwd; brew/pip/pnpm
+-- then failed with getcwd ENOENT.
 local RESOLVED_INSTALL_DIR = util.realpath(INSTALL_DIR)
+local CWD = util.make_absolute(util.pwd())
 
-if RESOLVED_INSTALL_DIR == SCRIPT_DIR then
+if RESOLVED_INSTALL_DIR == SCRIPT_DIR
+    or util.path_is_under(CWD, RESOLVED_INSTALL_DIR)
+    or util.path_is_under(SCRIPT_DIR, RESOLVED_INSTALL_DIR) then
   io.write("Install directory (" .. INSTALL_DIR .. ") is the directory mu-vim is running from — nothing to back up, skipping.\n")
 else
   local ok = util.replace_old(INSTALL_DIR, PREVIOUS_DIR)

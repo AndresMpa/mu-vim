@@ -15,7 +15,7 @@ M.EXTRA_PACKAGES = {
   { name = "zenity", desc = "GUI dialogs used by some scripts (Linux)" },
   { name = "shfmt", desc = "Shell script formatter" },
   { name = "stylua", desc = "Lua formatter" },
-  { name = "black", desc = "Python formatter (replaces autopep8)" },
+  { name = "black", desc = "Python formatter" },
 }
 
 local CORE_BY_MANAGER = {

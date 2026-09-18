@@ -9,7 +9,52 @@ local cli = require("utilities.installation.cli")
 
 local M = {}
 
+function M.pwd()
+  local cmd = M.is_windows() and "cd" or "pwd -P"
+  local handle = io.popen(cmd .. " 2>/dev/null")
+  if not handle then
+    return ""
+  end
+  local dir = handle:read("*l") or ""
+  handle:close()
+  return dir
+end
+
+function M.make_absolute(path)
+  if not path or path == "" or path == "." or path == "./" then
+    return M.realpath(M.pwd())
+  end
+  if M.is_absolute(path) then
+    return M.realpath(path)
+  end
+  path = path:gsub("^%./", "")
+  return M.realpath(M.path_join(M.pwd(), path))
+end
+
+function M.path_is_under(child, parent)
+  if child == "" or parent == "" then
+    return false
+  end
+  if child == parent then
+    return true
+  end
+  local prefix = parent
+  if not prefix:match("[/\\]$") then
+    prefix = prefix .. (M.is_windows() and "\\" or "/")
+  end
+  return child:sub(1, #prefix) == prefix
+end
+
+-- Run from $HOME so brew/pip/pnpm still work if the config dir was moved.
 function M.exec_ok(cmd)
+  local root = M.home()
+  if root ~= "" then
+    if M.is_windows() then
+      cmd = string.format('cd /d "%s" && %s', root, cmd)
+    else
+      cmd = string.format('cd "%s" && %s', root, cmd)
+    end
+  end
   local a = os.execute(cmd)
   if type(a) == "number" then
     return a == 0
