@@ -96,6 +96,17 @@ The first launch installs plugins with `:Pckr sync` (mason, formatter, and the r
 
 To sync by hand later: `<Space> p i` (install) or `<Space> p u` (sync).
 
+## Uninstall
+
+Removes the config, Mason, pckr plugins, nvim cache/state, and the font this installer copied. Does **not** uninstall Neovim or Homebrew/apt packages (node, pnpm, ripgrep, fd).
+
+```
+cd ~/.config/nvim
+lua delete.lua
+```
+
+On Windows, run `lua delete.lua` from `%LOCALAPPDATA%\nvim`.
+
 ## Tests
 
 Mapping contract for Current, Mini, and VimScript (Mini and VimScript have no test repos of their own):
