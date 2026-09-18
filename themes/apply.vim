@@ -273,16 +273,29 @@ function! s:persist(name) abort
   call writefile([a:name], s:active)
 endfunction
 
-function! s:restore_default() abort
-  highlight clear
-  if exists('syntax_on')
-    syntax reset
+function! s:default_name() abort
+  return get(g:, 'muvim_default_theme', 'deep-ocean')
+endfunction
+
+function! s:load(name, quiet) abort
+  let file = s:theme_file(a:name)
+  if file ==# ''
+    if !a:quiet
+      echoerr 'Unknown MμVim theme: ' . a:name
+    endif
+    return 0
   endif
   let g:muvim_palette = {}
-  let def = get(g:, 'muvim_default_colorscheme', '')
-  if def !=# ''
-    execute 'silent! colorscheme' def
+  execute 'source' fnameescape(file)
+  if empty(get(g:, 'muvim_palette', {}))
+    if !a:quiet
+      echoerr 'Theme ' . a:name . ' did not set g:muvim_palette'
+    endif
+    return 0
   endif
+  call s:paint(g:muvim_palette)
+  let g:colors_name = a:name
+  return 1
 endfunction
 
 function! MuvimApplyTheme(name, ...) abort
@@ -292,33 +305,19 @@ function! MuvimApplyTheme(name, ...) abort
     return
   endif
   if a:name ==# 'none'
-    call s:restore_default()
-    call s:persist('')
-    if !quiet
-      echo 'MμVim theme: default'
+    if s:load(s:default_name(), quiet)
+      call s:persist('')
+      if !quiet
+        echo 'MμVim theme: ' . s:default_name() . ' (default)'
+      endif
     endif
     return
   endif
-  let file = s:theme_file(a:name)
-  if file ==# ''
+  if s:load(a:name, quiet)
+    call s:persist(a:name)
     if !quiet
-      echoerr 'Unknown MμVim theme: ' . a:name
+      echo 'MμVim theme: ' . a:name
     endif
-    return
-  endif
-  let g:muvim_palette = {}
-  execute 'source' fnameescape(file)
-  if empty(get(g:, 'muvim_palette', {}))
-    if !quiet
-      echoerr 'Theme ' . a:name . ' did not set g:muvim_palette'
-    endif
-    return
-  endif
-  call s:paint(g:muvim_palette)
-  let g:colors_name = a:name
-  call s:persist(a:name)
-  if !quiet
-    echo 'MμVim theme: ' . a:name
   endif
 endfunction
 
@@ -335,17 +334,16 @@ function! MuvimCycleTheme() abort
 endfunction
 
 function! MuvimThemeRestore() abort
-  if !filereadable(s:active)
-    return
+  if filereadable(s:active)
+    let lines = readfile(s:active, '', 1)
+    if !empty(lines)
+      let name = substitute(lines[0], '^\s*\|\s*$', '', 'g')
+      if name !=# '' && s:load(name, 1)
+        return
+      endif
+    endif
   endif
-  let lines = readfile(s:active, '', 1)
-  if empty(lines)
-    return
-  endif
-  let name = substitute(lines[0], '^\s*\|\s*$', '', 'g')
-  if name !=# ''
-    call MuvimApplyTheme(name, 1)
-  endif
+  call s:load(s:default_name(), 1)
 endfunction
 
 command! -nargs=? -complete=custom,MuvimThemeComplete MuvimTheme call MuvimApplyTheme(<q-args>)

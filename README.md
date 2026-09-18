@@ -91,7 +91,7 @@ Does not remove `~/.config/muvim` (your themes).
 
 ## Themes
 
-Copy `themes/muvim.vim` to `~/.config/muvim/themes/my-theme.vim` and edit the hex values. `<Space> t h` cycles shipped + your palettes. `:MuvimTheme name` picks one; `:MuvimTheme none` restores material. The choice is kept in `~/.config/muvim/active` and is shared with Mini and VimScript.
+Shipped palettes (no extra theme plugins): **deep-ocean** (Current default), **gruvbox**, **mini**. Copy one to `~/.config/muvim/themes/my-theme.vim` and edit the hex. `<Space> t h` cycles. `:MuvimTheme name` picks one; `:MuvimTheme none` restores this config's default. The choice is kept in `~/.config/muvim/active` and is shared with Mini and VimScript.
 
 ## Tests
 

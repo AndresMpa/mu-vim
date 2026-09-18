@@ -1,9 +1,8 @@
-" MμVim palette — warm gruvbox.
+" VimScript — gruvbox dark hard, no plugin.
 " Copy to ~/.config/muvim/themes/my-theme.vim and edit the hex values.
-" Keys: bg bg_alt fg dim red orange yellow green cyan blue purple accent
 let g:muvim_palette = {
       \ 'bg':      '#1d2021',
-      \ 'bg_alt':  '#282828',
+      \ 'bg_alt':  '#3c3836',
       \ 'fg':      '#ebdbb2',
       \ 'dim':     '#928374',
       \ 'red':     '#fb4934',

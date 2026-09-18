@@ -1,11 +1,10 @@
-" MμVim palette — deep ocean (Current's look).
+" Current — Material Deep Ocean, no plugin.
 " Copy to ~/.config/muvim/themes/my-theme.vim and edit the hex values.
-" Keys: bg bg_alt fg dim red orange yellow green cyan blue purple accent
 let g:muvim_palette = {
       \ 'bg':      '#0F111A',
-      \ 'bg_alt':  '#181A23',
-      \ 'fg':      '#A6ACCD',
-      \ 'dim':     '#4B5263',
+      \ 'bg_alt':  '#181A1F',
+      \ 'fg':      '#8F93A2',
+      \ 'dim':     '#464B5D',
       \ 'red':     '#F07178',
       \ 'orange':  '#F78C6C',
       \ 'yellow':  '#FFCB6B',
