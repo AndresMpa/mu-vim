@@ -17,7 +17,17 @@ local function restyle()
 end
 
 local function line_name()
-	local line = vim.api.nvim_get_current_line()
+	local line = ""
+	if picker.buf and vim.api.nvim_buf_is_valid(picker.buf) then
+		local lnum = 1
+		if picker.win and vim.api.nvim_win_is_valid(picker.win) then
+			lnum = vim.api.nvim_win_get_cursor(picker.win)[1]
+		end
+		local lines = vim.api.nvim_buf_get_lines(picker.buf, lnum - 1, lnum, false)
+		line = lines[1] or ""
+	else
+		line = vim.api.nvim_get_current_line()
+	end
 	return (line:gsub("^[ *]*", ""))
 end
 
@@ -53,23 +63,31 @@ local function finish(save)
 		return
 	end
 	picker.closing = true
+	pcall(vim.api.nvim_del_augroup_by_name, "MuvimThemePicker")
 	local name = picker.preview
+	if (not name or name == "") and picker.win and vim.api.nvim_win_is_valid(picker.win) then
+		name = line_name()
+	end
 	local saved = picker.saved
 	if picker.old_move ~= nil then
-		vim.o.mousemoveevent = picker.old_move
+		pcall(function()
+			vim.o.mousemoveevent = picker.old_move
+		end)
+	end
+	if save and name and name ~= "" then
+		apply.load(name)
+		apply.persist(name)
 	end
 	local win = picker.win
 	picker.win, picker.buf, picker.preview, picker.saved, picker.old_move = nil, nil, nil, nil, nil
 	if win and vim.api.nvim_win_is_valid(win) then
-		vim.api.nvim_win_close(win, true)
+		pcall(vim.api.nvim_win_close, win, true)
 	end
 	if save and name and name ~= "" then
-		apply.persist(name)
 		print("MμVim theme: " .. name)
 	else
 		apply.load(saved or apply.default_name())
 	end
-	picker.closing = false
 end
 
 local M = {}
@@ -138,10 +156,14 @@ function M.open()
 	local map = function(lhs, fn)
 		vim.keymap.set("n", lhs, fn, { buffer = buf, silent = true, nowait = true })
 	end
-	map("<CR>", function()
-		preview()
+	local confirm = function()
+		picker.preview = line_name()
 		finish(true)
-	end)
+	end
+	map("<CR>", confirm)
+	map("<Return>", confirm)
+	map("<kEnter>", confirm)
+	map("<2-LeftMouse>", confirm)
 	map("<Esc>", function()
 		finish(false)
 	end)
