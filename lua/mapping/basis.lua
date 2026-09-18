@@ -17,6 +17,7 @@ map("n", "<C-k>", "<C-b>", {})
 map("n", "<C-j>", "<C-f>", {})
 -- Buffers control
 map("n", "<Leader>H", ":%bd | e# | bd#<CR>", {})
+map("n", "<Leader>l", ":ls<CR>", {})
 -- Split control
 map("n", "<Leader>vv", ":on<CR>", {})
 map("n", "<Leader>vj", ":split<CR>", {})

@@ -107,6 +107,7 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 
+		-- Tab / S-Tab match CoC pum: next, previous, or open completion.
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item(select_opts)
