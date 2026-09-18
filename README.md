@@ -78,7 +78,7 @@ The first `nvim` runs `:Pckr sync`. When it finishes, quit (`:qa`) and open `nvi
 
 ## Uninstall
 
-Removes the config, Mason, pckr, nvim cache/state, and the font `install.lua` copied. Leaves Neovim and Homebrew/apt packages.
+Removes the config, Mason, pckr, nvim cache/state, the font `install.lua` copied, and `~/.config/muvim` (palettes and last theme). Leaves Neovim and Homebrew/apt packages.
 
 ```
 cd ~/.config/nvim
@@ -86,8 +86,6 @@ lua delete.lua
 ```
 
 On Windows, run `lua delete.lua` from `%LOCALAPPDATA%\nvim`.
-
-Does not remove `~/.config/muvim` (your themes).
 
 ## Themes
 
