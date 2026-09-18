@@ -3,7 +3,11 @@ local M = {}
 local user_dir = vim.fn.expand("~/.config/muvim")
 local user_themes = user_dir .. "/themes"
 local active_file = user_dir .. "/active"
-local shipped = vim.fn.stdpath("config") .. "/lua/scheme/palettes"
+local sourced = debug.getinfo(1, "S").source
+if sourced:sub(1, 1) == "@" then
+	sourced = sourced:sub(2)
+end
+local shipped = vim.fn.fnamemodify(sourced, ":h") .. "/palettes"
 
 local function default_name()
 	return vim.g.muvim_default_theme or "deep-ocean"
@@ -350,6 +354,7 @@ function M.load(name)
 	vim.g.muvim_palette = pal
 	paint(pal)
 	vim.g.colors_name = name
+	pcall(vim.api.nvim_exec_autocmds, "ColorScheme", { modeline = false, pattern = name })
 	return true
 end
 
