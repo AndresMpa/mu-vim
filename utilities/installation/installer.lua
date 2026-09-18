@@ -1,61 +1,82 @@
 --[[
   utilities/installation/installer.lua
 
-  Puerto de utilities/installation/installer.sh, con un cambio de
-  comportamiento respecto al original: PACKAGES ahora está dividido en
-  CORE_PACKAGES (siempre se instalan, imprescindibles para que mu-vim
-  funcione) y EXTRA_PACKAGES (opcionales, el usuario elige cuáles quiere
-  vía la checklist de cli.lua). install.lua es quien pregunta y arma la
-  lista final antes de llamar a installDependencies().
-
-  Nota sobre nombres de paquete: no son uniformes entre distros ("fd" es
-  "fd-find" en Debian/Ubuntu, "python-neovim" es "python3-neovim" en
-  Debian/Fedora). Igual que el script original, esto no remapea por
-  distro — si un nombre no existe en tu distro, esa instalación fallará.
+  Install Neovim deps for pacman, apt, dnf, Homebrew, and winget.
+  Package names are remapped per manager. pnpm is a core requirement;
+  if the distro has no pnpm package, we use the official installer.
 ]]
+
+local util = require("utilities.installation.util")
 
 local M = {}
 
-M.CORE_PACKAGES = {
-  "nodejs",
-  "pnpm",
-  "ripgrep",
-  "fd",
-  "python-neovim",
-  "luarocks",
-}
-
+-- Display names used in the extras checklist (manager-agnostic).
 M.EXTRA_PACKAGES = {
-  { name = "zenity", desc = "Diálogos GUI usados por algunos scripts" },
-  { name = "shfmt", desc = "Formateador de scripts de shell" },
-  { name = "stylua", desc = "Formateador de código Lua" },
+  { name = "zenity", desc = "GUI dialogs used by some scripts (Linux)" },
+  { name = "shfmt", desc = "Shell script formatter" },
+  { name = "stylua", desc = "Lua formatter" },
 }
 
--- Ver comentario en install.lua: os.execute bajo Lua 5.1/LuaJIT devuelve
--- un número crudo (siempre truthy), no boolean. Esto normaliza ambos
--- casos para que los `if not exec_ok(cmd)` de más abajo detecten fallos
--- de verdad, sin importar con qué intérprete se corra el script.
+local CORE_BY_MANAGER = {
+  pacman = { "neovim", "nodejs", "pnpm", "ripgrep", "fd", "python-neovim", "luarocks" },
+  ["apt-get"] = { "neovim", "nodejs", "ripgrep", "fd-find", "python3-neovim", "luarocks" },
+  dnf = { "neovim", "nodejs", "ripgrep", "fd-find", "python3-neovim", "luarocks" },
+  brew = { "neovim", "node", "pnpm", "ripgrep", "fd", "luarocks" },
+}
+
+local EXTRA_BY_MANAGER = {
+  pacman = { zenity = "zenity", shfmt = "shfmt", stylua = "stylua" },
+  ["apt-get"] = { zenity = "zenity", shfmt = "shfmt" },
+  dnf = { zenity = "zenity", shfmt = "shfmt" },
+  brew = { shfmt = "shfmt", stylua = "stylua" },
+}
+
+-- winget uses package ids, not distro names.
+local WINGET_CORE = {
+  { id = "Neovim.Neovim", name = "neovim" },
+  { id = "OpenJS.NodeJS.LTS", name = "nodejs" },
+  { id = "pnpm.pnpm", name = "pnpm" },
+  { id = "BurntSushi.ripgrep.MSVC", name = "ripgrep" },
+  { id = "sharkdp.fd", name = "fd" },
+}
+
+local WINGET_EXTRA = {
+  shfmt = "mvdan.Shfmt",
+  stylua = "JohnnyMorganz.StyLua",
+}
+
 local function exec_ok(cmd)
-  local a = os.execute(cmd)
-  if type(a) == "number" then
-    return a == 0
-  end
-  return a == true
+  return util.exec_ok(cmd)
 end
 
-local function has_command(cmd)
-  return exec_ok("command -v " .. cmd .. " >/dev/null 2>&1")
+function M.core_packages(manager)
+  return CORE_BY_MANAGER[manager] or {}
+end
+
+function M.resolve_extras(manager, chosen)
+  local mapped = {}
+  local table_for = EXTRA_BY_MANAGER[manager] or {}
+  for _, name in ipairs(chosen) do
+    if manager == "winget" then
+      if WINGET_EXTRA[name] then
+        mapped[#mapped + 1] = { kind = "winget", id = WINGET_EXTRA[name] }
+      end
+    elseif table_for[name] then
+      mapped[#mapped + 1] = table_for[name]
+    end
+  end
+  return mapped
 end
 
 function M.install_packer()
-  local home = os.getenv("HOME") or ""
-  local packer_dir = home .. "/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  local packer_dir = util.path_join(util.data_home(), "nvim", "site", "pack", "packer", "start", "packer.nvim")
 
-  if exec_ok('[ -d "' .. packer_dir .. '" ]') then
+  if util.dir_exists(packer_dir) then
     io.write("packer.nvim already present, skipping clone\n")
     return true
   end
 
+  util.mkdir_p(packer_dir:match("(.+)[/\\][^/\\]+$") or packer_dir)
   local ok = exec_ok(
     'git clone --depth 1 https://github.com/wbthomason/packer.nvim "' .. packer_dir .. '"'
   )
@@ -66,21 +87,50 @@ function M.install_packer()
   return true
 end
 
--- packages: array de nombres de paquete (ya combinada: core + extras
--- elegidos). manager: nombre del gestor detectado por util.get_package_manager.
-function M.installDependencies(manager, packages)
-  if manager == nil or manager == "" then
-    io.stderr:write("installDependencies: expected a package manager name\n")
+function M.ensure_pnpm()
+  if util.has_command("pnpm") then
+    return true
+  end
+  io.write("pnpm is not on PATH, using the official installer\n")
+  if util.is_windows() then
+    return exec_ok(
+      'powershell -NoProfile -Command "iwr https://get.pnpm.io/install.ps1 -useb | iex"'
+    )
+  end
+  return exec_ok("curl -fsSL https://get.pnpm.io/install.sh | sh -")
+end
+
+local function install_unix_packages(manager, packages)
+  local pkg_list = table.concat(packages, " ")
+  local commands = {
+    ["apt-get"] = "sudo apt-get update && sudo apt-get install -y " .. pkg_list,
+    pacman = "sudo pacman -Sy --noconfirm " .. pkg_list,
+    dnf = "sudo dnf install -y " .. pkg_list,
+    brew = "brew install " .. pkg_list,
+  }
+  local command = commands[manager]
+  if command == nil then
     return false
   end
-  if packages == nil or #packages == 0 then
-    io.stderr:write("installDependencies: expected a non-empty package list\n")
+  return exec_ok(command)
+end
+
+local function install_winget(id)
+  return exec_ok(
+    'winget install -e --id ' .. id .. " --accept-package-agreements --accept-source-agreements"
+  )
+end
+
+function M.installDependencies(manager, extra_names)
+  extra_names = extra_names or {}
+  if manager == nil or manager == "" then
+    io.stderr:write("installDependencies: expected a package manager name\n")
     return false
   end
 
   local status = true
 
-  if manager == "pacman" and has_command("yay") then
+  if manager == "pacman" and util.has_command("yay") then
     if not exec_ok("yay -S --noconfirm nvim-packer-git") then
       io.stderr:write("yay failed to install nvim-packer-git\n")
       status = false
@@ -94,62 +144,78 @@ function M.installDependencies(manager, packages)
     end
   end
 
-  local pkg_list = table.concat(packages, " ")
-
-  local commands = {
-    ["apt-get"] = "sudo apt-get update && sudo apt-get install -y " .. pkg_list,
-    pacman = "sudo pacman -Sy --noconfirm " .. pkg_list,
-    dnf = "sudo dnf install -y " .. pkg_list,
-    zypp = "sudo zypper --non-interactive install " .. pkg_list,
-    zypper = "sudo zypper --non-interactive install " .. pkg_list,
-    emerge = "sudo emerge --ask " .. pkg_list,
-    apk = "sudo apk add " .. pkg_list,
-  }
-
-  local command = commands[manager]
-  if command == nil then
-    io.write("It seems that I do not know how to handle package manager '" .. manager .. "'.\n")
-    io.write("You need to install these packages manually: " .. pkg_list .. "\n")
-    return false
+  if manager == "winget" then
+    for _, pkg in ipairs(WINGET_CORE) do
+      io.write("winget install " .. pkg.id .. "\n")
+      if not install_winget(pkg.id) then
+        io.stderr:write("winget failed for " .. pkg.id .. "\n")
+        status = false
+      end
+    end
+    for _, extra in ipairs(M.resolve_extras("winget", extra_names)) do
+      io.write("winget install " .. extra.id .. "\n")
+      if not install_winget(extra.id) then
+        status = false
+      end
+    end
+    if not exec_ok("pip install --user pynvim") and not exec_ok("pip3 install --user pynvim") then
+      io.write("Could not pip-install pynvim; :checkhealth will say so.\n")
+    end
+  else
+    local packages = {}
+    for _, name in ipairs(M.core_packages(manager)) do
+      packages[#packages + 1] = name
+    end
+    for _, name in ipairs(M.resolve_extras(manager, extra_names)) do
+      packages[#packages + 1] = name
+    end
+    if #packages == 0 then
+      io.stderr:write("installDependencies: no packages mapped for " .. manager .. "\n")
+      return false
+    end
+    io.write("Installing with " .. manager .. ": " .. table.concat(packages, " ") .. "\n")
+    if not install_unix_packages(manager, packages) then
+      status = false
+    end
+    if manager == "brew" then
+      exec_ok("pip3 install --user pynvim")
+    end
   end
 
-  if not exec_ok(command) then
+  if not M.ensure_pnpm() then
+    io.stderr:write("Could not install pnpm\n")
     status = false
   end
 
   return status
 end
 
--- --- install_font -------------------------------------------------------
---
--- Copia la Nerd Font empaquetada con mu-vim al directorio de fuentes del
--- usuario y refresca el cache (fc-cache en Linux; en mac Font Book la
--- recoge sola, no hace falta refrescar nada). font_path = ruta absoluta
--- al .ttf, ya resuelta por install.lua con SCRIPT_DIR.
 function M.install_font(font_path)
-  if not exec_ok('[ -f "' .. font_path .. '" ]') then
+  if not util.file_exists(font_path) then
     io.stderr:write("[ERROR] Font source not found: " .. font_path .. "\n")
     return false
   end
 
-  local home = os.getenv("HOME") or ""
-  local handle = io.popen("uname -s 2>/dev/null")
-  local os_name = handle and handle:read("*l") or ""
-  if handle then handle:close() end
+  local fonts_dir
+  if util.is_windows() then
+    fonts_dir = util.path_join(util.data_home(), "Microsoft", "Windows", "Fonts")
+  elseif util.is_darwin() then
+    fonts_dir = util.path_join(util.home(), "Library", "Fonts")
+  else
+    fonts_dir = util.path_join(util.home(), ".local", "share", "fonts")
+  end
 
-  local fonts_dir = (os_name == "Darwin") and (home .. "/Library/Fonts") or (home .. "/.local/share/fonts")
-
-  if not exec_ok('mkdir -p -- "' .. fonts_dir .. '"') then
+  if not util.mkdir_p(fonts_dir) then
     io.stderr:write("The fonts directory could not load: " .. fonts_dir .. "\n")
     return false
   end
 
-  if not exec_ok('cp -- "' .. font_path .. '" "' .. fonts_dir .. '/"') then
-    io.stderr:write("[ERROR] The fonts was not added " .. fonts_dir .. "\n")
+  if not util.copy_file(font_path, fonts_dir) then
+    io.stderr:write("[ERROR] The font was not added " .. fonts_dir .. "\n")
     return false
   end
 
-  if os_name ~= "Darwin" and has_command("fc-cache") then
+  if not util.is_darwin() and not util.is_windows() and util.has_command("fc-cache") then
     exec_ok('fc-cache -f "' .. fonts_dir .. '" >/dev/null 2>&1')
   end
 

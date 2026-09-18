@@ -23,44 +23,21 @@
   </p>
 </div>
 
-This is a NeoVim and Vim configuration, It has 3 versions actually, and one of them is
-just 1 .vim file, so it's straightforward to use and modify; what you see in the main branch
-is more complicated and it's the main config, check the wiki if you want more information;
-The main config is based on Lua, but there's a VimScript based on config. This repository
-contains 3 different branches each one of them has a different config, choose anyone,
-and all of them should work. You should follow this "guide" based on project branches.
+MμVim is a Neovim and Vim setup with three configs. This repository is **Current**, the Lua core. Mini and VimScript live in their own repos. New features land here first.
 
-## To do
+## Other configs
 
-- Update single script config to pckr.nvim
-- Update installation script
-- Refactor MuVim's wiki
-- Make some introduction's video
-- Improve documentation
+### Mini
 
-## Guidelines
+A single `init.vim`. Useful as a template or on a server. See [mu-vim-mini](https://github.com/AndresMpa/mu-vim-mini). There is a walkthrough at [andresmpa.github.io/mu-vim-page](https://andresmpa.github.io/mu-vim-page/).
 
-### Sigle init.vim (Mini config)
+### VimScript (LTS)
 
-[This configuration](https://github.com/AndresMpa/nvim-configuration/tree/singleFile)
-is pretty usefull to take it as a template; This version have sincrohinzed with
-"VimScript" branch, so functionalities there should work here too. Also
-there is a basic tutorial where you can see how to make a vim or nvim file like this,
-check the link [here](https://andresmpa.github.io/mu-vim/)
+Modular VimScript for Vim and Neovim. See [mu-vim-vimscript](https://github.com/AndresMpa/mu-vim-vimscript).
 
-### VimScript (LTS version)
+### Current (this repo)
 
-"VimScript" is a language that comes by default with vim/nvim in both of them it works;
-[this version](https://github.com/AndresMpa/mu-vim/tree/vimscript) uses this
-lenguage to handle their characteristics, such as "modules", those modules make it a more
-difficult to understand for beginners, also easier to mantein and extend
-
-### Lua (Core version)
-
-This is core editor version, used for working as Web developer, Editor maintenance... also
-handling my OS editing, keep this version if you want the latest features, new features
-will be added here first, then those will be implemented on other branches, this is the
-fastest one version, the most complicated too
+Lua, Neovim only. Use this if you want the latest stack. It is also the most involved of the three.
 
 #### Take a look
 
@@ -72,17 +49,21 @@ fastest one version, the most complicated too
 
 ## Prerequisites
 
-If you want to use Μμ Vim on its Lua version you will need a couple of resources to make works,
-[nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) is necessary, unfortunelly we can't
-use this config with [vim](https://www.vim.org/download.php) should be enough,
-[Lua itself](https://www.tecmint.com/install-lua-in-centos-ubuntu-linux/), then it's on you
-to install some other features
+Current needs [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim) and [Lua](https://www.lua.org/download.html). It does not run on Vim. The installer can pull the rest of the tools.
 
 ## Quick Start
 
-If you don't know to much about vim or nvim just follow the next steps:
+You need Git, Lua (`lua` / `lua5.4` / `luajit`), and a package manager:
 
-### If you are using Linux or mac
+| OS | Package manager | Default config dir |
+| --- | --- | --- |
+| Linux Arch / Manjaro | pacman | `~/.config/nvim` |
+| Linux Debian / Ubuntu | apt | `~/.config/nvim` |
+| Linux Fedora / RHEL | dnf | `~/.config/nvim` |
+| macOS | [Homebrew](https://brew.sh) | `~/.config/nvim` |
+| Windows | [winget](https://aka.ms/getwinget) | `%LOCALAPPDATA%\nvim` |
+
+### Linux and macOS
 
 ```
 git clone https://github.com/AndresMpa/mu-vim.git ~/.config/nvim
@@ -90,17 +71,22 @@ cd ~/.config/nvim && lua install.lua
 nvim
 ```
 
-### If you are using Windows
+On a Mac, install Homebrew first if you do not have it. The installer uses `brew install` and does not need sudo.
+
+### Windows
 
 ```
-cd C:\Users\$USER\AppData\Local\
+cd %LOCALAPPDATA%
 move nvim nvim_old
-git clone https://github.com/AndresMpa/mu-vim.git
-move mu-nvim nvim
+git clone https://github.com/AndresMpa/mu-vim.git nvim
+cd nvim
+lua install.lua
 nvim
 ```
 
-Once you make this, open nvim then:
+winget installs Neovim, Node LTS, pnpm, ripgrep, and fd. If Lua is missing, `winget install DEVCOM.Lua` (or install Lua from lua.org) and rerun `lua install.lua`.
+
+Then open Neovim and run:
 
 ```
 :source %
@@ -118,25 +104,19 @@ Mapping contract for Current, Mini, and VimScript (Mini and VimScript have no te
 
 That uses Podman if it is installed, otherwise Docker. With Go on the host: `cd tests && go test -count=1 -parallel 8 .`
 
-That's it, done
-
----
-
-### Check nvim health
+### Check Neovim health
 
 ```
 nvim
 :checkhealth
 ```
 
-There may be some issues on nvim that should be solve, a common one can be not having a C compiler
-(On windows) or not having some commands (Any system) such as fd; checkhealth in general should
-give you all the information you might need, but there's also a guide of troubleshooting
+`:checkhealth` is the real next step. Windows often needs a C compiler (Visual Studio Build Tools) for Treesitter. Any OS can be missing `fd` or `pnpm` until the installer finishes. There is a troubleshooting guide
 [here](https://github.com/AndresMpa/mu-vim/wiki/General-dependencies)
 
 ## Star History
 
-Wanna help a litte? Hit the start button, I'm still wondering if it works
+If the project is useful, a star on GitHub helps.
 
 <p align="center">
   <a href="https://star-history.com/#AndresMpa/mu-vim&Date">
@@ -149,25 +129,17 @@ Wanna help a litte? Hit the start button, I'm still wondering if it works
 </p>
 
 
-## Apps
-
-There's a couple of apps I recommend you to improve a little bit more your velocity, they are:
+## Related tools
 
 - [rofi](https://github.com/davatorium/rofi)
 - [Ulauncher](https://ulauncher.io/)
 - [Zeal](https://zealdocs.org/)
-- [Vimium](https://addons.mozilla.org/es/firefox/addon/vimium-ff/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+- [Vimium](https://addons.mozilla.org/firefox/addon/vimium-ff/)
 - [Arch Linux](https://github.com/AndresMpa/dotfiles)
 
-## Pats on the back
+## Similar projects
 
-If you are reading this, it means that you want to improve your velocity, or you want to make
-your own things so, if you start by nvim or vim It may be complicated, but just at the beginning
-them you'll look like a professional "Ninja Dev": keep working constancy conquer whatever
-
-## Simiular projects
-
-If this project doesn't match to you, you could also check:
+If this setup is not a match, these are worth a look:
 
 - [DoomVim](https://github.com/NTBBloodbath/doom-nvim)
 - [NvChad](https://github.com/NvChad/NvChad)
@@ -175,6 +147,6 @@ If this project doesn't match to you, you could also check:
 
 <div align="center">
   <p>
-    Special thanks to @jx11r for documentation provided
+    Thanks to @jx11r for documentation.
   </p>
 </div>

@@ -1,28 +1,34 @@
 --[[
   utilities/installation/cli.lua
 
-  Widgets de terminal reutilizables al estilo "pnpm init": un menú de
-  selección única y una checklist de selección múltiple, ambos navegables
-  con las flechas ↑/↓ y confirmados con Enter (la checklist además usa
-  Espacio para marcar/desmarcar). También incluye un prompt de texto plano.
-
-  Lua puro no tiene binding a termios/ioctl, así que el modo "raw" de la
-  terminal se activa/desactiva invocando `stty` como subproceso. Esto
-  limita el CLI a sistemas tipo Unix con `stty` disponible (igual que el
-  install.sh original, que ya asumía bash + coreutils).
+  Terminal widgets: single-choice menu, checklist, and a plain text prompt.
+  Raw mode uses stty on Unix. Windows and other hosts without /dev/tty
+  fall back to line input.
 ]]
 
 local M = {}
 
 local ESC = string.char(27)
 
+local function can_use_raw()
+  if package.config:sub(1, 1) == "\\" then
+    return false
+  end
+  local f = io.open("/dev/tty", "r")
+  if not f then
+    return false
+  end
+  f:close()
+  return true
+end
+
 local function stty(args)
   os.execute("stty " .. args .. " < /dev/tty 2>/dev/null")
 end
 
 local function enable_raw_mode()
-  -- -echo: no repetir en pantalla lo que se teclea (lo dibujamos nosotros)
-  -- -icanon: leer tecla por tecla en vez de esperar una línea completa
+  -- -echo: do not echo keys (we draw them)
+  -- -icanon: read one key at a time
   stty("-echo -icanon min 1 time 0")
 end
 
@@ -36,11 +42,8 @@ local function tty()
   return tty_handle
 end
 
--- Lee una sola "tecla lógica" de /dev/tty, resolviendo las secuencias de
--- escape de las flechas (ESC [ A/B/C/D) a "up"/"down"/"right"/"left".
--- Ctrl-C restaura la terminal y aborta el instalador en el acto: dejar
--- la terminal en raw mode tras un Ctrl-C es la forma clásica de dejarla
--- "rota" para el resto de la sesión del usuario.
+-- Read one key from /dev/tty. Arrow sequences become up/down/left/right.
+-- Ctrl-C restores the terminal and exits.
 local function read_key()
   local input = tty()
   local c = input:read(1)
@@ -78,10 +81,10 @@ local function clear_line()
   io.write(ESC .. "[2K\r")
 end
 
--- --- select: elegir UNA opción --------------------------------------------
+-- --- select: pick one option ----------------------------------------------
 --
 -- options: array de strings, o de tablas { label = "...", value = ... }.
--- Devuelve (value, label) de la opción elegida.
+-- Returns (value, label) for the chosen option.
 function M.select(question, options)
   local labels, values = {}, {}
   for i, opt in ipairs(options) do
@@ -92,6 +95,21 @@ function M.select(question, options)
       labels[i] = opt
       values[i] = opt
     end
+  end
+
+  if not can_use_raw() then
+    io.write(question .. "\n")
+    for i, label in ipairs(labels) do
+      io.write(string.format("  %d) %s\n", i, label))
+    end
+    io.write("Choose [1]: ")
+    io.flush()
+    local answer = io.read("*l")
+    local n = tonumber(answer) or 1
+    if n < 1 or n > #labels then
+      n = 1
+    end
+    return values[n], labels[n]
   end
 
   local index = 1
@@ -133,19 +151,19 @@ function M.select(question, options)
   return values[index], labels[index]
 end
 
--- --- confirm: atajo de select para preguntas Sí/No ------------------------
+-- --- confirm: Yes/No shortcut ---------------------------------------------
 --
--- Devuelve true/false. `default_yes` decide qué opción aparece primero.
+-- Returns true/false. default_yes controls which option is listed first.
 function M.confirm(question, default_yes)
   local options
   if default_yes == false then
     options = {
       { label = "No", value = false },
-      { label = "Sí", value = true },
+      { label = "Yes", value = true },
     }
   else
     options = {
-      { label = "Sí", value = true },
+      { label = "Yes", value = true },
       { label = "No", value = false },
     }
   end
@@ -153,13 +171,10 @@ function M.confirm(question, default_yes)
   return value
 end
 
--- --- multi_select: elegir VARIAS opciones (checklist) ---------------------
+-- --- multi_select: pick several options (checklist) -----------------------
 --
--- options: array de tablas { label = "...", value = ..., desc = "...",
--- checked = true/false }. `checked` es true por defecto (todo viene
--- pre-seleccionado, como los "extras" recomendados de un instalador).
--- Devuelve un array con los `value` (o `label` si no hay value) de las
--- opciones que quedaron marcadas, respetando el orden original.
+-- options: { label, value, desc, checked }. checked defaults to true.
+-- Returns the values that stayed marked, in original order.
 function M.multi_select(question, options)
   local checked = {}
   for i, opt in ipairs(options) do
@@ -170,9 +185,41 @@ function M.multi_select(question, options)
     end
   end
 
+  if not can_use_raw() then
+    io.write(question .. "\n")
+    io.write("  (comma-separated numbers to keep; empty keeps the defaults)\n")
+    for i, opt in ipairs(options) do
+      local mark = (opt.checked ~= false) and "x" or " "
+      local desc = opt.desc and (" — " .. opt.desc) or ""
+      io.write(string.format("  %d) [%s] %s%s\n", i, mark, opt.label, desc))
+    end
+    io.write("Keep: ")
+    io.flush()
+    local answer = io.read("*l") or ""
+    local result = {}
+    if answer:match("%S") then
+      local want = {}
+      for n in answer:gmatch("%d+") do
+        want[tonumber(n)] = true
+      end
+      for i, opt in ipairs(options) do
+        if want[i] then
+          result[#result + 1] = opt.value ~= nil and opt.value or opt.label
+        end
+      end
+    else
+      for i, opt in ipairs(options) do
+        if opt.checked ~= false then
+          result[#result + 1] = opt.value ~= nil and opt.value or opt.label
+        end
+      end
+    end
+    return result
+  end
+
   local index = 1
   local lines_printed = 0
-  local hint = "  (↑/↓ mover · espacio marcar · enter confirmar)"
+  local hint = "  (up/down to move, space to toggle, enter to confirm)"
 
   local function draw()
     move_cursor_up(lines_printed)
@@ -229,8 +276,7 @@ end
 
 -- --- text: prompt de texto plano con valor por defecto opcional -----------
 --
--- No necesita raw mode: se deja que la terminal maneje la línea (así el
--- usuario puede usar backspace/flechas de edición normalmente).
+-- No raw mode: the terminal handles the line so backspace still works.
 function M.text(question, default)
   local suffix = default and (" [" .. default .. "]") or ""
   io.write(question .. suffix .. ": ")
