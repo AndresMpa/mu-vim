@@ -115,36 +115,15 @@ extentions.OpenFileServer = function()
 end
 
 extentions.OpenTerminal = function()
-  -- File tree stays on the right; terminals open on the left (same as Mini).
-  for _ = 1, 4 do
-    vim.cmd("wincmd h")
-  end
-
-  if vim.bo.buftype == "terminal" then
-    vim.cmd("q")
-    return
-  end
-
+  -- Always a new split on the left. Close with Space q, not Ctrl-t.
   vim.cmd("leftabove vsplit term://zsh")
   vim.wo.number = false
   vim.wo.relativenumber = false
 
   local buf = vim.api.nvim_get_current_buf()
-  vim.api.nvim_create_autocmd("BufLeave", {
-    buffer = buf,
-    callback = function()
-      pcall(vim.cmd, "stopinsert!")
-    end,
-  })
-  vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
-    buffer = buf,
-    callback = function()
-      pcall(vim.cmd, "startinsert!")
-    end,
-  })
   vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w><C-h>", { buffer = buf, silent = true })
-  vim.keymap.set("t", "<C-t>", "<C-\\><C-n>:q<CR>", { buffer = buf, silent = true })
   vim.keymap.set("t", "<C-\\><C-\\>", "<C-\\><C-n>", { buffer = buf, silent = true })
+  vim.keymap.set("t", "<Leader>q", "<C-\\><C-n>:q!<CR>", { buffer = buf, silent = true })
   vim.cmd("startinsert!")
 end
 
