@@ -38,7 +38,12 @@ end
 
 local tty_handle = nil
 local function tty()
-  tty_handle = tty_handle or io.open("/dev/tty", "r")
+  if not tty_handle then
+    tty_handle = io.open("/dev/tty", "r")
+    if tty_handle then
+      tty_handle:setvbuf("no")
+    end
+  end
   return tty_handle
 end
 
@@ -52,7 +57,8 @@ local function read_key()
   end
   if c == ESC then
     local c2 = input:read(1)
-    if c2 == "[" then
+    -- CSI (ESC [) and SS3 (ESC O) both carry arrow keys on macOS.
+    if c2 == "[" or c2 == "O" then
       local c3 = input:read(1)
       if c3 == "A" then return "up" end
       if c3 == "B" then return "down" end
@@ -65,6 +71,7 @@ local function read_key()
   elseif c == " " then
     return "space"
   elseif c == "\3" then
+    show_cursor()
     disable_raw_mode()
     io.write("\n")
     os.exit(130)
@@ -73,12 +80,25 @@ local function read_key()
   end
 end
 
-local function move_cursor_up(n)
-  if n > 0 then io.write(ESC .. "[" .. n .. "A") end
+local function hide_cursor()
+  io.write(ESC .. "[?25l")
 end
 
-local function clear_line()
-  io.write(ESC .. "[2K\r")
+local function show_cursor()
+  io.write(ESC .. "[?25h")
+end
+
+-- Move to the first line of the last paint and erase downward so a
+-- redraw cannot stack leftover Yes/No rows or repeated hints.
+local function rewind(n)
+  if n > 0 then
+    io.write(string.format("%s[%dA%s[1G%s[0J", ESC, n, ESC, ESC))
+  end
+end
+
+local function finish_widget(n)
+  rewind(n)
+  show_cursor()
 end
 
 -- --- select: pick one option ----------------------------------------------
@@ -116,9 +136,8 @@ function M.select(question, options)
   local lines_printed = 0
 
   local function draw()
-    move_cursor_up(lines_printed)
+    rewind(lines_printed)
     for i, label in ipairs(labels) do
-      clear_line()
       if i == index then
         io.write("  " .. ESC .. "[36m❯ " .. label .. ESC .. "[0m\n")
       else
@@ -131,6 +150,7 @@ function M.select(question, options)
 
   io.write(question .. "\n")
   enable_raw_mode()
+  hide_cursor()
   draw()
   while true do
     local key = read_key()
@@ -146,6 +166,8 @@ function M.select(question, options)
       break
     end
   end
+  finish_widget(lines_printed)
+  io.write("  " .. labels[index] .. "\n")
   disable_raw_mode()
 
   return values[index], labels[index]
@@ -222,9 +244,8 @@ function M.multi_select(question, options)
   local hint = "  (up/down to move, space to toggle, enter to confirm)"
 
   local function draw()
-    move_cursor_up(lines_printed)
+    rewind(lines_printed)
     for i, opt in ipairs(options) do
-      clear_line()
       local box = checked[i] and "[x]" or "[ ]"
       local desc = ""
       if opt.desc then
@@ -236,14 +257,14 @@ function M.multi_select(question, options)
         io.write("    " .. box .. " " .. opt.label .. desc .. "\n")
       end
     end
-    clear_line()
-    io.write(hint)
+    io.write(hint .. "\n")
     io.flush()
     lines_printed = #options + 1
   end
 
   io.write(question .. "\n")
   enable_raw_mode()
+  hide_cursor()
   draw()
   while true do
     local key = read_key()
@@ -262,7 +283,7 @@ function M.multi_select(question, options)
       break
     end
   end
-  io.write("\n")
+  finish_widget(lines_printed)
   disable_raw_mode()
 
   local result = {}
