@@ -1,5 +1,5 @@
 -- Space f -> :Format
--- Python: black (replaces autopep8)
+-- Python: black
 -- JS/TS/JSON/CSS/GraphQL: biome (Rust, faster than Prettier)
 -- HTML/Markdown/Vue/Svelte/SCSS/Less/YAML: Prettier (pnpm)
 -- Shell: shfmt  Lua: stylua
