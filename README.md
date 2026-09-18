@@ -127,4 +127,7 @@ If the project is useful, a star on GitHub helps.
   <p>
     Thanks to @jx11r for documentation.
   </p>
+  <p>
+    Supported by <a href="https://github.com/DailyBot-Inc">DailyBot-Inc</a>
+  </p>
 </div>
