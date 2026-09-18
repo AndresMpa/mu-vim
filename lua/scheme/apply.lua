@@ -315,6 +315,21 @@ local function paint(p)
 	hi("AlphaButtons", fg)
 	hi("AlphaShortcut", orange)
 
+	-- ibl ColorScheme hook requires these groups after highlight clear
+	local ibl = { red, yellow, green, cyan, blue, purple }
+	for i, color in ipairs(ibl) do
+		vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { fg = color, nocombine = true })
+		vim.cmd(
+			string.format(
+				"highlight IndentBlanklineIndent%d guifg=%s ctermfg=NONE gui=nocombine cterm=nocombine",
+				i,
+				color
+			)
+		)
+	end
+	hi("IblIndent", dim)
+	hi("IblScope", accent)
+
 	vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
 	vim.api.nvim_set_hl(0, "@string", { link = "String" })
 	vim.api.nvim_set_hl(0, "@function", { link = "Function" })
