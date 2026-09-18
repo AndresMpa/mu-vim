@@ -19,24 +19,14 @@ bootstrap_pckr()
 
 require("pckr").add({
 
-  --=========================================================
-  -- LSP CORE
-  --=========================================================
-
+  -- LSP
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  "mfussenegger/nvim-dap",
   "mfussenegger/nvim-lint",
   "mhartington/formatter.nvim",
 
-  "mfussenegger/nvim-lint",
-  "mhartington/formatter.nvim",
-
-  --=========================================================
-  -- AUTOCOMPLETE
-  --=========================================================
-
+  -- Completion
   {
     "hrsh7th/nvim-cmp",
     requires = {
@@ -48,155 +38,22 @@ require("pckr").add({
       "onsails/lspkind.nvim",
     },
   },
-
   "L3MON4D3/LuaSnip",
 
-  --=========================================================
-  -- TREESITTER
-  --=========================================================
-
+  -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   },
-
-  -- NAVIGATION
-  -- File explorer
-  {
-    "kyazdani42/nvim-tree.lua",
-    requires = "kyazdani42/nvim-web-devicons",
-  },
-  -- Files opened
-  "akinsho/bufferline.nvim",
-
-  -- MOTION
-  -- Navigation between windows
-  "christoomey/vim-tmux-navigator",
-  -- Navigation in files
-  "easymotion/vim-easymotion",
-
-  --INDENTATION & SYNTAX
-  -- Indentation helper (It shows the indentation of functions, etc)
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("ibl").setup()
-    end,
-  },
-  -- TypeScript syntax
-  "leafgarland/typescript-vim",
-  -- JS and JSX syntax
-  "maxmellon/vim-jsx-pretty",
-  -- JavaScript support
-  "pangloss/vim-javascript",
-  -- Syntax highlight for multiple languages
-  "sheerun/vim-polyglot",
-  -- Support to git commands
-  "tpope/vim-fugitive",
-  -- Indentation for bash scripts
-  "z0mbix/vim-shfmt",
-
-  -- UTILITIES
-  -- Markdown preview
-  {
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  },
-
-  -- IMAGE PREVIEWER
-  { "m00qek/baleia.nvim", tag = "v1.2.0" },
-  {
-    "samodostal/image.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-
-  -- Live server
-  {
-    "turbio/bracey.vim",
-    run = "pnpm install --prefix server",
-    cmd = "Bracey",
-  },
-
-  -- Multicursor
-  "terryma/vim-multiple-cursors",
-  -- Easy way to make comments
-  "preservim/nerdcommenter",
-  -- Color picker for css
-  "KabbAmine/vCoolor.vim",
-  -- Git diffs
-  "mhinz/vim-signify",
-  -- Show #fffffffff with colors
-  "ap/vim-css-color",
-  -- Repeat all the commands using dot key
-  "tpope/vim-repeat",
-
-  -- AUTO COMPLETE
-  -- It gives nvim a general editing configuration for identation
-  "editorconfig/editorconfig-vim",
-  -- Auto complete parentesis
-  "jiangmiao/auto-pairs",
-  -- It helps to 'CRUD' parentesis, comillas and tags
-  "tpope/vim-surround",
-  -- Auto complete tags
   "windwp/nvim-ts-autotag",
 
-  --=========================================================
-  -- UI CORE
-  --=========================================================
-
-  "nvim-tree/nvim-web-devicons",
-  "nvim-lualine/lualine.nvim",
+  -- UI
+  {
+    "nvim-tree/nvim-tree.lua",
+    requires = "nvim-tree/nvim-web-devicons",
+  },
   "akinsho/bufferline.nvim",
-  "nvim-tree/nvim-tree.lua",
-  "nvim-telescope/telescope.nvim",
-  "lukas-reineke/indent-blankline.nvim",
-
-  --=========================================================
-  -- GIT
-  --=========================================================
-
-  {
-    "lewis6991/gitsigns.nvim",
-  },
-
-  "tpope/vim-fugitive",
-
-  --=========================================================
-  -- COMMENTS
-  --=========================================================
-
-  {
-    "numToStr/Comment.nvim",
-  },
-
-  --=========================================================
-  -- COLOR HIGHLIGHT
-  --=========================================================
-
-  {
-    "brenoprata10/nvim-highlight-colors",
-    opts = {
-      render = "background",
-      enable_named_colors = true,
-      enable_tailwind = true,
-    },
-  },
-
-  --=========================================================
-  -- MOTION
-  --=========================================================
-
-  "christoomey/vim-tmux-navigator",
-  "easymotion/vim-easymotion",
-
-  --=========================================================
-  -- START SCREEN
-  --=========================================================
-
+  "nvim-lualine/lualine.nvim",
   {
     "goolord/alpha-nvim",
     requires = {
@@ -205,11 +62,42 @@ require("pckr").add({
       "nvim-telescope/telescope.nvim",
     },
   },
+  "nvim-telescope/telescope.nvim",
+  "lukas-reineke/indent-blankline.nvim",
 
-  --=========================================================
-  -- UTILITIES
-  --=========================================================
+  -- Motion
+  "christoomey/vim-tmux-navigator",
+  "easymotion/vim-easymotion",
 
+  -- Git
+  "tpope/vim-fugitive",
+  "mhinz/vim-signify",
+
+  -- Syntax / edit
+  "sheerun/vim-polyglot",
+  "preservim/nerdcommenter",
+  "terryma/vim-multiple-cursors",
+  "jiangmiao/auto-pairs",
+  "tpope/vim-surround",
+  "tpope/vim-repeat",
+  "editorconfig/editorconfig-vim",
+  "ap/vim-css-color",
+  "KabbAmine/vCoolor.vim",
+
+  -- Preview / live
+  {
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+  {
+    "turbio/bracey.vim",
+    run = "pnpm install --prefix server",
+    cmd = "Bracey",
+  },
+
+  -- Utilities
   {
     "Pocco81/auto-save.nvim",
   },
