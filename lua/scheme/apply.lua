@@ -319,13 +319,7 @@ local function paint(p)
 	local ibl = { red, yellow, green, cyan, blue, purple }
 	for i, color in ipairs(ibl) do
 		vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { fg = color, nocombine = true })
-		vim.cmd(
-			string.format(
-				"highlight IndentBlanklineIndent%d guifg=%s ctermfg=NONE gui=nocombine cterm=nocombine",
-				i,
-				color
-			)
-		)
+		vim.api.nvim_set_hl(0, "IndentBlanklineScope" .. i, { fg = color, bold = true, nocombine = true })
 	end
 	hi("IblIndent", dim)
 	hi("IblScope", accent)
