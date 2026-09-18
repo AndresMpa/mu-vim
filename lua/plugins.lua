@@ -1,7 +1,8 @@
 local function bootstrap_pckr()
   local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
+  local fs = vim.uv or vim.loop
 
-  if not vim.uv.fs_stat(pckr_path) then
+  if not fs.fs_stat(pckr_path) then
     vim.fn.system({
       "git",
       "clone",
@@ -216,16 +217,20 @@ require("pckr").add({
 
 })
 
--- First launch: mason/formatter are not on disk until Pckr clones them.
+-- First launch: mason is missing until plugins are cloned.
+-- Call pckr.sync() in Lua; :Pckr is not always registered yet on VimEnter.
 if not pcall(require, "mason") then
   vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function()
       vim.notify(
-        "Installing plugins with :Pckr sync. Quit Neovim when it finishes, then open it again.",
+        "Installing plugins. Quit Neovim when it finishes, then open it again.",
         vim.log.levels.INFO
       )
-      vim.cmd("Pckr sync")
+      local ok, pckr = pcall(require, "pckr")
+      if ok and type(pckr.sync) == "function" then
+        pckr.sync()
+      end
     end,
   })
 end
