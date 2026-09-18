@@ -314,6 +314,13 @@ local function paint(p)
 	hi("AlphaHeader", blue)
 	hi("AlphaButtons", fg)
 	hi("AlphaShortcut", orange)
+	-- indent-blankline ColorScheme hook requires these groups after highlight clear
+	local ibl = { red, yellow, green, cyan, blue, purple }
+	for i, color in ipairs(ibl) do
+		vim.api.nvim_set_hl(0, "IndentBlanklineIndent" .. i, { fg = color, nocombine = true })
+	end
+	hi("IblIndent", dim)
+	hi("IblScope", accent)
 
 	vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
 	vim.api.nvim_set_hl(0, "@string", { link = "String" })
