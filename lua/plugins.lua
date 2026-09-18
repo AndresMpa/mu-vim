@@ -215,3 +215,17 @@ require("pckr").add({
   },
 
 })
+
+-- First launch: mason/formatter are not on disk until Pckr clones them.
+if not pcall(require, "mason") then
+  vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+      vim.notify(
+        "Installing plugins with :Pckr sync. Quit Neovim when it finishes, then open it again.",
+        vim.log.levels.INFO
+      )
+      vim.cmd("Pckr sync")
+    end,
+  })
+end

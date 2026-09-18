@@ -1,33 +1,23 @@
--- SET UP
+-- Plugin setups. Each require is optional so a first launch without
+-- :Pckr sync still opens an editor instead of aborting.
 
--- LSP
-require("lsp")
+local function try(mod)
+  local ok, err = pcall(require, mod)
+  if not ok then
+    vim.notify(
+      string.format("mu-vim: %s not ready yet (%s)", mod, err:match("^[^\n]+") or err),
+      vim.log.levels.WARN
+    )
+  end
+end
 
--- VISUAL HELP
-
--- GREETER
-require("setUp.greeter")
-
--- THEME
--- Nvim
-require("scheme.theme")
--- Bar
-require("setUp.statusLine")
-
--- Highlight
-require("setUp.highligth")
-
--- CODE
--- Identation
-require("setUp.identation")
-
--- NAVIGATION
--- File manager
-require("setUp.fileManager")
--- Multitab
-require("setUp.buffer")
--- Finder
-require("setUp.finder")
-
--- AUTO SAVE
-require("setUp.autosave")
+try("lsp")
+try("setUp.greeter")
+try("scheme.theme")
+try("setUp.statusLine")
+try("setUp.highligth")
+try("setUp.identation")
+try("setUp.fileManager")
+try("setUp.buffer")
+try("setUp.finder")
+try("setUp.autosave")
