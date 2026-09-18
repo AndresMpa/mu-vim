@@ -23,21 +23,9 @@
   </p>
 </div>
 
-MμVim is a Neovim and Vim setup with three configs. This repository is **Current**, the Lua core. Mini and VimScript live in their own repos. New features land here first.
+MμVim is three editor configs. This repository is **Current**: Lua, Neovim only, and where new work lands first.
 
-## Other configs
-
-### Mini
-
-A single `init.vim`. Useful as a template or on a server. See [mu-vim-mini](https://github.com/AndresMpa/mu-vim-mini). There is a walkthrough at [andresmpa.github.io/mu-vim-page](https://andresmpa.github.io/mu-vim-page/).
-
-### VimScript (LTS)
-
-Modular VimScript for Vim and Neovim. See [mu-vim-vimscript](https://github.com/AndresMpa/mu-vim-vimscript).
-
-### Current (this repo)
-
-Lua, Neovim only. Use this if you want the latest stack. It is also the most involved of the three.
+The other two are [Mini](https://github.com/AndresMpa/mu-vim-mini) (one `init.vim`) and [VimScript](https://github.com/AndresMpa/mu-vim-vimscript) (modular Vim and Neovim). Docs for all three: [andresmpa.github.io/mu-vim-page](https://andresmpa.github.io/mu-vim-page/).
 
 #### Take a look
 
@@ -49,13 +37,11 @@ Lua, Neovim only. Use this if you want the latest stack. It is also the most inv
 
 ## Prerequisites
 
-Current needs [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim) and [Lua](https://www.lua.org/download.html). It does not run on Vim. The installer can pull the rest of the tools.
+[Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim) and [Lua](https://www.lua.org/download.html) (`lua`, `lua5.4`, or `luajit`). Current does not run on Vim. The installer pulls the rest.
 
 ## Quick Start
 
-You need Git, Lua (`lua` / `lua5.4` / `luajit`), and a package manager:
-
-| OS | Package manager | Default config dir |
+| OS | Package manager | Config dir |
 | --- | --- | --- |
 | Linux Arch / Manjaro | pacman | `~/.config/nvim` |
 | Linux Debian / Ubuntu | apt | `~/.config/nvim` |
@@ -63,7 +49,7 @@ You need Git, Lua (`lua` / `lua5.4` / `luajit`), and a package manager:
 | macOS | [Homebrew](https://brew.sh) | `~/.config/nvim` |
 | Windows | [winget](https://aka.ms/getwinget) | `%LOCALAPPDATA%\nvim` |
 
-### Linux and macOS
+Linux and macOS:
 
 ```
 git clone https://github.com/AndresMpa/mu-vim.git ~/.config/nvim
@@ -71,9 +57,9 @@ cd ~/.config/nvim && lua install.lua
 nvim
 ```
 
-On a Mac, install Homebrew first if you do not have it. The installer uses `brew install` and does not need sudo.
+On a Mac, install Homebrew first. The installer uses `brew install` and does not need sudo.
 
-### Windows
+Windows:
 
 ```
 cd %LOCALAPPDATA%
@@ -84,21 +70,15 @@ lua install.lua
 nvim
 ```
 
-winget installs Neovim, Node LTS, pnpm, ripgrep, and fd. If Lua is missing, `winget install DEVCOM.Lua` (or install Lua from lua.org) and rerun `lua install.lua`.
+winget installs Neovim, Node LTS, pnpm, ripgrep, and fd. If Lua is missing, `winget install DEVCOM.Lua` and rerun `lua install.lua`.
 
-Then open Neovim:
+The first `nvim` runs `:Pckr sync`. When it finishes, quit (`:qa`) and open `nvim` again. Later: `<Space> p i` (install) or `<Space> p u` (sync).
 
-```
-nvim
-```
-
-The first launch installs plugins with `:Pckr sync` (mason, formatter, and the rest). That is why a brand-new config reports `module 'mason' not found` until sync finishes. When Pckr is done, quit (`:qa`) and open `nvim` again.
-
-To sync by hand later: `<Space> p i` (install) or `<Space> p u` (sync).
+`:checkhealth` is the next step. Windows often needs a C compiler for Treesitter. Format (`Space f`): **black** for Python, **biome** for JS/TS/JSON/CSS, Prettier for HTML/Markdown/Vue/YAML, shfmt for shell, stylua for Lua.
 
 ## Uninstall
 
-Removes the config, Mason, pckr plugins, nvim cache/state, and the font this installer copied. Does **not** uninstall Neovim or Homebrew/apt packages (node, pnpm, ripgrep, fd).
+Removes the config, Mason, pckr, nvim cache/state, and the font `install.lua` copied. Leaves Neovim and Homebrew/apt packages.
 
 ```
 cd ~/.config/nvim
@@ -109,25 +89,11 @@ On Windows, run `lua delete.lua` from `%LOCALAPPDATA%\nvim`.
 
 ## Tests
 
-Mapping contract for Current, Mini, and VimScript (Mini and VimScript have no test repos of their own):
-
 ```
 ./tests/run.sh
 ```
 
-That uses Podman if it is installed, otherwise Docker. With Go on the host: `cd tests && go test -count=1 -parallel 8 .`
-
-### Check Neovim health
-
-```
-nvim
-:checkhealth
-```
-
-`:checkhealth` is the real next step. Windows often needs a C compiler (Visual Studio Build Tools) for Treesitter. Any OS can be missing `fd` or `pnpm` until the installer finishes. There is a troubleshooting guide
-[here](https://github.com/AndresMpa/mu-vim/wiki/General-dependencies)
-
-`Space f` formats the buffer. Python uses **black**, JS/TS/JSON/CSS use **biome** (`pnpm add -g @biomejs/biome` under `~/.local/share/pnpm` — a system pnpm prefix is not writable). HTML, Markdown, Vue, and YAML still use Prettier. Shell uses shfmt; Lua uses stylua.
+Podman if present, otherwise Docker. On the host: `cd tests && go test -count=1 -parallel 8 .` Mapping tests also cover Mini and VimScript. Voice for READMEs: [WRITING.md](./WRITING.md).
 
 ## Star History
 
@@ -143,7 +109,6 @@ If the project is useful, a star on GitHub helps.
   </a>
 </p>
 
-
 ## Related tools
 
 - [rofi](https://github.com/davatorium/rofi)
@@ -153,8 +118,6 @@ If the project is useful, a star on GitHub helps.
 - [Arch Linux](https://github.com/AndresMpa/dotfiles)
 
 ## Similar projects
-
-If this setup is not a match, these are worth a look:
 
 - [DoomVim](https://github.com/NTBBloodbath/doom-nvim)
 - [NvChad](https://github.com/NvChad/NvChad)
