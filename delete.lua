@@ -2,7 +2,7 @@
 --[[
   delete.lua
 
-  Uninstall MμVim user data. Leaves the Neovim binary (and brew/apt/dnf
+  Uninstall MμVim user data. Leaves the Neovim binary (and package manager
   packages such as node, pnpm, ripgrep) in place.
 
   Removes:
