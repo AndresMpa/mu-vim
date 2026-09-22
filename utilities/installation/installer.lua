@@ -19,6 +19,7 @@ M.EXTRA_PACKAGES = {
 }
 
 local CORE_BY_MANAGER = {
+  -- nodejs without system npm is fine: we ship an npm→pnpm shim for Mason.
   pacman = { "neovim", "nodejs", "pnpm", "ripgrep", "fd", "python-neovim", "luarocks" },
   ["apt-get"] = { "neovim", "nodejs", "ripgrep", "fd-find", "python3-neovim", "luarocks" },
   dnf = { "neovim", "nodejs", "ripgrep", "fd-find", "python3-neovim", "luarocks" },
@@ -118,6 +119,102 @@ function M.ensure_pnpm()
   return exec_ok("curl -fsSL https://get.pnpm.io/install.sh | sh -")
 end
 
+-- Mason hardcodes spawn.npm (no pnpm option). When the system has no npm
+-- package, put a small shim first on PATH that forwards to pnpm.
+function M.npm_shim_dir()
+  return util.path_join(util.data_home(), "nvim", "muvim", "bin")
+end
+
+function M.ensure_npm_shim()
+  if util.has_command("npm") then
+    -- Real npm already available; do not shadow it.
+    local shim = util.path_join(M.npm_shim_dir(), util.is_windows() and "npm.cmd" or "npm")
+    if util.file_exists(shim) then
+      return true
+    end
+  end
+
+  if not util.has_command("pnpm") then
+    io.stderr:write("Cannot create npm shim: pnpm is missing\n")
+    return false
+  end
+
+  local dir = M.npm_shim_dir()
+  if not util.mkdir_p(dir) then
+    io.stderr:write("Could not create " .. dir .. "\n")
+    return false
+  end
+
+  if util.is_windows() then
+    local path = util.path_join(dir, "npm.cmd")
+    local f = io.open(path, "w")
+    if not f then
+      return false
+    end
+    f:write("@echo off\r\n")
+    f:write("REM npm -> pnpm shim for Mason\r\n")
+    f:write('where pnpm >nul 2>nul || (echo npm-shim: pnpm not found >&2 & exit /b 127)\r\n')
+    f:write('if /I "%~1"=="version" (\r\n')
+    f:write('  echo %* | findstr /C:"--json" >nul && (\r\n')
+    f:write('    for /f %%i in (\'pnpm -v\') do set PNPM_V=%%i\r\n')
+    f:write('    for /f %%i in (\'node -v\') do set NODE_V=%%i\r\n')
+    f:write('    set NODE_V=%NODE_V:v=%\r\n')
+    f:write('    echo {"npm":"%PNPM_V%","node":"%NODE_V%","pnpm":"%PNPM_V%"}\r\n')
+    f:write('    exit /b 0\r\n')
+    f:write('  )\r\n')
+    f:write(')\r\n')
+    f:write('if /I "%~1"=="init" (\r\n')
+    f:write('  if not exist package.json (\r\n')
+    f:write('    echo {"name":"@mason/root","version":"1.0.0","private":true}> package.json\r\n')
+    f:write('  )\r\n')
+    f:write('  exit /b 0\r\n')
+    f:write(')\r\n')
+    f:write("pnpm %*\r\n")
+    f:close()
+    io.write("Wrote npm→pnpm shim at " .. path .. "\n")
+    return true
+  end
+
+  local path = util.path_join(dir, "npm")
+  local f = io.open(path, "w")
+  if not f then
+    io.stderr:write("Could not write " .. path .. "\n")
+    return false
+  end
+  f:write("#!/usr/bin/env bash\n")
+  f:write("# npm → pnpm shim for Mason (mason.nvim always spawns `npm`).\n")
+  f:write("set -e\n")
+  f:write("if ! command -v pnpm >/dev/null 2>&1; then\n")
+  f:write("  echo \"npm-shim: pnpm not found on PATH\" >&2\n")
+  f:write("  exit 127\n")
+  f:write("fi\n")
+  f:write("if [ \"$1\" = \"version\" ]; then\n")
+  f:write("  for a in \"$@\"; do\n")
+  f:write("    if [ \"$a\" = \"--json\" ]; then\n")
+  f:write("      node_v=\"$(node -v 2>/dev/null | sed 's/^v//')\"\n")
+  f:write("      pnpm_v=\"$(pnpm -v 2>/dev/null || echo 0.0.0)\"\n")
+  f:write("      printf '{\"npm\":\"%s\",\"node\":\"%s\",\"pnpm\":\"%s\"}\\n' \"${pnpm_v}\" \"${node_v:-0.0.0}\" \"${pnpm_v}\"\n")
+  f:write("      exit 0\n")
+  f:write("    fi\n")
+  f:write("  done\n")
+  f:write("fi\n")
+  f:write("if [ \"$1\" = \"init\" ]; then\n")
+  f:write("  if [ ! -f package.json ]; then\n")
+  f:write("    printf '%s\\n' '{\"name\":\"@mason/root\",\"version\":\"1.0.0\",\"private\":true}' > package.json\n")
+  f:write("  fi\n")
+  f:write("  exit 0\n")
+  f:write("fi\n")
+  f:write("exec pnpm \"$@\"\n")
+  f:close()
+
+  if not exec_ok('chmod +x "' .. path .. '"') then
+    io.stderr:write("Could not chmod +x " .. path .. "\n")
+    return false
+  end
+  io.write("Wrote npm→pnpm shim at " .. path .. "\n")
+  return true
+end
+
 -- Global pnpm packages go under the user prefix. A system PNPM_HOME
 -- under /usr/local is not writable and fails with "create global install dir".
 function M.ensure_formatters()
@@ -214,6 +311,11 @@ function M.installDependencies(manager, extra_names)
 
   if not M.ensure_pnpm() then
     io.stderr:write("Could not install pnpm\n")
+    status = false
+  end
+
+  if not M.ensure_npm_shim() then
+    io.stderr:write("Could not install npm→pnpm shim (Mason needs a npm-compatible CLI)\n")
     status = false
   end
 
