@@ -49,7 +49,14 @@ require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
 
-local defaults = {}
+local ok_caps, capabilities = pcall(require, "lsp.capabilities")
+if not ok_caps then
+  capabilities = vim.lsp.protocol.make_client_capabilities()
+end
+
+local defaults = {
+  capabilities = capabilities,
+}
 
 local configs = {
 
@@ -64,9 +71,11 @@ local configs = {
   },
 
   ts_ls = {
+    root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
     init_options = {
       preferences = {
         disableSuggestions = true,
+        importModuleSpecifierPreference = "non-relative",
       },
     },
   },
@@ -77,3 +86,42 @@ for _, server in ipairs(servers) do
 
   vim.lsp.enable(server)
 end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("muvim_lsp_attach", { clear = true }),
+  callback = function(ev)
+    local opts = { buffer = ev.buf, silent = true, noremap = true }
+    vim.keymap.set("n", "gd", function()
+      vim.lsp.buf.definition()
+    end, opts)
+    vim.keymap.set("n", "gD", function()
+      vim.lsp.buf.declaration()
+    end, opts)
+    vim.keymap.set("n", "gi", function()
+      vim.lsp.buf.implementation()
+    end, opts)
+    vim.keymap.set("n", "gr", function()
+      vim.lsp.buf.references()
+    end, opts)
+  end,
+})
+
+local alias_fts = {
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+  "vue",
+  "svelte",
+  "astro",
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("muvim_path_alias", { clear = true }),
+  pattern = alias_fts,
+  callback = function()
+    pcall(function()
+      require("lsp.alias").setup_buffer()
+    end)
+  end,
+})
