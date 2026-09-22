@@ -13,6 +13,19 @@ local function default_name()
 	return vim.g.muvim_default_theme or "deep-ocean"
 end
 
+local function blend_hex(top, base, alpha)
+	local function chans(hex)
+		hex = hex:gsub("#", "")
+		return tonumber(hex:sub(1, 2), 16), tonumber(hex:sub(3, 4), 16), tonumber(hex:sub(5, 6), 16)
+	end
+	local tr, tg, tb = chans(top)
+	local br, bgc, bb = chans(base)
+	local function mix(t, b)
+		return math.floor(b + (t - b) * alpha + 0.5)
+	end
+	return string.format("#%02x%02x%02x", mix(tr, br), mix(tg, bgc), mix(tb, bb))
+end
+
 local function hi(group, fg, bg, style)
 	local opts = {}
 	if fg and fg ~= "" then
@@ -286,10 +299,23 @@ local function paint(p)
 	hi("SpellCap", yellow, nil, "undercurl")
 	hi("SpellRare", purple, nil, "undercurl")
 	hi("SpellLocal", cyan, nil, "undercurl")
-	hi("DiffAdd", green, bg_alt)
-	hi("DiffChange", yellow, bg_alt)
-	hi("DiffDelete", red, bg_alt)
-	hi("DiffText", blue, bg_alt, "bold")
+	-- Quiet line tint + deeper same-hue word patch. bg only, so syntax fg shows through.
+	local add_line = blend_hex(green, bg, 0.22)
+	local del_line = blend_hex(red, bg, 0.22)
+	local chg_line = blend_hex(yellow, bg, 0.18)
+	local chg_word = blend_hex(yellow, bg, 0.48)
+	vim.api.nvim_set_hl(0, "DiffAdd", { bg = add_line })
+	vim.api.nvim_set_hl(0, "DiffDelete", { bg = del_line })
+	vim.api.nvim_set_hl(0, "DiffChange", { bg = chg_line })
+	vim.api.nvim_set_hl(0, "DiffText", { bg = chg_word })
+	vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = del_line })
+	vim.api.nvim_set_hl(0, "DiffviewDiffDeleteDim", { fg = dim })
+	hi("diffAdded", green)
+	hi("diffRemoved", red)
+	hi("diffChanged", yellow)
+	hi("SignifySignAdd", green)
+	hi("SignifySignChange", yellow)
+	hi("SignifySignDelete", red)
 	hi("DiagnosticError", red)
 	hi("DiagnosticWarn", yellow)
 	hi("DiagnosticInfo", blue)
