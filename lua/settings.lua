@@ -25,7 +25,7 @@ set.termguicolors = true
 
 -- Spelling
 set.spell = true
-set.spelllang = { "en_us" }
+set.spelllang = { "en_us", "es" }
 
 -- Mouse support
 set.mouse = "a"
