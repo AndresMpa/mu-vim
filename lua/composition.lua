@@ -8,6 +8,7 @@ end
 try("lsp")
 try("setUp.greeter")
 try("scheme.theme")
+try("setUp.diff")
 try("setUp.statusLine")
 try("setUp.highligth")
 try("setUp.identation")

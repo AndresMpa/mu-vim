@@ -34,3 +34,12 @@ end, opts)
 
 -- To performe different actions
 map("n", "<Leader>ggg", ":Git<Space>", {})
+
+map("n", "<Leader>gd", function()
+  local ok, lib = pcall(require, "diffview.lib")
+  if ok and lib.get_current_view() then
+    vim.cmd("DiffviewClose")
+  else
+    vim.cmd("DiffviewOpen")
+  end
+end, opts)

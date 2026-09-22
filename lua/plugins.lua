@@ -72,6 +72,10 @@ require("pckr").add({
   -- Git
   "tpope/vim-fugitive",
   "mhinz/vim-signify",
+  {
+    "sindrets/diffview.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  },
 
   -- Syntax / edit
   "sheerun/vim-polyglot",
