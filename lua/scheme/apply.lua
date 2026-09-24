@@ -214,6 +214,76 @@ local function refresh_lualine()
 	end
 end
 
+-- Diff + Diffview (Space gd). Explicit groups so winhl and ColorScheme stay on palette.
+local function paint_diff(p)
+	if not p or not p.bg then
+		return
+	end
+	local bg, dim = p.bg, p.dim
+	local red, yellow, green, orange = p.red, p.yellow, p.green, p.orange
+	local blue, cyan, purple, accent = p.blue, p.cyan, p.purple, p.accent
+	local fg, bg_alt = p.fg, p.bg_alt
+
+	local add_line = blend_hex(green, bg, 0.22)
+	local del_line = blend_hex(red, bg, 0.22)
+	local chg_line = blend_hex(yellow, bg, 0.18)
+	local chg_word = blend_hex(yellow, bg, 0.48)
+
+	vim.api.nvim_set_hl(0, "DiffAdd", { bg = add_line })
+	vim.api.nvim_set_hl(0, "DiffDelete", { bg = del_line })
+	vim.api.nvim_set_hl(0, "DiffChange", { bg = chg_line })
+	vim.api.nvim_set_hl(0, "DiffText", { bg = chg_word })
+
+	vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { bg = add_line })
+	vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { fg = dim })
+	vim.api.nvim_set_hl(0, "DiffviewDiffChange", { bg = chg_line })
+	vim.api.nvim_set_hl(0, "DiffviewDiffText", { bg = chg_word })
+	vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = del_line })
+	vim.api.nvim_set_hl(0, "DiffviewDiffDeleteDim", { fg = dim })
+
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelTitle", { fg = blue, bold = true })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelCounter", { fg = purple, bold = true })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelFileName", { fg = fg })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelPath", { fg = dim })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelRootPath", { fg = blue, bold = true })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelSelected", { fg = yellow, bold = true })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelInsertions", { fg = green })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelDeletions", { fg = red })
+	vim.api.nvim_set_hl(0, "DiffviewFilePanelConflicts", { fg = yellow })
+	vim.api.nvim_set_hl(0, "DiffviewFolderName", { fg = blue, bold = true })
+	vim.api.nvim_set_hl(0, "DiffviewFolderSign", { fg = cyan })
+	vim.api.nvim_set_hl(0, "DiffviewDim1", { fg = dim })
+	vim.api.nvim_set_hl(0, "DiffviewPrimary", { fg = blue })
+	vim.api.nvim_set_hl(0, "DiffviewSecondary", { fg = green })
+	vim.api.nvim_set_hl(0, "DiffviewHash", { fg = cyan })
+	vim.api.nvim_set_hl(0, "DiffviewReference", { fg = blue, bold = true })
+	vim.api.nvim_set_hl(0, "DiffviewReflogSelector", { fg = accent })
+	vim.api.nvim_set_hl(0, "DiffviewStatusAdded", { fg = green })
+	vim.api.nvim_set_hl(0, "DiffviewStatusUntracked", { fg = green })
+	vim.api.nvim_set_hl(0, "DiffviewStatusModified", { fg = yellow })
+	vim.api.nvim_set_hl(0, "DiffviewStatusRenamed", { fg = yellow })
+	vim.api.nvim_set_hl(0, "DiffviewStatusCopied", { fg = yellow })
+	vim.api.nvim_set_hl(0, "DiffviewStatusTypeChange", { fg = yellow })
+	vim.api.nvim_set_hl(0, "DiffviewStatusUnmerged", { fg = orange or yellow })
+	vim.api.nvim_set_hl(0, "DiffviewStatusUnknown", { fg = red })
+	vim.api.nvim_set_hl(0, "DiffviewStatusDeleted", { fg = red })
+	vim.api.nvim_set_hl(0, "DiffviewStatusBroken", { fg = red })
+	vim.api.nvim_set_hl(0, "DiffviewStatusIgnored", { fg = dim })
+	vim.api.nvim_set_hl(0, "DiffviewNormal", { fg = fg, bg = bg })
+	vim.api.nvim_set_hl(0, "DiffviewCursorLine", { bg = bg_alt })
+	vim.api.nvim_set_hl(0, "DiffviewNonText", { fg = dim })
+	vim.api.nvim_set_hl(0, "DiffviewEndOfBuffer", { fg = bg, bg = bg })
+	vim.api.nvim_set_hl(0, "DiffviewWinSeparator", { fg = dim, bg = bg })
+	vim.api.nvim_set_hl(0, "DiffviewSignColumn", { fg = fg, bg = bg })
+	vim.api.nvim_set_hl(0, "DiffviewStatusLine", { fg = fg, bg = bg })
+	vim.api.nvim_set_hl(0, "DiffviewStatusLineNC", { fg = dim, bg = bg })
+end
+
+
+function M.paint_diff(p)
+	paint_diff(p or vim.g.muvim_palette)
+end
+
 local function paint(p)
 	vim.o.termguicolors = true
 	vim.o.background = "dark"
@@ -300,29 +370,23 @@ local function paint(p)
 	hi("SpellRare", dim)
 	hi("SpellLocal", dim)
 	-- Quiet line tint + deeper same-hue word patch. bg only, so syntax fg shows through.
-	local add_line = blend_hex(green, bg, 0.22)
-	local del_line = blend_hex(red, bg, 0.22)
-	local chg_line = blend_hex(yellow, bg, 0.18)
-	local chg_word = blend_hex(yellow, bg, 0.48)
-	vim.api.nvim_set_hl(0, "DiffAdd", { bg = add_line })
-	vim.api.nvim_set_hl(0, "DiffDelete", { bg = del_line })
-	vim.api.nvim_set_hl(0, "DiffChange", { bg = chg_line })
-	vim.api.nvim_set_hl(0, "DiffText", { bg = chg_word })
-	vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = del_line })
-	vim.api.nvim_set_hl(0, "DiffviewDiffDeleteDim", { fg = dim })
+	paint_diff(p)
 	hi("diffAdded", green)
 	hi("diffRemoved", red)
 	hi("diffChanged", yellow)
 	hi("SignifySignAdd", green)
 	hi("SignifySignChange", yellow)
 	hi("SignifySignDelete", red)
+	hi("GitSignsAdd", green)
+	hi("GitSignsChange", yellow)
+	hi("GitSignsDelete", red)
+	hi("NvimTreeGitDirty", yellow)
+	hi("NvimTreeGitNew", green)
+	hi("NvimTreeGitDeleted", red)
 	hi("DiagnosticError", red)
 	hi("DiagnosticWarn", yellow)
 	hi("DiagnosticInfo", blue)
 	hi("DiagnosticHint", cyan)
-	hi("GitSignsAdd", green)
-	hi("GitSignsChange", yellow)
-	hi("GitSignsDelete", red)
 	hi("TelescopeBorder", dim, bg)
 	hi("TelescopeSelection", fg, bg_alt)
 	hi("NvimTreeNormal", fg, bg)
@@ -334,9 +398,6 @@ local function paint(p)
 	hi("NvimTreeSymlink", cyan)
 	hi("NvimTreeExecFile", green)
 	hi("NvimTreeImageFile", purple)
-	hi("NvimTreeGitDirty", yellow)
-	hi("NvimTreeGitNew", green)
-	hi("NvimTreeGitDeleted", red)
 	hi("AlphaHeader", blue)
 	hi("AlphaButtons", fg)
 	hi("AlphaShortcut", orange)
@@ -389,7 +450,9 @@ function M.load(name)
 	vim.g.muvim_palette = pal
 	paint(pal)
 	vim.g.colors_name = name
+	-- Diffview rewrites Diff* links on ColorScheme; re-assert palette after that.
 	pcall(vim.api.nvim_exec_autocmds, "ColorScheme", { modeline = false, pattern = name })
+	paint_diff(pal)
 	return true
 end
 

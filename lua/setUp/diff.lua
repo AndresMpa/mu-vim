@@ -11,3 +11,7 @@ local hl_ok, hl = pcall(require, "diffview.hl")
 if hl_ok then
   hl.setup()
 end
+
+pcall(function()
+  require("scheme.apply").paint_diff()
+end)
