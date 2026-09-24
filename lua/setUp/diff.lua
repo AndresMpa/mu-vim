@@ -223,6 +223,15 @@ vim.api.nvim_create_autocmd("WinScrolled", {
 
 diffview.setup({
   enhanced_diff_hl = true,
+  icons = {
+    folder_closed = "",
+    folder_open = "",
+  },
+  signs = {
+    fold_closed = "",
+    fold_open = "",
+    done = "",
+  },
   hooks = {
     view_enter = function()
       if saved_lazyredraw == nil then
@@ -255,6 +264,53 @@ diffview.setup({
 local hl_ok, hl = pcall(require, "diffview.hl")
 if hl_ok then
   hl.setup()
+end
+
+-- Diffview prints raw git letters (M/A/D). Same icon family as greeter / nvim-tree.
+do
+  local status_icons = {
+    A = "", -- added
+    ["?"] = "", -- untracked
+    M = "", -- modified
+    R = "➜", -- renamed
+    C = "", -- copied
+    T = "", -- type change (branch-style)
+    U = "", -- unmerged
+    D = "", -- deleted
+    B = "", -- broken
+    X = "", -- unknown
+    ["!"] = "", -- ignored
+  }
+
+  local function iconize(text)
+    if type(text) ~= "string" then
+      return text
+    end
+    -- "M", "M ", "?" alone on the row edge (files + dirs).
+    local letter, rest = text:match("^([A-Za-z?!])([%s]*)$")
+    if not letter then
+      return text
+    end
+    local key = letter:match("%a") and letter:upper() or letter
+    local icon = status_icons[key]
+    if icon then
+      return icon .. (rest ~= "" and rest or " ")
+    end
+    return text
+  end
+
+  local ok_r, renderer = pcall(require, "diffview.renderer")
+  if ok_r and renderer.RenderComponent and renderer.RenderComponent.add_text then
+    local orig = renderer.RenderComponent.add_text
+    renderer.RenderComponent.add_text = function(self, text, hl_group)
+      if type(hl_group) == "string" and hl_group:match("^DiffviewStatus") then
+        text = iconize(text)
+      elseif type(text) == "string" and text:match("^[A-Za-z?!]%s*$") and status_icons[text:sub(1, 1):upper()] then
+        text = iconize(text)
+      end
+      return orig(self, text, hl_group)
+    end
+  end
 end
 
 pcall(function()

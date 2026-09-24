@@ -126,7 +126,7 @@ require("lualine").setup({
 			},
 			{
 				"diff",
-				symbols = { added = " ", modified = "柳", removed = " " },
+				symbols = { added = " ", modified = " ", removed = " " },
 				diff_color = {
 					modified = { fg = colors.modified },
 					removed = { fg = colors.removed },

@@ -34,6 +34,13 @@ set.visualbell = true
 set.cursorline = false
 set.clipboard = "unnamedplus"
 
+-- vim-signify gutter — same family as greeter (not codicon �… boxes)
+vim.g.signify_sign_add = ""
+vim.g.signify_sign_change = ""
+vim.g.signify_sign_delete = ""
+vim.g.signify_sign_delete_first_line = "‾"
+vim.g.signify_sign_change_delete = ""
+
 -- Autos
 set.autoindent = true
 set.updatetime = 300
