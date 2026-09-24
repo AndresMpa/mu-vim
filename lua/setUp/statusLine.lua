@@ -8,9 +8,11 @@ local function colors_from_palette()
 		fg = p.fg,
 		alt_fg = p.bg,
 		branch = p.green,
-		modified = p.purple,
-		removed = p.yellow,
-		added = p.cyan,
+		-- git: add green · delete red · change/untracked yellow · merge purple
+		modified = p.yellow,
+		removed = p.red,
+		added = p.green,
+		merge = p.purple,
 		filename = p.purple,
 		error = p.red,
 		warning = p.yellow,
@@ -30,9 +32,10 @@ local colors = colors_from_palette() or {
 	-- Status
 	-- git
 	branch = "#98be65",
-	modified = "#a9a1e1",
-	removed = "#ECBE7B",
-	added = "#008080",
+	modified = "#ECBE7B",
+	removed = "#c05a60",
+	added = "#98be65",
+	merge = "#c678dd",
 	-- file
 	filename = "#c678dd",
 	-- clues
